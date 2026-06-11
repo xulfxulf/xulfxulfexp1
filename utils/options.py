@@ -10,7 +10,8 @@ def get_args():
     parser.add_argument("--log_period", default=100, type=int)
     parser.add_argument("--eval_period", default=1, type=int)
     parser.add_argument("--seed", default=1, type=int)
-    parser.add_argument("--val_dataset", default="test") # use val set when evaluate, if test use test set
+    parser.add_argument("--light_stat_period", default=100, type=int)
+    parser.add_argument("--val_dataset", default="val") # use val set when evaluate, if test use test set
     parser.add_argument("--resume", default=False, action='store_true')
     parser.add_argument("--resume_ckpt_file", default="", help='resume from ...')
 
@@ -27,10 +28,18 @@ def get_args():
     parser.add_argument("--MLM", default=False, action='store_true', help="whether to use Mask Language Modeling dataset")
     parser.add_argument("--irra_light", default=False, action='store_true',
                         help="enable the clean IRRA-light two-head baseline")
-    parser.add_argument("--irra_light_mode", default="split_pure",
-                        choices=["single_pure", "split_pure", "single_id", "split_id"],
+    parser.add_argument("--irra_light_mode", default="single_pure",
+                        choices=[
+                            "single_pure",
+                            "single_proj_pure",
+                            "split_pure",
+                            "single_id",
+                            "single_proj_id",
+                            "split_id",
+                        ],
                         help=("IRRA-light first-round mode: "
-                              "single_pure=A, split_pure=B, single_id=C, split_id=D"))
+                              "single_pure=A, single_proj_pure=B, split_pure=C, "
+                              "single_id=D, single_proj_id=E, split_id=F"))
     parser.add_argument("--irra_light_identity_loss", default="sdm",
                         choices=["sdm", "itc"],
                         help="identity head alignment loss; default SDM uses same-PID positives")

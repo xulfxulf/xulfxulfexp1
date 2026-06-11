@@ -1,13 +1,9 @@
 #!/bin/bash
 set -e
 
-# First-round IRRA-light ablations from the design note:
-# A single_pure: single embedding, SDM + one-to-one ITC
-# B split_pure : identity head SDM + state head one-to-one ITC
-# C single_id  : single embedding, SDM + one-to-one ITC + ID classification
-# D split_id   : identity head SDM + ID classification, state head one-to-one ITC
+# First-round IRRA-light ablations from simplest to most complex.
 
-MODES=${MODES:-"single_pure split_pure single_id split_id"}
+MODES=${MODES:-"single_pure single_proj_pure split_pure single_id single_proj_id split_id"}
 BASE_EXP_NAME=${BASE_EXP_NAME:-irra_light_first_round}
 
 for MODE in ${MODES}; do

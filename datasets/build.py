@@ -1,4 +1,6 @@
 import logging
+import random
+import numpy as np
 import torch
 import torchvision.transforms as T
 from torch.utils.data import DataLoader
@@ -74,6 +76,14 @@ def build_dataloader(args, tranforms=None):
     num_workers = args.num_workers
     dataset = __factory[args.dataset_name](root=args.root_dir)
     num_classes = len(dataset.train_id_container)
+
+    def seed_worker(worker_id):
+        worker_seed = (args.seed + worker_id) % 2**32
+        np.random.seed(worker_seed)
+        random.seed(worker_seed)
+
+    generator = torch.Generator()
+    generator.manual_seed(args.seed)
     
     if args.training:
         train_transforms = build_transforms(img_size=args.img_size,
@@ -112,6 +122,8 @@ def build_dataloader(args, tranforms=None):
                                               dataset.train, args.batch_size,
                                               args.num_instance),
                                           num_workers=num_workers,
+                                          worker_init_fn=seed_worker,
+                                          generator=generator,
                                           collate_fn=collate)
         elif args.sampler == 'random':
             # TODO add distributed condition
@@ -120,6 +132,8 @@ def build_dataloader(args, tranforms=None):
                                       batch_size=args.batch_size,
                                       shuffle=True,
                                       num_workers=num_workers,
+                                      worker_init_fn=seed_worker,
+                                      generator=generator,
                                       collate_fn=collate)
         else:
             logger.error('unsupported sampler! expected softmax or triplet but got {}'.format(args.sampler))

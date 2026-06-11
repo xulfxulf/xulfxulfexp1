@@ -14,14 +14,19 @@ class IRRA(nn.Module):
         self.num_classes = num_classes
         self._set_task()
         self.irra_light = bool(getattr(args, 'irra_light', False)) or 'irra_light' in self.current_task
-        self.irra_light_mode = getattr(args, 'irra_light_mode', 'split_pure')
+        self.irra_light_mode = getattr(args, 'irra_light_mode', 'single_pure')
+        self.irra_light_single_proj = self.irra_light and self.irra_light_mode in {'single_proj_pure', 'single_proj_id'}
         self.irra_light_split = self.irra_light and self.irra_light_mode in {'split_pure', 'split_id'}
-        self.irra_light_with_id = self.irra_light and self.irra_light_mode in {'single_id', 'split_id'}
+        self.irra_light_with_id = self.irra_light and self.irra_light_mode in {'single_id', 'single_proj_id', 'split_id'}
 
         self.base_model, base_cfg = build_CLIP_from_openai_pretrained(args.pretrain_choice, args.img_size, args.stride_size)
         self.embed_dim = base_cfg['embed_dim']
 
         self.register_buffer('logit_scale', torch.ones([]) * (1 / args.temperature))
+
+        if self.irra_light_single_proj:
+            self.single_head = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
+            nn.init.eye_(self.single_head.weight)
 
         if self.irra_light_split:
             self.identity_head = nn.Linear(self.embed_dim, self.embed_dim, bias=False)
@@ -76,6 +81,8 @@ class IRRA(nn.Module):
         print(f'Training Model with {self.current_task} tasks')
 
     def float_projection_heads(self):
+        if self.irra_light_single_proj:
+            self.single_head.float()
         if self.irra_light_split:
             self.identity_head.float()
             self.state_head.float()
@@ -104,6 +111,8 @@ class IRRA(nn.Module):
         x = x[:, 0, :].float()
         if self.irra_light_split:
             return self._project_light_head(self.identity_head, x)
+        if self.irra_light_single_proj:
+            return self._project_light_head(self.single_head, x)
         return x
         # return x.float() # for CLIP ResNet visual model
 
@@ -112,6 +121,8 @@ class IRRA(nn.Module):
         x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)].float()
         if self.irra_light_split:
             return self._project_light_head(self.identity_head, x)
+        if self.irra_light_single_proj:
+            return self._project_light_head(self.single_head, x)
         return x
 
     def forward(self, batch):
@@ -133,6 +144,11 @@ class IRRA(nn.Module):
                 identity_t_feats = self._project_light_head(self.identity_head, t_feats)
                 state_i_feats = self._project_light_head(self.state_head, i_feats)
                 state_t_feats = self._project_light_head(self.state_head, t_feats)
+            elif self.irra_light_single_proj:
+                identity_i_feats = self._project_light_head(self.single_head, i_feats)
+                identity_t_feats = self._project_light_head(self.single_head, t_feats)
+                state_i_feats = identity_i_feats
+                state_t_feats = identity_t_feats
             else:
                 identity_i_feats = i_feats
                 identity_t_feats = t_feats

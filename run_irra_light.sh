@@ -4,12 +4,18 @@ set -e
 DATASET_NAME=${DATASET_NAME:-CUHK-PEDES}
 DATA_ROOT=${DATA_ROOT:-/root/shared-nvme/zixiangwang/yxyx/RDE_3090/datasets}
 OUTPUT_DIR=${OUTPUT_DIR:-logs}
-EXP_NAME=${EXP_NAME:-irra_light_clean_two_head}
-IRRA_LIGHT_MODE=${IRRA_LIGHT_MODE:-split_pure}
+IRRA_LIGHT_MODE=${IRRA_LIGHT_MODE:-single_pure}
 NUM_EPOCH=${NUM_EPOCH:-60}
 BATCH_SIZE=${BATCH_SIZE:-64}
 SEED=${SEED:-1}
+IMG_AUG=${IMG_AUG:-0}
+EXP_NAME=${EXP_NAME:-irra_light_${DATASET_NAME}_${IRRA_LIGHT_MODE}_aug${IMG_AUG}_seed${SEED}}
 PYTHON_BIN=${PYTHON_BIN:-python}
+AUG_ARGS=""
+
+if [ "${IMG_AUG}" = "1" ]; then
+  AUG_ARGS="--img_aug"
+fi
 
 CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0} \
 "${PYTHON_BIN}" train.py \
@@ -17,10 +23,11 @@ CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0} \
   --irra_light \
   --irra_light_mode "${IRRA_LIGHT_MODE}" \
   --irra_light_identity_loss sdm \
-  --img_aug \
+  ${AUG_ARGS} \
   --batch_size "${BATCH_SIZE}" \
   --sampler random \
   --dataset_name "${DATASET_NAME}" \
+  --val_dataset val \
   --root_dir "${DATA_ROOT}" \
   --output_dir "${OUTPUT_DIR}" \
   --seed "${SEED}" \

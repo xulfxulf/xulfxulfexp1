@@ -17,7 +17,9 @@ def build_optimizer(args, model):
         lr = args.lr
         weight_decay = args.weight_decay
 
-        if getattr(args, 'irra_light', False) and ("identity_head" in key or "state_head" in key):
+        if getattr(args, 'irra_light', False) and (
+            "identity_head" in key or "state_head" in key or "single_head" in key
+        ):
             lr = args.lr
             weight_decay = args.weight_decay
         elif "cross" in key:
