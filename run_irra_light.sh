@@ -13,6 +13,10 @@ EXP_NAME=${EXP_NAME:-irra_light_${DATASET_NAME}_${IRRA_LIGHT_MODE}_aug${IMG_AUG}
 PYTHON_BIN=${PYTHON_BIN:-python}
 AUG_ARGS=""
 
+if [ -z "${OMP_NUM_THREADS:-}" ]; then
+  export OMP_NUM_THREADS=4
+fi
+
 VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
 if [[ "${VISIBLE_DEVICES}" == *,* ]]; then
   echo "First-round IRRA-light experiments must use a single GPU. Got CUDA_VISIBLE_DEVICES=${VISIBLE_DEVICES}"
