@@ -28,6 +28,7 @@ easydict
 
 ### Prepare Datasets
 Download the CUHK-PEDES dataset from [here](https://github.com/ShuangLI59/Person-Search-with-Natural-Language-Description), ICFG-PEDES dataset from [here](https://github.com/zifyloo/SSAN) and RSTPReid dataset form [here](https://github.com/NjtechCVLab/RSTPReid-Dataset)
+TAG-PEDES follows the official TAG-PR release at https://github.com/Flame-Chasers/TAG-PR and is supported through its `train_reid.json` / `test_reid.json` schema.
 
 Organize them in `your dataset root dir` folder as follows:
 ```
@@ -48,6 +49,17 @@ Organize them in `your dataset root dir` folder as follows:
 |   |-- <RSTPReid>/
 |       |-- imgs
 |       |-- data_captions.json
+|-- TAG-PEDES/
+|   |-- train_reid.json
+|   |-- test_reid.json
+|   |-- G2APS/
+|   |-- AG-ReID.v2/
+|
+|-- TAG-PEDES/
+|   |-- anno_dir/
+|   |   |-- train_reid.json
+|   |   |-- test_reid.json
+|   |-- images/
 ```
 
 
