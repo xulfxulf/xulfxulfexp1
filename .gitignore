@@ -3,13 +3,19 @@ __pycache__/
 *.pyo
 
 logs/
+logs_*/
 runs/
 output/
 outputs/
+server_logs/
 checkpoints/
 *.pth
 *.pt
 *.ckpt
+*_nohup.log
+*.pid
+events.out.tfevents*
+train_log.txt
 
 *.zip
 *.rar
