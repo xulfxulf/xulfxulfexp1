@@ -13,8 +13,8 @@ BATCH_SIZE=${BATCH_SIZE:-64}
 SEED=${SEED:-1}
 IMG_AUG=${IMG_AUG:-0}
 GPU_MONITOR_INTERVAL=${GPU_MONITOR_INTERVAL:-30}
-MODES=${MODES:-"single_pure single_proj_pure split_pure single_id single_proj_id split_id"}
-SUMMARY_FILE=${SUMMARY_FILE:-${OUTPUT_DIR}/${DATASET_NAME}/irra_light_first_round_small_summary.tsv}
+MODES=${MODES:-"single_pure single_proj_pure split_pure"}
+SUMMARY_FILE=${SUMMARY_FILE:-${OUTPUT_DIR}/${DATASET_NAME}/irra_light_mechanism_check_small_summary.tsv}
 
 export DATASET_NAME DATA_ROOT OUTPUT_DIR PYTHON_BIN CUDA_VISIBLE_DEVICES
 export NUM_EPOCH BATCH_SIZE SEED IMG_AUG
@@ -41,7 +41,7 @@ start_gpu_monitor() {
 
 for MODE in ${MODES}; do
   export IRRA_LIGHT_MODE="${MODE}"
-  export EXP_NAME="first_round_small_${DATASET_NAME}_${MODE}_e${NUM_EPOCH}_aug${IMG_AUG}_seed${SEED}"
+  export EXP_NAME="mechanism_check_small_${DATASET_NAME}_${MODE}_e${NUM_EPOCH}_aug${IMG_AUG}_seed${SEED}"
   GPU_CSV="${OUTPUT_DIR}/gpu_monitors/${EXP_NAME}_gpu.csv"
   STOP_FILE="${OUTPUT_DIR}/gpu_monitors/${EXP_NAME}.stop"
   rm -f "${STOP_FILE}"

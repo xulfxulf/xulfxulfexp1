@@ -30,6 +30,9 @@ if __name__ == '__main__':
     test_img_loader, test_txt_loader, num_classes = build_dataloader(args)
     model = build_model(args, num_classes=num_classes)
     checkpointer = Checkpointer(model)
-    checkpointer.load(f=op.join(args.output_dir, 'best.pth'))
+    ckpt_path = op.join(args.output_dir, 'best.pth')
+    if not op.exists(ckpt_path):
+        raise FileNotFoundError(f"Missing checkpoint: {ckpt_path}")
+    checkpointer.load(f=ckpt_path)
     model.to(device)
     do_inference(model, test_img_loader, test_txt_loader)

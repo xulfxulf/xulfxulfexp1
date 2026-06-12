@@ -25,7 +25,8 @@ backbones unchanged while removing the heavy IRRA relation machinery.
   batch of each epoch and every `--light_stat_period` batches. The log includes
   duplicate identities, negative ordered pairs, duplicate images, and
   same-image ordered pairs.
-- Inference uses only the identity head via `encode_image` and `encode_text`.
+- In split modes, inference uses only the identity head via `encode_image` and
+  `encode_text`.
 
 ## Disabled
 
@@ -35,7 +36,7 @@ backbones unchanged while removing the heavy IRRA relation machinery.
 - Random-initialized module 5x learning-rate treatment for the new heads.
 - Identity sampler / full identity package sampling.
 
-## First-Round Modes
+## Available Modes
 
 Use `--irra_light --irra_light_mode <mode>`.
 
@@ -52,6 +53,27 @@ The default launch script uses `single_pure`, the actual no-extra-projection
 baseline. Run `IRRA_LIGHT_MODE=split_pure bash run_irra_light.sh` explicitly for
 the clean dual-head method.
 
+For the first-round main table, keep `--irra_light_identity_loss sdm`. The
+one-to-one identity-loss option is only an extra sanity check because it changes
+the identity head from identity-level relation learning to original-pair
+alignment.
+
+## First-Round Mechanism Check
+
+The default ablation script runs only three modes:
+
+1. `single_pure`: raw CLIP capacity baseline.
+2. `single_proj_pure`: single-head projection capacity control.
+3. `split_pure`: identity/state split-head method.
+
+Decision rule: first compare `single_proj_pure` with `single_pure` to measure
+projection-capacity gain; then compare `split_pure` with `single_proj_pure` to
+judge whether split-head assignment itself helps.
+
+ID-classification modes remain implemented, but they are second-stage stability
+checks. The first round should run only one dataset first, normally
+`CUHK-PEDES`.
+
 ## Main Files
 
 - `model/build.py`: IRRA-light heads and forward path.
@@ -59,7 +81,7 @@ the clean dual-head method.
 - `utils/options.py`: `--irra_light`, seed, and forced random sampling.
 - `solver/build.py`: projection heads use base learning rate.
 - `run_irra_light.sh`: 3090-ready launch script.
-- `run_irra_light_ablation.sh`: runs the six first-round modes serially.
+- `run_irra_light_ablation.sh`: runs the three-mode mechanism check by default.
 
 ## 3090 Example
 
@@ -75,8 +97,8 @@ For smoke:
 NUM_EPOCH=2 IMG_AUG=0 EXP_NAME=irra_light_smoke bash run_irra_light.sh
 ```
 
-For the first-round six-mode comparison:
+For the first-round mechanism check:
 
 ```bash
-NUM_EPOCH=60 BASE_EXP_NAME=irra_light_first_round bash run_irra_light_ablation.sh
+NUM_EPOCH=60 BASE_EXP_NAME=irra_light_mechanism_check bash run_irra_light_ablation.sh
 ```

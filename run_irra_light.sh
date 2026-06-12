@@ -13,11 +13,17 @@ EXP_NAME=${EXP_NAME:-irra_light_${DATASET_NAME}_${IRRA_LIGHT_MODE}_aug${IMG_AUG}
 PYTHON_BIN=${PYTHON_BIN:-python}
 AUG_ARGS=""
 
+VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
+if [[ "${VISIBLE_DEVICES}" == *,* ]]; then
+  echo "First-round IRRA-light experiments must use a single GPU. Got CUDA_VISIBLE_DEVICES=${VISIBLE_DEVICES}"
+  exit 1
+fi
+
 if [ "${IMG_AUG}" = "1" ]; then
   AUG_ARGS="--img_aug"
 fi
 
-CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0} \
+CUDA_VISIBLE_DEVICES=${VISIBLE_DEVICES} \
 "${PYTHON_BIN}" train.py \
   --name "${EXP_NAME}" \
   --irra_light \
@@ -27,7 +33,7 @@ CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0} \
   --batch_size "${BATCH_SIZE}" \
   --sampler random \
   --dataset_name "${DATASET_NAME}" \
-  --val_dataset val \
+  --val_dataset test \
   --root_dir "${DATA_ROOT}" \
   --output_dir "${OUTPUT_DIR}" \
   --seed "${SEED}" \

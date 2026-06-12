@@ -11,7 +11,7 @@ def get_args():
     parser.add_argument("--eval_period", default=1, type=int)
     parser.add_argument("--seed", default=1, type=int)
     parser.add_argument("--light_stat_period", default=100, type=int)
-    parser.add_argument("--val_dataset", default="val") # use val set when evaluate, if test use test set
+    parser.add_argument("--val_dataset", default="test") # use val set when evaluate, if test use test set
     parser.add_argument("--resume", default=False, action='store_true')
     parser.add_argument("--resume_ckpt_file", default="", help='resume from ...')
 
