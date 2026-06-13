@@ -83,6 +83,37 @@ python train.py \
 python test.py --config_file 'path/to/model_dir/configs.yaml'
 ```
 
+## SuperCLIP Checkpoint Compatibility Experiment
+
+This repository includes a minimal SuperCLIP compatibility path for backbone-initialization diagnosis only. It does not add SuperCLIP classification heads, does not change IRRA-light losses, and does not change TAG-PEDES/CUHK-PEDES dataloaders or training hyperparameters.
+
+Inspect an original SuperCLIP checkpoint:
+
+```bash
+python tools/inspect_superclip_ckpt.py \
+  --ckpt /path/to/original_superclip_checkpoint.pt
+```
+
+Convert encoder weights that match the current ViT-B/16 CLIP backbone:
+
+```bash
+python tools/convert_superclip_to_irra_clip.py \
+  --superclip_ckpt /path/to/original_superclip_checkpoint.pt \
+  --output /root/autodl-tmp/IRRA_light_baseline/pretrained/superclip_irra_vitb16.pt \
+  --pretrain_choice ViT-B/16 \
+  --img_size 384 128 \
+  --stride_size 16
+```
+
+Run the TAG-PEDES `single_pure` initialization control on the 4090 workspace:
+
+```bash
+PRETRAIN_CHOICE=/root/autodl-tmp/IRRA_light_baseline/pretrained/superclip_irra_vitb16.pt \
+bash run_irra_light_4090_tag_single_pure_superclip.sh
+```
+
+The first formal control should only record OpenAI CLIP ViT-B/16 `single_pure` versus SuperCLIP-initialized ViT-B/16 `single_pure`. Reuse in `single_proj_pure` or `split_pure` should be considered only after the `single_pure` initialization control is useful.
+
 ## IRRA on Text-to-Image Person Retrieval Results
 #### CUHK-PEDES dataset
 

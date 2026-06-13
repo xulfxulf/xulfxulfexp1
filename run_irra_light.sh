@@ -9,6 +9,7 @@ NUM_EPOCH=${NUM_EPOCH:-60}
 BATCH_SIZE=${BATCH_SIZE:-64}
 SEED=${SEED:-1}
 IMG_AUG=${IMG_AUG:-0}
+PRETRAIN_CHOICE=${PRETRAIN_CHOICE:-ViT-B/16}
 EXP_NAME=${EXP_NAME:-irra_light_${DATASET_NAME}_${IRRA_LIGHT_MODE}_aug${IMG_AUG}_seed${SEED}}
 PYTHON_BIN=${PYTHON_BIN:-python}
 AUG_ARGS=""
@@ -33,6 +34,7 @@ CUDA_VISIBLE_DEVICES=${VISIBLE_DEVICES} \
   --irra_light \
   --irra_light_mode "${IRRA_LIGHT_MODE}" \
   --irra_light_identity_loss sdm \
+  --pretrain_choice "${PRETRAIN_CHOICE}" \
   ${AUG_ARGS} \
   --batch_size "${BATCH_SIZE}" \
   --sampler random \
