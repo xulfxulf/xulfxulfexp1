@@ -1,0 +1,1258 @@
+2026-06-12 23:15:36,339 IRRA INFO: Using 1 GPUs
+2026-06-12 23:15:36,339 IRRA INFO: Namespace(MLM=False
+ alpha=0.9
+ batch_size=64
+ beta=0.999
+ bias_lr_factor=2.0
+ cmt_depth=4
+ dataset_name='TAG-PEDES'
+ distributed=False
+ eval_period=1
+ gamma=0.1
+ id_loss_weight=1.0
+ img_aug=False
+ img_size=(384
+ 128)
+ irra_light=True
+ irra_light_identity_loss='sdm'
+ irra_light_mode='split_pure'
+ light_stat_period=100
+ local_rank=0
+ log_period=100
+ loss_names='irra_light'
+ lr=1e-05
+ lr_factor=5.0
+ lrscheduler='cosine'
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ milestones=(20
+ 50)
+ mlm_loss_weight=1.0
+ momentum=0.9
+ name='irra_light_split_pure_4090_tagpedes_60e'
+ num_epoch=60
+ num_instance=4
+ num_workers=8
+ optimizer='Adam'
+ output_dir='logs_4090/TAG-PEDES/20260612_231536_irra_light_split_pure_4090_tagpedes_60e'
+ power=0.9
+ pretrain_choice='ViT-B/16'
+ resume=False
+ resume_ckpt_file=''
+ root_dir='/root/autodl-tmp/datasets'
+ sampler='random'
+ seed=1
+ stride_size=16
+ target_lr=0
+ temperature=0.02
+ test_batch_size=512
+ text_length=77
+ training=True
+ val_dataset='test'
+ vocab_size=49408
+ warmup_epochs=5
+ warmup_factor=0.1
+ warmup_method='linear'
+ weight_decay=4e-05
+ weight_decay_bias=0.0)
+2026-06-12 23:15:37,099 IRRA.dataset INFO: => TAG-PEDES Images and Captions are loaded
+2026-06-12 23:15:37,099 IRRA.dataset INFO: TAGPEDES Dataset statistics:
+2026-06-12 23:15:37,099 IRRA.dataset INFO: 
++--------+------+--------+----------+
+| subset | ids  | images | captions |
++--------+------+--------+----------+
+| train  | 4840 | 19954  |  39908   |
+|  test  | 2000 |  8252  |  16504   |
+|  val   | 2000 |  8252  |  16504   |
++--------+------+--------+----------+
+2026-06-12 23:15:37,231 IRRA.dataset INFO: using random sampler
+2026-06-12 23:15:38,158 IRRA.model INFO: Load pretrained ViT-B/16 CLIP model with model config: {'embed_dim': 512, 'image_resolution': (384, 128), 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'context_length': 77, 'vocab_size': 49408, 'transformer_width': 512, 'transformer_heads': 8, 'transformer_layers': 12, 'stride_size': 16}
+2026-06-12 23:15:39,856 IRRA INFO: Total params: 150M
+2026-06-12 23:15:43,856 IRRA.train INFO: start training
+2026-06-12 23:15:45,250 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:16:02,788 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:16:02,953 IRRA.train INFO: Epoch[1] Iteration[100/624], loss: 26.1921, identity_sdm_loss: 23.7593, state_itc_loss: 2.4328, Base Lr: 1.00e-06
+2026-06-12 23:16:20,483 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:16:20,648 IRRA.train INFO: Epoch[1] Iteration[200/624], loss: 23.7093, identity_sdm_loss: 21.6342, state_itc_loss: 2.0751, Base Lr: 1.00e-06
+2026-06-12 23:16:38,150 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:16:38,316 IRRA.train INFO: Epoch[1] Iteration[300/624], loss: 21.9393, identity_sdm_loss: 20.0804, state_itc_loss: 1.8589, Base Lr: 1.00e-06
+2026-06-12 23:16:55,849 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:16:56,013 IRRA.train INFO: Epoch[1] Iteration[400/624], loss: 20.6146, identity_sdm_loss: 18.8990, state_itc_loss: 1.7156, Base Lr: 1.00e-06
+2026-06-12 23:17:13,494 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:17:13,659 IRRA.train INFO: Epoch[1] Iteration[500/624], loss: 19.5861, identity_sdm_loss: 17.9760, state_itc_loss: 1.6100, Base Lr: 1.00e-06
+2026-06-12 23:17:31,089 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:17:31,252 IRRA.train INFO: Epoch[1] Iteration[600/624], loss: 18.7271, identity_sdm_loss: 17.1990, state_itc_loss: 1.5282, Base Lr: 1.00e-06
+2026-06-12 23:17:35,532 IRRA.train INFO: Epoch 1 done. Time per batch: 0.179[s] Speed: 357.6[samples/s]
+2026-06-12 23:17:35,532 IRRA.train INFO: Validation Results - Epoch: 1
+2026-06-12 23:17:52,988 IRRA.eval INFO: 
++------+--------+--------+--------+--------+-------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP |
++------+--------+--------+--------+--------+-------+
+| t2i  | 26.497 | 46.643 | 56.380 | 21.452 | 9.275 |
++------+--------+--------+--------+--------+-------+
+2026-06-12 23:17:55,849 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:18:13,341 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:18:13,506 IRRA.train INFO: Epoch[2] Iteration[100/624], loss: 12.9087, identity_sdm_loss: 11.9064, state_itc_loss: 1.0023, Base Lr: 2.80e-06
+2026-06-12 23:18:30,998 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:18:31,153 IRRA.train INFO: Epoch[2] Iteration[200/624], loss: 12.0025, identity_sdm_loss: 11.0602, state_itc_loss: 0.9423, Base Lr: 2.80e-06
+2026-06-12 23:18:48,562 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:18:48,726 IRRA.train INFO: Epoch[2] Iteration[300/624], loss: 11.4079, identity_sdm_loss: 10.5138, state_itc_loss: 0.8941, Base Lr: 2.80e-06
+2026-06-12 23:19:06,122 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:19:06,276 IRRA.train INFO: Epoch[2] Iteration[400/624], loss: 10.8853, identity_sdm_loss: 10.0329, state_itc_loss: 0.8524, Base Lr: 2.80e-06
+2026-06-12 23:19:23,619 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:19:23,784 IRRA.train INFO: Epoch[2] Iteration[500/624], loss: 10.4568, identity_sdm_loss: 9.6396, state_itc_loss: 0.8173, Base Lr: 2.80e-06
+2026-06-12 23:19:41,152 IRRA.train INFO: BatchIdentityStats Epoch[2] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:19:41,317 IRRA.train INFO: Epoch[2] Iteration[600/624], loss: 10.1476, identity_sdm_loss: 9.3555, state_itc_loss: 0.7921, Base Lr: 2.80e-06
+2026-06-12 23:19:45,624 IRRA.train INFO: Epoch 2 done. Time per batch: 0.178[s] Speed: 358.8[samples/s]
+2026-06-12 23:19:45,624 IRRA.train INFO: Validation Results - Epoch: 2
+2026-06-12 23:20:03,932 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 37.706 | 59.670 | 68.814 | 29.928 | 14.422 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:20:07,209 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:20:24,613 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:20:24,779 IRRA.train INFO: Epoch[3] Iteration[100/624], loss: 7.7994, identity_sdm_loss: 7.1889, state_itc_loss: 0.6105, Base Lr: 4.60e-06
+2026-06-12 23:20:42,262 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:20:42,426 IRRA.train INFO: Epoch[3] Iteration[200/624], loss: 7.5252, identity_sdm_loss: 6.9377, state_itc_loss: 0.5875, Base Lr: 4.60e-06
+2026-06-12 23:21:00,012 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:21:00,176 IRRA.train INFO: Epoch[3] Iteration[300/624], loss: 7.3828, identity_sdm_loss: 6.8105, state_itc_loss: 0.5723, Base Lr: 4.60e-06
+2026-06-12 23:21:17,722 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:21:17,887 IRRA.train INFO: Epoch[3] Iteration[400/624], loss: 7.2847, identity_sdm_loss: 6.7211, state_itc_loss: 0.5636, Base Lr: 4.60e-06
+2026-06-12 23:21:35,388 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:21:35,553 IRRA.train INFO: Epoch[3] Iteration[500/624], loss: 7.1238, identity_sdm_loss: 6.5748, state_itc_loss: 0.5489, Base Lr: 4.60e-06
+2026-06-12 23:21:52,912 IRRA.train INFO: BatchIdentityStats Epoch[3] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:21:53,077 IRRA.train INFO: Epoch[3] Iteration[600/624], loss: 6.9638, identity_sdm_loss: 6.4271, state_itc_loss: 0.5367, Base Lr: 4.60e-06
+2026-06-12 23:21:57,362 IRRA.train INFO: Epoch 3 done. Time per batch: 0.179[s] Speed: 356.7[samples/s]
+2026-06-12 23:21:57,362 IRRA.train INFO: Validation Results - Epoch: 3
+2026-06-12 23:22:14,872 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 42.699 | 64.754 | 73.352 | 33.472 | 16.519 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:22:17,618 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:22:35,320 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:22:35,485 IRRA.train INFO: Epoch[4] Iteration[100/624], loss: 5.8546, identity_sdm_loss: 5.4076, state_itc_loss: 0.4470, Base Lr: 6.40e-06
+2026-06-12 23:22:53,100 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:22:53,265 IRRA.train INFO: Epoch[4] Iteration[200/624], loss: 5.7662, identity_sdm_loss: 5.3243, state_itc_loss: 0.4419, Base Lr: 6.40e-06
+2026-06-12 23:23:10,857 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:23:11,022 IRRA.train INFO: Epoch[4] Iteration[300/624], loss: 5.6619, identity_sdm_loss: 5.2291, state_itc_loss: 0.4328, Base Lr: 6.40e-06
+2026-06-12 23:23:28,566 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:23:28,731 IRRA.train INFO: Epoch[4] Iteration[400/624], loss: 5.6265, identity_sdm_loss: 5.1955, state_itc_loss: 0.4310, Base Lr: 6.40e-06
+2026-06-12 23:23:46,318 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:23:46,484 IRRA.train INFO: Epoch[4] Iteration[500/624], loss: 5.6189, identity_sdm_loss: 5.1862, state_itc_loss: 0.4326, Base Lr: 6.40e-06
+2026-06-12 23:24:04,038 IRRA.train INFO: BatchIdentityStats Epoch[4] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:24:04,203 IRRA.train INFO: Epoch[4] Iteration[600/624], loss: 5.5644, identity_sdm_loss: 5.1374, state_itc_loss: 0.4270, Base Lr: 6.40e-06
+2026-06-12 23:24:08,503 IRRA.train INFO: Epoch 4 done. Time per batch: 0.180[s] Speed: 356.2[samples/s]
+2026-06-12 23:24:08,503 IRRA.train INFO: Validation Results - Epoch: 4
+2026-06-12 23:24:26,046 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 46.873 | 67.771 | 76.188 | 36.255 | 18.368 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:24:28,888 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:24:46,407 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:24:46,572 IRRA.train INFO: Epoch[5] Iteration[100/624], loss: 4.1928, identity_sdm_loss: 3.8854, state_itc_loss: 0.3074, Base Lr: 8.20e-06
+2026-06-12 23:25:04,094 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[200/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:25:04,259 IRRA.train INFO: Epoch[5] Iteration[200/624], loss: 4.5449, identity_sdm_loss: 4.2082, state_itc_loss: 0.3367, Base Lr: 8.20e-06
+2026-06-12 23:25:21,781 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:25:21,947 IRRA.train INFO: Epoch[5] Iteration[300/624], loss: 4.5337, identity_sdm_loss: 4.1958, state_itc_loss: 0.3379, Base Lr: 8.20e-06
+2026-06-12 23:25:39,429 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:25:39,594 IRRA.train INFO: Epoch[5] Iteration[400/624], loss: 4.5604, identity_sdm_loss: 4.2198, state_itc_loss: 0.3407, Base Lr: 8.20e-06
+2026-06-12 23:25:57,072 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:25:57,236 IRRA.train INFO: Epoch[5] Iteration[500/624], loss: 4.6128, identity_sdm_loss: 4.2635, state_itc_loss: 0.3493, Base Lr: 8.20e-06
+2026-06-12 23:26:14,719 IRRA.train INFO: BatchIdentityStats Epoch[5] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:26:14,884 IRRA.train INFO: Epoch[5] Iteration[600/624], loss: 4.6667, identity_sdm_loss: 4.3089, state_itc_loss: 0.3578, Base Lr: 8.20e-06
+2026-06-12 23:26:19,195 IRRA.train INFO: Epoch 5 done. Time per batch: 0.179[s] Speed: 357.6[samples/s]
+2026-06-12 23:26:19,196 IRRA.train INFO: Validation Results - Epoch: 5
+2026-06-12 23:26:37,840 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 46.783 | 68.183 | 76.466 | 36.518 | 18.948 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:26:39,225 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:26:56,736 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:26:56,901 IRRA.train INFO: Epoch[6] Iteration[100/624], loss: 4.1076, identity_sdm_loss: 3.8006, state_itc_loss: 0.3069, Base Lr: 1.00e-05
+2026-06-12 23:27:14,405 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:27:14,570 IRRA.train INFO: Epoch[6] Iteration[200/624], loss: 4.1798, identity_sdm_loss: 3.8690, state_itc_loss: 0.3108, Base Lr: 1.00e-05
+2026-06-12 23:27:32,090 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:27:32,255 IRRA.train INFO: Epoch[6] Iteration[300/624], loss: 4.1935, identity_sdm_loss: 3.8796, state_itc_loss: 0.3139, Base Lr: 1.00e-05
+2026-06-12 23:27:49,753 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:27:49,918 IRRA.train INFO: Epoch[6] Iteration[400/624], loss: 4.1791, identity_sdm_loss: 3.8645, state_itc_loss: 0.3145, Base Lr: 1.00e-05
+2026-06-12 23:28:07,409 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:28:07,573 IRRA.train INFO: Epoch[6] Iteration[500/624], loss: 4.1736, identity_sdm_loss: 3.8589, state_itc_loss: 0.3147, Base Lr: 1.00e-05
+2026-06-12 23:28:25,092 IRRA.train INFO: BatchIdentityStats Epoch[6] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:28:25,257 IRRA.train INFO: Epoch[6] Iteration[600/624], loss: 4.1305, identity_sdm_loss: 3.8193, state_itc_loss: 0.3112, Base Lr: 1.00e-05
+2026-06-12 23:28:29,581 IRRA.train INFO: Epoch 6 done. Time per batch: 0.179[s] Speed: 357.9[samples/s]
+2026-06-12 23:28:29,582 IRRA.train INFO: Validation Results - Epoch: 6
+2026-06-12 23:28:47,207 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 48.273 | 69.426 | 77.339 | 37.858 | 19.898 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:28:49,856 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:29:07,445 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:29:07,607 IRRA.train INFO: Epoch[7] Iteration[100/624], loss: 3.1917, identity_sdm_loss: 2.9663, state_itc_loss: 0.2254, Base Lr: 9.99e-06
+2026-06-12 23:29:25,148 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:29:25,313 IRRA.train INFO: Epoch[7] Iteration[200/624], loss: 3.1091, identity_sdm_loss: 2.8861, state_itc_loss: 0.2230, Base Lr: 9.99e-06
+2026-06-12 23:29:42,852 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:29:43,016 IRRA.train INFO: Epoch[7] Iteration[300/624], loss: 3.1067, identity_sdm_loss: 2.8821, state_itc_loss: 0.2246, Base Lr: 9.99e-06
+2026-06-12 23:30:00,510 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:30:00,675 IRRA.train INFO: Epoch[7] Iteration[400/624], loss: 3.0933, identity_sdm_loss: 2.8677, state_itc_loss: 0.2256, Base Lr: 9.99e-06
+2026-06-12 23:30:18,131 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:30:18,298 IRRA.train INFO: Epoch[7] Iteration[500/624], loss: 3.1232, identity_sdm_loss: 2.8942, state_itc_loss: 0.2290, Base Lr: 9.99e-06
+2026-06-12 23:30:35,796 IRRA.train INFO: BatchIdentityStats Epoch[7] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:30:35,962 IRRA.train INFO: Epoch[7] Iteration[600/624], loss: 3.1755, identity_sdm_loss: 2.9418, state_itc_loss: 0.2336, Base Lr: 9.99e-06
+2026-06-12 23:30:40,278 IRRA.train INFO: Epoch 7 done. Time per batch: 0.179[s] Speed: 357.9[samples/s]
+2026-06-12 23:30:40,278 IRRA.train INFO: Validation Results - Epoch: 7
+2026-06-12 23:30:57,893 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 48.946 | 70.492 | 78.036 | 38.182 | 19.716 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:31:00,742 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:31:18,367 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:31:18,533 IRRA.train INFO: Epoch[8] Iteration[100/624], loss: 2.4468, identity_sdm_loss: 2.2787, state_itc_loss: 0.1682, Base Lr: 9.97e-06
+2026-06-12 23:31:36,071 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:31:36,236 IRRA.train INFO: Epoch[8] Iteration[200/624], loss: 2.4717, identity_sdm_loss: 2.3016, state_itc_loss: 0.1701, Base Lr: 9.97e-06
+2026-06-12 23:31:53,786 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:31:53,951 IRRA.train INFO: Epoch[8] Iteration[300/624], loss: 2.4711, identity_sdm_loss: 2.3002, state_itc_loss: 0.1709, Base Lr: 9.97e-06
+2026-06-12 23:32:11,449 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:32:11,614 IRRA.train INFO: Epoch[8] Iteration[400/624], loss: 2.5411, identity_sdm_loss: 2.3631, state_itc_loss: 0.1780, Base Lr: 9.97e-06
+2026-06-12 23:32:29,143 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[500/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:32:29,308 IRRA.train INFO: Epoch[8] Iteration[500/624], loss: 2.5970, identity_sdm_loss: 2.4127, state_itc_loss: 0.1844, Base Lr: 9.97e-06
+2026-06-12 23:32:46,859 IRRA.train INFO: BatchIdentityStats Epoch[8] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:32:47,024 IRRA.train INFO: Epoch[8] Iteration[600/624], loss: 2.6645, identity_sdm_loss: 2.4758, state_itc_loss: 0.1887, Base Lr: 9.97e-06
+2026-06-12 23:32:51,337 IRRA.train INFO: Epoch 8 done. Time per batch: 0.179[s] Speed: 356.8[samples/s]
+2026-06-12 23:32:51,337 IRRA.train INFO: Validation Results - Epoch: 8
+2026-06-12 23:33:08,908 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 49.703 | 70.965 | 78.539 | 38.807 | 20.451 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:33:11,805 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:33:29,437 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:33:29,603 IRRA.train INFO: Epoch[9] Iteration[100/624], loss: 2.1171, identity_sdm_loss: 1.9745, state_itc_loss: 0.1426, Base Lr: 9.93e-06
+2026-06-12 23:33:47,157 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:33:47,321 IRRA.train INFO: Epoch[9] Iteration[200/624], loss: 2.1914, identity_sdm_loss: 2.0423, state_itc_loss: 0.1492, Base Lr: 9.93e-06
+2026-06-12 23:34:04,872 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:34:05,036 IRRA.train INFO: Epoch[9] Iteration[300/624], loss: 2.2247, identity_sdm_loss: 2.0731, state_itc_loss: 0.1517, Base Lr: 9.93e-06
+2026-06-12 23:34:22,581 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:34:22,747 IRRA.train INFO: Epoch[9] Iteration[400/624], loss: 2.2128, identity_sdm_loss: 2.0616, state_itc_loss: 0.1511, Base Lr: 9.93e-06
+2026-06-12 23:34:40,308 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:34:40,473 IRRA.train INFO: Epoch[9] Iteration[500/624], loss: 2.2422, identity_sdm_loss: 2.0870, state_itc_loss: 0.1553, Base Lr: 9.93e-06
+2026-06-12 23:34:58,010 IRRA.train INFO: BatchIdentityStats Epoch[9] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:34:58,174 IRRA.train INFO: Epoch[9] Iteration[600/624], loss: 2.2860, identity_sdm_loss: 2.1268, state_itc_loss: 0.1592, Base Lr: 9.93e-06
+2026-06-12 23:35:02,503 IRRA.train INFO: Epoch 9 done. Time per batch: 0.180[s] Speed: 356.2[samples/s]
+2026-06-12 23:35:02,503 IRRA.train INFO: Validation Results - Epoch: 9
+2026-06-12 23:35:21,002 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.048 | 71.734 | 79.205 | 39.390 | 20.513 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:35:24,230 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:35:41,725 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:35:41,891 IRRA.train INFO: Epoch[10] Iteration[100/624], loss: 1.8650, identity_sdm_loss: 1.7381, state_itc_loss: 0.1269, Base Lr: 9.87e-06
+2026-06-12 23:35:59,407 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[200/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:35:59,573 IRRA.train INFO: Epoch[10] Iteration[200/624], loss: 1.7841, identity_sdm_loss: 1.6661, state_itc_loss: 0.1180, Base Lr: 9.87e-06
+2026-06-12 23:36:17,101 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:36:17,266 IRRA.train INFO: Epoch[10] Iteration[300/624], loss: 1.8136, identity_sdm_loss: 1.6947, state_itc_loss: 0.1189, Base Lr: 9.87e-06
+2026-06-12 23:36:34,804 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:36:34,969 IRRA.train INFO: Epoch[10] Iteration[400/624], loss: 1.8857, identity_sdm_loss: 1.7603, state_itc_loss: 0.1254, Base Lr: 9.87e-06
+2026-06-12 23:36:52,519 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:36:52,685 IRRA.train INFO: Epoch[10] Iteration[500/624], loss: 1.9159, identity_sdm_loss: 1.7883, state_itc_loss: 0.1277, Base Lr: 9.87e-06
+2026-06-12 23:37:10,237 IRRA.train INFO: BatchIdentityStats Epoch[10] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:37:10,401 IRRA.train INFO: Epoch[10] Iteration[600/624], loss: 1.9669, identity_sdm_loss: 1.8348, state_itc_loss: 0.1322, Base Lr: 9.87e-06
+2026-06-12 23:37:14,715 IRRA.train INFO: Epoch 10 done. Time per batch: 0.180[s] Speed: 355.9[samples/s]
+2026-06-12 23:37:14,715 IRRA.train INFO: Validation Results - Epoch: 10
+2026-06-12 23:37:33,588 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 47.982 | 69.698 | 77.399 | 37.057 | 18.868 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:37:35,519 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:37:53,073 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:37:53,238 IRRA.train INFO: Epoch[11] Iteration[100/624], loss: 1.7265, identity_sdm_loss: 1.6186, state_itc_loss: 0.1079, Base Lr: 9.80e-06
+2026-06-12 23:38:10,757 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:38:10,925 IRRA.train INFO: Epoch[11] Iteration[200/624], loss: 1.6336, identity_sdm_loss: 1.5291, state_itc_loss: 0.1045, Base Lr: 9.80e-06
+2026-06-12 23:38:28,440 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[300/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:38:28,605 IRRA.train INFO: Epoch[11] Iteration[300/624], loss: 1.6286, identity_sdm_loss: 1.5248, state_itc_loss: 0.1038, Base Lr: 9.80e-06
+2026-06-12 23:38:46,201 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:38:46,367 IRRA.train INFO: Epoch[11] Iteration[400/624], loss: 1.6962, identity_sdm_loss: 1.5854, state_itc_loss: 0.1108, Base Lr: 9.80e-06
+2026-06-12 23:39:03,981 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:39:04,146 IRRA.train INFO: Epoch[11] Iteration[500/624], loss: 1.7480, identity_sdm_loss: 1.6337, state_itc_loss: 0.1143, Base Lr: 9.80e-06
+2026-06-12 23:39:21,779 IRRA.train INFO: BatchIdentityStats Epoch[11] Iteration[600/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:39:21,944 IRRA.train INFO: Epoch[11] Iteration[600/624], loss: 1.7727, identity_sdm_loss: 1.6565, state_itc_loss: 0.1162, Base Lr: 9.80e-06
+2026-06-12 23:39:26,372 IRRA.train INFO: Epoch 11 done. Time per batch: 0.180[s] Speed: 354.6[samples/s]
+2026-06-12 23:39:26,373 IRRA.train INFO: Validation Results - Epoch: 11
+2026-06-12 23:39:44,175 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 49.655 | 70.680 | 78.563 | 38.644 | 20.256 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:39:45,790 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:40:03,379 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:40:03,543 IRRA.train INFO: Epoch[12] Iteration[100/624], loss: 1.2575, identity_sdm_loss: 1.1759, state_itc_loss: 0.0816, Base Lr: 9.71e-06
+2026-06-12 23:40:21,218 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:40:21,383 IRRA.train INFO: Epoch[12] Iteration[200/624], loss: 1.3291, identity_sdm_loss: 1.2448, state_itc_loss: 0.0844, Base Lr: 9.71e-06
+2026-06-12 23:40:39,046 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:40:39,211 IRRA.train INFO: Epoch[12] Iteration[300/624], loss: 1.3425, identity_sdm_loss: 1.2579, state_itc_loss: 0.0846, Base Lr: 9.71e-06
+2026-06-12 23:40:56,910 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:40:57,074 IRRA.train INFO: Epoch[12] Iteration[400/624], loss: 1.3864, identity_sdm_loss: 1.2986, state_itc_loss: 0.0878, Base Lr: 9.71e-06
+2026-06-12 23:41:14,834 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:41:14,997 IRRA.train INFO: Epoch[12] Iteration[500/624], loss: 1.3918, identity_sdm_loss: 1.3031, state_itc_loss: 0.0887, Base Lr: 9.71e-06
+2026-06-12 23:41:32,711 IRRA.train INFO: BatchIdentityStats Epoch[12] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:41:32,877 IRRA.train INFO: Epoch[12] Iteration[600/624], loss: 1.4143, identity_sdm_loss: 1.3239, state_itc_loss: 0.0903, Base Lr: 9.71e-06
+2026-06-12 23:41:37,212 IRRA.train INFO: Epoch 12 done. Time per batch: 0.181[s] Speed: 353.8[samples/s]
+2026-06-12 23:41:37,213 IRRA.train INFO: Validation Results - Epoch: 12
+2026-06-12 23:41:55,225 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 50.315 | 71.740 | 79.544 | 39.205 | 20.809 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:41:56,793 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:42:14,349 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:42:14,515 IRRA.train INFO: Epoch[13] Iteration[100/624], loss: 1.0743, identity_sdm_loss: 1.0118, state_itc_loss: 0.0626, Base Lr: 9.61e-06
+2026-06-12 23:42:32,057 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:42:32,222 IRRA.train INFO: Epoch[13] Iteration[200/624], loss: 1.1949, identity_sdm_loss: 1.1238, state_itc_loss: 0.0711, Base Lr: 9.61e-06
+2026-06-12 23:42:49,723 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:42:49,887 IRRA.train INFO: Epoch[13] Iteration[300/624], loss: 1.2089, identity_sdm_loss: 1.1356, state_itc_loss: 0.0733, Base Lr: 9.61e-06
+2026-06-12 23:43:07,414 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:43:07,580 IRRA.train INFO: Epoch[13] Iteration[400/624], loss: 1.2432, identity_sdm_loss: 1.1669, state_itc_loss: 0.0763, Base Lr: 9.61e-06
+2026-06-12 23:43:25,161 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:43:25,326 IRRA.train INFO: Epoch[13] Iteration[500/624], loss: 1.2797, identity_sdm_loss: 1.2012, state_itc_loss: 0.0785, Base Lr: 9.61e-06
+2026-06-12 23:43:42,906 IRRA.train INFO: BatchIdentityStats Epoch[13] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:43:43,071 IRRA.train INFO: Epoch[13] Iteration[600/624], loss: 1.3113, identity_sdm_loss: 1.2299, state_itc_loss: 0.0815, Base Lr: 9.61e-06
+2026-06-12 23:43:47,370 IRRA.train INFO: Epoch 13 done. Time per batch: 0.179[s] Speed: 356.6[samples/s]
+2026-06-12 23:43:47,371 IRRA.train INFO: Validation Results - Epoch: 13
+2026-06-12 23:44:05,861 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.157 | 70.886 | 78.629 | 39.688 | 20.967 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:44:08,902 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:44:26,472 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:44:26,637 IRRA.train INFO: Epoch[14] Iteration[100/624], loss: 1.1642, identity_sdm_loss: 1.0954, state_itc_loss: 0.0688, Base Lr: 9.49e-06
+2026-06-12 23:44:44,184 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:44:44,349 IRRA.train INFO: Epoch[14] Iteration[200/624], loss: 1.1884, identity_sdm_loss: 1.1161, state_itc_loss: 0.0723, Base Lr: 9.49e-06
+2026-06-12 23:45:01,884 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:45:02,049 IRRA.train INFO: Epoch[14] Iteration[300/624], loss: 1.1955, identity_sdm_loss: 1.1233, state_itc_loss: 0.0722, Base Lr: 9.49e-06
+2026-06-12 23:45:19,591 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:45:19,756 IRRA.train INFO: Epoch[14] Iteration[400/624], loss: 1.1890, identity_sdm_loss: 1.1175, state_itc_loss: 0.0715, Base Lr: 9.49e-06
+2026-06-12 23:45:37,291 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:45:37,456 IRRA.train INFO: Epoch[14] Iteration[500/624], loss: 1.2135, identity_sdm_loss: 1.1400, state_itc_loss: 0.0736, Base Lr: 9.49e-06
+2026-06-12 23:45:54,981 IRRA.train INFO: BatchIdentityStats Epoch[14] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:45:55,146 IRRA.train INFO: Epoch[14] Iteration[600/624], loss: 1.2336, identity_sdm_loss: 1.1583, state_itc_loss: 0.0753, Base Lr: 9.49e-06
+2026-06-12 23:45:59,462 IRRA.train INFO: Epoch 14 done. Time per batch: 0.180[s] Speed: 356.1[samples/s]
+2026-06-12 23:45:59,463 IRRA.train INFO: Validation Results - Epoch: 14
+2026-06-12 23:46:16,881 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.109 | 71.898 | 79.520 | 39.581 | 20.695 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:46:18,568 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:46:36,088 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:46:36,253 IRRA.train INFO: Epoch[15] Iteration[100/624], loss: 1.0322, identity_sdm_loss: 0.9674, state_itc_loss: 0.0648, Base Lr: 9.35e-06
+2026-06-12 23:46:53,785 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[200/624], batch_size=64, unique_ids=61, duplicate_ids=3, max_per_id=2, same_id_ordered_pairs=6, negative_ordered_pairs=4026, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:46:53,950 IRRA.train INFO: Epoch[15] Iteration[200/624], loss: 1.0143, identity_sdm_loss: 0.9512, state_itc_loss: 0.0631, Base Lr: 9.35e-06
+2026-06-12 23:47:11,426 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:47:11,591 IRRA.train INFO: Epoch[15] Iteration[300/624], loss: 1.0165, identity_sdm_loss: 0.9539, state_itc_loss: 0.0627, Base Lr: 9.35e-06
+2026-06-12 23:47:29,109 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:47:29,274 IRRA.train INFO: Epoch[15] Iteration[400/624], loss: 1.0239, identity_sdm_loss: 0.9620, state_itc_loss: 0.0619, Base Lr: 9.35e-06
+2026-06-12 23:47:46,743 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:47:46,909 IRRA.train INFO: Epoch[15] Iteration[500/624], loss: 1.0490, identity_sdm_loss: 0.9858, state_itc_loss: 0.0632, Base Lr: 9.35e-06
+2026-06-12 23:48:04,376 IRRA.train INFO: BatchIdentityStats Epoch[15] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:48:04,539 IRRA.train INFO: Epoch[15] Iteration[600/624], loss: 1.0644, identity_sdm_loss: 1.0001, state_itc_loss: 0.0643, Base Lr: 9.35e-06
+2026-06-12 23:48:08,828 IRRA.train INFO: Epoch 15 done. Time per batch: 0.179[s] Speed: 357.2[samples/s]
+2026-06-12 23:48:08,829 IRRA.train INFO: Validation Results - Epoch: 15
+2026-06-12 23:48:26,147 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 52.218 | 72.286 | 79.781 | 40.167 | 20.860 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:48:28,848 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:48:46,368 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:48:46,533 IRRA.train INFO: Epoch[16] Iteration[100/624], loss: 0.7912, identity_sdm_loss: 0.7488, state_itc_loss: 0.0424, Base Lr: 9.21e-06
+2026-06-12 23:49:04,071 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:49:04,234 IRRA.train INFO: Epoch[16] Iteration[200/624], loss: 0.8089, identity_sdm_loss: 0.7612, state_itc_loss: 0.0477, Base Lr: 9.21e-06
+2026-06-12 23:49:21,811 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:49:21,977 IRRA.train INFO: Epoch[16] Iteration[300/624], loss: 0.8190, identity_sdm_loss: 0.7711, state_itc_loss: 0.0479, Base Lr: 9.21e-06
+2026-06-12 23:49:39,322 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:49:39,487 IRRA.train INFO: Epoch[16] Iteration[400/624], loss: 0.8315, identity_sdm_loss: 0.7831, state_itc_loss: 0.0484, Base Lr: 9.21e-06
+2026-06-12 23:49:57,000 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:49:57,164 IRRA.train INFO: Epoch[16] Iteration[500/624], loss: 0.8803, identity_sdm_loss: 0.8281, state_itc_loss: 0.0522, Base Lr: 9.21e-06
+2026-06-12 23:50:14,705 IRRA.train INFO: BatchIdentityStats Epoch[16] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:50:14,871 IRRA.train INFO: Epoch[16] Iteration[600/624], loss: 0.8857, identity_sdm_loss: 0.8335, state_itc_loss: 0.0522, Base Lr: 9.21e-06
+2026-06-12 23:50:19,179 IRRA.train INFO: Epoch 16 done. Time per batch: 0.179[s] Speed: 358.1[samples/s]
+2026-06-12 23:50:19,179 IRRA.train INFO: Validation Results - Epoch: 16
+2026-06-12 23:50:36,523 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 50.915 | 71.698 | 79.054 | 39.604 | 20.834 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:50:38,111 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:50:55,760 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:50:55,925 IRRA.train INFO: Epoch[17] Iteration[100/624], loss: 0.8859, identity_sdm_loss: 0.8326, state_itc_loss: 0.0533, Base Lr: 9.05e-06
+2026-06-12 23:51:13,557 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:51:13,722 IRRA.train INFO: Epoch[17] Iteration[200/624], loss: 0.8516, identity_sdm_loss: 0.8006, state_itc_loss: 0.0510, Base Lr: 9.05e-06
+2026-06-12 23:51:31,430 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:51:31,597 IRRA.train INFO: Epoch[17] Iteration[300/624], loss: 0.8228, identity_sdm_loss: 0.7741, state_itc_loss: 0.0487, Base Lr: 9.05e-06
+2026-06-12 23:51:49,504 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:51:49,669 IRRA.train INFO: Epoch[17] Iteration[400/624], loss: 0.8048, identity_sdm_loss: 0.7579, state_itc_loss: 0.0469, Base Lr: 9.05e-06
+2026-06-12 23:52:07,535 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:52:07,702 IRRA.train INFO: Epoch[17] Iteration[500/624], loss: 0.8151, identity_sdm_loss: 0.7676, state_itc_loss: 0.0475, Base Lr: 9.05e-06
+2026-06-12 23:52:25,664 IRRA.train INFO: BatchIdentityStats Epoch[17] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:52:25,830 IRRA.train INFO: Epoch[17] Iteration[600/624], loss: 0.8270, identity_sdm_loss: 0.7781, state_itc_loss: 0.0489, Base Lr: 9.05e-06
+2026-06-12 23:52:30,245 IRRA.train INFO: Epoch 17 done. Time per batch: 0.182[s] Speed: 351.6[samples/s]
+2026-06-12 23:52:30,246 IRRA.train INFO: Validation Results - Epoch: 17
+2026-06-12 23:52:48,726 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.872 | 72.498 | 79.835 | 40.228 | 21.086 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:52:50,305 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:53:07,945 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:53:08,109 IRRA.train INFO: Epoch[18] Iteration[100/624], loss: 0.6580, identity_sdm_loss: 0.6204, state_itc_loss: 0.0376, Base Lr: 8.87e-06
+2026-06-12 23:53:25,727 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:53:25,894 IRRA.train INFO: Epoch[18] Iteration[200/624], loss: 0.6791, identity_sdm_loss: 0.6392, state_itc_loss: 0.0400, Base Lr: 8.87e-06
+2026-06-12 23:53:43,498 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:53:43,664 IRRA.train INFO: Epoch[18] Iteration[300/624], loss: 0.7219, identity_sdm_loss: 0.6790, state_itc_loss: 0.0430, Base Lr: 8.87e-06
+2026-06-12 23:54:01,261 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:54:01,426 IRRA.train INFO: Epoch[18] Iteration[400/624], loss: 0.7109, identity_sdm_loss: 0.6688, state_itc_loss: 0.0421, Base Lr: 8.87e-06
+2026-06-12 23:54:18,979 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:54:19,146 IRRA.train INFO: Epoch[18] Iteration[500/624], loss: 0.7086, identity_sdm_loss: 0.6668, state_itc_loss: 0.0418, Base Lr: 8.87e-06
+2026-06-12 23:54:36,658 IRRA.train INFO: BatchIdentityStats Epoch[18] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:54:36,824 IRRA.train INFO: Epoch[18] Iteration[600/624], loss: 0.7165, identity_sdm_loss: 0.6748, state_itc_loss: 0.0417, Base Lr: 8.87e-06
+2026-06-12 23:54:41,157 IRRA.train INFO: Epoch 18 done. Time per batch: 0.180[s] Speed: 355.7[samples/s]
+2026-06-12 23:54:41,157 IRRA.train INFO: Validation Results - Epoch: 18
+2026-06-12 23:54:59,060 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.678 | 72.279 | 79.684 | 40.021 | 21.168 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:55:00,581 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:55:18,160 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:55:18,325 IRRA.train INFO: Epoch[19] Iteration[100/624], loss: 0.6828, identity_sdm_loss: 0.6420, state_itc_loss: 0.0407, Base Lr: 8.68e-06
+2026-06-12 23:55:35,901 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:55:36,065 IRRA.train INFO: Epoch[19] Iteration[200/624], loss: 0.6686, identity_sdm_loss: 0.6291, state_itc_loss: 0.0395, Base Lr: 8.68e-06
+2026-06-12 23:55:53,598 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:55:53,763 IRRA.train INFO: Epoch[19] Iteration[300/624], loss: 0.6873, identity_sdm_loss: 0.6467, state_itc_loss: 0.0406, Base Lr: 8.68e-06
+2026-06-12 23:56:11,327 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-12 23:56:11,491 IRRA.train INFO: Epoch[19] Iteration[400/624], loss: 0.6998, identity_sdm_loss: 0.6591, state_itc_loss: 0.0407, Base Lr: 8.68e-06
+2026-06-12 23:56:29,015 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:56:29,178 IRRA.train INFO: Epoch[19] Iteration[500/624], loss: 0.7267, identity_sdm_loss: 0.6844, state_itc_loss: 0.0423, Base Lr: 8.68e-06
+2026-06-12 23:56:46,819 IRRA.train INFO: BatchIdentityStats Epoch[19] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:56:46,983 IRRA.train INFO: Epoch[19] Iteration[600/624], loss: 0.7293, identity_sdm_loss: 0.6869, state_itc_loss: 0.0424, Base Lr: 8.68e-06
+2026-06-12 23:56:51,319 IRRA.train INFO: Epoch 19 done. Time per batch: 0.180[s] Speed: 356.2[samples/s]
+2026-06-12 23:56:51,319 IRRA.train INFO: Validation Results - Epoch: 19
+2026-06-12 23:57:10,288 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 52.484 | 72.825 | 79.908 | 40.549 | 21.266 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:57:13,620 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:57:30,964 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:57:31,128 IRRA.train INFO: Epoch[20] Iteration[100/624], loss: 0.6346, identity_sdm_loss: 0.5997, state_itc_loss: 0.0350, Base Lr: 8.48e-06
+2026-06-12 23:57:48,786 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:57:48,953 IRRA.train INFO: Epoch[20] Iteration[200/624], loss: 0.6210, identity_sdm_loss: 0.5871, state_itc_loss: 0.0339, Base Lr: 8.48e-06
+2026-06-12 23:58:06,511 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:58:06,676 IRRA.train INFO: Epoch[20] Iteration[300/624], loss: 0.6075, identity_sdm_loss: 0.5749, state_itc_loss: 0.0326, Base Lr: 8.48e-06
+2026-06-12 23:58:24,256 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:58:24,420 IRRA.train INFO: Epoch[20] Iteration[400/624], loss: 0.6164, identity_sdm_loss: 0.5820, state_itc_loss: 0.0344, Base Lr: 8.48e-06
+2026-06-12 23:58:41,969 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:58:42,134 IRRA.train INFO: Epoch[20] Iteration[500/624], loss: 0.6373, identity_sdm_loss: 0.6018, state_itc_loss: 0.0355, Base Lr: 8.48e-06
+2026-06-12 23:58:59,681 IRRA.train INFO: BatchIdentityStats Epoch[20] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:58:59,846 IRRA.train INFO: Epoch[20] Iteration[600/624], loss: 0.6679, identity_sdm_loss: 0.6303, state_itc_loss: 0.0376, Base Lr: 8.48e-06
+2026-06-12 23:59:04,183 IRRA.train INFO: Epoch 20 done. Time per batch: 0.180[s] Speed: 355.4[samples/s]
+2026-06-12 23:59:04,184 IRRA.train INFO: Validation Results - Epoch: 20
+2026-06-12 23:59:22,057 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.951 | 72.219 | 79.666 | 39.767 | 20.521 |
++------+--------+--------+--------+--------+--------+
+2026-06-12 23:59:23,743 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:59:41,405 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:59:41,571 IRRA.train INFO: Epoch[21] Iteration[100/624], loss: 0.5633, identity_sdm_loss: 0.5289, state_itc_loss: 0.0344, Base Lr: 8.27e-06
+2026-06-12 23:59:59,179 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-12 23:59:59,343 IRRA.train INFO: Epoch[21] Iteration[200/624], loss: 0.5811, identity_sdm_loss: 0.5475, state_itc_loss: 0.0337, Base Lr: 8.27e-06
+2026-06-13 00:00:16,928 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:00:17,093 IRRA.train INFO: Epoch[21] Iteration[300/624], loss: 0.5582, identity_sdm_loss: 0.5260, state_itc_loss: 0.0323, Base Lr: 8.27e-06
+2026-06-13 00:00:34,642 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:00:34,807 IRRA.train INFO: Epoch[21] Iteration[400/624], loss: 0.5723, identity_sdm_loss: 0.5394, state_itc_loss: 0.0329, Base Lr: 8.27e-06
+2026-06-13 00:00:52,368 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:00:52,537 IRRA.train INFO: Epoch[21] Iteration[500/624], loss: 0.6002, identity_sdm_loss: 0.5654, state_itc_loss: 0.0348, Base Lr: 8.27e-06
+2026-06-13 00:01:10,195 IRRA.train INFO: BatchIdentityStats Epoch[21] Iteration[600/624], batch_size=64, unique_ids=61, duplicate_ids=3, max_per_id=2, same_id_ordered_pairs=6, negative_ordered_pairs=4026, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:01:10,359 IRRA.train INFO: Epoch[21] Iteration[600/624], loss: 0.6162, identity_sdm_loss: 0.5807, state_itc_loss: 0.0355, Base Lr: 8.27e-06
+2026-06-13 00:01:14,661 IRRA.train INFO: Epoch 21 done. Time per batch: 0.180[s] Speed: 355.1[samples/s]
+2026-06-13 00:01:14,661 IRRA.train INFO: Validation Results - Epoch: 21
+2026-06-13 00:01:32,601 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 51.836 | 72.146 | 79.520 | 40.080 | 21.031 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:01:34,199 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:01:51,531 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:01:51,697 IRRA.train INFO: Epoch[22] Iteration[100/624], loss: 0.5071, identity_sdm_loss: 0.4802, state_itc_loss: 0.0269, Base Lr: 8.05e-06
+2026-06-13 00:02:09,154 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:02:09,319 IRRA.train INFO: Epoch[22] Iteration[200/624], loss: 0.4760, identity_sdm_loss: 0.4499, state_itc_loss: 0.0260, Base Lr: 8.05e-06
+2026-06-13 00:02:26,817 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:02:26,982 IRRA.train INFO: Epoch[22] Iteration[300/624], loss: 0.5075, identity_sdm_loss: 0.4785, state_itc_loss: 0.0290, Base Lr: 8.05e-06
+2026-06-13 00:02:44,512 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:02:44,676 IRRA.train INFO: Epoch[22] Iteration[400/624], loss: 0.5401, identity_sdm_loss: 0.5087, state_itc_loss: 0.0314, Base Lr: 8.05e-06
+2026-06-13 00:03:02,197 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:03:02,362 IRRA.train INFO: Epoch[22] Iteration[500/624], loss: 0.5550, identity_sdm_loss: 0.5227, state_itc_loss: 0.0322, Base Lr: 8.05e-06
+2026-06-13 00:03:19,895 IRRA.train INFO: BatchIdentityStats Epoch[22] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:03:20,060 IRRA.train INFO: Epoch[22] Iteration[600/624], loss: 0.5509, identity_sdm_loss: 0.5187, state_itc_loss: 0.0321, Base Lr: 8.05e-06
+2026-06-13 00:03:24,385 IRRA.train INFO: Epoch 22 done. Time per batch: 0.179[s] Speed: 357.8[samples/s]
+2026-06-13 00:03:24,386 IRRA.train INFO: Validation Results - Epoch: 22
+2026-06-13 00:03:42,775 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.666 | 72.782 | 79.950 | 41.197 | 21.609 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:03:45,869 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:04:03,988 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:04:04,156 IRRA.train INFO: Epoch[23] Iteration[100/624], loss: 0.4405, identity_sdm_loss: 0.4162, state_itc_loss: 0.0243, Base Lr: 7.82e-06
+2026-06-13 00:04:22,080 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:04:22,246 IRRA.train INFO: Epoch[23] Iteration[200/624], loss: 0.4402, identity_sdm_loss: 0.4154, state_itc_loss: 0.0248, Base Lr: 7.82e-06
+2026-06-13 00:04:40,206 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[300/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:04:40,375 IRRA.train INFO: Epoch[23] Iteration[300/624], loss: 0.4592, identity_sdm_loss: 0.4325, state_itc_loss: 0.0267, Base Lr: 7.82e-06
+2026-06-13 00:04:58,334 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:04:58,499 IRRA.train INFO: Epoch[23] Iteration[400/624], loss: 0.4699, identity_sdm_loss: 0.4423, state_itc_loss: 0.0276, Base Lr: 7.82e-06
+2026-06-13 00:05:16,553 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:05:16,720 IRRA.train INFO: Epoch[23] Iteration[500/624], loss: 0.4680, identity_sdm_loss: 0.4404, state_itc_loss: 0.0276, Base Lr: 7.82e-06
+2026-06-13 00:05:34,632 IRRA.train INFO: BatchIdentityStats Epoch[23] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:05:34,797 IRRA.train INFO: Epoch[23] Iteration[600/624], loss: 0.4758, identity_sdm_loss: 0.4478, state_itc_loss: 0.0280, Base Lr: 7.82e-06
+2026-06-13 00:05:39,235 IRRA.train INFO: Epoch 23 done. Time per batch: 0.184[s] Speed: 347.6[samples/s]
+2026-06-13 00:05:39,235 IRRA.train INFO: Validation Results - Epoch: 23
+2026-06-13 00:05:58,141 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.024 | 73.049 | 80.078 | 40.829 | 21.306 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:05:59,680 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[1/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:06:17,276 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:06:17,441 IRRA.train INFO: Epoch[24] Iteration[100/624], loss: 0.4404, identity_sdm_loss: 0.4128, state_itc_loss: 0.0276, Base Lr: 7.58e-06
+2026-06-13 00:06:35,080 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:06:35,246 IRRA.train INFO: Epoch[24] Iteration[200/624], loss: 0.4693, identity_sdm_loss: 0.4411, state_itc_loss: 0.0282, Base Lr: 7.58e-06
+2026-06-13 00:06:52,947 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:06:53,112 IRRA.train INFO: Epoch[24] Iteration[300/624], loss: 0.4537, identity_sdm_loss: 0.4270, state_itc_loss: 0.0267, Base Lr: 7.58e-06
+2026-06-13 00:07:10,802 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:07:10,971 IRRA.train INFO: Epoch[24] Iteration[400/624], loss: 0.4485, identity_sdm_loss: 0.4224, state_itc_loss: 0.0260, Base Lr: 7.58e-06
+2026-06-13 00:07:28,612 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:07:28,780 IRRA.train INFO: Epoch[24] Iteration[500/624], loss: 0.4445, identity_sdm_loss: 0.4189, state_itc_loss: 0.0256, Base Lr: 7.58e-06
+2026-06-13 00:07:46,361 IRRA.train INFO: BatchIdentityStats Epoch[24] Iteration[600/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:07:46,527 IRRA.train INFO: Epoch[24] Iteration[600/624], loss: 0.4366, identity_sdm_loss: 0.4113, state_itc_loss: 0.0253, Base Lr: 7.58e-06
+2026-06-13 00:07:50,869 IRRA.train INFO: Epoch 24 done. Time per batch: 0.180[s] Speed: 354.8[samples/s]
+2026-06-13 00:07:50,870 IRRA.train INFO: Validation Results - Epoch: 24
+2026-06-13 00:08:09,325 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.878 | 73.794 | 80.877 | 41.474 | 22.032 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:08:12,048 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:08:29,639 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:08:29,806 IRRA.train INFO: Epoch[25] Iteration[100/624], loss: 0.3556, identity_sdm_loss: 0.3349, state_itc_loss: 0.0207, Base Lr: 7.33e-06
+2026-06-13 00:08:47,448 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:08:47,614 IRRA.train INFO: Epoch[25] Iteration[200/624], loss: 0.3643, identity_sdm_loss: 0.3417, state_itc_loss: 0.0226, Base Lr: 7.33e-06
+2026-06-13 00:09:05,569 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:09:05,737 IRRA.train INFO: Epoch[25] Iteration[300/624], loss: 0.3713, identity_sdm_loss: 0.3491, state_itc_loss: 0.0221, Base Lr: 7.33e-06
+2026-06-13 00:09:23,709 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:09:23,876 IRRA.train INFO: Epoch[25] Iteration[400/624], loss: 0.3763, identity_sdm_loss: 0.3538, state_itc_loss: 0.0225, Base Lr: 7.33e-06
+2026-06-13 00:09:41,919 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[500/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:09:42,083 IRRA.train INFO: Epoch[25] Iteration[500/624], loss: 0.3665, identity_sdm_loss: 0.3446, state_itc_loss: 0.0218, Base Lr: 7.33e-06
+2026-06-13 00:09:59,975 IRRA.train INFO: BatchIdentityStats Epoch[25] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:10:00,140 IRRA.train INFO: Epoch[25] Iteration[600/624], loss: 0.3716, identity_sdm_loss: 0.3498, state_itc_loss: 0.0218, Base Lr: 7.33e-06
+2026-06-13 00:10:04,578 IRRA.train INFO: Epoch 25 done. Time per batch: 0.182[s] Speed: 351.2[samples/s]
+2026-06-13 00:10:04,579 IRRA.train INFO: Validation Results - Epoch: 25
+2026-06-13 00:10:23,661 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 52.957 | 73.243 | 80.405 | 40.832 | 21.498 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:10:24,967 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:10:42,760 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[100/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:10:42,929 IRRA.train INFO: Epoch[26] Iteration[100/624], loss: 0.2998, identity_sdm_loss: 0.2826, state_itc_loss: 0.0172, Base Lr: 7.08e-06
+2026-06-13 00:11:00,798 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:11:00,963 IRRA.train INFO: Epoch[26] Iteration[200/624], loss: 0.3215, identity_sdm_loss: 0.3035, state_itc_loss: 0.0180, Base Lr: 7.08e-06
+2026-06-13 00:11:18,929 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:11:19,096 IRRA.train INFO: Epoch[26] Iteration[300/624], loss: 0.3403, identity_sdm_loss: 0.3209, state_itc_loss: 0.0193, Base Lr: 7.08e-06
+2026-06-13 00:11:37,134 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:11:37,298 IRRA.train INFO: Epoch[26] Iteration[400/624], loss: 0.3581, identity_sdm_loss: 0.3375, state_itc_loss: 0.0206, Base Lr: 7.08e-06
+2026-06-13 00:11:55,112 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:11:55,279 IRRA.train INFO: Epoch[26] Iteration[500/624], loss: 0.3677, identity_sdm_loss: 0.3468, state_itc_loss: 0.0209, Base Lr: 7.08e-06
+2026-06-13 00:12:12,985 IRRA.train INFO: BatchIdentityStats Epoch[26] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:12:13,154 IRRA.train INFO: Epoch[26] Iteration[600/624], loss: 0.3773, identity_sdm_loss: 0.3559, state_itc_loss: 0.0214, Base Lr: 7.08e-06
+2026-06-13 00:12:17,564 IRRA.train INFO: Epoch 26 done. Time per batch: 0.182[s] Speed: 351.1[samples/s]
+2026-06-13 00:12:17,564 IRRA.train INFO: Validation Results - Epoch: 26
+2026-06-13 00:12:36,012 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.411 | 72.619 | 79.635 | 40.778 | 21.211 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:12:37,655 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:12:55,569 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:12:55,734 IRRA.train INFO: Epoch[27] Iteration[100/624], loss: 0.3945, identity_sdm_loss: 0.3708, state_itc_loss: 0.0236, Base Lr: 6.81e-06
+2026-06-13 00:13:13,650 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:13:13,819 IRRA.train INFO: Epoch[27] Iteration[200/624], loss: 0.3632, identity_sdm_loss: 0.3421, state_itc_loss: 0.0212, Base Lr: 6.81e-06
+2026-06-13 00:13:31,639 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:13:31,808 IRRA.train INFO: Epoch[27] Iteration[300/624], loss: 0.3438, identity_sdm_loss: 0.3234, state_itc_loss: 0.0203, Base Lr: 6.81e-06
+2026-06-13 00:13:49,465 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[400/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:13:49,629 IRRA.train INFO: Epoch[27] Iteration[400/624], loss: 0.3453, identity_sdm_loss: 0.3247, state_itc_loss: 0.0206, Base Lr: 6.81e-06
+2026-06-13 00:14:07,410 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:14:07,573 IRRA.train INFO: Epoch[27] Iteration[500/624], loss: 0.3413, identity_sdm_loss: 0.3210, state_itc_loss: 0.0202, Base Lr: 6.81e-06
+2026-06-13 00:14:25,270 IRRA.train INFO: BatchIdentityStats Epoch[27] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:14:25,434 IRRA.train INFO: Epoch[27] Iteration[600/624], loss: 0.3465, identity_sdm_loss: 0.3259, state_itc_loss: 0.0206, Base Lr: 6.81e-06
+2026-06-13 00:14:29,771 IRRA.train INFO: Epoch 27 done. Time per batch: 0.182[s] Speed: 351.5[samples/s]
+2026-06-13 00:14:29,771 IRRA.train INFO: Validation Results - Epoch: 27
+2026-06-13 00:14:48,481 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.999 | 73.425 | 80.793 | 41.470 | 21.958 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:14:51,541 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:15:09,145 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:15:09,309 IRRA.train INFO: Epoch[28] Iteration[100/624], loss: 0.3087, identity_sdm_loss: 0.2906, state_itc_loss: 0.0182, Base Lr: 6.55e-06
+2026-06-13 00:15:26,886 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:15:27,051 IRRA.train INFO: Epoch[28] Iteration[200/624], loss: 0.3154, identity_sdm_loss: 0.2963, state_itc_loss: 0.0191, Base Lr: 6.55e-06
+2026-06-13 00:15:44,569 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:15:44,734 IRRA.train INFO: Epoch[28] Iteration[300/624], loss: 0.3230, identity_sdm_loss: 0.3035, state_itc_loss: 0.0194, Base Lr: 6.55e-06
+2026-06-13 00:16:02,229 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:16:02,394 IRRA.train INFO: Epoch[28] Iteration[400/624], loss: 0.3374, identity_sdm_loss: 0.3179, state_itc_loss: 0.0195, Base Lr: 6.55e-06
+2026-06-13 00:16:19,888 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:16:20,053 IRRA.train INFO: Epoch[28] Iteration[500/624], loss: 0.3417, identity_sdm_loss: 0.3214, state_itc_loss: 0.0203, Base Lr: 6.55e-06
+2026-06-13 00:16:37,545 IRRA.train INFO: BatchIdentityStats Epoch[28] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:16:37,710 IRRA.train INFO: Epoch[28] Iteration[600/624], loss: 0.3504, identity_sdm_loss: 0.3293, state_itc_loss: 0.0212, Base Lr: 6.55e-06
+2026-06-13 00:16:42,030 IRRA.train INFO: Epoch 28 done. Time per batch: 0.179[s] Speed: 356.9[samples/s]
+2026-06-13 00:16:42,030 IRRA.train INFO: Validation Results - Epoch: 28
+2026-06-13 00:17:00,359 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 53.932 | 73.461 | 80.508 | 41.305 | 21.826 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:17:02,038 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:17:19,966 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:17:20,134 IRRA.train INFO: Epoch[29] Iteration[100/624], loss: 0.3346, identity_sdm_loss: 0.3128, state_itc_loss: 0.0217, Base Lr: 6.27e-06
+2026-06-13 00:17:38,117 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:17:38,281 IRRA.train INFO: Epoch[29] Iteration[200/624], loss: 0.3052, identity_sdm_loss: 0.2867, state_itc_loss: 0.0185, Base Lr: 6.27e-06
+2026-06-13 00:17:55,976 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[300/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:17:56,140 IRRA.train INFO: Epoch[29] Iteration[300/624], loss: 0.3080, identity_sdm_loss: 0.2901, state_itc_loss: 0.0178, Base Lr: 6.27e-06
+2026-06-13 00:18:13,874 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:18:14,039 IRRA.train INFO: Epoch[29] Iteration[400/624], loss: 0.3081, identity_sdm_loss: 0.2900, state_itc_loss: 0.0181, Base Lr: 6.27e-06
+2026-06-13 00:18:31,758 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:18:31,924 IRRA.train INFO: Epoch[29] Iteration[500/624], loss: 0.3107, identity_sdm_loss: 0.2925, state_itc_loss: 0.0182, Base Lr: 6.27e-06
+2026-06-13 00:18:49,747 IRRA.train INFO: BatchIdentityStats Epoch[29] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:18:49,912 IRRA.train INFO: Epoch[29] Iteration[600/624], loss: 0.3163, identity_sdm_loss: 0.2979, state_itc_loss: 0.0184, Base Lr: 6.27e-06
+2026-06-13 00:18:54,349 IRRA.train INFO: Epoch 29 done. Time per batch: 0.182[s] Speed: 350.8[samples/s]
+2026-06-13 00:18:54,349 IRRA.train INFO: Validation Results - Epoch: 29
+2026-06-13 00:19:12,759 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 54.175 | 74.006 | 80.883 | 41.639 | 22.130 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:19:16,041 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:19:33,730 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:19:33,896 IRRA.train INFO: Epoch[30] Iteration[100/624], loss: 0.3133, identity_sdm_loss: 0.2944, state_itc_loss: 0.0189, Base Lr: 5.99e-06
+2026-06-13 00:19:51,509 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:19:51,674 IRRA.train INFO: Epoch[30] Iteration[200/624], loss: 0.2785, identity_sdm_loss: 0.2621, state_itc_loss: 0.0164, Base Lr: 5.99e-06
+2026-06-13 00:20:09,268 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:20:09,433 IRRA.train INFO: Epoch[30] Iteration[300/624], loss: 0.2717, identity_sdm_loss: 0.2556, state_itc_loss: 0.0161, Base Lr: 5.99e-06
+2026-06-13 00:20:27,129 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:20:27,296 IRRA.train INFO: Epoch[30] Iteration[400/624], loss: 0.2752, identity_sdm_loss: 0.2591, state_itc_loss: 0.0161, Base Lr: 5.99e-06
+2026-06-13 00:20:44,995 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:20:45,160 IRRA.train INFO: Epoch[30] Iteration[500/624], loss: 0.2778, identity_sdm_loss: 0.2617, state_itc_loss: 0.0161, Base Lr: 5.99e-06
+2026-06-13 00:21:02,977 IRRA.train INFO: BatchIdentityStats Epoch[30] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:21:03,142 IRRA.train INFO: Epoch[30] Iteration[600/624], loss: 0.2769, identity_sdm_loss: 0.2608, state_itc_loss: 0.0162, Base Lr: 5.99e-06
+2026-06-13 00:21:07,500 IRRA.train INFO: Epoch 30 done. Time per batch: 0.181[s] Speed: 352.9[samples/s]
+2026-06-13 00:21:07,500 IRRA.train INFO: Validation Results - Epoch: 30
+2026-06-13 00:21:25,794 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 54.678 | 74.273 | 81.077 | 42.076 | 22.479 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:21:28,745 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:21:46,345 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:21:46,511 IRRA.train INFO: Epoch[31] Iteration[100/624], loss: 0.2440, identity_sdm_loss: 0.2288, state_itc_loss: 0.0152, Base Lr: 5.71e-06
+2026-06-13 00:22:04,107 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:22:04,273 IRRA.train INFO: Epoch[31] Iteration[200/624], loss: 0.2807, identity_sdm_loss: 0.2635, state_itc_loss: 0.0173, Base Lr: 5.71e-06
+2026-06-13 00:22:21,869 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:22:22,035 IRRA.train INFO: Epoch[31] Iteration[300/624], loss: 0.2818, identity_sdm_loss: 0.2655, state_itc_loss: 0.0162, Base Lr: 5.71e-06
+2026-06-13 00:22:39,654 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:22:39,821 IRRA.train INFO: Epoch[31] Iteration[400/624], loss: 0.2756, identity_sdm_loss: 0.2600, state_itc_loss: 0.0157, Base Lr: 5.71e-06
+2026-06-13 00:22:57,609 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:22:57,775 IRRA.train INFO: Epoch[31] Iteration[500/624], loss: 0.2696, identity_sdm_loss: 0.2547, state_itc_loss: 0.0149, Base Lr: 5.71e-06
+2026-06-13 00:23:15,812 IRRA.train INFO: BatchIdentityStats Epoch[31] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:23:15,979 IRRA.train INFO: Epoch[31] Iteration[600/624], loss: 0.2659, identity_sdm_loss: 0.2511, state_itc_loss: 0.0148, Base Lr: 5.71e-06
+2026-06-13 00:23:20,416 IRRA.train INFO: Epoch 31 done. Time per batch: 0.181[s] Speed: 353.0[samples/s]
+2026-06-13 00:23:20,417 IRRA.train INFO: Validation Results - Epoch: 31
+2026-06-13 00:23:39,190 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 55.199 | 74.855 | 81.586 | 42.345 | 22.568 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:23:41,976 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:23:59,654 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:23:59,820 IRRA.train INFO: Epoch[32] Iteration[100/624], loss: 0.2366, identity_sdm_loss: 0.2232, state_itc_loss: 0.0134, Base Lr: 5.43e-06
+2026-06-13 00:24:17,576 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:24:17,742 IRRA.train INFO: Epoch[32] Iteration[200/624], loss: 0.2323, identity_sdm_loss: 0.2176, state_itc_loss: 0.0147, Base Lr: 5.43e-06
+2026-06-13 00:24:35,427 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:24:35,594 IRRA.train INFO: Epoch[32] Iteration[300/624], loss: 0.2315, identity_sdm_loss: 0.2173, state_itc_loss: 0.0142, Base Lr: 5.43e-06
+2026-06-13 00:24:53,427 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:24:53,593 IRRA.train INFO: Epoch[32] Iteration[400/624], loss: 0.2491, identity_sdm_loss: 0.2341, state_itc_loss: 0.0150, Base Lr: 5.43e-06
+2026-06-13 00:25:11,426 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:25:11,591 IRRA.train INFO: Epoch[32] Iteration[500/624], loss: 0.2496, identity_sdm_loss: 0.2343, state_itc_loss: 0.0153, Base Lr: 5.43e-06
+2026-06-13 00:25:29,547 IRRA.train INFO: BatchIdentityStats Epoch[32] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:25:29,713 IRRA.train INFO: Epoch[32] Iteration[600/624], loss: 0.2598, identity_sdm_loss: 0.2440, state_itc_loss: 0.0158, Base Lr: 5.43e-06
+2026-06-13 00:25:34,185 IRRA.train INFO: Epoch 32 done. Time per batch: 0.182[s] Speed: 352.1[samples/s]
+2026-06-13 00:25:34,186 IRRA.train INFO: Validation Results - Epoch: 32
+2026-06-13 00:25:52,521 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 55.326 | 75.006 | 81.726 | 42.314 | 22.556 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:25:55,652 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:26:13,450 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:26:13,616 IRRA.train INFO: Epoch[33] Iteration[100/624], loss: 0.2302, identity_sdm_loss: 0.2167, state_itc_loss: 0.0135, Base Lr: 5.14e-06
+2026-06-13 00:26:31,536 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:26:31,702 IRRA.train INFO: Epoch[33] Iteration[200/624], loss: 0.2352, identity_sdm_loss: 0.2213, state_itc_loss: 0.0139, Base Lr: 5.14e-06
+2026-06-13 00:26:49,610 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:26:49,776 IRRA.train INFO: Epoch[33] Iteration[300/624], loss: 0.2208, identity_sdm_loss: 0.2076, state_itc_loss: 0.0131, Base Lr: 5.14e-06
+2026-06-13 00:27:07,616 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:27:07,782 IRRA.train INFO: Epoch[33] Iteration[400/624], loss: 0.2086, identity_sdm_loss: 0.1962, state_itc_loss: 0.0123, Base Lr: 5.14e-06
+2026-06-13 00:27:25,621 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:27:25,785 IRRA.train INFO: Epoch[33] Iteration[500/624], loss: 0.2015, identity_sdm_loss: 0.1897, state_itc_loss: 0.0118, Base Lr: 5.14e-06
+2026-06-13 00:27:43,658 IRRA.train INFO: BatchIdentityStats Epoch[33] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:27:43,824 IRRA.train INFO: Epoch[33] Iteration[600/624], loss: 0.1984, identity_sdm_loss: 0.1865, state_itc_loss: 0.0119, Base Lr: 5.14e-06
+2026-06-13 00:27:48,231 IRRA.train INFO: Epoch 33 done. Time per batch: 0.183[s] Speed: 349.8[samples/s]
+2026-06-13 00:27:48,231 IRRA.train INFO: Validation Results - Epoch: 33
+2026-06-13 00:28:07,314 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 55.574 | 75.091 | 81.750 | 42.661 | 22.770 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:28:10,231 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:28:28,129 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[100/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:28:28,296 IRRA.train INFO: Epoch[34] Iteration[100/624], loss: 0.1944, identity_sdm_loss: 0.1820, state_itc_loss: 0.0123, Base Lr: 4.86e-06
+2026-06-13 00:28:46,189 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:28:46,359 IRRA.train INFO: Epoch[34] Iteration[200/624], loss: 0.2105, identity_sdm_loss: 0.1981, state_itc_loss: 0.0125, Base Lr: 4.86e-06
+2026-06-13 00:29:04,228 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:29:04,393 IRRA.train INFO: Epoch[34] Iteration[300/624], loss: 0.1975, identity_sdm_loss: 0.1860, state_itc_loss: 0.0115, Base Lr: 4.86e-06
+2026-06-13 00:29:22,355 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:29:22,522 IRRA.train INFO: Epoch[34] Iteration[400/624], loss: 0.1970, identity_sdm_loss: 0.1858, state_itc_loss: 0.0112, Base Lr: 4.86e-06
+2026-06-13 00:29:40,276 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:29:40,440 IRRA.train INFO: Epoch[34] Iteration[500/624], loss: 0.1886, identity_sdm_loss: 0.1772, state_itc_loss: 0.0115, Base Lr: 4.86e-06
+2026-06-13 00:29:58,310 IRRA.train INFO: BatchIdentityStats Epoch[34] Iteration[600/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:29:58,476 IRRA.train INFO: Epoch[34] Iteration[600/624], loss: 0.1922, identity_sdm_loss: 0.1806, state_itc_loss: 0.0116, Base Lr: 4.86e-06
+2026-06-13 00:30:02,872 IRRA.train INFO: Epoch 34 done. Time per batch: 0.183[s] Speed: 350.3[samples/s]
+2026-06-13 00:30:02,873 IRRA.train INFO: Validation Results - Epoch: 34
+2026-06-13 00:30:21,719 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 55.677 | 75.176 | 82.083 | 42.632 | 22.765 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:30:24,727 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:30:42,573 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:30:42,738 IRRA.train INFO: Epoch[35] Iteration[100/624], loss: 0.2201, identity_sdm_loss: 0.2060, state_itc_loss: 0.0141, Base Lr: 4.57e-06
+2026-06-13 00:31:00,718 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:31:00,888 IRRA.train INFO: Epoch[35] Iteration[200/624], loss: 0.1996, identity_sdm_loss: 0.1880, state_itc_loss: 0.0117, Base Lr: 4.57e-06
+2026-06-13 00:31:18,743 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:31:18,908 IRRA.train INFO: Epoch[35] Iteration[300/624], loss: 0.2027, identity_sdm_loss: 0.1911, state_itc_loss: 0.0116, Base Lr: 4.57e-06
+2026-06-13 00:31:36,897 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[400/624], batch_size=64, unique_ids=61, duplicate_ids=3, max_per_id=2, same_id_ordered_pairs=6, negative_ordered_pairs=4026, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:31:37,065 IRRA.train INFO: Epoch[35] Iteration[400/624], loss: 0.1947, identity_sdm_loss: 0.1830, state_itc_loss: 0.0117, Base Lr: 4.57e-06
+2026-06-13 00:31:54,847 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:31:55,014 IRRA.train INFO: Epoch[35] Iteration[500/624], loss: 0.1958, identity_sdm_loss: 0.1837, state_itc_loss: 0.0121, Base Lr: 4.57e-06
+2026-06-13 00:32:12,841 IRRA.train INFO: BatchIdentityStats Epoch[35] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:32:13,008 IRRA.train INFO: Epoch[35] Iteration[600/624], loss: 0.1956, identity_sdm_loss: 0.1835, state_itc_loss: 0.0121, Base Lr: 4.57e-06
+2026-06-13 00:32:17,286 IRRA.train INFO: Epoch 35 done. Time per batch: 0.183[s] Speed: 350.3[samples/s]
+2026-06-13 00:32:17,287 IRRA.train INFO: Validation Results - Epoch: 35
+2026-06-13 00:32:36,111 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 55.744 | 74.921 | 81.520 | 42.636 | 22.787 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:32:39,280 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:32:57,255 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:32:57,423 IRRA.train INFO: Epoch[36] Iteration[100/624], loss: 0.1786, identity_sdm_loss: 0.1683, state_itc_loss: 0.0103, Base Lr: 4.29e-06
+2026-06-13 00:33:15,318 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:33:15,486 IRRA.train INFO: Epoch[36] Iteration[200/624], loss: 0.1728, identity_sdm_loss: 0.1633, state_itc_loss: 0.0095, Base Lr: 4.29e-06
+2026-06-13 00:33:33,402 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:33:33,572 IRRA.train INFO: Epoch[36] Iteration[300/624], loss: 0.1782, identity_sdm_loss: 0.1683, state_itc_loss: 0.0099, Base Lr: 4.29e-06
+2026-06-13 00:33:51,425 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:33:51,592 IRRA.train INFO: Epoch[36] Iteration[400/624], loss: 0.1814, identity_sdm_loss: 0.1712, state_itc_loss: 0.0102, Base Lr: 4.29e-06
+2026-06-13 00:34:09,425 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:34:09,591 IRRA.train INFO: Epoch[36] Iteration[500/624], loss: 0.1846, identity_sdm_loss: 0.1736, state_itc_loss: 0.0110, Base Lr: 4.29e-06
+2026-06-13 00:34:27,466 IRRA.train INFO: BatchIdentityStats Epoch[36] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:34:27,631 IRRA.train INFO: Epoch[36] Iteration[600/624], loss: 0.1869, identity_sdm_loss: 0.1754, state_itc_loss: 0.0115, Base Lr: 4.29e-06
+2026-06-13 00:34:32,041 IRRA.train INFO: Epoch 36 done. Time per batch: 0.183[s] Speed: 349.4[samples/s]
+2026-06-13 00:34:32,041 IRRA.train INFO: Validation Results - Epoch: 36
+2026-06-13 00:34:50,449 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.186 | 75.285 | 81.695 | 42.810 | 22.860 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:34:53,536 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:35:11,197 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:35:11,363 IRRA.train INFO: Epoch[37] Iteration[100/624], loss: 0.1990, identity_sdm_loss: 0.1857, state_itc_loss: 0.0133, Base Lr: 4.01e-06
+2026-06-13 00:35:29,181 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:35:29,348 IRRA.train INFO: Epoch[37] Iteration[200/624], loss: 0.1871, identity_sdm_loss: 0.1749, state_itc_loss: 0.0122, Base Lr: 4.01e-06
+2026-06-13 00:35:47,121 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:35:47,286 IRRA.train INFO: Epoch[37] Iteration[300/624], loss: 0.1747, identity_sdm_loss: 0.1634, state_itc_loss: 0.0114, Base Lr: 4.01e-06
+2026-06-13 00:36:05,086 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:36:05,251 IRRA.train INFO: Epoch[37] Iteration[400/624], loss: 0.1755, identity_sdm_loss: 0.1644, state_itc_loss: 0.0111, Base Lr: 4.01e-06
+2026-06-13 00:36:23,031 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:36:23,195 IRRA.train INFO: Epoch[37] Iteration[500/624], loss: 0.1837, identity_sdm_loss: 0.1720, state_itc_loss: 0.0117, Base Lr: 4.01e-06
+2026-06-13 00:36:40,983 IRRA.train INFO: BatchIdentityStats Epoch[37] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:36:41,149 IRRA.train INFO: Epoch[37] Iteration[600/624], loss: 0.1823, identity_sdm_loss: 0.1705, state_itc_loss: 0.0118, Base Lr: 4.01e-06
+2026-06-13 00:36:45,515 IRRA.train INFO: Epoch 37 done. Time per batch: 0.182[s] Speed: 351.9[samples/s]
+2026-06-13 00:36:45,516 IRRA.train INFO: Validation Results - Epoch: 37
+2026-06-13 00:37:04,494 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.271 | 75.127 | 81.907 | 42.676 | 22.564 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:37:07,673 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:37:25,468 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:37:25,635 IRRA.train INFO: Epoch[38] Iteration[100/624], loss: 0.1811, identity_sdm_loss: 0.1700, state_itc_loss: 0.0111, Base Lr: 3.73e-06
+2026-06-13 00:37:43,328 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:37:43,493 IRRA.train INFO: Epoch[38] Iteration[200/624], loss: 0.1717, identity_sdm_loss: 0.1613, state_itc_loss: 0.0104, Base Lr: 3.73e-06
+2026-06-13 00:38:01,076 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:38:01,243 IRRA.train INFO: Epoch[38] Iteration[300/624], loss: 0.1674, identity_sdm_loss: 0.1571, state_itc_loss: 0.0102, Base Lr: 3.73e-06
+2026-06-13 00:38:18,887 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:38:19,053 IRRA.train INFO: Epoch[38] Iteration[400/624], loss: 0.1727, identity_sdm_loss: 0.1619, state_itc_loss: 0.0108, Base Lr: 3.73e-06
+2026-06-13 00:38:36,686 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:38:36,852 IRRA.train INFO: Epoch[38] Iteration[500/624], loss: 0.1782, identity_sdm_loss: 0.1667, state_itc_loss: 0.0115, Base Lr: 3.73e-06
+2026-06-13 00:38:54,529 IRRA.train INFO: BatchIdentityStats Epoch[38] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:38:54,696 IRRA.train INFO: Epoch[38] Iteration[600/624], loss: 0.1765, identity_sdm_loss: 0.1653, state_itc_loss: 0.0112, Base Lr: 3.73e-06
+2026-06-13 00:38:59,067 IRRA.train INFO: Epoch 38 done. Time per batch: 0.181[s] Speed: 353.3[samples/s]
+2026-06-13 00:38:59,068 IRRA.train INFO: Validation Results - Epoch: 38
+2026-06-13 00:39:17,142 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.259 | 75.261 | 82.222 | 42.948 | 23.089 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:39:18,896 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:39:36,827 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:39:36,994 IRRA.train INFO: Epoch[39] Iteration[100/624], loss: 0.1496, identity_sdm_loss: 0.1399, state_itc_loss: 0.0098, Base Lr: 3.45e-06
+2026-06-13 00:39:54,851 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:39:55,019 IRRA.train INFO: Epoch[39] Iteration[200/624], loss: 0.1485, identity_sdm_loss: 0.1397, state_itc_loss: 0.0089, Base Lr: 3.45e-06
+2026-06-13 00:40:12,871 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:40:13,036 IRRA.train INFO: Epoch[39] Iteration[300/624], loss: 0.1502, identity_sdm_loss: 0.1411, state_itc_loss: 0.0092, Base Lr: 3.45e-06
+2026-06-13 00:40:30,926 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:40:31,093 IRRA.train INFO: Epoch[39] Iteration[400/624], loss: 0.1530, identity_sdm_loss: 0.1434, state_itc_loss: 0.0096, Base Lr: 3.45e-06
+2026-06-13 00:40:49,066 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:40:49,233 IRRA.train INFO: Epoch[39] Iteration[500/624], loss: 0.1541, identity_sdm_loss: 0.1441, state_itc_loss: 0.0100, Base Lr: 3.45e-06
+2026-06-13 00:41:07,197 IRRA.train INFO: BatchIdentityStats Epoch[39] Iteration[600/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:41:07,363 IRRA.train INFO: Epoch[39] Iteration[600/624], loss: 0.1564, identity_sdm_loss: 0.1463, state_itc_loss: 0.0101, Base Lr: 3.45e-06
+2026-06-13 00:41:11,865 IRRA.train INFO: Epoch 39 done. Time per batch: 0.184[s] Speed: 348.6[samples/s]
+2026-06-13 00:41:11,865 IRRA.train INFO: Validation Results - Epoch: 39
+2026-06-13 00:41:30,597 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.198 | 75.521 | 82.271 | 43.042 | 23.115 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:41:32,039 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:41:49,810 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[100/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 00:41:49,976 IRRA.train INFO: Epoch[40] Iteration[100/624], loss: 0.1491, identity_sdm_loss: 0.1393, state_itc_loss: 0.0098, Base Lr: 3.19e-06
+2026-06-13 00:42:07,563 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:42:07,730 IRRA.train INFO: Epoch[40] Iteration[200/624], loss: 0.1515, identity_sdm_loss: 0.1414, state_itc_loss: 0.0101, Base Lr: 3.19e-06
+2026-06-13 00:42:25,345 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:42:25,510 IRRA.train INFO: Epoch[40] Iteration[300/624], loss: 0.1489, identity_sdm_loss: 0.1394, state_itc_loss: 0.0095, Base Lr: 3.19e-06
+2026-06-13 00:42:43,115 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:42:43,281 IRRA.train INFO: Epoch[40] Iteration[400/624], loss: 0.1541, identity_sdm_loss: 0.1441, state_itc_loss: 0.0101, Base Lr: 3.19e-06
+2026-06-13 00:43:00,934 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:43:01,100 IRRA.train INFO: Epoch[40] Iteration[500/624], loss: 0.1560, identity_sdm_loss: 0.1459, state_itc_loss: 0.0100, Base Lr: 3.19e-06
+2026-06-13 00:43:18,815 IRRA.train INFO: BatchIdentityStats Epoch[40] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:43:18,981 IRRA.train INFO: Epoch[40] Iteration[600/624], loss: 0.1526, identity_sdm_loss: 0.1430, state_itc_loss: 0.0096, Base Lr: 3.19e-06
+2026-06-13 00:43:23,350 IRRA.train INFO: Epoch 40 done. Time per batch: 0.180[s] Speed: 354.7[samples/s]
+2026-06-13 00:43:23,350 IRRA.train INFO: Validation Results - Epoch: 40
+2026-06-13 00:43:41,011 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.429 | 75.818 | 82.429 | 42.969 | 22.949 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:43:43,925 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:44:01,529 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[100/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:44:01,694 IRRA.train INFO: Epoch[41] Iteration[100/624], loss: 0.1354, identity_sdm_loss: 0.1265, state_itc_loss: 0.0089, Base Lr: 2.92e-06
+2026-06-13 00:44:19,281 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:44:19,447 IRRA.train INFO: Epoch[41] Iteration[200/624], loss: 0.1581, identity_sdm_loss: 0.1476, state_itc_loss: 0.0104, Base Lr: 2.92e-06
+2026-06-13 00:44:37,074 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:44:37,240 IRRA.train INFO: Epoch[41] Iteration[300/624], loss: 0.1422, identity_sdm_loss: 0.1327, state_itc_loss: 0.0095, Base Lr: 2.92e-06
+2026-06-13 00:44:54,865 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:44:55,042 IRRA.train INFO: Epoch[41] Iteration[400/624], loss: 0.1386, identity_sdm_loss: 0.1292, state_itc_loss: 0.0094, Base Lr: 2.92e-06
+2026-06-13 00:45:12,724 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:45:12,890 IRRA.train INFO: Epoch[41] Iteration[500/624], loss: 0.1367, identity_sdm_loss: 0.1274, state_itc_loss: 0.0093, Base Lr: 2.92e-06
+2026-06-13 00:45:30,625 IRRA.train INFO: BatchIdentityStats Epoch[41] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:45:30,791 IRRA.train INFO: Epoch[41] Iteration[600/624], loss: 0.1385, identity_sdm_loss: 0.1290, state_itc_loss: 0.0095, Base Lr: 2.92e-06
+2026-06-13 00:45:35,161 IRRA.train INFO: Epoch 41 done. Time per batch: 0.181[s] Speed: 354.5[samples/s]
+2026-06-13 00:45:35,161 IRRA.train INFO: Validation Results - Epoch: 41
+2026-06-13 00:45:53,270 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.683 | 76.127 | 82.422 | 43.285 | 23.217 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:45:55,794 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:46:13,386 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:46:13,553 IRRA.train INFO: Epoch[42] Iteration[100/624], loss: 0.1140, identity_sdm_loss: 0.1068, state_itc_loss: 0.0072, Base Lr: 2.67e-06
+2026-06-13 00:46:31,152 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:46:31,319 IRRA.train INFO: Epoch[42] Iteration[200/624], loss: 0.1326, identity_sdm_loss: 0.1244, state_itc_loss: 0.0082, Base Lr: 2.67e-06
+2026-06-13 00:46:48,935 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:46:49,105 IRRA.train INFO: Epoch[42] Iteration[300/624], loss: 0.1316, identity_sdm_loss: 0.1237, state_itc_loss: 0.0079, Base Lr: 2.67e-06
+2026-06-13 00:47:06,854 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:47:07,020 IRRA.train INFO: Epoch[42] Iteration[400/624], loss: 0.1329, identity_sdm_loss: 0.1250, state_itc_loss: 0.0078, Base Lr: 2.67e-06
+2026-06-13 00:47:24,719 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:47:24,884 IRRA.train INFO: Epoch[42] Iteration[500/624], loss: 0.1316, identity_sdm_loss: 0.1238, state_itc_loss: 0.0077, Base Lr: 2.67e-06
+2026-06-13 00:47:42,527 IRRA.train INFO: BatchIdentityStats Epoch[42] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:47:42,693 IRRA.train INFO: Epoch[42] Iteration[600/624], loss: 0.1323, identity_sdm_loss: 0.1244, state_itc_loss: 0.0080, Base Lr: 2.67e-06
+2026-06-13 00:47:47,075 IRRA.train INFO: Epoch 42 done. Time per batch: 0.180[s] Speed: 355.0[samples/s]
+2026-06-13 00:47:47,075 IRRA.train INFO: Validation Results - Epoch: 42
+2026-06-13 00:48:05,519 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.786 | 76.206 | 82.435 | 43.282 | 23.112 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:48:08,416 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:48:25,966 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:48:26,132 IRRA.train INFO: Epoch[43] Iteration[100/624], loss: 0.1339, identity_sdm_loss: 0.1254, state_itc_loss: 0.0085, Base Lr: 2.42e-06
+2026-06-13 00:48:43,729 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:48:43,896 IRRA.train INFO: Epoch[43] Iteration[200/624], loss: 0.1263, identity_sdm_loss: 0.1184, state_itc_loss: 0.0079, Base Lr: 2.42e-06
+2026-06-13 00:49:01,487 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:49:01,653 IRRA.train INFO: Epoch[43] Iteration[300/624], loss: 0.1244, identity_sdm_loss: 0.1162, state_itc_loss: 0.0082, Base Lr: 2.42e-06
+2026-06-13 00:49:19,387 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[400/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:49:19,559 IRRA.train INFO: Epoch[43] Iteration[400/624], loss: 0.1267, identity_sdm_loss: 0.1186, state_itc_loss: 0.0081, Base Lr: 2.42e-06
+2026-06-13 00:49:37,288 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:49:37,461 IRRA.train INFO: Epoch[43] Iteration[500/624], loss: 0.1233, identity_sdm_loss: 0.1153, state_itc_loss: 0.0080, Base Lr: 2.42e-06
+2026-06-13 00:49:55,317 IRRA.train INFO: BatchIdentityStats Epoch[43] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:49:55,484 IRRA.train INFO: Epoch[43] Iteration[600/624], loss: 0.1230, identity_sdm_loss: 0.1152, state_itc_loss: 0.0078, Base Lr: 2.42e-06
+2026-06-13 00:49:59,850 IRRA.train INFO: Epoch 43 done. Time per batch: 0.181[s] Speed: 354.2[samples/s]
+2026-06-13 00:49:59,850 IRRA.train INFO: Validation Results - Epoch: 43
+2026-06-13 00:50:17,947 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.786 | 76.024 | 82.453 | 43.257 | 23.021 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:50:19,764 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:50:37,381 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:50:37,546 IRRA.train INFO: Epoch[44] Iteration[100/624], loss: 0.1243, identity_sdm_loss: 0.1163, state_itc_loss: 0.0080, Base Lr: 2.18e-06
+2026-06-13 00:50:55,135 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:50:55,303 IRRA.train INFO: Epoch[44] Iteration[200/624], loss: 0.1205, identity_sdm_loss: 0.1128, state_itc_loss: 0.0077, Base Lr: 2.18e-06
+2026-06-13 00:51:12,975 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:51:13,142 IRRA.train INFO: Epoch[44] Iteration[300/624], loss: 0.1176, identity_sdm_loss: 0.1096, state_itc_loss: 0.0080, Base Lr: 2.18e-06
+2026-06-13 00:51:30,833 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:51:31,001 IRRA.train INFO: Epoch[44] Iteration[400/624], loss: 0.1178, identity_sdm_loss: 0.1097, state_itc_loss: 0.0081, Base Lr: 2.18e-06
+2026-06-13 00:51:48,650 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:51:48,816 IRRA.train INFO: Epoch[44] Iteration[500/624], loss: 0.1183, identity_sdm_loss: 0.1102, state_itc_loss: 0.0081, Base Lr: 2.18e-06
+2026-06-13 00:52:06,405 IRRA.train INFO: BatchIdentityStats Epoch[44] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:52:06,570 IRRA.train INFO: Epoch[44] Iteration[600/624], loss: 0.1210, identity_sdm_loss: 0.1127, state_itc_loss: 0.0082, Base Lr: 2.18e-06
+2026-06-13 00:52:10,900 IRRA.train INFO: Epoch 44 done. Time per batch: 0.181[s] Speed: 354.0[samples/s]
+2026-06-13 00:52:10,901 IRRA.train INFO: Validation Results - Epoch: 44
+2026-06-13 00:52:29,027 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 56.871 | 76.109 | 82.435 | 43.400 | 23.109 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:52:31,755 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:52:49,388 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:52:49,553 IRRA.train INFO: Epoch[45] Iteration[100/624], loss: 0.1220, identity_sdm_loss: 0.1142, state_itc_loss: 0.0077, Base Lr: 1.95e-06
+2026-06-13 00:53:07,222 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:53:07,388 IRRA.train INFO: Epoch[45] Iteration[200/624], loss: 0.1197, identity_sdm_loss: 0.1120, state_itc_loss: 0.0077, Base Lr: 1.95e-06
+2026-06-13 00:53:25,085 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:53:25,252 IRRA.train INFO: Epoch[45] Iteration[300/624], loss: 0.1229, identity_sdm_loss: 0.1152, state_itc_loss: 0.0077, Base Lr: 1.95e-06
+2026-06-13 00:53:42,883 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:53:43,053 IRRA.train INFO: Epoch[45] Iteration[400/624], loss: 0.1311, identity_sdm_loss: 0.1227, state_itc_loss: 0.0084, Base Lr: 1.95e-06
+2026-06-13 00:54:00,688 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:54:00,854 IRRA.train INFO: Epoch[45] Iteration[500/624], loss: 0.1258, identity_sdm_loss: 0.1177, state_itc_loss: 0.0081, Base Lr: 1.95e-06
+2026-06-13 00:54:18,401 IRRA.train INFO: BatchIdentityStats Epoch[45] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:54:18,567 IRRA.train INFO: Epoch[45] Iteration[600/624], loss: 0.1225, identity_sdm_loss: 0.1145, state_itc_loss: 0.0080, Base Lr: 1.95e-06
+2026-06-13 00:54:22,915 IRRA.train INFO: Epoch 45 done. Time per batch: 0.180[s] Speed: 355.4[samples/s]
+2026-06-13 00:54:22,915 IRRA.train INFO: Validation Results - Epoch: 45
+2026-06-13 00:54:40,751 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.029 | 76.048 | 82.532 | 43.475 | 23.251 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:54:43,655 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:55:01,252 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:55:01,419 IRRA.train INFO: Epoch[46] Iteration[100/624], loss: 0.1291, identity_sdm_loss: 0.1203, state_itc_loss: 0.0088, Base Lr: 1.73e-06
+2026-06-13 00:55:19,058 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:55:19,224 IRRA.train INFO: Epoch[46] Iteration[200/624], loss: 0.1198, identity_sdm_loss: 0.1119, state_itc_loss: 0.0079, Base Lr: 1.73e-06
+2026-06-13 00:55:36,775 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:55:36,938 IRRA.train INFO: Epoch[46] Iteration[300/624], loss: 0.1204, identity_sdm_loss: 0.1124, state_itc_loss: 0.0080, Base Lr: 1.73e-06
+2026-06-13 00:55:54,407 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:55:54,574 IRRA.train INFO: Epoch[46] Iteration[400/624], loss: 0.1198, identity_sdm_loss: 0.1117, state_itc_loss: 0.0081, Base Lr: 1.73e-06
+2026-06-13 00:56:12,037 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:56:12,202 IRRA.train INFO: Epoch[46] Iteration[500/624], loss: 0.1187, identity_sdm_loss: 0.1103, state_itc_loss: 0.0085, Base Lr: 1.73e-06
+2026-06-13 00:56:29,751 IRRA.train INFO: BatchIdentityStats Epoch[46] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:56:29,919 IRRA.train INFO: Epoch[46] Iteration[600/624], loss: 0.1139, identity_sdm_loss: 0.1056, state_itc_loss: 0.0082, Base Lr: 1.73e-06
+2026-06-13 00:56:34,257 IRRA.train INFO: Epoch 46 done. Time per batch: 0.179[s] Speed: 356.6[samples/s]
+2026-06-13 00:56:34,258 IRRA.train INFO: Validation Results - Epoch: 46
+2026-06-13 00:56:53,033 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.162 | 76.036 | 82.556 | 43.508 | 23.268 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:56:56,379 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:57:14,120 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:57:14,287 IRRA.train INFO: Epoch[47] Iteration[100/624], loss: 0.1179, identity_sdm_loss: 0.1106, state_itc_loss: 0.0073, Base Lr: 1.52e-06
+2026-06-13 00:57:31,951 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:57:32,119 IRRA.train INFO: Epoch[47] Iteration[200/624], loss: 0.1189, identity_sdm_loss: 0.1116, state_itc_loss: 0.0073, Base Lr: 1.52e-06
+2026-06-13 00:57:49,867 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[300/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:57:50,034 IRRA.train INFO: Epoch[47] Iteration[300/624], loss: 0.1239, identity_sdm_loss: 0.1159, state_itc_loss: 0.0080, Base Lr: 1.52e-06
+2026-06-13 00:58:07,672 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:58:07,839 IRRA.train INFO: Epoch[47] Iteration[400/624], loss: 0.1211, identity_sdm_loss: 0.1137, state_itc_loss: 0.0074, Base Lr: 1.52e-06
+2026-06-13 00:58:25,253 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:58:25,419 IRRA.train INFO: Epoch[47] Iteration[500/624], loss: 0.1248, identity_sdm_loss: 0.1175, state_itc_loss: 0.0073, Base Lr: 1.52e-06
+2026-06-13 00:58:42,976 IRRA.train INFO: BatchIdentityStats Epoch[47] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:58:43,146 IRRA.train INFO: Epoch[47] Iteration[600/624], loss: 0.1218, identity_sdm_loss: 0.1146, state_itc_loss: 0.0072, Base Lr: 1.52e-06
+2026-06-13 00:58:47,521 IRRA.train INFO: Epoch 47 done. Time per batch: 0.181[s] Speed: 353.7[samples/s]
+2026-06-13 00:58:47,521 IRRA.train INFO: Validation Results - Epoch: 47
+2026-06-13 00:59:07,019 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.059 | 76.169 | 82.556 | 43.494 | 23.242 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 00:59:08,451 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:59:26,301 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:59:26,472 IRRA.train INFO: Epoch[48] Iteration[100/624], loss: 0.1151, identity_sdm_loss: 0.1073, state_itc_loss: 0.0078, Base Lr: 1.32e-06
+2026-06-13 00:59:44,355 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 00:59:44,521 IRRA.train INFO: Epoch[48] Iteration[200/624], loss: 0.1064, identity_sdm_loss: 0.0987, state_itc_loss: 0.0077, Base Lr: 1.32e-06
+2026-06-13 01:00:02,338 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:00:02,504 IRRA.train INFO: Epoch[48] Iteration[300/624], loss: 0.1147, identity_sdm_loss: 0.1067, state_itc_loss: 0.0080, Base Lr: 1.32e-06
+2026-06-13 01:00:20,308 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:00:20,475 IRRA.train INFO: Epoch[48] Iteration[400/624], loss: 0.1159, identity_sdm_loss: 0.1081, state_itc_loss: 0.0079, Base Lr: 1.32e-06
+2026-06-13 01:00:38,258 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:00:38,423 IRRA.train INFO: Epoch[48] Iteration[500/624], loss: 0.1118, identity_sdm_loss: 0.1043, state_itc_loss: 0.0075, Base Lr: 1.32e-06
+2026-06-13 01:00:56,138 IRRA.train INFO: BatchIdentityStats Epoch[48] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:00:56,304 IRRA.train INFO: Epoch[48] Iteration[600/624], loss: 0.1060, identity_sdm_loss: 0.0986, state_itc_loss: 0.0074, Base Lr: 1.32e-06
+2026-06-13 01:01:00,685 IRRA.train INFO: Epoch 48 done. Time per batch: 0.182[s] Speed: 351.8[samples/s]
+2026-06-13 01:01:00,686 IRRA.train INFO: Validation Results - Epoch: 48
+2026-06-13 01:01:18,279 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.083 | 76.194 | 82.635 | 43.545 | 23.272 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:01:19,759 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:01:37,556 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:01:37,720 IRRA.train INFO: Epoch[49] Iteration[100/624], loss: 0.1112, identity_sdm_loss: 0.1041, state_itc_loss: 0.0071, Base Lr: 1.13e-06
+2026-06-13 01:01:55,518 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 01:01:55,690 IRRA.train INFO: Epoch[49] Iteration[200/624], loss: 0.1076, identity_sdm_loss: 0.1003, state_itc_loss: 0.0073, Base Lr: 1.13e-06
+2026-06-13 01:02:13,462 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:02:13,628 IRRA.train INFO: Epoch[49] Iteration[300/624], loss: 0.1087, identity_sdm_loss: 0.1006, state_itc_loss: 0.0081, Base Lr: 1.13e-06
+2026-06-13 01:02:31,398 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:02:31,564 IRRA.train INFO: Epoch[49] Iteration[400/624], loss: 0.1089, identity_sdm_loss: 0.1008, state_itc_loss: 0.0081, Base Lr: 1.13e-06
+2026-06-13 01:02:49,342 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:02:49,509 IRRA.train INFO: Epoch[49] Iteration[500/624], loss: 0.1088, identity_sdm_loss: 0.1011, state_itc_loss: 0.0077, Base Lr: 1.13e-06
+2026-06-13 01:03:07,431 IRRA.train INFO: BatchIdentityStats Epoch[49] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:03:07,602 IRRA.train INFO: Epoch[49] Iteration[600/624], loss: 0.1062, identity_sdm_loss: 0.0988, state_itc_loss: 0.0075, Base Lr: 1.13e-06
+2026-06-13 01:03:12,080 IRRA.train INFO: Epoch 49 done. Time per batch: 0.182[s] Speed: 351.4[samples/s]
+2026-06-13 01:03:12,081 IRRA.train INFO: Validation Results - Epoch: 49
+2026-06-13 01:03:30,047 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.047 | 76.291 | 82.616 | 43.562 | 23.328 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:03:31,387 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:03:49,108 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:03:49,276 IRRA.train INFO: Epoch[50] Iteration[100/624], loss: 0.1056, identity_sdm_loss: 0.0982, state_itc_loss: 0.0074, Base Lr: 9.55e-07
+2026-06-13 01:04:06,549 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:04:06,714 IRRA.train INFO: Epoch[50] Iteration[200/624], loss: 0.1126, identity_sdm_loss: 0.1047, state_itc_loss: 0.0079, Base Lr: 9.55e-07
+2026-06-13 01:04:23,749 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[300/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:04:23,902 IRRA.train INFO: Epoch[50] Iteration[300/624], loss: 0.1122, identity_sdm_loss: 0.1042, state_itc_loss: 0.0081, Base Lr: 9.55e-07
+2026-06-13 01:04:40,966 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[400/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:04:41,134 IRRA.train INFO: Epoch[50] Iteration[400/624], loss: 0.1098, identity_sdm_loss: 0.1018, state_itc_loss: 0.0080, Base Lr: 9.55e-07
+2026-06-13 01:04:58,197 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:04:58,365 IRRA.train INFO: Epoch[50] Iteration[500/624], loss: 0.1095, identity_sdm_loss: 0.1018, state_itc_loss: 0.0077, Base Lr: 9.55e-07
+2026-06-13 01:05:16,018 IRRA.train INFO: BatchIdentityStats Epoch[50] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:05:16,184 IRRA.train INFO: Epoch[50] Iteration[600/624], loss: 0.1106, identity_sdm_loss: 0.1032, state_itc_loss: 0.0074, Base Lr: 9.55e-07
+2026-06-13 01:05:20,580 IRRA.train INFO: Epoch 50 done. Time per batch: 0.177[s] Speed: 361.8[samples/s]
+2026-06-13 01:05:20,581 IRRA.train INFO: Validation Results - Epoch: 50
+2026-06-13 01:05:38,556 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.156 | 76.400 | 82.641 | 43.558 | 23.266 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:05:39,952 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:05:57,158 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:05:57,330 IRRA.train INFO: Epoch[51] Iteration[100/624], loss: 0.1128, identity_sdm_loss: 0.1051, state_itc_loss: 0.0077, Base Lr: 7.94e-07
+2026-06-13 01:06:14,488 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:06:14,644 IRRA.train INFO: Epoch[51] Iteration[200/624], loss: 0.1148, identity_sdm_loss: 0.1078, state_itc_loss: 0.0071, Base Lr: 7.94e-07
+2026-06-13 01:06:31,698 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:06:31,863 IRRA.train INFO: Epoch[51] Iteration[300/624], loss: 0.1050, identity_sdm_loss: 0.0977, state_itc_loss: 0.0072, Base Lr: 7.94e-07
+2026-06-13 01:06:49,316 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:06:49,484 IRRA.train INFO: Epoch[51] Iteration[400/624], loss: 0.1047, identity_sdm_loss: 0.0970, state_itc_loss: 0.0076, Base Lr: 7.94e-07
+2026-06-13 01:07:07,256 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:07:07,423 IRRA.train INFO: Epoch[51] Iteration[500/624], loss: 0.1040, identity_sdm_loss: 0.0968, state_itc_loss: 0.0072, Base Lr: 7.94e-07
+2026-06-13 01:07:25,101 IRRA.train INFO: BatchIdentityStats Epoch[51] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:07:25,258 IRRA.train INFO: Epoch[51] Iteration[600/624], loss: 0.1008, identity_sdm_loss: 0.0938, state_itc_loss: 0.0070, Base Lr: 7.94e-07
+2026-06-13 01:07:29,560 IRRA.train INFO: Epoch 51 done. Time per batch: 0.178[s] Speed: 360.3[samples/s]
+2026-06-13 01:07:29,560 IRRA.train INFO: Validation Results - Epoch: 51
+2026-06-13 01:07:47,811 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.192 | 76.357 | 82.756 | 43.585 | 23.313 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:07:50,923 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:08:08,238 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:08:08,395 IRRA.train INFO: Epoch[52] Iteration[100/624], loss: 0.0938, identity_sdm_loss: 0.0876, state_itc_loss: 0.0061, Base Lr: 6.46e-07
+2026-06-13 01:08:25,730 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:08:25,895 IRRA.train INFO: Epoch[52] Iteration[200/624], loss: 0.1039, identity_sdm_loss: 0.0968, state_itc_loss: 0.0070, Base Lr: 6.46e-07
+2026-06-13 01:08:42,970 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:08:43,129 IRRA.train INFO: Epoch[52] Iteration[300/624], loss: 0.1011, identity_sdm_loss: 0.0939, state_itc_loss: 0.0072, Base Lr: 6.46e-07
+2026-06-13 01:09:00,321 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:09:00,489 IRRA.train INFO: Epoch[52] Iteration[400/624], loss: 0.1050, identity_sdm_loss: 0.0974, state_itc_loss: 0.0076, Base Lr: 6.46e-07
+2026-06-13 01:09:18,222 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:09:18,389 IRRA.train INFO: Epoch[52] Iteration[500/624], loss: 0.1042, identity_sdm_loss: 0.0966, state_itc_loss: 0.0076, Base Lr: 6.46e-07
+2026-06-13 01:09:36,199 IRRA.train INFO: BatchIdentityStats Epoch[52] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:09:36,367 IRRA.train INFO: Epoch[52] Iteration[600/624], loss: 0.1031, identity_sdm_loss: 0.0955, state_itc_loss: 0.0076, Base Lr: 6.46e-07
+2026-06-13 01:09:40,754 IRRA.train INFO: Epoch 52 done. Time per batch: 0.179[s] Speed: 358.5[samples/s]
+2026-06-13 01:09:40,755 IRRA.train INFO: Validation Results - Epoch: 52
+2026-06-13 01:09:58,559 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.235 | 76.442 | 82.701 | 43.597 | 23.321 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:10:01,465 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:10:19,115 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:10:19,280 IRRA.train INFO: Epoch[53] Iteration[100/624], loss: 0.1185, identity_sdm_loss: 0.1100, state_itc_loss: 0.0085, Base Lr: 5.13e-07
+2026-06-13 01:10:36,883 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:10:37,051 IRRA.train INFO: Epoch[53] Iteration[200/624], loss: 0.1184, identity_sdm_loss: 0.1106, state_itc_loss: 0.0078, Base Lr: 5.13e-07
+2026-06-13 01:10:54,735 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:10:54,901 IRRA.train INFO: Epoch[53] Iteration[300/624], loss: 0.1093, identity_sdm_loss: 0.1016, state_itc_loss: 0.0078, Base Lr: 5.13e-07
+2026-06-13 01:11:12,617 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:11:12,787 IRRA.train INFO: Epoch[53] Iteration[400/624], loss: 0.1081, identity_sdm_loss: 0.1006, state_itc_loss: 0.0076, Base Lr: 5.13e-07
+2026-06-13 01:11:30,486 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:11:30,652 IRRA.train INFO: Epoch[53] Iteration[500/624], loss: 0.1096, identity_sdm_loss: 0.1017, state_itc_loss: 0.0079, Base Lr: 5.13e-07
+2026-06-13 01:11:48,337 IRRA.train INFO: BatchIdentityStats Epoch[53] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:11:48,503 IRRA.train INFO: Epoch[53] Iteration[600/624], loss: 0.1087, identity_sdm_loss: 0.1011, state_itc_loss: 0.0076, Base Lr: 5.13e-07
+2026-06-13 01:11:52,896 IRRA.train INFO: Epoch 53 done. Time per batch: 0.181[s] Speed: 354.0[samples/s]
+2026-06-13 01:11:52,896 IRRA.train INFO: Validation Results - Epoch: 53
+2026-06-13 01:12:10,662 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.229 | 76.394 | 82.738 | 43.620 | 23.362 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:12:12,256 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:12:30,004 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-06-13 01:12:30,171 IRRA.train INFO: Epoch[54] Iteration[100/624], loss: 0.0836, identity_sdm_loss: 0.0774, state_itc_loss: 0.0062, Base Lr: 3.94e-07
+2026-06-13 01:12:47,782 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[200/624], batch_size=64, unique_ids=62, duplicate_ids=2, max_per_id=2, same_id_ordered_pairs=4, negative_ordered_pairs=4028, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:12:47,948 IRRA.train INFO: Epoch[54] Iteration[200/624], loss: 0.0824, identity_sdm_loss: 0.0762, state_itc_loss: 0.0062, Base Lr: 3.94e-07
+2026-06-13 01:13:05,359 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:13:05,523 IRRA.train INFO: Epoch[54] Iteration[300/624], loss: 0.0955, identity_sdm_loss: 0.0888, state_itc_loss: 0.0066, Base Lr: 3.94e-07
+2026-06-13 01:13:23,153 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:13:23,318 IRRA.train INFO: Epoch[54] Iteration[400/624], loss: 0.0990, identity_sdm_loss: 0.0920, state_itc_loss: 0.0070, Base Lr: 3.94e-07
+2026-06-13 01:13:41,140 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:13:41,308 IRRA.train INFO: Epoch[54] Iteration[500/624], loss: 0.1035, identity_sdm_loss: 0.0961, state_itc_loss: 0.0074, Base Lr: 3.94e-07
+2026-06-13 01:13:58,956 IRRA.train INFO: BatchIdentityStats Epoch[54] Iteration[600/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:13:59,120 IRRA.train INFO: Epoch[54] Iteration[600/624], loss: 0.1028, identity_sdm_loss: 0.0955, state_itc_loss: 0.0073, Base Lr: 3.94e-07
+2026-06-13 01:14:03,427 IRRA.train INFO: Epoch 54 done. Time per batch: 0.180[s] Speed: 354.6[samples/s]
+2026-06-13 01:14:03,427 IRRA.train INFO: Validation Results - Epoch: 54
+2026-06-13 01:14:21,126 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.156 | 76.430 | 82.653 | 43.624 | 23.368 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:14:22,849 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:14:40,609 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:14:40,775 IRRA.train INFO: Epoch[55] Iteration[100/624], loss: 0.0933, identity_sdm_loss: 0.0866, state_itc_loss: 0.0067, Base Lr: 2.91e-07
+2026-06-13 01:14:58,352 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[200/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:14:58,517 IRRA.train INFO: Epoch[55] Iteration[200/624], loss: 0.1077, identity_sdm_loss: 0.1004, state_itc_loss: 0.0073, Base Lr: 2.91e-07
+2026-06-13 01:15:16,085 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:15:16,250 IRRA.train INFO: Epoch[55] Iteration[300/624], loss: 0.1047, identity_sdm_loss: 0.0973, state_itc_loss: 0.0074, Base Lr: 2.91e-07
+2026-06-13 01:15:33,752 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:15:33,917 IRRA.train INFO: Epoch[55] Iteration[400/624], loss: 0.1059, identity_sdm_loss: 0.0981, state_itc_loss: 0.0078, Base Lr: 2.91e-07
+2026-06-13 01:15:51,799 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:15:51,969 IRRA.train INFO: Epoch[55] Iteration[500/624], loss: 0.1053, identity_sdm_loss: 0.0975, state_itc_loss: 0.0077, Base Lr: 2.91e-07
+2026-06-13 01:16:09,535 IRRA.train INFO: BatchIdentityStats Epoch[55] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:16:09,704 IRRA.train INFO: Epoch[55] Iteration[600/624], loss: 0.1060, identity_sdm_loss: 0.0986, state_itc_loss: 0.0075, Base Lr: 2.91e-07
+2026-06-13 01:16:14,018 IRRA.train INFO: Epoch 55 done. Time per batch: 0.181[s] Speed: 354.2[samples/s]
+2026-06-13 01:16:14,019 IRRA.train INFO: Validation Results - Epoch: 55
+2026-06-13 01:16:31,469 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.156 | 76.394 | 82.695 | 43.621 | 23.383 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:16:33,332 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[1/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:16:50,802 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:16:50,966 IRRA.train INFO: Epoch[56] Iteration[100/624], loss: 0.1123, identity_sdm_loss: 0.1033, state_itc_loss: 0.0090, Base Lr: 2.03e-07
+2026-06-13 01:17:08,468 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:17:08,633 IRRA.train INFO: Epoch[56] Iteration[200/624], loss: 0.1041, identity_sdm_loss: 0.0957, state_itc_loss: 0.0083, Base Lr: 2.03e-07
+2026-06-13 01:17:26,315 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:17:26,482 IRRA.train INFO: Epoch[56] Iteration[300/624], loss: 0.1038, identity_sdm_loss: 0.0957, state_itc_loss: 0.0081, Base Lr: 2.03e-07
+2026-06-13 01:17:44,130 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:17:44,296 IRRA.train INFO: Epoch[56] Iteration[400/624], loss: 0.1005, identity_sdm_loss: 0.0924, state_itc_loss: 0.0081, Base Lr: 2.03e-07
+2026-06-13 01:18:01,947 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:18:02,112 IRRA.train INFO: Epoch[56] Iteration[500/624], loss: 0.1016, identity_sdm_loss: 0.0932, state_itc_loss: 0.0083, Base Lr: 2.03e-07
+2026-06-13 01:18:19,711 IRRA.train INFO: BatchIdentityStats Epoch[56] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:18:19,876 IRRA.train INFO: Epoch[56] Iteration[600/624], loss: 0.1020, identity_sdm_loss: 0.0939, state_itc_loss: 0.0081, Base Lr: 2.03e-07
+2026-06-13 01:18:24,230 IRRA.train INFO: Epoch 56 done. Time per batch: 0.180[s] Speed: 354.7[samples/s]
+2026-06-13 01:18:24,230 IRRA.train INFO: Validation Results - Epoch: 56
+2026-06-13 01:18:42,220 IRRA.eval INFO: 
++------+--------+--------+--------+--------+--------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++------+--------+--------+--------+--------+--------+
+| t2i  | 57.174 | 76.357 | 82.707 | 43.626 | 23.378 |
++------+--------+--------+--------+--------+--------+
+2026-06-13 01:18:44,329 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:19:01,827 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[100/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:19:01,991 IRRA.train INFO: Epoch[57] Iteration[100/624], loss: 0.1184, identity_sdm_loss: 0.1108, state_itc_loss: 0.0076, Base Lr: 1.30e-07
+2026-06-13 01:19:19,555 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:19:19,720 IRRA.train INFO: Epoch[57] Iteration[200/624], loss: 0.1147, identity_sdm_loss: 0.1070, state_itc_loss: 0.0077, Base Lr: 1.30e-07
+2026-06-13 01:19:37,387 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:19:37,556 IRRA.train INFO: Epoch[57] Iteration[300/624], loss: 0.1144, identity_sdm_loss: 0.1071, state_itc_loss: 0.0073, Base Lr: 1.30e-07
+2026-06-13 01:19:55,277 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[400/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:19:55,443 IRRA.train INFO: Epoch[57] Iteration[400/624], loss: 0.1171, identity_sdm_loss: 0.1089, state_itc_loss: 0.0081, Base Lr: 1.30e-07
+2026-06-13 01:20:13,016 IRRA.train INFO: BatchIdentityStats Epoch[57] Iteration[500/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-06-13 01:20:13,181 IRRA.train INFO: Epoch[57] Iteration[500/624], loss: 0.1147, identity_sdm_loss: 0.1065, state_itc_loss: 0.0082, Base Lr: 1.30e-07
