@@ -1,0 +1,55 @@
+{
+  "config_file": "/root/autodl-tmp/IRRA_light_baseline/logs_4090/TAG-PEDES/20260612_231536_irra_light_split_pure_4090_tagpedes_60e/configs.yaml",
+  "ckpt_file": "/root/autodl-tmp/IRRA_light_baseline/logs_4090/TAG-PEDES/20260612_231536_irra_light_split_pure_4090_tagpedes_60e/best.pth",
+  "lambdas": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "save_scores": false,
+  "created_at": "2026-06-13 09:05:48",
+  "results": [
+    {
+      "score": "S_id",
+      "R1": 57.24066925048828,
+      "R5": 76.47842407226562,
+      "R10": 82.68904876708984,
+      "mAP": 43.59554672241211,
+      "mINP": 23.321361541748047
+    },
+    {
+      "score": "S_state",
+      "R1": 57.337615966796875,
+      "R5": 76.47237396240234,
+      "R10": 82.81022644042969,
+      "mAP": 43.62814712524414,
+      "mINP": 23.348922729492188
+    },
+    {
+      "score": "S_id + 0.05*S_state",
+      "R1": 57.246726989746094,
+      "R5": 76.44813537597656,
+      "R10": 82.6829833984375,
+      "mAP": 43.60330581665039,
+      "mINP": 23.32942771911621
+    },
+    {
+      "score": "S_id + 0.1*S_state",
+      "R1": 57.27096176147461,
+      "R5": 76.44813537597656,
+      "R10": 82.69509887695312,
+      "mAP": 43.60954284667969,
+      "mINP": 23.326839447021484
+    },
+    {
+      "score": "S_id + 0.2*S_state",
+      "R1": 57.2346076965332,
+      "R5": 76.41783905029297,
+      "R10": 82.74357604980469,
+      "mAP": 43.60862350463867,
+      "mINP": 23.327861785888672
+    }
+  ],
+  "score_paths": {},
+  "note": "This is an offline diagnostic result log, not a training run."
+}

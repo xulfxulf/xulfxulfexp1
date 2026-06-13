@@ -39,5 +39,6 @@ Epoch 56:
 
 - `train_log_interrupted.txt`: training log through Epoch[57] Iteration[500/624]
 - `configs.yaml`: saved run configuration
+- `offline_score_fusion_best52/`: offline `S_id`, `S_state`, and score-fusion diagnostic on the accepted epoch-52 checkpoint
 
 Note: model weights are intentionally not stored in GitHub. The stopped resume attempt is intentionally not synced.

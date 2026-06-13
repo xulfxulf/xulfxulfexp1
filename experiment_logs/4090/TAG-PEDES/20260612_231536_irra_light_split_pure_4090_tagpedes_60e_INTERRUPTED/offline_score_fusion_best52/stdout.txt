@@ -1,0 +1,15 @@
+Training Model with ['irra_light'] tasks
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
++---------------------+--------+--------+--------+--------+--------+
+|        score        |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++---------------------+--------+--------+--------+--------+--------+
+|         S_id        | 57.241 | 76.478 | 82.689 | 43.596 | 23.321 |
+|       S_state       | 57.338 | 76.472 | 82.810 | 43.628 | 23.349 |
+| S_id + 0.05*S_state | 57.247 | 76.448 | 82.683 | 43.603 | 23.329 |
+|  S_id + 0.1*S_state | 57.271 | 76.448 | 82.695 | 43.610 | 23.327 |
+|  S_id + 0.2*S_state | 57.235 | 76.418 | 82.744 | 43.609 | 23.328 |
++---------------------+--------+--------+--------+--------+--------+
+Saved metrics: /root/autodl-tmp/IRRA_light_baseline/logs_4090/TAG-PEDES/20260612_231536_irra_light_split_pure_4090_tagpedes_60e/offline_score_fusion_best52/score_fusion_metrics.json
+Saved summary: /root/autodl-tmp/IRRA_light_baseline/logs_4090/TAG-PEDES/20260612_231536_irra_light_split_pure_4090_tagpedes_60e/offline_score_fusion_best52/score_fusion_summary.md
