@@ -3,6 +3,7 @@ import os
 import sys
 from collections import Counter
 
+import numpy as np
 import torch
 
 
@@ -33,6 +34,12 @@ CLASSIFIER_PREFIXES = (
     "logit_scale",
     "teacher",
     "queue",
+    "cap_fq",
+    "num_samples",
+    "input_resolution",
+    "context_length",
+    "vocab_size",
+    "text_decoder",
     "optimizer",
     "scheduler",
     "epoch",
@@ -45,6 +52,7 @@ CLASSIFIER_INFIXES = (
     ".fc.",
     ".teacher.",
     ".queue.",
+    ".text_decoder.",
 )
 KEY_MODULES = (
     "visual.conv1",
@@ -57,7 +65,18 @@ KEY_MODULES = (
 POSITIONAL_KEYS = {"visual.positional_embedding", "positional_embedding"}
 
 
+def install_numpy_pickle_compat():
+    # Some newer checkpoints pickle numpy as numpy._core, while older
+    # environments expose the same module as numpy.core.
+    sys.modules.setdefault("numpy._core", np.core)
+    if hasattr(np.core, "multiarray"):
+        sys.modules.setdefault("numpy._core.multiarray", np.core.multiarray)
+    if hasattr(np.core, "umath"):
+        sys.modules.setdefault("numpy._core.umath", np.core.umath)
+
+
 def load_tensor_state_dict(path):
+    install_numpy_pickle_compat()
     checkpoint = torch.load(path, map_location="cpu")
     if hasattr(checkpoint, "state_dict") and not isinstance(checkpoint, dict):
         state_dict = checkpoint.state_dict()
@@ -101,6 +120,8 @@ def normalize_key(key):
             if out.startswith(prefix):
                 out = out[len(prefix):]
                 changed = True
+    if out.startswith("text."):
+        out = out[len("text."):]
     return out
 
 

@@ -3,6 +3,7 @@ import os
 import sys
 from collections import Counter
 
+import numpy as np
 import torch
 
 
@@ -16,7 +17,18 @@ from model.clip_model import build_CLIP_from_openai_pretrained  # noqa: E402
 OUTER_KEYS = ("state_dict", "model", "module")
 
 
+def install_numpy_pickle_compat():
+    # Some newer checkpoints pickle numpy as numpy._core, while older
+    # environments expose the same module as numpy.core.
+    sys.modules.setdefault("numpy._core", np.core)
+    if hasattr(np.core, "multiarray"):
+        sys.modules.setdefault("numpy._core.multiarray", np.core.multiarray)
+    if hasattr(np.core, "umath"):
+        sys.modules.setdefault("numpy._core.umath", np.core.umath)
+
+
 def load_tensor_state_dict(path):
+    install_numpy_pickle_compat()
     checkpoint = torch.load(path, map_location="cpu")
     if hasattr(checkpoint, "state_dict") and not isinstance(checkpoint, dict):
         state_dict = checkpoint.state_dict()
