@@ -36,13 +36,23 @@ def get_args():
                             "single_id",
                             "single_proj_id",
                             "split_id",
+                            "single_proj_bag",
+                            "split_bag",
+                            "single_proj_bag_consistency",
+                            "split_bag_consistency",
                         ],
                         help=("IRRA-light first-round mode: "
                               "single_pure=A, single_proj_pure=B, split_pure=C, "
-                              "single_id=D, single_proj_id=E, split_id=F"))
+                              "single_id=D, single_proj_id=E, split_id=F, "
+                              "single_proj_bag/split_bag=v16 support-bag diagnostics, "
+                              "single_proj_bag_consistency/split_bag_consistency=v16 scheme-2"))
     parser.add_argument("--irra_light_identity_loss", default="sdm",
                         choices=["sdm", "itc"],
                         help="identity head alignment loss; default SDM uses same-PID positives")
+    parser.add_argument("--irra_light_support_size", default=3, type=int,
+                        help="same-PID different-image support count for v16 support-bag modes")
+    parser.add_argument("--irra_light_support_consistency_csv", default="",
+                        help="image-slot consistency csv for v16 scheme-2 support reliability")
 
     ######################## loss settings ########################
     parser.add_argument("--loss_names", default='sdm+id+mlm', help="which loss to use ['mlm', 'cmpm', 'id', 'itc', 'sdm']")

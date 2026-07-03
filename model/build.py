@@ -15,8 +15,28 @@ class IRRA(nn.Module):
         self._set_task()
         self.irra_light = bool(getattr(args, 'irra_light', False)) or 'irra_light' in self.current_task
         self.irra_light_mode = getattr(args, 'irra_light_mode', 'single_pure')
-        self.irra_light_single_proj = self.irra_light and self.irra_light_mode in {'single_proj_pure', 'single_proj_id'}
-        self.irra_light_split = self.irra_light and self.irra_light_mode in {'split_pure', 'split_id'}
+        self.irra_light_bag = self.irra_light and self.irra_light_mode in {
+            'single_proj_bag',
+            'split_bag',
+            'single_proj_bag_consistency',
+            'split_bag_consistency',
+        }
+        self.irra_light_bag_consistency = self.irra_light and self.irra_light_mode in {
+            'single_proj_bag_consistency',
+            'split_bag_consistency',
+        }
+        self.irra_light_single_proj = self.irra_light and self.irra_light_mode in {
+            'single_proj_pure',
+            'single_proj_id',
+            'single_proj_bag',
+            'single_proj_bag_consistency',
+        }
+        self.irra_light_split = self.irra_light and self.irra_light_mode in {
+            'split_pure',
+            'split_id',
+            'split_bag',
+            'split_bag_consistency',
+        }
         self.irra_light_with_id = self.irra_light and self.irra_light_mode in {'single_id', 'single_proj_id', 'split_id'}
 
         self.base_model, base_cfg = build_CLIP_from_openai_pretrained(args.pretrain_choice, args.img_size, args.stride_size)
@@ -91,6 +111,132 @@ class IRRA(nn.Module):
 
     def _project_light_head(self, head, feats):
         return F.normalize(head(feats), dim=-1)
+
+    def _masked_ratio_loss(self, pos_logits, neg_logits, neg_mask,
+                           support_logits=None, support_mask=None, support_weights=None):
+        neg_inf = torch.finfo(pos_logits.dtype).min
+        pos_logits = pos_logits.unsqueeze(1)
+
+        numerator_terms = [pos_logits]
+        denominator_terms = [pos_logits]
+
+        if support_logits is not None:
+            if support_mask is None:
+                raise ValueError("support_mask is required when support_logits is provided")
+            if support_weights is not None:
+                support_weights = support_weights.to(dtype=support_logits.dtype, device=support_logits.device)
+                support_mask = support_mask & (support_weights > 0)
+                support_logits = support_logits + torch.log(support_weights.clamp_min(1e-12))
+            support_logits = support_logits.masked_fill(~support_mask, neg_inf)
+            numerator_terms.append(support_logits)
+            denominator_terms.append(support_logits)
+
+        neg_logits = neg_logits.masked_fill(~neg_mask, neg_inf)
+        denominator_terms.append(neg_logits)
+
+        numerator = torch.logsumexp(torch.cat(numerator_terms, dim=1), dim=1)
+        denominator = torch.logsumexp(torch.cat(denominator_terms, dim=1), dim=1)
+        return -(numerator - denominator).mean()
+
+    def _source_pair_loss(self, image_feats, text_feats, pids, logit_scale):
+        pids = pids.view(-1)
+        logits_t2i = torch.matmul(text_feats, image_feats.t()) * logit_scale
+        logits_i2t = logits_t2i.t()
+        neg_mask = pids.view(-1, 1) != pids.view(1, -1)
+
+        t2i_loss = self._masked_ratio_loss(
+            logits_t2i.diag(),
+            logits_t2i,
+            neg_mask,
+        )
+        i2t_loss = self._masked_ratio_loss(
+            logits_i2t.diag(),
+            logits_i2t,
+            neg_mask,
+        )
+        return (t2i_loss + i2t_loss) / 2
+
+    def _support_set_loss(self, image_feats, text_feats, support_i_feats,
+                          support_t_feats, support_mask, pids, logit_scale,
+                          support_weights=None):
+        pids = pids.view(-1)
+        neg_mask = pids.view(-1, 1) != pids.view(1, -1)
+
+        logits_t2i = torch.matmul(text_feats, image_feats.t()) * logit_scale
+        support_t2i = torch.sum(text_feats.unsqueeze(1) * support_i_feats, dim=-1) * logit_scale
+        t2i_loss = self._masked_ratio_loss(
+            logits_t2i.diag(),
+            logits_t2i,
+            neg_mask,
+            support_logits=support_t2i,
+            support_mask=support_mask,
+            support_weights=support_weights,
+        )
+
+        logits_i2t = logits_t2i.t()
+        support_i2t = torch.sum(image_feats.unsqueeze(1) * support_t_feats, dim=-1) * logit_scale
+        i2t_loss = self._masked_ratio_loss(
+            logits_i2t.diag(),
+            logits_i2t,
+            neg_mask,
+            support_logits=support_i2t,
+            support_mask=support_mask,
+            support_weights=support_weights,
+        )
+        return (t2i_loss + i2t_loss) / 2
+
+    def _encode_support_bag(self, batch):
+        if 'support_images' not in batch or 'support_caption_ids' not in batch or 'support_mask' not in batch:
+            raise RuntimeError("support-bag modes require support_images, support_caption_ids, and support_mask")
+
+        support_images = batch['support_images']
+        support_caption_ids = batch['support_caption_ids']
+        support_mask = batch['support_mask'].bool()
+        batch_size, support_size = support_mask.shape
+
+        flat_images = support_images.reshape(
+            batch_size * support_size,
+            *support_images.shape[2:],
+        )
+        flat_caption_ids = support_caption_ids.reshape(
+            batch_size * support_size,
+            support_caption_ids.shape[-1],
+        )
+
+        support_i_chunks = []
+        support_t_chunks = []
+        support_encode_chunk = max(1, int(getattr(self.args, 'batch_size', 64)))
+        with torch.no_grad():
+            for start in range(0, flat_images.shape[0], support_encode_chunk):
+                end = min(start + support_encode_chunk, flat_images.shape[0])
+                support_image_feats, support_text_feats = self.base_model(
+                    flat_images[start:end],
+                    flat_caption_ids[start:end],
+                )
+                support_i_chunks.append(support_image_feats[:, 0, :].float())
+                support_t_chunks.append(
+                    support_text_feats[
+                        torch.arange(support_text_feats.shape[0], device=flat_caption_ids.device),
+                        flat_caption_ids[start:end].argmax(dim=-1),
+                    ].float()
+                )
+
+        support_i_feats = torch.cat(support_i_chunks, dim=0)
+        support_t_feats = torch.cat(support_t_chunks, dim=0)
+
+        if self.irra_light_split:
+            support_i_feats = self._project_light_head(self.identity_head, support_i_feats)
+            support_t_feats = self._project_light_head(self.identity_head, support_t_feats)
+        elif self.irra_light_single_proj:
+            support_i_feats = self._project_light_head(self.single_head, support_i_feats)
+            support_t_feats = self._project_light_head(self.single_head, support_t_feats)
+        else:
+            support_i_feats = F.normalize(support_i_feats, dim=-1)
+            support_t_feats = F.normalize(support_t_feats, dim=-1)
+
+        support_i_feats = support_i_feats.view(batch_size, support_size, -1)
+        support_t_feats = support_t_feats.view(batch_size, support_size, -1)
+        return support_i_feats, support_t_feats, support_mask
     
     
     def cross_former(self, q, k, v):
@@ -154,6 +300,34 @@ class IRRA(nn.Module):
                 identity_t_feats = t_feats
                 state_i_feats = i_feats
                 state_t_feats = t_feats
+
+            if self.irra_light_bag:
+                support_i_feats, support_t_feats, support_mask = self._encode_support_bag(batch)
+                support_weights = batch.get('support_reliability') if self.irra_light_bag_consistency else None
+                ret.update({
+                    'identity_src_loss': self._source_pair_loss(
+                        identity_i_feats, identity_t_feats, batch['pids'], logit_scale),
+                    'identity_set_loss': self._support_set_loss(
+                        identity_i_feats, identity_t_feats,
+                        support_i_feats, support_t_feats, support_mask,
+                        batch['pids'], logit_scale,
+                        support_weights=support_weights),
+                })
+                if support_weights is not None:
+                    valid_weights = support_weights[support_mask]
+                    if valid_weights.numel() > 0:
+                        ret.update({
+                            'support_rho_mean': valid_weights.float().mean(),
+                            'support_rho_zero_ratio': (valid_weights <= 0).float().mean(),
+                            'support_rho_mid_ratio': ((valid_weights > 0) & (valid_weights < 1)).float().mean(),
+                            'support_rho_one_ratio': (valid_weights >= 1).float().mean(),
+                        })
+                if self.irra_light_split:
+                    ret.update({
+                        'state_src_loss': self._source_pair_loss(
+                            state_i_feats, state_t_feats, batch['pids'], logit_scale)
+                    })
+                return ret
 
             if self.args.irra_light_identity_loss == 'sdm':
                 ret.update({

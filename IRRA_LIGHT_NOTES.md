@@ -21,6 +21,18 @@ backbones unchanged while removing the heavy IRRA relation machinery.
 - Training losses with fixed weight 1:
   - `identity_sdm_loss`: SDM on identity head features, using same PID positives.
   - `state_itc_loss`: ITC on state head features, using only original image-text pairs.
+- Optional v16 scheme-1 support-bag identity propagation:
+  - `single_proj_bag`: source pair plus same-PID different-image support positives
+    on one projected feature.
+  - `split_bag`: source pair plus support positives on the identity head, while
+    the state head is still trained only with the original paired image-text
+    relation.
+  - Support samples are built outside the random batch from same PID and
+    different `image_id`; each support image contributes at most one caption.
+  - When dataset-level image-view metadata is available, support selection
+    prefers different-view images before same-view images.
+  - Support image/text backbone features are encoded under `torch.no_grad()`.
+    Projection heads still receive gradients from the support-positive terms.
 - Batch identity statistics are printed as `BatchIdentityStats` for the first
   batch of each epoch and every `--light_stat_period` batches. The log includes
   duplicate identities, negative ordered pairs, duplicate images, and
@@ -48,6 +60,8 @@ Use `--irra_light --irra_light_mode <mode>`.
 | `single_id` | D: single embedding stable baseline | SDM + one-to-one ITC + ID classification | CLIP global feature |
 | `single_proj_id` | E: single projection stable capacity control | SDM + one-to-one ITC + ID classification on the same projected feature | single projection head |
 | `split_id` | F: stable dual-head method | identity head SDM + ID classification, state head one-to-one ITC | identity head |
+| `single_proj_bag` | v16 scheme 1 single-head support-bag control | original pair identity loss + same-PID support-bag identity loss | single projection head |
+| `split_bag` | v16 scheme 1 split-head support-bag method | identity source/set losses + state original-pair source loss | identity head |
 
 The default launch script uses `single_pure`, the actual no-extra-projection
 baseline. Run `IRRA_LIGHT_MODE=split_pure bash run_irra_light.sh` explicitly for
@@ -73,6 +87,29 @@ judge whether split-head assignment itself helps.
 ID-classification modes remain implemented, but they are second-stage stability
 checks. The first round should run only one dataset first, normally
 `CUHK-PEDES`.
+
+## v16 Scheme-1 Support-Bag Modes
+
+`single_proj_bag` and `split_bag` implement only the first v16 diagnostic route:
+same-identity support-bag propagation. They do not include same-image caption
+reliability weighting, visible-aware phrase tri-state labels, similar-identity
+candidate training, or the full evidence-routing design.
+
+For each anchor training sample, the dataset returns up to
+`--irra_light_support_size` support samples from the same PID but different
+`image_id`. If fewer supports exist, the missing slots are masked out and do not
+contribute to the set loss.
+
+The source-pair and set losses remove same-PID non-original samples from the
+current-batch negative denominator. This prevents a same-identity example from
+being treated as both a support positive and a softmax negative.
+
+Run the TAG-PEDES scheme-1 script with:
+
+```bash
+IRRA_LIGHT_MODE=single_proj_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
+IRRA_LIGHT_MODE=split_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
+```
 
 ## Main Files
 

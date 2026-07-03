@@ -114,6 +114,20 @@ bash run_irra_light_4090_tag_single_pure_superclip.sh
 
 The first formal control should only record OpenAI CLIP ViT-B/16 `single_pure` versus SuperCLIP-initialized ViT-B/16 `single_pure`. Reuse in `single_proj_pure` or `split_pure` should be considered only after the `single_pure` initialization control is useful.
 
+## v16 Scheme-1 Support-Bag Diagnostic
+
+The repository also includes the first v16 diagnostic route as two explicit IRRA-light modes:
+
+- `single_proj_bag`: single projection head with original-pair identity alignment plus same-PID different-image support-bag positives.
+- `split_bag`: identity head receives original-pair and support-bag identity losses; state head remains restricted to original paired image-text alignment.
+
+This is not the full v16 evidence-routing method. It does not add same-image caption reliability weighting, phrase-level tri-state MLLM labels, or similar-identity negative-bag training.
+
+```bash
+IRRA_LIGHT_MODE=single_proj_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
+IRRA_LIGHT_MODE=split_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
+```
+
 ## IRRA on Text-to-Image Person Retrieval Results
 #### CUHK-PEDES dataset
 

@@ -103,9 +103,30 @@ def build_dataloader(args, tranforms=None):
                                      train_transforms,
                                      text_length=args.text_length)
         else:
+            support_size = 0
+            if getattr(args, 'irra_light', False) and getattr(args, 'irra_light_mode', '') in {
+                'single_proj_bag',
+                'split_bag',
+                'single_proj_bag_consistency',
+                'split_bag_consistency',
+            }:
+                support_size = getattr(args, 'irra_light_support_size', 3)
+                if support_size < 1:
+                    raise ValueError("support-bag modes require --irra_light_support_size >= 1")
+            support_consistency_csv = ""
+            if getattr(args, 'irra_light_mode', '') in {
+                'single_proj_bag_consistency',
+                'split_bag_consistency',
+            }:
+                support_consistency_csv = getattr(args, 'irra_light_support_consistency_csv', '')
+                if not support_consistency_csv:
+                    raise ValueError("consistency support-bag modes require --irra_light_support_consistency_csv")
             train_set = ImageTextDataset(dataset.train,
                                      train_transforms,
-                                     text_length=args.text_length)
+                                     text_length=args.text_length,
+                                     support_size=support_size,
+                                     support_image_views=getattr(dataset, 'train_image_views', None),
+                                     support_consistency_csv=support_consistency_csv)
 
         if args.sampler == 'identity':
             if args.distributed:

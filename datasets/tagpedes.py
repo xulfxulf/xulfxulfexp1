@@ -76,6 +76,7 @@ class TAGPEDES(BaseDataset):
         if training:
             dataset = []
             image_id = 0
+            image_views = []
             person_id2idx = {}
             next_pid = 0
             for anno in annos:
@@ -86,9 +87,11 @@ class TAGPEDES(BaseDataset):
                 pid = person_id2idx[person_id]
                 pid_container.add(pid)
                 img_path = op.join(self.img_dir, anno["file_path"])
+                image_views.append(anno.get("cam_id", None))
                 for caption in anno["captions"]:
                     dataset.append((pid, image_id, img_path, pre_caption(caption)))
                 image_id += 1
+            self.train_image_views = image_views
             return dataset, pid_container
 
         dataset = {}

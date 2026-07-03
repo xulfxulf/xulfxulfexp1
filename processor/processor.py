@@ -64,9 +64,16 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         "itc_loss": AverageMeter(),
         "identity_sdm_loss": AverageMeter(),
         "identity_itc_loss": AverageMeter(),
+        "identity_src_loss": AverageMeter(),
+        "identity_set_loss": AverageMeter(),
         "state_itc_loss": AverageMeter(),
+        "state_src_loss": AverageMeter(),
         "id_loss": AverageMeter(),
         "mlm_loss": AverageMeter(),
+        "support_rho_mean": AverageMeter(),
+        "support_rho_zero_ratio": AverageMeter(),
+        "support_rho_mid_ratio": AverageMeter(),
+        "support_rho_one_ratio": AverageMeter(),
         "img_acc": AverageMeter(),
         "txt_acc": AverageMeter(),
         "mlm_acc": AverageMeter()
@@ -103,9 +110,16 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
             meters['itc_loss'].update(to_scalar(ret.get('itc_loss', 0)), batch_size)
             meters['identity_sdm_loss'].update(to_scalar(ret.get('identity_sdm_loss', 0)), batch_size)
             meters['identity_itc_loss'].update(to_scalar(ret.get('identity_itc_loss', 0)), batch_size)
+            meters['identity_src_loss'].update(to_scalar(ret.get('identity_src_loss', 0)), batch_size)
+            meters['identity_set_loss'].update(to_scalar(ret.get('identity_set_loss', 0)), batch_size)
             meters['state_itc_loss'].update(to_scalar(ret.get('state_itc_loss', 0)), batch_size)
+            meters['state_src_loss'].update(to_scalar(ret.get('state_src_loss', 0)), batch_size)
             meters['id_loss'].update(to_scalar(ret.get('id_loss', 0)), batch_size)
             meters['mlm_loss'].update(to_scalar(ret.get('mlm_loss', 0)), batch_size)
+            meters['support_rho_mean'].update(to_scalar(ret.get('support_rho_mean', 0)), batch_size)
+            meters['support_rho_zero_ratio'].update(to_scalar(ret.get('support_rho_zero_ratio', 0)), batch_size)
+            meters['support_rho_mid_ratio'].update(to_scalar(ret.get('support_rho_mid_ratio', 0)), batch_size)
+            meters['support_rho_one_ratio'].update(to_scalar(ret.get('support_rho_one_ratio', 0)), batch_size)
 
             meters['img_acc'].update(to_scalar(ret.get('img_acc', 0)), batch_size)
             meters['txt_acc'].update(to_scalar(ret.get('txt_acc', 0)), batch_size)
