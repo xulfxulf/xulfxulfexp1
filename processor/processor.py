@@ -66,18 +66,40 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         "identity_itc_loss": AverageMeter(),
         "identity_src_loss": AverageMeter(),
         "identity_set_loss": AverageMeter(),
+        "identity_bag_loss": AverageMeter(),
         "state_itc_loss": AverageMeter(),
         "state_src_loss": AverageMeter(),
+        "state_nontransitive_loss": AverageMeter(),
         "id_loss": AverageMeter(),
         "mlm_loss": AverageMeter(),
+        "support_valid_ratio": AverageMeter(),
         "support_rho_mean": AverageMeter(),
         "support_rho_zero_ratio": AverageMeter(),
         "support_rho_mid_ratio": AverageMeter(),
         "support_rho_one_ratio": AverageMeter(),
+        "support_conflict_anchor_ratio": AverageMeter(),
+        "hard_negative_valid_ratio": AverageMeter(),
         "img_acc": AverageMeter(),
         "txt_acc": AverageMeter(),
         "mlm_acc": AverageMeter()
     }
+    always_log_metrics = set()
+    if getattr(args, "irra_light_mode", "") in {
+        "split_bag_safe",
+        "split_bag_state",
+        "split_bag_state_hn",
+    }:
+        always_log_metrics = {
+            "identity_bag_loss",
+            "state_nontransitive_loss",
+            "support_valid_ratio",
+            "support_rho_mean",
+            "support_rho_zero_ratio",
+            "support_rho_mid_ratio",
+            "support_rho_one_ratio",
+            "support_conflict_anchor_ratio",
+            "hard_negative_valid_ratio",
+        }
 
     tb_writer = SummaryWriter(log_dir=args.output_dir)
 
@@ -112,14 +134,19 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
             meters['identity_itc_loss'].update(to_scalar(ret.get('identity_itc_loss', 0)), batch_size)
             meters['identity_src_loss'].update(to_scalar(ret.get('identity_src_loss', 0)), batch_size)
             meters['identity_set_loss'].update(to_scalar(ret.get('identity_set_loss', 0)), batch_size)
+            meters['identity_bag_loss'].update(to_scalar(ret.get('identity_bag_loss', 0)), batch_size)
             meters['state_itc_loss'].update(to_scalar(ret.get('state_itc_loss', 0)), batch_size)
             meters['state_src_loss'].update(to_scalar(ret.get('state_src_loss', 0)), batch_size)
+            meters['state_nontransitive_loss'].update(to_scalar(ret.get('state_nontransitive_loss', 0)), batch_size)
             meters['id_loss'].update(to_scalar(ret.get('id_loss', 0)), batch_size)
             meters['mlm_loss'].update(to_scalar(ret.get('mlm_loss', 0)), batch_size)
+            meters['support_valid_ratio'].update(to_scalar(ret.get('support_valid_ratio', 0)), batch_size)
             meters['support_rho_mean'].update(to_scalar(ret.get('support_rho_mean', 0)), batch_size)
             meters['support_rho_zero_ratio'].update(to_scalar(ret.get('support_rho_zero_ratio', 0)), batch_size)
             meters['support_rho_mid_ratio'].update(to_scalar(ret.get('support_rho_mid_ratio', 0)), batch_size)
             meters['support_rho_one_ratio'].update(to_scalar(ret.get('support_rho_one_ratio', 0)), batch_size)
+            meters['support_conflict_anchor_ratio'].update(to_scalar(ret.get('support_conflict_anchor_ratio', 0)), batch_size)
+            meters['hard_negative_valid_ratio'].update(to_scalar(ret.get('hard_negative_valid_ratio', 0)), batch_size)
 
             meters['img_acc'].update(to_scalar(ret.get('img_acc', 0)), batch_size)
             meters['txt_acc'].update(to_scalar(ret.get('txt_acc', 0)), batch_size)
@@ -134,7 +161,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
                 info_str = f"Epoch[{epoch}] Iteration[{n_iter + 1}/{len(train_loader)}]"
                 # log loss and acc info
                 for k, v in meters.items():
-                    if v.avg > 0:
+                    if v.avg > 0 or k in always_log_metrics:
                         info_str += f", {k}: {v.avg:.4f}"
                 info_str += f", Base Lr: {scheduler.get_lr()[0]:.2e}"
                 logger.info(info_str)
@@ -142,7 +169,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         tb_writer.add_scalar('lr', scheduler.get_lr()[0], epoch)
         tb_writer.add_scalar('temperature', to_scalar(ret['temperature']), epoch)
         for k, v in meters.items():
-            if v.avg > 0:
+            if v.avg > 0 or k in always_log_metrics:
                 tb_writer.add_scalar(k, v.avg, epoch)
 
 

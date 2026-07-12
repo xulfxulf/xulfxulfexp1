@@ -128,6 +128,89 @@ IRRA_LIGHT_MODE=single_proj_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
 IRRA_LIGHT_MODE=split_bag bash run_irra_light_4090_tag_v16_scheme1_bag.sh
 ```
 
+## v16 Three Fast Versions
+
+The v16 fast3 route adds three split-head TAG-PEDES modes without changing any
+existing IRRA-light mode:
+
+- `split_bag_safe`: keeps the split-pure identity SDM and paired state ITC
+  losses, then adds a one-way text-to-same-PID-support-image identity ranking
+  loss.
+- `split_bag_state`: adds a state non-transitive loss only for support images
+  with an explicit local hard contradiction.
+- `split_bag_state_hn`: adds one persistent similar-but-different-PID image to
+  the identity negative aggregation. It is never used by the state loss.
+
+The fast3 modes only encode support images through a frozen CLIP backbone. They
+do not encode support captions, do not replace the baseline split-pure losses,
+and do not enter the legacy support-bag branch.
+
+Prepare the three required inputs from frozen diagnostics. This command only
+converts and validates existing tables; it does not mine model features.
+
+```bash
+python tools/v16/prepare_fast3_inputs.py \
+  --dataset-root /root/autodl-tmp/datasets \
+  --consistency-csv /path/to/intra_image_caption_consistency.csv \
+  --support-conflict-csv /path/to/support_conflict_pairs.csv \
+  --similar-pid-csv /path/to/persistent_similar_pid_candidates.csv \
+  --output-dir diagnostics/TAG-PEDES/v16_fast3_inputs
+```
+
+If the frozen diagnostics contain the native
+`relation_pairs_with_hard.csv` rather than an already aggregated candidate
+table, provide it as `--similar-pid-csv` together with the matching frozen
+`relation_score_table.csv`. The preparation script then derives persistent
+training candidates from the existing E-relation rows and scores only; it does
+not run a model.
+
+```bash
+python tools/v16/prepare_fast3_inputs.py \
+  --dataset-root /root/autodl-tmp/datasets \
+  --consistency-csv /path/to/intra_image_caption_consistency.csv \
+  --support-conflict-csv /path/to/support_conflict_pairs.csv \
+  --similar-pid-csv /path/to/relation_pairs_with_hard.csv \
+  --similar-score-csv /path/to/relation_score_table.csv \
+  --output-dir diagnostics/TAG-PEDES/v16_fast3_inputs
+```
+
+Run the static/dynamic audit after input preparation:
+
+```bash
+python tools/v16/audit_fast3.py \
+  --dataset-root /root/autodl-tmp/datasets \
+  --consistency-csv diagnostics/TAG-PEDES/v16_fast3_inputs/support_reliability_hard_only.csv \
+  --support-relation-csv diagnostics/TAG-PEDES/v16_fast3_inputs/support_hard_contradiction.csv \
+  --hard-negative-csv diagnostics/TAG-PEDES/v16_fast3_inputs/hard_negative_pool.csv \
+  --output-dir diagnostics/TAG-PEDES/v16_fast3_audit
+```
+
+For a one-epoch smoke run, override the epoch count explicitly:
+
+```bash
+NUM_EPOCH=1 IRRA_LIGHT_MODE=split_bag_safe bash run_irra_light_4090_tag_v16_fast3.sh
+NUM_EPOCH=1 IRRA_LIGHT_MODE=split_bag_state bash run_irra_light_4090_tag_v16_fast3.sh
+NUM_EPOCH=1 IRRA_LIGHT_MODE=split_bag_state_hn bash run_irra_light_4090_tag_v16_fast3.sh
+```
+
+The full serial launcher fixes all three runs at 60 epochs. Before each run it
+creates a separate immutable Git code snapshot plus copied input tables, so a
+later version cannot overwrite the code or inputs recorded for an earlier one.
+
+```bash
+nohup bash run_v16_fast3_all.sh > v16_fast3_all.nohup 2>&1 &
+```
+
+After a `split_bag_state` or `split_bag_state_hn` run, evaluate the two heads
+without retraining or fusion-ratio search:
+
+```bash
+python tools/v16/eval_fast3_dual_heads.py \
+  --config-file /path/to/configs.yaml \
+  --ckpt-file /path/to/best.pth \
+  --output-dir /path/to/fast3_dual_head_eval
+```
+
 ## IRRA on Text-to-Image Person Retrieval Results
 #### CUHK-PEDES dataset
 

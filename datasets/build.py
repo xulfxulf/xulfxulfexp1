@@ -1,4 +1,5 @@
 import logging
+import os.path as osp
 import random
 import numpy as np
 import torch
@@ -22,6 +23,13 @@ __factory = {
     'ICFG-PEDES': ICFGPEDES,
     'RSTPReid': RSTPReid,
     'TAG-PEDES': TAGPEDES,
+}
+
+
+FAST3_MODES = {
+    'split_bag_safe',
+    'split_bag_state',
+    'split_bag_state_hn',
 }
 
 
@@ -104,29 +112,70 @@ def build_dataloader(args, tranforms=None):
                                      text_length=args.text_length)
         else:
             support_size = 0
-            if getattr(args, 'irra_light', False) and getattr(args, 'irra_light_mode', '') in {
+            support_selection_policy = 'cross_first'
+            support_reliability_rule = 'scheme2'
+            support_image_only = False
+            support_relation_csv = ''
+            hard_negative_csv = ''
+            hard_negative_size = 0
+            mode = getattr(args, 'irra_light_mode', '')
+            support_bag_modes = {
                 'single_proj_bag',
                 'split_bag',
                 'single_proj_bag_consistency',
                 'split_bag_consistency',
-            }:
+            } | FAST3_MODES
+            if getattr(args, 'irra_light', False) and mode in support_bag_modes:
                 support_size = getattr(args, 'irra_light_support_size', 3)
                 if support_size < 1:
                     raise ValueError("support-bag modes require --irra_light_support_size >= 1")
             support_consistency_csv = ""
-            if getattr(args, 'irra_light_mode', '') in {
+            if mode in {
                 'single_proj_bag_consistency',
                 'split_bag_consistency',
             }:
                 support_consistency_csv = getattr(args, 'irra_light_support_consistency_csv', '')
                 if not support_consistency_csv:
                     raise ValueError("consistency support-bag modes require --irra_light_support_consistency_csv")
+            elif mode in FAST3_MODES:
+                support_consistency_csv = getattr(args, 'irra_light_support_consistency_csv', '')
+                if not support_consistency_csv or not osp.isfile(support_consistency_csv):
+                    raise ValueError(
+                        "v16 fast3 modes require an existing "
+                        "--irra_light_support_consistency_csv"
+                    )
+                support_selection_policy = 'balanced'
+                support_reliability_rule = 'hard_only'
+                support_image_only = True
+                if mode in {'split_bag_state', 'split_bag_state_hn'}:
+                    support_relation_csv = getattr(
+                        args, 'irra_light_support_relation_csv', ''
+                    )
+                    if not support_relation_csv or not osp.isfile(support_relation_csv):
+                        raise ValueError(
+                            f"{mode} requires an existing "
+                            "--irra_light_support_relation_csv"
+                        )
+                if mode == 'split_bag_state_hn':
+                    hard_negative_csv = getattr(args, 'irra_light_hard_negative_csv', '')
+                    if not hard_negative_csv or not osp.isfile(hard_negative_csv):
+                        raise ValueError(
+                            "split_bag_state_hn requires an existing "
+                            "--irra_light_hard_negative_csv"
+                        )
+                    hard_negative_size = 1
             train_set = ImageTextDataset(dataset.train,
                                      train_transforms,
                                      text_length=args.text_length,
                                      support_size=support_size,
                                      support_image_views=getattr(dataset, 'train_image_views', None),
-                                     support_consistency_csv=support_consistency_csv)
+                                     support_consistency_csv=support_consistency_csv,
+                                     support_selection_policy=support_selection_policy,
+                                     support_reliability_rule=support_reliability_rule,
+                                     support_relation_csv=support_relation_csv,
+                                     hard_negative_csv=hard_negative_csv,
+                                     hard_negative_size=hard_negative_size,
+                                     support_image_only=support_image_only)
 
         if args.sampler == 'identity':
             if args.distributed:

@@ -25,6 +25,18 @@ class IRRA(nn.Module):
             'single_proj_bag_consistency',
             'split_bag_consistency',
         }
+        self.irra_light_fast_bag = self.irra_light and self.irra_light_mode in {
+            'split_bag_safe',
+            'split_bag_state',
+            'split_bag_state_hn',
+        }
+        self.irra_light_state_route = self.irra_light and self.irra_light_mode in {
+            'split_bag_state',
+            'split_bag_state_hn',
+        }
+        self.irra_light_hard_negative = (
+            self.irra_light and self.irra_light_mode == 'split_bag_state_hn'
+        )
         self.irra_light_single_proj = self.irra_light and self.irra_light_mode in {
             'single_proj_pure',
             'single_proj_id',
@@ -36,6 +48,9 @@ class IRRA(nn.Module):
             'split_id',
             'split_bag',
             'split_bag_consistency',
+            'split_bag_safe',
+            'split_bag_state',
+            'split_bag_state_hn',
         }
         self.irra_light_with_id = self.irra_light and self.irra_light_mode in {'single_id', 'single_proj_id', 'split_id'}
 
@@ -237,6 +252,206 @@ class IRRA(nn.Module):
         support_i_feats = support_i_feats.view(batch_size, support_size, -1)
         support_t_feats = support_t_feats.view(batch_size, support_size, -1)
         return support_i_feats, support_t_feats, support_mask
+
+    def _encode_support_images_raw(self, batch):
+        """Encode fast3 support images with a frozen CLIP backbone only."""
+        required = {'support_images', 'support_mask'}
+        missing = required - set(batch.keys())
+        if missing:
+            raise RuntimeError(f"v16 fast3 requires support image fields: {sorted(missing)}")
+
+        support_images = batch['support_images']
+        support_mask = batch['support_mask'].bool()
+        if support_images.ndim != 5 or support_mask.ndim != 2:
+            raise RuntimeError(
+                "support_images must be [batch, support, C, H, W] and support_mask [batch, support]"
+            )
+        batch_size, support_size = support_mask.shape
+        if support_images.shape[:2] != (batch_size, support_size):
+            raise RuntimeError("support_images and support_mask shapes are inconsistent")
+
+        flat_images = support_images.reshape(
+            batch_size * support_size,
+            *support_images.shape[2:],
+        )
+        raw_chunks = []
+        support_encode_chunk = max(1, int(getattr(self.args, 'batch_size', 64)))
+        with torch.no_grad():
+            for start in range(0, flat_images.shape[0], support_encode_chunk):
+                end = min(start + support_encode_chunk, flat_images.shape[0])
+                encoded = self.base_model.encode_image(flat_images[start:end])
+                raw_chunks.append(encoded[:, 0, :].float())
+        support_raw_feats = torch.cat(raw_chunks, dim=0).view(batch_size, support_size, -1)
+        return support_raw_feats, support_mask
+
+    def _encode_hard_negative_images_raw(self, batch):
+        """Encode one optional v16 fast3 hard-negative image per anchor."""
+        required = {'hard_negative_image', 'hard_negative_mask'}
+        missing = required - set(batch.keys())
+        if missing:
+            raise RuntimeError(f"v16 fast3 hard-negative mode requires: {sorted(missing)}")
+        hard_negative_images = batch['hard_negative_image']
+        hard_negative_mask = batch['hard_negative_mask'].bool().view(-1)
+        with torch.no_grad():
+            encoded = self.base_model.encode_image(hard_negative_images)
+            hard_negative_raw_feats = encoded[:, 0, :].float()
+        return hard_negative_raw_feats, hard_negative_mask
+
+    def _masked_logmeanexp(self, logits, mask, weights=None):
+        """Masked log(mean(exp(logits))) with a differentiable zero for empty rows."""
+        if logits.shape != mask.shape:
+            raise ValueError(
+                f"logits/mask shape mismatch: {tuple(logits.shape)} vs {tuple(mask.shape)}"
+            )
+        valid_mask = mask.bool()
+        adjusted_logits = logits
+        if weights is None:
+            normalizer = valid_mask.to(dtype=logits.dtype).sum(dim=1)
+        else:
+            if weights.shape != logits.shape:
+                raise ValueError(
+                    "weights must have the same shape as logits in _masked_logmeanexp"
+                )
+            weights = weights.to(dtype=logits.dtype, device=logits.device)
+            valid_mask = valid_mask & (weights > 0)
+            adjusted_logits = logits + torch.log(weights.clamp_min(1e-12))
+            normalizer = torch.where(
+                valid_mask,
+                weights,
+                torch.zeros_like(weights),
+            ).sum(dim=1)
+
+        valid_rows = normalizer > 0
+        neg_inf = torch.finfo(logits.dtype).min
+        masked_logits = adjusted_logits.masked_fill(~valid_mask, neg_inf)
+        raw_score = torch.logsumexp(masked_logits, dim=1) - torch.log(
+            normalizer.clamp_min(1.0)
+        )
+        zero = logits.sum(dim=1) * 0.0
+        score = torch.where(valid_rows, raw_score, zero)
+        if not torch.isfinite(score).all():
+            raise RuntimeError("_masked_logmeanexp produced a non-finite score")
+        return score, valid_rows
+
+    def _support_bag_rank_loss(
+        self,
+        image_identity_feats,
+        text_identity_feats,
+        support_identity_feats,
+        support_mask,
+        support_weights,
+        pids,
+        logit_scale,
+        hard_negative_feats=None,
+        hard_negative_mask=None,
+        hard_negative_image_ids=None,
+        batch_image_ids=None,
+    ):
+        """One-way text-to-support-image rank loss for the v16 fast3 modes."""
+        pids = pids.view(-1)
+        support_mask = support_mask.bool()
+        if support_identity_feats.shape[:2] != support_mask.shape:
+            raise ValueError("support features and support mask have incompatible shapes")
+        if support_weights is None:
+            support_weights = torch.ones_like(support_mask, dtype=text_identity_feats.dtype)
+        else:
+            support_weights = support_weights.to(
+                dtype=text_identity_feats.dtype,
+                device=text_identity_feats.device,
+            )
+        if support_weights.shape != support_mask.shape:
+            raise ValueError("support weights and support mask have incompatible shapes")
+
+        support_logits = torch.sum(
+            text_identity_feats.unsqueeze(1) * support_identity_feats,
+            dim=-1,
+        ) * logit_scale
+        positive_score, support_valid_rows = self._masked_logmeanexp(
+            support_logits,
+            support_mask,
+            weights=support_weights,
+        )
+
+        main_negative_logits = torch.matmul(
+            text_identity_feats,
+            image_identity_feats.t(),
+        ) * logit_scale
+        negative_mask = pids.view(-1, 1) != pids.view(1, -1)
+        hard_negative_valid = torch.zeros_like(support_valid_rows)
+        if hard_negative_feats is not None:
+            if hard_negative_mask is None:
+                raise ValueError("hard_negative_mask is required with hard_negative_feats")
+            hard_negative_mask = hard_negative_mask.bool().view(-1)
+            if hard_negative_feats.shape[0] != text_identity_feats.shape[0]:
+                raise ValueError("hard-negative feature count must match batch size")
+            if hard_negative_mask.shape[0] != text_identity_feats.shape[0]:
+                raise ValueError("hard-negative mask count must match batch size")
+            if hard_negative_image_ids is not None and batch_image_ids is not None:
+                hard_negative_image_ids = hard_negative_image_ids.view(-1)
+                batch_image_ids = batch_image_ids.view(-1)
+                if hard_negative_image_ids.shape[0] != hard_negative_mask.shape[0]:
+                    raise ValueError("hard-negative image IDs must match batch size")
+                duplicate_in_batch = hard_negative_image_ids.view(-1, 1).eq(
+                    batch_image_ids.view(1, -1)
+                ).any(dim=1)
+                hard_negative_mask = hard_negative_mask & ~duplicate_in_batch
+            hard_negative_logits = torch.sum(
+                text_identity_feats * hard_negative_feats,
+                dim=-1,
+            ).unsqueeze(1) * logit_scale
+            main_negative_logits = torch.cat(
+                [main_negative_logits, hard_negative_logits], dim=1
+            )
+            negative_mask = torch.cat(
+                [negative_mask, hard_negative_mask.unsqueeze(1)], dim=1
+            )
+            hard_negative_valid = hard_negative_mask
+
+        negative_score, negative_valid_rows = self._masked_logmeanexp(
+            main_negative_logits,
+            negative_mask,
+        )
+        valid_rows = support_valid_rows & negative_valid_rows
+        if valid_rows.any():
+            loss = F.softplus(negative_score[valid_rows] - positive_score[valid_rows]).mean()
+        else:
+            loss = text_identity_feats.sum() * 0.0
+        return loss, valid_rows, support_valid_rows, hard_negative_valid
+
+    def _state_nontransitive_loss(
+        self,
+        image_state_feats,
+        text_state_feats,
+        support_state_feats,
+        support_mask,
+        support_conflict_mask,
+        logit_scale,
+    ):
+        """Keep state alignment local when a support image has an explicit conflict."""
+        support_mask = support_mask.bool()
+        support_conflict_mask = support_conflict_mask.bool()
+        if support_mask.shape != support_conflict_mask.shape:
+            raise ValueError("support conflict mask must match support mask")
+        if support_state_feats.shape[:2] != support_mask.shape:
+            raise ValueError("support state features and support mask have incompatible shapes")
+
+        paired_scores = torch.sum(text_state_feats * image_state_feats, dim=-1) * logit_scale
+        conflict_scores = torch.sum(
+            text_state_feats.unsqueeze(1) * support_state_feats,
+            dim=-1,
+        ) * logit_scale
+        conflict_score, conflict_valid_rows = self._masked_logmeanexp(
+            conflict_scores,
+            support_mask & support_conflict_mask,
+        )
+        if conflict_valid_rows.any():
+            loss = F.softplus(
+                conflict_score[conflict_valid_rows]
+                - paired_scores[conflict_valid_rows]
+            ).mean()
+        else:
+            loss = text_state_feats.sum() * 0.0
+        return loss, conflict_valid_rows
     
     
     def cross_former(self, q, k, v):
@@ -251,6 +466,34 @@ class IRRA(nn.Module):
 
         x = self.ln_post(x)
         return x
+
+    def encode_image_heads(self, image):
+        """Return identity and state image embeddings for split-head offline evaluation."""
+        x = self.base_model.encode_image(image)
+        x = x[:, 0, :].float()
+        if self.irra_light_split:
+            return {
+                'identity': self._project_light_head(self.identity_head, x),
+                'state': self._project_light_head(self.state_head, x),
+            }
+        if self.irra_light_single_proj:
+            projected = self._project_light_head(self.single_head, x)
+            return {'identity': projected, 'state': projected}
+        return {'identity': x, 'state': x}
+
+    def encode_text_heads(self, text):
+        """Return identity and state text embeddings for split-head offline evaluation."""
+        x = self.base_model.encode_text(text)
+        x = x[torch.arange(x.shape[0], device=text.device), text.argmax(dim=-1)].float()
+        if self.irra_light_split:
+            return {
+                'identity': self._project_light_head(self.identity_head, x),
+                'state': self._project_light_head(self.state_head, x),
+            }
+        if self.irra_light_single_proj:
+            projected = self._project_light_head(self.single_head, x)
+            return {'identity': projected, 'state': projected}
+        return {'identity': x, 'state': x}
 
     def encode_image(self, image):
         x = self.base_model.encode_image(image)
@@ -300,6 +543,112 @@ class IRRA(nn.Module):
                 identity_t_feats = t_feats
                 state_i_feats = i_feats
                 state_t_feats = t_feats
+
+            if self.irra_light_fast_bag:
+                if self.args.irra_light_identity_loss != 'sdm':
+                    raise ValueError(
+                        "v16 fast3 requires --irra_light_identity_loss sdm"
+                    )
+                if 'support_reliability' not in batch:
+                    raise RuntimeError("v16 fast3 requires support_reliability")
+
+                ret.update({
+                    'identity_sdm_loss': objectives.compute_sdm(
+                        identity_i_feats,
+                        identity_t_feats,
+                        batch['pids'],
+                        logit_scale,
+                    ),
+                    'state_itc_loss': objectives.compute_itc(
+                        state_i_feats,
+                        state_t_feats,
+                        logit_scale,
+                    ),
+                })
+
+                support_raw_feats, support_mask = self._encode_support_images_raw(batch)
+                support_identity_feats = self._project_light_head(
+                    self.identity_head,
+                    support_raw_feats,
+                )
+                support_weights = batch['support_reliability']
+
+                if self.irra_light_state_route:
+                    if 'support_conflict_mask' not in batch:
+                        raise RuntimeError(
+                            "v16 fast3 state modes require support_conflict_mask"
+                        )
+                    support_state_feats = self._project_light_head(
+                        self.state_head,
+                        support_raw_feats,
+                    )
+                    state_nontransitive_loss, conflict_valid_rows = (
+                        self._state_nontransitive_loss(
+                            state_i_feats,
+                            state_t_feats,
+                            support_state_feats,
+                            support_mask,
+                            batch['support_conflict_mask'],
+                            logit_scale,
+                        )
+                    )
+                    ret.update({
+                        'state_nontransitive_loss': state_nontransitive_loss,
+                        'support_conflict_anchor_ratio': conflict_valid_rows.float().mean(),
+                    })
+
+                hard_negative_feats = None
+                hard_negative_mask = None
+                hard_negative_image_ids = None
+                if self.irra_light_hard_negative:
+                    if 'hard_negative_image_id' not in batch:
+                        raise RuntimeError(
+                            "v16 fast3 hard-negative mode requires hard_negative_image_id"
+                        )
+                    hard_negative_raw_feats, hard_negative_mask = (
+                        self._encode_hard_negative_images_raw(batch)
+                    )
+                    hard_negative_feats = self._project_light_head(
+                        self.identity_head,
+                        hard_negative_raw_feats,
+                    )
+                    hard_negative_image_ids = batch['hard_negative_image_id']
+
+                identity_bag_loss, _valid_rows, support_valid_rows, hard_negative_valid = (
+                    self._support_bag_rank_loss(
+                        identity_i_feats,
+                        identity_t_feats,
+                        support_identity_feats,
+                        support_mask,
+                        support_weights,
+                        batch['pids'],
+                        logit_scale,
+                        hard_negative_feats=hard_negative_feats,
+                        hard_negative_mask=hard_negative_mask,
+                        hard_negative_image_ids=hard_negative_image_ids,
+                        batch_image_ids=batch.get('image_ids'),
+                    )
+                )
+                ret.update({
+                    'identity_bag_loss': identity_bag_loss,
+                    'support_valid_ratio': support_valid_rows.float().mean(),
+                })
+                valid_weights = support_weights[support_mask]
+                if valid_weights.numel() > 0:
+                    valid_weights = valid_weights.float()
+                    ret.update({
+                        'support_rho_mean': valid_weights.mean(),
+                        'support_rho_zero_ratio': (valid_weights <= 0).float().mean(),
+                        'support_rho_mid_ratio': (
+                            (valid_weights > 0) & (valid_weights < 1)
+                        ).float().mean(),
+                        'support_rho_one_ratio': (valid_weights >= 1).float().mean(),
+                    })
+                if self.irra_light_hard_negative:
+                    ret['hard_negative_valid_ratio'] = (
+                        hard_negative_valid.float().mean()
+                    )
+                return ret
 
             if self.irra_light_bag:
                 support_i_feats, support_t_feats, support_mask = self._encode_support_bag(batch)
