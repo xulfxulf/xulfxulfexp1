@@ -16,18 +16,22 @@ export SUPPORT_SIZE=${SUPPORT_SIZE:-3}
 export PRETRAIN_CHOICE=${PRETRAIN_CHOICE:-ViT-B/16}
 export FAST3_INPUT_DIR=${FAST3_INPUT_DIR:-${SCRIPT_DIR}/diagnostics/TAG-PEDES/v16_fast3_inputs}
 export SUPPORT_CONSISTENCY_CSV=${SUPPORT_CONSISTENCY_CSV:-${FAST3_INPUT_DIR}/support_reliability_hard_only.csv}
-export SUPPORT_RELATION_CSV=${SUPPORT_RELATION_CSV:-${FAST3_INPUT_DIR}/support_hard_contradiction.csv}
-export HARD_NEGATIVE_CSV=${HARD_NEGATIVE_CSV:-${FAST3_INPUT_DIR}/hard_negative_pool.csv}
 export EXP_NAME=${EXP_NAME:-irra_light_${IRRA_LIGHT_MODE}_v16_fast3_tagpedes_${NUM_EPOCH}e_seed${SEED}}
 
 case "${IRRA_LIGHT_MODE}" in
   split_bag_safe)
+    export SUPPORT_RELATION_CSV=""
+    export HARD_NEGATIVE_CSV=""
     required_inputs=("${SUPPORT_CONSISTENCY_CSV}")
     ;;
   split_bag_state)
+    export SUPPORT_RELATION_CSV="${SUPPORT_RELATION_CSV:-${FAST3_INPUT_DIR}/support_hard_contradiction.csv}"
+    export HARD_NEGATIVE_CSV=""
     required_inputs=("${SUPPORT_CONSISTENCY_CSV}" "${SUPPORT_RELATION_CSV}")
     ;;
   split_bag_state_hn)
+    export SUPPORT_RELATION_CSV="${SUPPORT_RELATION_CSV:-${FAST3_INPUT_DIR}/support_hard_contradiction.csv}"
+    export HARD_NEGATIVE_CSV="${HARD_NEGATIVE_CSV:-${FAST3_INPUT_DIR}/hard_negative_pool.csv}"
     required_inputs=(
       "${SUPPORT_CONSISTENCY_CSV}"
       "${SUPPORT_RELATION_CSV}"
