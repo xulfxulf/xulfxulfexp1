@@ -1,0 +1,7 @@
+commit=4a6318b850a3dafc5278f91cb9232f3e80fd3372
+mode=split_bag_safe
+timestamp=20260712_162126
+data_root=/root/autodl-tmp/datasets
+output_dir=/root/autodl-tmp/v16_fast3_logs/4a6318b_run2/v16_fast3_20260712_162126_split_bag_safe
+cuda_visible_devices=0
+a80075e261af34f97e8a5f0040476063a175289ad4fb84f5bcb1171b2d845178  /root/autodl-tmp/v16_fast3_run_records/4a6318b_run2/20260712_162126_split_bag_safe/inputs/support_reliability_hard_only.csv
