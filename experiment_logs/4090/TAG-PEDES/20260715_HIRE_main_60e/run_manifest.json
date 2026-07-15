@@ -1,0 +1,31 @@
+{
+  "code_commit": "5aa9104",
+  "base_commit": "90228fe720a82e36b04c4ac62e8d3247016c48d8",
+  "code_root": "/root/autodl-tmp/HIRE_main_20260715_5aa9104_run2",
+  "run_type": "formal_60_epoch",
+  "dataset": "TAG-PEDES",
+  "seed": 1,
+  "batch_size": 64,
+  "support_size": 3,
+  "num_epoch": 60,
+  "sampler": "random",
+  "img_aug": false,
+  "pretrain_choice": "ViT-B/16",
+  "output_root": "/root/autodl-tmp/HIRE_logs/5aa9104_full60",
+  "source_overlay_sha256": "8A270C59534284B03CCE691519427927F4BDDD2EA9582EAF1D3159B2D2CDDC67",
+  "compatibility_changes": [
+    "import distutils.version before torch.utils.tensorboard for torch 1.9"
+  ],
+  "smoke_run": "/root/autodl-tmp/HIRE_run_records/5aa9104/20260715_192508_hire_smoke2",
+  "support_audit": {
+    "anchors": 39908,
+    "distribution": {
+      "0": 300,
+      "1": 240,
+      "2": 10554,
+      "3": 28814
+    },
+    "pid_or_same_image_violations": 0
+  },
+  "started_at": "2026-07-15T19:31:43.847603+08:00"
+}

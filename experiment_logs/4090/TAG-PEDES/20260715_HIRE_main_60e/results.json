@@ -1,0 +1,66 @@
+{
+  "experiment": "hire_main_tagpedes_60e_seed1",
+  "status": "completed",
+  "epochs_completed": 60,
+  "code_commit": "5aa91044da70bde770d749bcc21b29b15b3b5bbe",
+  "overlay_commit": "9d6eed842faca1d21ef02e254d63741c57756a87",
+  "base_commit": "90228fe720a82e36b04c4ac62e8d3247016c48d8",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "dataset": "TAG-PEDES",
+  "settings": {
+    "num_epoch": 60,
+    "batch_size": 64,
+    "seed": 1,
+    "sampler": "random",
+    "img_aug": false,
+    "pretrain_choice": "ViT-B/16",
+    "support_size": 3
+  },
+  "started_at_cst": "2026-07-15T19:31:45+08:00",
+  "finished_at_cst": "2026-07-16T00:10:15+08:00",
+  "best": {
+    "epoch": 24,
+    "r1_exact": 48.96994400024414,
+    "r1_logged": 48.970,
+    "r5": 68.208,
+    "r10": 75.697,
+    "mAP": 40.793,
+    "mINP": 24.077
+  },
+  "final": {
+    "epoch": 60,
+    "r1": 48.794,
+    "r5": 67.747,
+    "r10": 75.085,
+    "mAP": 40.675,
+    "mINP": 23.995
+  },
+  "support_audit": {
+    "anchors": 39908,
+    "support_count_distribution": {
+      "0": 300,
+      "1": 240,
+      "2": 10554,
+      "3": 28814
+    },
+    "pid_or_same_image_violations": 0
+  },
+  "validation": {
+    "server_tests_passed": 9,
+    "error_markers_found": 0,
+    "best_checkpoint_bytes": 1120846582,
+    "checkpoint_in_repository": false,
+    "compatibility_change_only": true
+  },
+  "archived_file_sha256": {
+    "train_log_full.txt": "298BF955D6C871577D975F6695DD036989D22E1F28380B6E4515B4477721BFEE",
+    "configs.yaml": "CA065D3439A51990F5368B2F8C12319ED21F19D282A87ACC1ADD79C238388454",
+    "run_stdout_full.txt": "0F89D467FF5D0981F634C3430DE8A4DBFDE589A51B154E2C1FC8DD0F54DD0230"
+  }
+}
