@@ -1,5 +1,6 @@
 import logging
 import time
+import distutils.version  # Required by torch 1.9's tensorboard shim.
 import torch
 from utils.meter import AverageMeter
 from utils.metrics import Evaluator
