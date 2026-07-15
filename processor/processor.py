@@ -1,12 +1,10 @@
 import logging
 import time
-import distutils.version
 import torch
 from utils.meter import AverageMeter
 from utils.metrics import Evaluator
 from utils.comm import get_rank, synchronize
 from torch.utils.tensorboard import SummaryWriter
-from prettytable import PrettyTable
 
 
 def _format_identity_stats(pids, image_ids=None):
@@ -20,10 +18,15 @@ def _format_identity_stats(pids, image_ids=None):
     total_ordered_pairs = batch_size * (batch_size - 1)
     negative_ordered_pairs = total_ordered_pairs - same_id_ordered_pairs
     msg = (
-        f"batch_size={batch_size}, unique_ids={num_unique}, "
-        f"duplicate_ids={duplicate_ids}, max_per_id={max_per_id}, "
-        f"same_id_ordered_pairs={same_id_ordered_pairs}, "
-        f"negative_ordered_pairs={negative_ordered_pairs}"
+        "batch_size={}, unique_ids={}, duplicate_ids={}, max_per_id={}, "
+        "same_id_ordered_pairs={}, negative_ordered_pairs={}".format(
+            batch_size,
+            num_unique,
+            duplicate_ids,
+            max_per_id,
+            same_id_ordered_pairs,
+            negative_ordered_pairs,
+        )
     )
     if image_ids is not None:
         image_ids = image_ids.detach().view(-1)
@@ -31,81 +34,69 @@ def _format_identity_stats(pids, image_ids=None):
         duplicate_images = int((image_counts > 1).sum().item())
         max_per_image = int(image_counts.max().item()) if batch_size else 0
         same_image_ordered_pairs = int((image_counts * (image_counts - 1)).sum().item())
-        msg += (
-            f", duplicate_images={duplicate_images}, "
-            f"max_per_image={max_per_image}, "
-            f"same_image_ordered_pairs={same_image_ordered_pairs}"
+        msg += ", duplicate_images={}, max_per_image={}, same_image_ordered_pairs={}".format(
+            duplicate_images, max_per_image, same_image_ordered_pairs
         )
     return msg
 
 
-def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
-             scheduler, checkpointer):
-
+def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, scheduler, checkpointer):
     log_period = args.log_period
     eval_period = args.eval_period
     device = "cuda"
     num_epoch = args.num_epoch
-    arguments = {}
-    arguments["num_epoch"] = num_epoch
-    arguments["iteration"] = 0
-
+    arguments = {"num_epoch": num_epoch, "iteration": 0}
     logger = logging.getLogger("IRRA.train")
-    logger.info('start training')
+    logger.info("start training")
 
-    def to_scalar(x):
-        if torch.is_tensor(x):
-            return x.detach().float().item()
-        return float(x)
+    def to_scalar(value):
+        if torch.is_tensor(value):
+            return value.detach().float().item()
+        return float(value)
 
-    meters = {
-        "loss": AverageMeter(),
-        "sdm_loss": AverageMeter(),
-        "itc_loss": AverageMeter(),
-        "identity_sdm_loss": AverageMeter(),
-        "identity_itc_loss": AverageMeter(),
-        "identity_src_loss": AverageMeter(),
-        "identity_set_loss": AverageMeter(),
-        "identity_bag_loss": AverageMeter(),
-        "state_itc_loss": AverageMeter(),
-        "state_src_loss": AverageMeter(),
-        "state_nontransitive_loss": AverageMeter(),
-        "id_loss": AverageMeter(),
-        "mlm_loss": AverageMeter(),
-        "support_valid_ratio": AverageMeter(),
-        "support_rho_mean": AverageMeter(),
-        "support_rho_zero_ratio": AverageMeter(),
-        "support_rho_mid_ratio": AverageMeter(),
-        "support_rho_one_ratio": AverageMeter(),
-        "support_conflict_anchor_ratio": AverageMeter(),
-        "hard_negative_valid_ratio": AverageMeter(),
-        "img_acc": AverageMeter(),
-        "txt_acc": AverageMeter(),
-        "mlm_acc": AverageMeter()
-    }
-    always_log_metrics = set()
-    if getattr(args, "irra_light_mode", "") in {
-        "split_bag_safe",
-        "split_bag_state",
-        "split_bag_state_hn",
-    }:
-        always_log_metrics = {
-            "identity_bag_loss",
-            "state_nontransitive_loss",
-            "support_valid_ratio",
-            "support_rho_mean",
-            "support_rho_zero_ratio",
-            "support_rho_mid_ratio",
-            "support_rho_one_ratio",
-            "support_conflict_anchor_ratio",
-            "hard_negative_valid_ratio",
-        }
-
+    meter_names = [
+        "loss",
+        "sdm_loss",
+        "itc_loss",
+        "identity_sdm_loss",
+        "identity_itc_loss",
+        "identity_src_loss",
+        "identity_set_loss",
+        "state_itc_loss",
+        "state_src_loss",
+        "id_loss",
+        "mlm_loss",
+        "support_rho_mean",
+        "support_rho_zero_ratio",
+        "support_rho_mid_ratio",
+        "support_rho_one_ratio",
+        "img_acc",
+        "txt_acc",
+        "mlm_acc",
+        "identity_bag_loss",
+        "state_nontransitive_loss",
+        "support_valid_ratio",
+        "support_conflict_anchor_ratio",
+        "hard_negative_valid_ratio",
+        # HIRE aggregated losses and diagnostics.
+        "joint_tal_loss",
+        "identity_posterior_loss",
+        "state_hierarchical_loss",
+        "identity_set_nce",
+        "uncertainty_calibration",
+        "state_pair_nce",
+        "residual_alignment",
+        "state_safety",
+        "mean_image_variance",
+        "mean_text_variance",
+        "mean_group_heterogeneity",
+        "identity_scale",
+        "state_scale",
+    ]
+    meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)
-
     best_top1 = 0.0
 
-    # train
     for epoch in range(start_epoch, num_epoch + 1):
         start_time = time.time()
         for meter in meters.values():
@@ -113,44 +104,34 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         model.train()
 
         for n_iter, batch in enumerate(train_loader):
-            batch = {k: v.to(device) for k, v in batch.items()}
-
-            if getattr(args, 'irra_light', False) and (
+            batch = {key: value.to(device) for key, value in batch.items()}
+            if (getattr(args, "irra_light", False) or getattr(args, "hire", False)) and (
                 n_iter == 0 or (n_iter + 1) % args.light_stat_period == 0
             ):
                 logger.info(
-                    f"BatchIdentityStats Epoch[{epoch}] Iteration[{n_iter + 1}/{len(train_loader)}], "
-                    + _format_identity_stats(batch['pids'], batch.get('image_ids'))
+                    "BatchIdentityStats Epoch[{}] Iteration[{}/{}], {}".format(
+                        epoch,
+                        n_iter + 1,
+                        len(train_loader),
+                        _format_identity_stats(batch["pids"], batch.get("image_ids")),
+                    )
                 )
 
             ret = model(batch)
-            total_loss = sum([v for k, v in ret.items() if "loss" in k])
+            loss_values = [value for key, value in ret.items() if "loss" in key]
+            if not loss_values:
+                raise RuntimeError("model forward returned no loss entries")
+            total_loss = sum(loss_values)
+            if not torch.isfinite(total_loss):
+                raise RuntimeError("non-finite total loss at epoch {}, iteration {}".format(epoch, n_iter + 1))
 
-            batch_size = batch['images'].shape[0]
-            meters['loss'].update(to_scalar(total_loss), batch_size)
-            meters['sdm_loss'].update(to_scalar(ret.get('sdm_loss', 0)), batch_size)
-            meters['itc_loss'].update(to_scalar(ret.get('itc_loss', 0)), batch_size)
-            meters['identity_sdm_loss'].update(to_scalar(ret.get('identity_sdm_loss', 0)), batch_size)
-            meters['identity_itc_loss'].update(to_scalar(ret.get('identity_itc_loss', 0)), batch_size)
-            meters['identity_src_loss'].update(to_scalar(ret.get('identity_src_loss', 0)), batch_size)
-            meters['identity_set_loss'].update(to_scalar(ret.get('identity_set_loss', 0)), batch_size)
-            meters['identity_bag_loss'].update(to_scalar(ret.get('identity_bag_loss', 0)), batch_size)
-            meters['state_itc_loss'].update(to_scalar(ret.get('state_itc_loss', 0)), batch_size)
-            meters['state_src_loss'].update(to_scalar(ret.get('state_src_loss', 0)), batch_size)
-            meters['state_nontransitive_loss'].update(to_scalar(ret.get('state_nontransitive_loss', 0)), batch_size)
-            meters['id_loss'].update(to_scalar(ret.get('id_loss', 0)), batch_size)
-            meters['mlm_loss'].update(to_scalar(ret.get('mlm_loss', 0)), batch_size)
-            meters['support_valid_ratio'].update(to_scalar(ret.get('support_valid_ratio', 0)), batch_size)
-            meters['support_rho_mean'].update(to_scalar(ret.get('support_rho_mean', 0)), batch_size)
-            meters['support_rho_zero_ratio'].update(to_scalar(ret.get('support_rho_zero_ratio', 0)), batch_size)
-            meters['support_rho_mid_ratio'].update(to_scalar(ret.get('support_rho_mid_ratio', 0)), batch_size)
-            meters['support_rho_one_ratio'].update(to_scalar(ret.get('support_rho_one_ratio', 0)), batch_size)
-            meters['support_conflict_anchor_ratio'].update(to_scalar(ret.get('support_conflict_anchor_ratio', 0)), batch_size)
-            meters['hard_negative_valid_ratio'].update(to_scalar(ret.get('hard_negative_valid_ratio', 0)), batch_size)
-
-            meters['img_acc'].update(to_scalar(ret.get('img_acc', 0)), batch_size)
-            meters['txt_acc'].update(to_scalar(ret.get('txt_acc', 0)), batch_size)
-            meters['mlm_acc'].update(to_scalar(ret.get('mlm_acc', 0)), 1)
+            batch_size = batch["images"].shape[0]
+            meters["loss"].update(to_scalar(total_loss), batch_size)
+            for name in meter_names:
+                if name == "loss":
+                    continue
+                if name in ret:
+                    meters[name].update(to_scalar(ret[name]), batch_size)
 
             optimizer.zero_grad()
             total_loss.backward()
@@ -158,50 +139,48 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
             synchronize()
 
             if (n_iter + 1) % log_period == 0:
-                info_str = f"Epoch[{epoch}] Iteration[{n_iter + 1}/{len(train_loader)}]"
-                # log loss and acc info
-                for k, v in meters.items():
-                    if v.avg > 0 or k in always_log_metrics:
-                        info_str += f", {k}: {v.avg:.4f}"
-                info_str += f", Base Lr: {scheduler.get_lr()[0]:.2e}"
-                logger.info(info_str)
-        
-        tb_writer.add_scalar('lr', scheduler.get_lr()[0], epoch)
-        tb_writer.add_scalar('temperature', to_scalar(ret['temperature']), epoch)
-        for k, v in meters.items():
-            if v.avg > 0 or k in always_log_metrics:
-                tb_writer.add_scalar(k, v.avg, epoch)
+                info = "Epoch[{}] Iteration[{}/{}]".format(epoch, n_iter + 1, len(train_loader))
+                for key, meter in meters.items():
+                    if meter.count > 0:
+                        info += ", {}: {:.4f}".format(key, meter.avg)
+                info += ", Base Lr: {:.2e}".format(scheduler.get_lr()[0])
+                logger.info(info)
 
+        tb_writer.add_scalar("lr", scheduler.get_lr()[0], epoch)
+        if "temperature" in ret:
+            tb_writer.add_scalar("temperature", to_scalar(ret["temperature"]), epoch)
+        for key, meter in meters.items():
+            if meter.count > 0:
+                tb_writer.add_scalar(key, meter.avg, epoch)
 
         scheduler.step()
         if get_rank() == 0:
             end_time = time.time()
             time_per_batch = (end_time - start_time) / (n_iter + 1)
             logger.info(
-                "Epoch {} done. Time per batch: {:.3f}[s] Speed: {:.1f}[samples/s]"
-                .format(epoch, time_per_batch,
-                        train_loader.batch_size / time_per_batch))
-        if epoch % eval_period == 0:
-            if get_rank() == 0:
-                logger.info("Validation Results - Epoch: {}".format(epoch))
-                if args.distributed:
-                    top1 = evaluator.eval(model.module.eval())
-                else:
-                    top1 = evaluator.eval(model.eval())
+                "Epoch {} done. Time per batch: {:.3f}[s] Speed: {:.1f}[samples/s]".format(
+                    epoch,
+                    time_per_batch,
+                    train_loader.batch_size / time_per_batch,
+                )
+            )
+        if epoch % eval_period == 0 and get_rank() == 0:
+            logger.info("Validation Results - Epoch: {}".format(epoch))
+            eval_model = model.module if args.distributed else model
+            top1 = evaluator.eval(eval_model.eval())
+            torch.cuda.empty_cache()
+            if best_top1 < top1:
+                best_top1 = top1
+                arguments["epoch"] = epoch
+                checkpointer.save("best", **arguments)
 
-                torch.cuda.empty_cache()
-                if best_top1 < top1:
-                    best_top1 = top1
-                    arguments["epoch"] = epoch
-                    checkpointer.save("best", **arguments)
     if get_rank() == 0:
-        logger.info(f"best R1: {best_top1} at epoch {arguments['epoch']}")
+        best_epoch = arguments.get("epoch", num_epoch)
+        logger.info("best R1: {} at epoch {}".format(best_top1, best_epoch))
 
 
 def do_inference(model, test_img_loader, test_txt_loader):
-
     logger = logging.getLogger("IRRA.test")
     logger.info("Enter inferencing")
-
     evaluator = Evaluator(test_img_loader, test_txt_loader)
-    top1 = evaluator.eval(model.eval())
+    return evaluator.eval(model.eval())

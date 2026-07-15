@@ -5,38 +5,49 @@ from .lr_scheduler import LRSchedulerWithWarmup
 
 def build_optimizer(args, model):
     params = []
+    is_light = bool(getattr(args, "irra_light", False))
+    is_hire = bool(getattr(args, "hire", False))
 
-    if getattr(args, 'irra_light', False):
-        print('IRRA-light: projection heads use base learning rate; no 5x lr factor.')
+    if is_light:
+        print("IRRA-light: projection heads use base learning rate; no 5x lr factor.")
+    elif is_hire:
+        print(
+            "HIRE: CLIP backbone uses base learning rate; newly initialized "
+            "token-selection, posterior, fusion, and state modules use {}x.".format(
+                args.lr_factor
+            )
+        )
     else:
-        print(f'Using {args.lr_factor} times learning rate for random init module ')
-    
+        print("Using {} times learning rate for random init module".format(args.lr_factor))
+
     for key, value in model.named_parameters():
         if not value.requires_grad:
             continue
-        lr = args.lr
+        random_hire_module = is_hire and not key.startswith("base_model.")
+        base_lr = args.lr * (args.lr_factor if random_hire_module else 1.0)
+        lr = base_lr
         weight_decay = args.weight_decay
 
-        if getattr(args, 'irra_light', False) and (
+        if is_light and (
             "identity_head" in key or "state_head" in key or "single_head" in key
         ):
             lr = args.lr
             weight_decay = args.weight_decay
-        elif "cross" in key:
-            # use large learning rate for random initialized cross modal module
-            lr =  args.lr * args.lr_factor # default 5.0
-        if "bias" in key:
-            lr = args.lr * args.bias_lr_factor
-            weight_decay = args.weight_decay_bias
-        if (not getattr(args, 'irra_light', False)) and ("classifier" in key or "mlm_head" in key):
+        elif (not is_hire) and "cross" in key:
             lr = args.lr * args.lr_factor
-        
-        params += [{"params": [value], "lr": lr, "weight_decay": weight_decay}]
+
+        if "bias" in key:
+            lr = base_lr * args.bias_lr_factor
+            weight_decay = args.weight_decay_bias
+        if (not is_light) and (not is_hire) and (
+            "classifier" in key or "mlm_head" in key
+        ):
+            lr = args.lr * args.lr_factor
+
+        params.append({"params": [value], "lr": lr, "weight_decay": weight_decay})
 
     if args.optimizer == "SGD":
-        optimizer = torch.optim.SGD(
-            params, lr=args.lr, momentum=args.momentum
-        )
+        optimizer = torch.optim.SGD(params, lr=args.lr, momentum=args.momentum)
     elif args.optimizer == "Adam":
         optimizer = torch.optim.Adam(
             params,
@@ -52,8 +63,7 @@ def build_optimizer(args, model):
             eps=1e-8,
         )
     else:
-        NotImplementedError
-
+        raise ValueError("unsupported optimizer: {}".format(args.optimizer))
     return optimizer
 
 
