@@ -1,0 +1,12 @@
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+2026-07-16 17:16:30,143 HIRE-v2-anchor-eval INFO: 
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 57.186 | 75.915 | 82.265 | 43.643 | 23.538 |
+|    local    | 54.750 | 73.982 | 80.853 | 41.934 | 22.447 |
+| observation | 57.750 | 76.260 | 82.380 | 44.238 | 24.117 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-16 17:16:30,143 HIRE-v2-anchor-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_anchor_logs/48e61f8_full60/TAG-PEDES/20260716_104228_hire_v2_anchor_tagpedes_60e_seed1_48e61f8/hire_v2_anchor_components.json

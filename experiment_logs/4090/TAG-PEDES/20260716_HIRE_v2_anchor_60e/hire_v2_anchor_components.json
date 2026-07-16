@@ -1,0 +1,27 @@
+{
+  "config_file": "/root/autodl-tmp/HIRE_v2_anchor_logs/48e61f8_full60/TAG-PEDES/20260716_104228_hire_v2_anchor_tagpedes_60e_seed1_48e61f8/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_anchor_logs/48e61f8_full60/TAG-PEDES/20260716_104228_hire_v2_anchor_tagpedes_60e_seed1_48e61f8/best.pth",
+  "results": {
+    "global": {
+      "R1": 57.18613815307617,
+      "R5": 75.91493225097656,
+      "R10": 82.26490783691406,
+      "mAP": 43.64317321777344,
+      "mINP": 23.538082122802734
+    },
+    "local": {
+      "R1": 54.7503662109375,
+      "R5": 73.98206329345703,
+      "R10": 80.8531265258789,
+      "mAP": 41.93433380126953,
+      "mINP": 22.447044372558594
+    },
+    "observation": {
+      "R1": 57.7496337890625,
+      "R5": 76.26029968261719,
+      "R10": 82.3800277709961,
+      "mAP": 44.23760223388672,
+      "mINP": 24.11730194091797
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "code_commit":"48e61f81649aa2f3ea515d8e967faa4960b2f478",
+  "raw_overlay_commit":"2dc6dd7e24038e217398140eda97227df4b0c04f",
+  "base_commit":"610c2a405aec4acfdb0d6364872ec4f86d17c588",
+  "code_root":"/root/autodl-tmp/HIRE_v2_anchor_48e61f8_run2",
+  "run_type":"formal_60_epoch",
+  "dataset":"TAG-PEDES",
+  "seed":1,
+  "batch_size":64,
+  "num_epoch":60,
+  "sampler":"random",
+  "img_aug":false,
+  "pretrain_choice":"ViT-B/16",
+  "source_overlay_sha256":"F2F21DD414ABD0AB14A2F8F415C5DD70DEB60E7CDFAF497A3F361D65374D2652",
+  "compatibility_changes":["add repository root to offline evaluator sys.path"],
+  "training_smoke":"/root/autodl-tmp/HIRE_v2_anchor_run_records/2dc6dd7/20260716_103335_smoke",
+  "smoke_component_eval":"/root/autodl-tmp/HIRE_v2_anchor_smoke/2dc6dd7/TAG-PEDES/20260716_103336_hire_v2_anchor_smoke_2dc6dd7/hire_v2_anchor_components_run2.json",
+  "started_at":"2026-07-16T10:42:27+08:00"
+}

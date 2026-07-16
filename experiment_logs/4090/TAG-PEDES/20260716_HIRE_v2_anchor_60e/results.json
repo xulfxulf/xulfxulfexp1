@@ -1,0 +1,90 @@
+{
+  "experiment": "hire_v2_anchor_tagpedes_60e_seed1",
+  "status": "completed",
+  "epochs_completed": 60,
+  "code_commit": "48e61f81649aa2f3ea515d8e967faa4960b2f478",
+  "raw_overlay_commit": "2dc6dd7e24038e217398140eda97227df4b0c04f",
+  "base_commit": "610c2a405aec4acfdb0d6364872ec4f86d17c588",
+  "source_overlay_sha256": "F2F21DD414ABD0AB14A2F8F415C5DD70DEB60E7CDFAF497A3F361D65374D2652",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "dataset": "TAG-PEDES",
+  "settings": {
+    "mode": "anchor",
+    "num_epoch": 60,
+    "batch_size": 64,
+    "seed": 1,
+    "sampler": "random",
+    "img_aug": false,
+    "pretrain_choice": "ViT-B/16",
+    "select_ratio": 0.3,
+    "tse_dim": 1024
+  },
+  "started_at_cst": "2026-07-16T10:42:28+08:00",
+  "finished_at_cst": "2026-07-16T13:05:22+08:00",
+  "training_evaluator": {
+    "best": {
+      "epoch": 59,
+      "r1_exact": 57.773868560791016,
+      "r1_logged": 57.774,
+      "r5": 76.260,
+      "r10": 82.380,
+      "mAP": 44.238,
+      "mINP": 24.113
+    },
+    "final": {
+      "epoch": 60,
+      "r1": 57.719,
+      "r5": 76.291,
+      "r10": 82.319,
+      "mAP": 44.241,
+      "mINP": 24.150
+    }
+  },
+  "best_checkpoint_component_evaluation": {
+    "global": {
+      "r1": 57.18613815307617,
+      "r5": 75.91493225097656,
+      "r10": 82.26490783691406,
+      "mAP": 43.64317321777344,
+      "mINP": 23.538082122802734
+    },
+    "local": {
+      "r1": 54.7503662109375,
+      "r5": 73.98206329345703,
+      "r10": 80.8531265258789,
+      "mAP": 41.93433380126953,
+      "mINP": 22.447044372558594
+    },
+    "observation": {
+      "r1": 57.7496337890625,
+      "r5": 76.26029968261719,
+      "r10": 82.3800277709961,
+      "mAP": 44.23760223388672,
+      "mINP": 24.11730194091797
+    }
+  },
+  "validation": {
+    "local_tests_passed": 8,
+    "server_tests_passed": 8,
+    "error_markers_found": 0,
+    "best_checkpoint_bytes": 1095567765,
+    "checkpoint_in_repository": false,
+    "compatibility_change_only": true,
+    "algorithm_logic_changed": false
+  },
+  "archived_file_sha256": {
+    "train_log_full.txt": "3AD459141831326D37C0CD8D9AA857E6BFCD11F3B332A4C82D514EB601F27471",
+    "run_stdout_full.txt": "30CABEEE99DE073D3AF7AEA78F6A89AB0D15E764566750D4E45E85B0B65DE05E",
+    "configs.yaml": "D116845D9FDFF54AAEA63410BE44752ABAAB441ABD33F3E842CB6F4988CC88A2",
+    "hire_v2_anchor_components.json": "13241602E31BB17F6F5266791846EBE49B53F3F9BA096C629DB3C357FA71B2C3",
+    "component_eval.log": "D16D8EECA34A26B6BA0FFBA082CBD8C1719B6DF33AFCA259EB6688E82B19345B",
+    "run_manifest.json": "AE174926B350F15F26E1E3180EB7ABA21D1C3A19887A3BE5AAB616B86E3EB9CB",
+    "command.sh": "D84FB9D3A7560E7C67601E2605AF3151C525972DCC4BC54A42C3C23E541FF7B7"
+  }
+}
