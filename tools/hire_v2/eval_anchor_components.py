@@ -7,11 +7,18 @@ import argparse
 import json
 import os
 import os.path as op
+import sys
 from typing import Dict
 
 import torch
 import torch.nn.functional as F
 from prettytable import PrettyTable
+
+# Running this file by path makes Python use tools/hire_v2 as sys.path[0].
+# Add the repository root so the README command works without PYTHONPATH.
+PROJECT_ROOT = op.abspath(op.join(op.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from datasets import build_dataloader
 from model import build_model
