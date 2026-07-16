@@ -1,0 +1,20 @@
+{
+  "train_caption_samples": 39908,
+  "train_identities": 4840,
+  "train_unique_images": 19954,
+  "support_count_distribution_by_caption": {
+    "0": 300,
+    "1": 240,
+    "2": 10554,
+    "3": 28814
+  },
+  "valid_group_caption_ratio": 0.9864688784203668,
+  "rotation_eligible_caption_samples": 18046,
+  "rotation_changed_between_epoch_0_1": 17926,
+  "cross_view_support_slots": 40624,
+  "same_view_support_slots": 67166,
+  "unknown_view_support_slots": 0,
+  "missing_image_count": 0,
+  "relation_violation_count": 0,
+  "relation_violation_examples": []
+}

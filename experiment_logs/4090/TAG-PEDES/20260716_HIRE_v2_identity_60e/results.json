@@ -1,0 +1,128 @@
+{
+  "experiment": "hire_v2_identity_tagpedes_60e_seed1_82601f8",
+  "status": "completed",
+  "epochs_completed": 60,
+  "code_commit": "82601f865e3df205f88ec69f880284f215751fd0",
+  "raw_overlay_commit": "0648ae4e985d057c945a0c561eada183e3e9c353",
+  "source_main_commit": "09def7e11fe3a2f47b39929013aaad4038b98ac9",
+  "source_overlay_sha256": "3410B17E3EF3C2F2FEBD83069D6E711822F92202CEEA4B40527F01EFAB356DD2",
+  "source_design_sha256": "141F35F05B43F8F15D266A83F7122C76D2786AD68C0859667D9A4CA985E94156",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "dataset": "TAG-PEDES",
+  "settings": {
+    "mode": "identity",
+    "num_epoch": 60,
+    "batch_size": 64,
+    "seed": 1,
+    "sampler": "random",
+    "img_aug": false,
+    "pretrain_choice": "ViT-B/16",
+    "support_size": 3,
+    "auxiliary_weight": 0.1
+  },
+  "started_at_cst": "2026-07-16T20:13:32+08:00",
+  "finished_at_cst": "2026-07-17T00:16:58+08:00",
+  "training_evaluator": {
+    "best": {
+      "epoch": 54,
+      "r1_exact": 57.90111541748047,
+      "r1_logged": 57.901,
+      "r5": 76.460,
+      "r10": 82.962,
+      "mAP": 44.408,
+      "mINP": 24.329
+    },
+    "final": {
+      "epoch": 60,
+      "r1": 57.786,
+      "r5": 76.436,
+      "r10": 82.931,
+      "mAP": 44.400,
+      "mINP": 24.326
+    }
+  },
+  "best_checkpoint_component_evaluation": {
+    "identity_gate": 0.11186094582080841,
+    "global": {
+      "r1": 57.30731964111328,
+      "r5": 76.1633529663086,
+      "r10": 82.7799301147461,
+      "mAP": 43.6470947265625,
+      "mINP": 23.46773338317871
+    },
+    "local": {
+      "r1": 54.61100387573242,
+      "r5": 73.78211975097656,
+      "r10": 81.08943176269531,
+      "mAP": 41.94704055786133,
+      "mINP": 22.55720329284668
+    },
+    "observation": {
+      "r1": 57.3315544128418,
+      "r5": 76.14517974853516,
+      "r10": 82.68904876708984,
+      "mAP": 43.82261276245117,
+      "mINP": 23.662437438964844
+    },
+    "identity": {
+      "r1": 53.88996505737305,
+      "r5": 72.78841400146484,
+      "r10": 80.15632629394531,
+      "mAP": 42.23161697387695,
+      "mINP": 23.38970375061035
+    },
+    "final": {
+      "r1": 57.913230895996094,
+      "r5": 76.47842407226562,
+      "r10": 82.93746948242188,
+      "mAP": 44.40875244140625,
+      "mINP": 24.32276725769043
+    }
+  },
+  "telemetry": {
+    "identity_group_nce_epoch1_iter100": 2.5847,
+    "identity_group_nce_epoch60_iter600": 0.6348,
+    "identity_gate_final": 0.1119,
+    "support_valid_ratio_final": 0.9864,
+    "support_count_mean_final": 2.7002,
+    "variance_low_ratio_final": 0.0,
+    "variance_high_ratio_final": 0.0
+  },
+  "validation": {
+    "exit_code": 0,
+    "validation_blocks": 60,
+    "local_tests_passed": 17,
+    "server_tests_passed": 17,
+    "anchor_audit_passed": true,
+    "identity_audit_passed": true,
+    "error_markers_found": 0,
+    "best_checkpoint_bytes": 1101869629,
+    "checkpoint_in_repository": false,
+    "compatibility_change_only": true,
+    "algorithm_logic_changed": false,
+    "tag_relation_violations": 0,
+    "rotation_eligible_samples": 18046,
+    "rotation_never_changes_samples": 0
+  },
+  "archived_file_sha256": {
+    "train_log_full.txt": "7C5EB5D9482A28DE2976ADC1AAB4BDC14468C436B8D09388D872DFC6E6D2912C",
+    "run_stdout_full.txt": "C83C8F0C99995E7F86EE106C8986E2DA91F4A185671871D8BA7973609176A63B",
+    "configs.yaml": "869427D73365405973D62F3946772B378575DF932C63DF6A3E7DC29DCAC370EF",
+    "identity_components.json": "E89A964DBB9C8F3CD2139C971D3A815C626CB0D1CC56F13F8CC1AFFBC89F9005",
+    "component_eval.log": "7AD43BA444FF2DD292E57708CD45E76AEC9625000583AB27D764943B32E3F9F4",
+    "run_manifest.json": "7A40082F2234A5BDC1C96AF581681D1BE58C03136ABFDDD92623CC5B84F56B36",
+    "command.sh": "7D4665FA22D18A2C7F04FD9500476952074CF71710B85F4CF11C72E5DC065766",
+    "tag_relation_audit.json": "676E86A8D9BEB79176B383F6A7FA7E2DDA3D18F92B97F64B6E8DE23B67CF9476",
+    "support_rotation_60e_audit.json": "69F5A30AC3D545A964639AA423066FBE113072DBB0B6113493387549C64204BC",
+    "model_build_audit.json": "685CF3591BB6616F4C14337A28E86D6280C92F8977E8C41D522368F580E02FF7",
+    "exit_code.txt": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA",
+    "started_at.txt": "F2AD7185473E32C00A53D2425CA3054EAC0B3FCA4ECC782115C9ACD9D72ADDB4",
+    "finished_at.txt": "BC2BDD30D0751D0C34382A6D716F419B9960514F0782F28C05CC6BC41B42FCD3"
+  }
+}

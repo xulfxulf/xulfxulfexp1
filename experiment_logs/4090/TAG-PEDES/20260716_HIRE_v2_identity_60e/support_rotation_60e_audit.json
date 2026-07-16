@@ -1,0 +1,10 @@
+{
+  "eligible": 18046,
+  "distinct_support_set_histogram": {
+    "2": 762,
+    "3": 508,
+    "6": 16776
+  },
+  "never_rotates_count": 0,
+  "examples": []
+}

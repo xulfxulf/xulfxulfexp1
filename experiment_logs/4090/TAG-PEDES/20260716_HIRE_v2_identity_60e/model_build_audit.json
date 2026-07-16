@@ -1,0 +1,70 @@
+{
+  "model_class": "HIREV2Identity",
+  "num_classes": 4840,
+  "sampler_class": "RandomSampler",
+  "batch_images_shape": [
+    64,
+    3,
+    384,
+    128
+  ],
+  "batch_caption_ids_shape": [
+    64,
+    77
+  ],
+  "batch_support_images_shape": [
+    64,
+    3,
+    3,
+    384,
+    128
+  ],
+  "batch_support_mask_shape": [
+    64,
+    3
+  ],
+  "batch_valid_group_ratio": 0.96875,
+  "optimizer_groups": {
+    "base_model.visual.conv1.weight": {
+      "lr": 1e-05,
+      "weight_decay": 4e-05
+    },
+    "image_tse.mlp.fc1.weight": {
+      "lr": 5e-05,
+      "weight_decay": 4e-05
+    },
+    "image_fusion.local_adapter.weight": {
+      "lr": 5e-05,
+      "weight_decay": 4e-05
+    },
+    "identity_mean.proj.weight": {
+      "lr": 5e-05,
+      "weight_decay": 4e-05
+    },
+    "image_uncertainty.proj.weight": {
+      "lr": 5e-05,
+      "weight_decay": 4e-05
+    },
+    "image_uncertainty.proj.bias": {
+      "lr": 0.0001,
+      "weight_decay": 0.0
+    },
+    "identity_gate.logit": {
+      "lr": 5e-05,
+      "weight_decay": 4e-05
+    }
+  },
+  "args": {
+    "dataset_name": "TAG-PEDES",
+    "pretrain_choice": "ViT-B/16",
+    "batch_size": 64,
+    "seed": 1,
+    "num_epoch": 60,
+    "sampler": "random",
+    "img_aug": false,
+    "support_size": 3,
+    "aux_weight": 0.1,
+    "lr": 1e-05,
+    "lr_factor": 5.0
+  }
+}
