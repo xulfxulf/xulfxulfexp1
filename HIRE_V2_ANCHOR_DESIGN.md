@@ -1,5 +1,7 @@
 # HIRE-v2 版本一：锚定式完整观测基线
 
+**实验版本：** `v16.1.0`
+
 **工程基线：** `xulfxulf/xulfxulfexp1@610c2a405aec4acfdb0d6364872ec4f86d17c588`  
 **代码模式：** `--hire_v2 --hire_v2_mode anchor`  
 **主干：** （OpenAI CLIP ViT-B/16）  

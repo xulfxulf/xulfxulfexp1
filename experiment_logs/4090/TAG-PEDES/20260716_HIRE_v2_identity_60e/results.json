@@ -1,5 +1,7 @@
 {
   "experiment": "hire_v2_identity_tagpedes_60e_seed1_82601f8",
+  "experiment_version": "v16.2.0",
+  "direct_baseline_version": "v16.1.0",
   "status": "completed",
   "epochs_completed": 60,
   "code_commit": "82601f865e3df205f88ec69f880284f215751fd0",

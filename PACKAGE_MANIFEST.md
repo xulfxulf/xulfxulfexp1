@@ -1,5 +1,9 @@
 # HIRE-v2 Identity Overlay Manifest
 
+**实验版本：** `v16.2.0`
+
+**直接基线版本：** `v16.1.0`
+
 ## 基线
 
 ```text

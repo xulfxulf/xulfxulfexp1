@@ -1,5 +1,6 @@
 {
   "experiment": "hire_v2_anchor_tagpedes_60e_seed1",
+  "experiment_version": "v16.1.0",
   "status": "completed",
   "epochs_completed": 60,
   "code_commit": "48e61f81649aa2f3ea515d8e967faa4960b2f478",

@@ -2,6 +2,7 @@
 
 ## Run contract
 
+- Experiment version: `v16.1.0`
 - Final code commit: `48e61f81649aa2f3ea515d8e967faa4960b2f478`
 - Raw overlay commit: `2dc6dd7e24038e217398140eda97227df4b0c04f`
 - Base commit: `610c2a405aec4acfdb0d6364872ec4f86d17c588`
