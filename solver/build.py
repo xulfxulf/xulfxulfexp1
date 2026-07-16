@@ -20,9 +20,10 @@ def build_optimizer(args, model):
         )
     elif is_hire_v2:
         print(
-            "HIRE-v2 anchor: CLIP backbone uses base learning rate; newly "
-            "initialized token-selection and residual-fusion modules use {}x.".format(
-                args.lr_factor
+            "HIRE-v2 {}: CLIP backbone uses base learning rate; newly initialized "
+            "token-selection, fusion, and hierarchy modules use {}x.".format(
+                getattr(args, "hire_v2_mode", "anchor"),
+                args.lr_factor,
             )
         )
     else:

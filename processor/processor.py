@@ -105,6 +105,19 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "observation_objective",
         "image_local_residual_norm",
         "text_local_residual_norm",
+        # HIRE-v2 identity-only objective and diagnostics.
+        "identity_group_loss",
+        "final_sdm",
+        "final_itc",
+        "final_objective",
+        "identity_group_nce",
+        "identity_gate",
+        "identity_score_delta_abs",
+        "observation_identity_cosine",
+        "identity_projection_delta_norm",
+        "support_count_mean",
+        "variance_low_ratio",
+        "variance_high_ratio",
     ]
     meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)
@@ -114,6 +127,9 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         start_time = time.time()
         for meter in meters.values():
             meter.reset()
+        train_dataset = getattr(train_loader, "dataset", None)
+        if hasattr(train_dataset, "set_epoch"):
+            train_dataset.set_epoch(epoch)
         model.train()
 
         for n_iter, batch in enumerate(train_loader):

@@ -80,21 +80,21 @@ def get_args():
     parser.add_argument("--hire_eval_query_chunk", default=128, type=int)
     parser.add_argument("--hire_eval_gallery_chunk", default=512, type=int)
 
-    ######################## HIRE-v2 anchor settings ########################
+    ######################## HIRE-v2 anchored hierarchy settings ########################
     parser.add_argument(
         "--hire_v2",
         default=False,
         action="store_true",
         help=(
-            "enable HIRE-v2 version one: CLIP global observation + RDE-style "
-            "token-selection observation + zero-initialized residual fusion"
+            "enable HIRE-v2 anchored hierarchy: version one observation anchor or "
+            "version two identity random effects"
         ),
     )
     parser.add_argument(
         "--hire_v2_mode",
         default="anchor",
-        choices=["anchor"],
-        help="delivered HIRE-v2 package currently implements only the anchor baseline",
+        choices=["anchor", "identity"],
+        help="anchor: version-one observation baseline; identity: identity random effects only",
     )
     parser.add_argument(
         "--hire_v2_select_ratio",
@@ -107,6 +107,19 @@ def get_args():
         default=1024,
         type=int,
         help="RDE token-selection embedding dimension",
+    )
+
+    parser.add_argument(
+        "--hire_v2_support_size",
+        default=3,
+        type=int,
+        help="same-PID different-image supports used only in HIRE-v2 identity mode",
+    )
+    parser.add_argument(
+        "--hire_v2_aux_weight",
+        default=0.1,
+        type=float,
+        help="fixed identity-group auxiliary weight; final retrieval remains the main objective",
     )
 
     ######################## loss settings ########################
@@ -177,14 +190,20 @@ def get_args():
     if args.hire_v2:
         if args.pretrain_choice != "ViT-B/16":
             raise ValueError("HIRE-v2 anchor is defined for CLIP ViT-B/16")
-        if args.hire_v2_mode != "anchor":
-            raise ValueError("This package implements only --hire_v2_mode anchor")
+        if args.hire_v2_mode not in {"anchor", "identity"}:
+            raise ValueError("unsupported --hire_v2_mode: {}".format(args.hire_v2_mode))
         if not 0.0 < args.hire_v2_select_ratio <= 1.0:
             raise ValueError("--hire_v2_select_ratio must be in (0, 1]")
         if args.hire_v2_tse_dim < 1:
             raise ValueError("--hire_v2_tse_dim must be positive")
+        if args.hire_v2_mode == "identity" and args.hire_v2_support_size < 2:
+            raise ValueError("HIRE-v2 identity requires --hire_v2_support_size >= 2")
+        if args.hire_v2_aux_weight < 0.0:
+            raise ValueError("--hire_v2_aux_weight must be non-negative")
         args.MLM = False
         args.sampler = "random"
-        args.loss_names = "hire_v2_anchor"
+        args.loss_names = (
+            "hire_v2_anchor" if args.hire_v2_mode == "anchor" else "hire_v2_identity"
+        )
 
     return args

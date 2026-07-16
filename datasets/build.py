@@ -11,6 +11,7 @@ from datasets.sampler_ddp import RandomIdentitySampler_DDP
 from utils.comm import get_world_size
 
 from .bases import ImageDataset, TextDataset, ImageTextDataset, ImageTextMLMDataset
+from .hire_v2_identity_dataset import HIREV2IdentityDataset
 from .cuhkpedes import CUHKPEDES
 from .icfgpedes import ICFGPEDES
 from .rstpreid import RSTPReid
@@ -155,20 +156,33 @@ def build_dataloader(args, tranforms=None):
                 hard_negative_csv = ""
                 hard_negative_size = 0
 
-            train_set = ImageTextDataset(
-                dataset.train,
-                train_transforms,
-                text_length=args.text_length,
-                support_size=support_size,
-                support_image_views=getattr(dataset, "train_image_views", None),
-                support_consistency_csv=support_consistency_csv,
-                support_selection_policy=support_selection_policy,
-                support_reliability_rule=support_reliability_rule,
-                support_relation_csv=support_relation_csv,
-                hard_negative_csv=hard_negative_csv,
-                hard_negative_size=hard_negative_size,
-                support_image_only=support_image_only,
-            )
+            if (
+                getattr(args, "hire_v2", False)
+                and getattr(args, "hire_v2_mode", "anchor") == "identity"
+            ):
+                train_set = HIREV2IdentityDataset(
+                    dataset.train,
+                    train_transforms,
+                    text_length=args.text_length,
+                    support_size=int(args.hire_v2_support_size),
+                    support_image_views=getattr(dataset, "train_image_views", None),
+                    seed=int(args.seed),
+                )
+            else:
+                train_set = ImageTextDataset(
+                    dataset.train,
+                    train_transforms,
+                    text_length=args.text_length,
+                    support_size=support_size,
+                    support_image_views=getattr(dataset, "train_image_views", None),
+                    support_consistency_csv=support_consistency_csv,
+                    support_selection_policy=support_selection_policy,
+                    support_reliability_rule=support_reliability_rule,
+                    support_relation_csv=support_relation_csv,
+                    hard_negative_csv=hard_negative_csv,
+                    hard_negative_size=hard_negative_size,
+                    support_image_only=support_image_only,
+                )
 
         if args.sampler == "identity":
             if args.distributed:

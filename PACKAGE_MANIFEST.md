@@ -1,14 +1,15 @@
-# HIRE-v2 Anchor Overlay Manifest
+# HIRE-v2 Identity Overlay Manifest
 
 ## 基线
 
 ```text
-xulfxulf/xulfxulfexp1
-main
-610c2a405aec4acfdb0d6364872ec4f86d17c588
+repository: xulfxulf/xulfxulfexp1
+branch: main
+source main commit: 09def7e11fe3a2f47b39929013aaad4038b98ac9
+version-one model commit: 48e61f81649aa2f3ea515d8e967faa4960b2f478
 ```
 
-## 新增
+## 保留并随包提供的版本一文件
 
 ```text
 HIRE_V2_ANCHOR_DESIGN.md
@@ -23,10 +24,27 @@ tools/hire_v2/eval_anchor_components.py
 tests/test_hire_v2_anchor_components.py
 ```
 
-## 修改
+## 版本二新增
+
+```text
+HIRE_V2_IDENTITY_DESIGN.md
+HIRE_V2_IDENTITY_README.md
+HIRE_V2_IDENTITY_CONSISTENCY_AUDIT.md
+model/hire_v2_identity_components.py
+model/hire_v2_identity_model.py
+datasets/hire_v2_identity_dataset.py
+run_hire_v2_identity_4090_tag.sh
+run_hire_v2_identity_smoke.sh
+tools/hire_v2/audit_identity.py
+tools/hire_v2/eval_identity_components.py
+tests/test_hire_v2_identity_components.py
+```
+
+## 版本二修改
 
 ```text
 model/__init__.py
+datasets/build.py
 utils/options.py
 solver/build.py
 processor/processor.py
@@ -35,9 +53,12 @@ processor/processor.py
 ## 明确未包含
 
 ```text
-数据集
-模型权重
-训练日志
-检查点
-旧实验结果
+数据集；
+模型权重；
+训练日志；
+检查点；
+测试集诊断标签；
+MLLM 输出；
+相似身份负包；
+本地 Python 环境。
 ```

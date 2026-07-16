@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Offline component evaluation for a trained HIRE-v2 anchor checkpoint."""
+"""Offline component evaluation for HIRE-v2 identity checkpoints."""
 
 from __future__ import annotations
 
@@ -7,11 +7,16 @@ import argparse
 import json
 import os
 import os.path as op
+import sys
 from typing import Dict
 
 import torch
 import torch.nn.functional as F
 from prettytable import PrettyTable
+
+PROJECT_ROOT = op.abspath(op.join(op.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from datasets import build_dataloader
 from model import build_model
@@ -22,7 +27,7 @@ from utils.metrics import rank
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Evaluate HIRE-v2 anchor components")
+    parser = argparse.ArgumentParser(description="Evaluate HIRE-v2 identity components")
     parser.add_argument("--config-file", required=True)
     parser.add_argument("--checkpoint", default="")
     parser.add_argument("--output-json", default="")
@@ -38,8 +43,9 @@ def unwrap(model):
 def collect_representations(model, image_loader, text_loader):
     actual = unwrap(model)
     device = next(actual.parameters()).device
-    text_parts: Dict[str, list] = {"global": [], "local": [], "observation": []}
-    image_parts: Dict[str, list] = {"global": [], "local": [], "observation": []}
+    keys = ("global", "local", "observation", "identity", "final")
+    text_parts: Dict[str, list] = {key: [] for key in keys}
+    image_parts: Dict[str, list] = {key: [] for key in keys}
     query_pids, gallery_pids = [], []
 
     model.eval()
@@ -48,7 +54,7 @@ def collect_representations(model, image_loader, text_loader):
         with torch.no_grad():
             encoded = actual.encode_text_retrieval(token_ids)
         query_pids.append(pid.view(-1).cpu())
-        for key in text_parts:
+        for key in keys:
             text_parts[key].append(F.normalize(encoded[key].float(), dim=-1).cpu())
 
     for pid, images in image_loader:
@@ -56,7 +62,7 @@ def collect_representations(model, image_loader, text_loader):
         with torch.no_grad():
             encoded = actual.encode_image_retrieval(images)
         gallery_pids.append(pid.view(-1).cpu())
-        for key in image_parts:
+        for key in keys:
             image_parts[key].append(F.normalize(encoded[key].float(), dim=-1).cpu())
 
     text_repr = {key: torch.cat(values, dim=0) for key, values in text_parts.items()}
@@ -82,13 +88,17 @@ def main():
     cli = parse_args()
     args = load_train_configs(cli.config_file)
     args.training = False
-    logger = setup_logger("HIRE-v2-anchor-eval", save_dir=op.dirname(cli.config_file), if_train=False)
+    logger = setup_logger(
+        "HIRE-v2-identity-eval",
+        save_dir=op.dirname(cli.config_file),
+        if_train=False,
+    )
 
     image_loader, text_loader, num_classes = build_dataloader(args)
     model = build_model(args, num_classes=num_classes)
     actual = unwrap(model)
-    if not getattr(actual, "is_hire_v2_anchor_model", False):
-        raise RuntimeError("the config does not build a HIRE-v2 anchor model")
+    if not getattr(actual, "is_hire_v2_identity_model", False):
+        raise RuntimeError("the config does not build a HIRE-v2 identity model")
 
     checkpoint = cli.checkpoint or op.join(args.output_dir, "best.pth")
     if not op.isfile(checkpoint):
@@ -101,7 +111,7 @@ def main():
     )
     rows = []
     results = {}
-    for key in ("global", "local", "observation"):
+    for key in ("global", "local", "observation", "identity", "final"):
         similarity = chunked_similarity(
             text_repr[key],
             image_repr[key],
@@ -124,7 +134,14 @@ def main():
             "mINP": float(mean_inp),
         }
         results[key] = result
-        rows.append([key, result["R1"], result["R5"], result["R10"], result["mAP"], result["mINP"]])
+        rows.append([
+            key,
+            result["R1"],
+            result["R5"],
+            result["R10"],
+            result["mAP"],
+            result["mINP"],
+        ])
         del similarity
         torch.cuda.empty_cache()
 
@@ -135,12 +152,15 @@ def main():
         table.custom_format[field] = lambda _field, value: "{:.3f}".format(value)
     logger.info("\n" + str(table))
 
-    output_json = cli.output_json or op.join(op.dirname(cli.config_file), "hire_v2_anchor_components.json")
+    output_json = cli.output_json or op.join(
+        op.dirname(cli.config_file), "hire_v2_identity_components.json"
+    )
     with open(output_json, "w", encoding="utf-8") as handle:
         json.dump(
             {
                 "config_file": os.path.abspath(cli.config_file),
                 "checkpoint": os.path.abspath(checkpoint),
+                "identity_gate": float(actual.identity_gate().detach().cpu()),
                 "results": results,
             },
             handle,
