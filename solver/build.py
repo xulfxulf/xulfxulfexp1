@@ -7,6 +7,7 @@ def build_optimizer(args, model):
     params = []
     is_light = bool(getattr(args, "irra_light", False))
     is_hire = bool(getattr(args, "hire", False))
+    is_hire_v2 = bool(getattr(args, "hire_v2", False))
 
     if is_light:
         print("IRRA-light: projection heads use base learning rate; no 5x lr factor.")
@@ -17,14 +18,21 @@ def build_optimizer(args, model):
                 args.lr_factor
             )
         )
+    elif is_hire_v2:
+        print(
+            "HIRE-v2 anchor: CLIP backbone uses base learning rate; newly "
+            "initialized token-selection and residual-fusion modules use {}x.".format(
+                args.lr_factor
+            )
+        )
     else:
         print("Using {} times learning rate for random init module".format(args.lr_factor))
 
     for key, value in model.named_parameters():
         if not value.requires_grad:
             continue
-        random_hire_module = is_hire and not key.startswith("base_model.")
-        base_lr = args.lr * (args.lr_factor if random_hire_module else 1.0)
+        random_hierarchical_module = (is_hire or is_hire_v2) and not key.startswith("base_model.")
+        base_lr = args.lr * (args.lr_factor if random_hierarchical_module else 1.0)
         lr = base_lr
         weight_decay = args.weight_decay
 
@@ -33,13 +41,13 @@ def build_optimizer(args, model):
         ):
             lr = args.lr
             weight_decay = args.weight_decay
-        elif (not is_hire) and "cross" in key:
+        elif (not is_hire) and (not is_hire_v2) and "cross" in key:
             lr = args.lr * args.lr_factor
 
         if "bias" in key:
             lr = base_lr * args.bias_lr_factor
             weight_decay = args.weight_decay_bias
-        if (not is_light) and (not is_hire) and (
+        if (not is_light) and (not is_hire) and (not is_hire_v2) and (
             "classifier" in key or "mlm_head" in key
         ):
             lr = args.lr * args.lr_factor

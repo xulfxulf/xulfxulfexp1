@@ -1,30 +1,43 @@
-# HIRE 工程包清单
+# HIRE-v2 Anchor Overlay Manifest
 
-- 基础仓库提交：`90228fe720a82e36b04c4ac62e8d3247016c48d8`
-- 交付形式：覆盖式工程包，解压到仓库根目录
-- 已完成检查：
-  - Python 语法编译通过；
-  - `tests/test_hire_components.py` 共 9 项通过；
-  - `tools/hire/audit_hire.py` 通过；
-  - 轻量伪主干前向已完成；
-  - 未在本环境运行真实 CLIP 权重、TAG-PEDES 数据和 GPU 一轮烟测。
+## 基线
 
-## 覆盖文件
+```text
+xulfxulf/xulfxulfexp1
+main
+610c2a405aec4acfdb0d6364872ec4f86d17c588
+```
+
+## 新增
+
+```text
+HIRE_V2_ANCHOR_DESIGN.md
+HIRE_V2_ANCHOR_README.md
+HIRE_V2_ANCHOR_CONSISTENCY_AUDIT.md
+model/hire_v2_anchor_components.py
+model/hire_v2_anchor_model.py
+run_hire_v2_anchor_4090_tag.sh
+run_hire_v2_anchor_smoke.sh
+tools/hire_v2/audit_anchor.py
+tools/hire_v2/eval_anchor_components.py
+tests/test_hire_v2_anchor_components.py
+```
+
+## 修改
 
 ```text
 model/__init__.py
-model/hire_components.py
-model/hire_model.py
-datasets/build.py
 utils/options.py
-utils/metrics.py
 solver/build.py
 processor/processor.py
-run_hire_4090_tag.sh
-run_hire_smoke.sh
-tools/hire/audit_hire.py
-tests/test_hire_components.py
-HIRE_MAIN_DESIGN.md
-HIRE_README.md
-SOURCE_COMMIT.txt
+```
+
+## 明确未包含
+
+```text
+数据集
+模型权重
+训练日志
+检查点
+旧实验结果
 ```

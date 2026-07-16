@@ -70,9 +70,6 @@ def get_args():
         type=int,
         help="same-PID, different-image observations used to infer each dynamic identity posterior",
     )
-    # The following defaults are inherited from the public RDE recipe or are
-    # architectural dimensions.  They are exposed for reproducibility, not for
-    # a grid search in the main experiment.
     parser.add_argument("--hire_select_ratio", default=0.3, type=float)
     parser.add_argument("--hire_tau", default=0.015, type=float)
     parser.add_argument("--hire_margin", default=0.1, type=float)
@@ -82,6 +79,35 @@ def get_args():
     parser.add_argument("--hire_state_dim", default=512, type=int)
     parser.add_argument("--hire_eval_query_chunk", default=128, type=int)
     parser.add_argument("--hire_eval_gallery_chunk", default=512, type=int)
+
+    ######################## HIRE-v2 anchor settings ########################
+    parser.add_argument(
+        "--hire_v2",
+        default=False,
+        action="store_true",
+        help=(
+            "enable HIRE-v2 version one: CLIP global observation + RDE-style "
+            "token-selection observation + zero-initialized residual fusion"
+        ),
+    )
+    parser.add_argument(
+        "--hire_v2_mode",
+        default="anchor",
+        choices=["anchor"],
+        help="delivered HIRE-v2 package currently implements only the anchor baseline",
+    )
+    parser.add_argument(
+        "--hire_v2_select_ratio",
+        default=0.3,
+        type=float,
+        help="RDE token-selection ratio; inherited from the public RDE recipe",
+    )
+    parser.add_argument(
+        "--hire_v2_tse_dim",
+        default=1024,
+        type=int,
+        help="RDE token-selection embedding dimension",
+    )
 
     ######################## loss settings ########################
     parser.add_argument("--loss_names", default="sdm+id+mlm")
@@ -124,17 +150,18 @@ def get_args():
         help="[CUHK-PEDES, ICFG-PEDES, RSTPReid, TAG-PEDES]",
     )
     parser.add_argument("--sampler", default="random", help="choose sampler from [identity, random]")
-    parser.add_argument("--num_instance", type=int, default=4)
+    parser.add_argument("--num_instance", default=4, type=int)
     parser.add_argument("--root_dir", default="./data")
-    parser.add_argument("--batch_size", type=int, default=128)
-    parser.add_argument("--test_batch_size", type=int, default=512)
-    parser.add_argument("--num_workers", type=int, default=8)
+    parser.add_argument("--batch_size", default=128, type=int)
+    parser.add_argument("--test_batch_size", default=512, type=int)
+    parser.add_argument("--num_workers", default=8, type=int)
     parser.add_argument("--test", dest="training", default=True, action="store_false")
 
     args = parser.parse_args()
 
-    if args.irra_light and args.hire:
-        raise ValueError("--irra_light and --hire are mutually exclusive")
+    enabled_modes = int(bool(args.irra_light)) + int(bool(args.hire)) + int(bool(args.hire_v2))
+    if enabled_modes > 1:
+        raise ValueError("--irra_light, --hire, and --hire_v2 are mutually exclusive")
     if args.irra_light:
         args.MLM = False
         args.sampler = "random"
@@ -147,5 +174,17 @@ def get_args():
         args.MLM = False
         args.sampler = "random"
         args.loss_names = "hire"
+    if args.hire_v2:
+        if args.pretrain_choice != "ViT-B/16":
+            raise ValueError("HIRE-v2 anchor is defined for CLIP ViT-B/16")
+        if args.hire_v2_mode != "anchor":
+            raise ValueError("This package implements only --hire_v2_mode anchor")
+        if not 0.0 < args.hire_v2_select_ratio <= 1.0:
+            raise ValueError("--hire_v2_select_ratio must be in (0, 1]")
+        if args.hire_v2_tse_dim < 1:
+            raise ValueError("--hire_v2_tse_dim must be positive")
+        args.MLM = False
+        args.sampler = "random"
+        args.loss_names = "hire_v2_anchor"
 
     return args

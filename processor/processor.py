@@ -93,6 +93,18 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "mean_group_heterogeneity",
         "identity_scale",
         "state_scale",
+        # HIRE-v2 anchor diagnostics.  These names intentionally avoid the
+        # substring 'loss'; only sdm_loss and itc_loss enter total_loss.
+        "global_sdm",
+        "global_itc",
+        "local_sdm",
+        "local_itc",
+        "observation_sdm",
+        "observation_itc",
+        "anchor_objective",
+        "observation_objective",
+        "image_local_residual_norm",
+        "text_local_residual_norm",
     ]
     meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)
@@ -106,9 +118,11 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
 
         for n_iter, batch in enumerate(train_loader):
             batch = {key: value.to(device) for key, value in batch.items()}
-            if (getattr(args, "irra_light", False) or getattr(args, "hire", False)) and (
-                n_iter == 0 or (n_iter + 1) % args.light_stat_period == 0
-            ):
+            if (
+                getattr(args, "irra_light", False)
+                or getattr(args, "hire", False)
+                or getattr(args, "hire_v2", False)
+            ) and (n_iter == 0 or (n_iter + 1) % args.light_stat_period == 0):
                 logger.info(
                     "BatchIdentityStats Epoch[{}] Iteration[{}/{}], {}".format(
                         epoch,
@@ -124,7 +138,11 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
                 raise RuntimeError("model forward returned no loss entries")
             total_loss = sum(loss_values)
             if not torch.isfinite(total_loss):
-                raise RuntimeError("non-finite total loss at epoch {}, iteration {}".format(epoch, n_iter + 1))
+                raise RuntimeError(
+                    "non-finite total loss at epoch {}, iteration {}".format(
+                        epoch, n_iter + 1
+                    )
+                )
 
             batch_size = batch["images"].shape[0]
             meters["loss"].update(to_scalar(total_loss), batch_size)
@@ -140,7 +158,9 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
             synchronize()
 
             if (n_iter + 1) % log_period == 0:
-                info = "Epoch[{}] Iteration[{}/{}]".format(epoch, n_iter + 1, len(train_loader))
+                info = "Epoch[{}] Iteration[{}/{}]".format(
+                    epoch, n_iter + 1, len(train_loader)
+                )
                 for key, meter in meters.items():
                     if meter.count > 0:
                         info += ", {}: {:.4f}".format(key, meter.avg)
