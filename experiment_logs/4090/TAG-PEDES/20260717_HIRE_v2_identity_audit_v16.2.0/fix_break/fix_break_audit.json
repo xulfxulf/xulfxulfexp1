@@ -1,0 +1,165 @@
+{
+  "identity_gate": 0.11186094582080841,
+  "component_metrics": {
+    "observation": {
+      "R1": 57.33155598642753,
+      "R5": 76.14517692680562,
+      "R10": 82.6890450799806,
+      "mAP": 43.82264196901603,
+      "mINP": 23.662437239261834
+    },
+    "identity": {
+      "R1": 53.8899660688318,
+      "R5": 72.78841492971401,
+      "R10": 80.15632573921474,
+      "mAP": 42.231812109602814,
+      "mINP": 23.38971851436016
+    },
+    "final": {
+      "R1": 57.91323315559864,
+      "R5": 76.47842947164324,
+      "R10": 82.93746970431411,
+      "mAP": 44.40877130178358,
+      "mINP": 24.322749089975122
+    },
+    "v16.1_observation": {
+      "R1": 57.74963645176927,
+      "R5": 76.26030053320407,
+      "R10": 82.38002908385846,
+      "mAP": 44.2374517197639,
+      "mINP": 24.117300305849593
+    }
+  },
+  "comparisons": {
+    "v16.2_observation_vs_v16.2_final": {
+      "comparison": "v16.2_observation_vs_v16.2_final",
+      "query_count": 16504,
+      "fix_count": 185,
+      "break_count": 89,
+      "net_top1": 96,
+      "fix_ratio": 0.0112094037809016,
+      "break_ratio": 0.005392632089190499,
+      "stable_correct_count": 9373,
+      "stable_wrong_count": 6857,
+      "rank_improved_count": 2604,
+      "rank_worsened_count": 1249,
+      "rank_same_count": 12651,
+      "mean_rank_improvement": 1.0653175115585327,
+      "median_rank_improvement": 0.0,
+      "mean_ap_delta": 0.005861289799213409,
+      "mean_inp_delta": 0.006603118497878313,
+      "mean_top10_overlap": 0.9452314376831055,
+      "by_query_view": {
+        "0": {
+          "stable_correct": 4805,
+          "stable_wrong": 4041,
+          "fix": 102,
+          "break": 48
+        },
+        "1": {
+          "stable_wrong": 2816,
+          "stable_correct": 4568,
+          "break": 41,
+          "fix": 83
+        }
+      },
+      "by_query_source": {
+        "G2APS": {
+          "stable_correct": 2967,
+          "stable_wrong": 3191,
+          "fix": 68,
+          "break": 32
+        },
+        "AG-ReID.v2": {
+          "stable_correct": 2973,
+          "stable_wrong": 1800,
+          "break": 16,
+          "fix": 53
+        },
+        "PRAI-1581": {
+          "stable_wrong": 1207,
+          "stable_correct": 768,
+          "break": 19,
+          "fix": 34
+        },
+        "uavhuman": {
+          "stable_correct": 1250,
+          "stable_wrong": 268,
+          "fix": 11,
+          "break": 5
+        },
+        "Market": {
+          "stable_wrong": 391,
+          "stable_correct": 1415,
+          "break": 17,
+          "fix": 19
+        }
+      }
+    },
+    "v16.1_observation_vs_v16.2_final": {
+      "comparison": "v16.1_observation_vs_v16.2_final",
+      "query_count": 16504,
+      "fix_count": 892,
+      "break_count": 865,
+      "net_top1": 27,
+      "fix_ratio": 0.05404750363548231,
+      "break_ratio": 0.05241153659718856,
+      "stable_correct_count": 8666,
+      "stable_wrong_count": 6081,
+      "rank_improved_count": 3572,
+      "rank_worsened_count": 3377,
+      "rank_same_count": 9555,
+      "mean_rank_improvement": 0.33543384075164795,
+      "median_rank_improvement": 0.0,
+      "mean_ap_delta": 0.0017131950007751584,
+      "mean_inp_delta": 0.0020544882863759995,
+      "mean_top10_overlap": 0.7201951146125793,
+      "by_query_view": {
+        "0": {
+          "fix": 486,
+          "stable_wrong": 3619,
+          "stable_correct": 4421,
+          "break": 470
+        },
+        "1": {
+          "stable_wrong": 2462,
+          "fix": 406,
+          "stable_correct": 4245,
+          "break": 395
+        }
+      },
+      "by_query_source": {
+        "G2APS": {
+          "fix": 369,
+          "stable_wrong": 2885,
+          "stable_correct": 2666,
+          "break": 338
+        },
+        "AG-ReID.v2": {
+          "stable_correct": 2790,
+          "stable_wrong": 1581,
+          "break": 235,
+          "fix": 236
+        },
+        "PRAI-1581": {
+          "stable_wrong": 1069,
+          "stable_correct": 654,
+          "break": 157,
+          "fix": 148
+        },
+        "uavhuman": {
+          "stable_correct": 1217,
+          "fix": 44,
+          "break": 46,
+          "stable_wrong": 227
+        },
+        "Market": {
+          "stable_wrong": 319,
+          "stable_correct": 1339,
+          "fix": 95,
+          "break": 89
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "simple": {
+    "query_count": 39368,
+    "R1": 31.52306365966797,
+    "R5": 45.321075439453125,
+    "R10": 53.8787841796875,
+    "MRR": 38.50788497924805,
+    "mean_rank": 145.5055694580078,
+    "median_rank": 8.0,
+    "mean_positive_score": 0.44106021523475647,
+    "mean_hardest_negative_score": 0.49368587136268616,
+    "mean_margin": -0.05262572318315506,
+    "positive_margin_ratio": 0.3152306377887726
+  },
+  "variance_only": {
+    "query_count": 39368,
+    "R1": 31.525606155395508,
+    "R5": 45.321075439453125,
+    "R10": 53.88386154174805,
+    "MRR": 38.51020431518555,
+    "mean_rank": 145.49905395507812,
+    "median_rank": 8.0,
+    "mean_positive_score": 0.4410620927810669,
+    "mean_hardest_negative_score": 0.49368688464164734,
+    "mean_margin": -0.052624743431806564,
+    "positive_margin_ratio": 0.3152560591697693
+  },
+  "trusted": {
+    "query_count": 39368,
+    "R1": 31.525606155395508,
+    "R5": 45.321075439453125,
+    "R10": 53.88386154174805,
+    "MRR": 38.51020812988281,
+    "mean_rank": 145.49893188476562,
+    "median_rank": 8.0,
+    "mean_positive_score": 0.4410620927810669,
+    "mean_hardest_negative_score": 0.49368688464164734,
+    "mean_margin": -0.052624743431806564,
+    "positive_margin_ratio": 0.3152560591697693
+  }
+}

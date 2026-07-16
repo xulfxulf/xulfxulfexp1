@@ -1,0 +1,20 @@
+{
+  "trusted_intersection": {
+    "support_epoch": 54,
+    "trusted_simple_cosine_median": 1.0,
+    "precision_dim_cv_median": 0.00012890325160697103,
+    "trusted_minus_simple_group_R1": 0.0025424957275390625,
+    "effectively_simple_mean": true
+  },
+  "identity_residual": {
+    "internal_net_top1": 96,
+    "internal_fix_count": 185,
+    "internal_break_count": 89,
+    "net_positive": true
+  },
+  "anchor_protection": {
+    "v16.1_to_v16.2_final_net_top1": 27,
+    "internal_identity_residual_net_top1": 96,
+    "anchor_degradation_suspected": true
+  }
+}

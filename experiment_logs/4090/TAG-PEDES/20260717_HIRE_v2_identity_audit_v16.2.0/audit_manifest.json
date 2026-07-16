@@ -1,0 +1,23 @@
+{
+  "script": "/root/autodl-tmp/HIRE_v2_identity_audit_code_82601f8_20260717_run1/tools/hire_v2/audit_v162_identity.py",
+  "config_file": "/root/autodl-tmp/HIRE_v2_identity_logs/82601f8/TAG-PEDES/20260716_201333_hire_v2_identity_tagpedes_60e_seed1_82601f8/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_identity_logs/82601f8/TAG-PEDES/20260716_201333_hire_v2_identity_tagpedes_60e_seed1_82601f8/best.pth",
+  "config_sha256": "869427d73365405973d62f3946772b378575df932c63df6a3e7dc29dcac370ef",
+  "checkpoint_sha256": "a2ee834dbe2cf05943d791f48a922aa11042a3a9b566603f36398678dbcd35be",
+  "anchor_config_file": "/root/autodl-tmp/HIRE_v2_anchor_logs/48e61f8_full60/TAG-PEDES/20260716_104228_hire_v2_anchor_tagpedes_60e_seed1_48e61f8/configs.yaml",
+  "anchor_checkpoint": "/root/autodl-tmp/HIRE_v2_anchor_logs/48e61f8_full60/TAG-PEDES/20260716_104228_hire_v2_anchor_tagpedes_60e_seed1_48e61f8/best.pth",
+  "device": "cuda",
+  "support_epochs": [
+    0,
+    15,
+    30,
+    45,
+    54,
+    59
+  ],
+  "retrieval_epochs": [
+    54
+  ],
+  "max_train_queries": 0,
+  "training_or_backward_used": false
+}

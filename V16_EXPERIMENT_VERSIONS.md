@@ -8,3 +8,7 @@ This file is the canonical version mapping for the completed HIRE-v2 TAG-PEDES e
 | `v16.2.0` | HIRE-v2 identity experiment | `--hire_v2 --hire_v2_mode identity` | `experiment_logs/4090/TAG-PEDES/20260716_HIRE_v2_identity_60e` | `82601f865e3df205f88ec69f880284f215751fd0` |
 
 `v16.2.0` uses `v16.1.0` as its direct experimental baseline. Existing historical directory names, experiment names, logs, configurations, commands, and commit hashes remain unchanged for reproducibility.
+
+## Audit evidence
+
+The completed no-training identity-mechanism audit for `v16.2.0` is archived at `experiment_logs/4090/TAG-PEDES/20260717_HIRE_v2_identity_audit_v16.2.0`. It compares the trusted intersection with simple and variance-only support aggregation, and compares `v16.2.0` final ranking against both its own observation score and the `v16.1.0` observation baseline.

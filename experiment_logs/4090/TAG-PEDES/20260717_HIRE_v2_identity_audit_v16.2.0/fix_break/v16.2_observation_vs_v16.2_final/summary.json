@@ -1,0 +1,65 @@
+{
+  "comparison": "v16.2_observation_vs_v16.2_final",
+  "query_count": 16504,
+  "fix_count": 185,
+  "break_count": 89,
+  "net_top1": 96,
+  "fix_ratio": 0.0112094037809016,
+  "break_ratio": 0.005392632089190499,
+  "stable_correct_count": 9373,
+  "stable_wrong_count": 6857,
+  "rank_improved_count": 2604,
+  "rank_worsened_count": 1249,
+  "rank_same_count": 12651,
+  "mean_rank_improvement": 1.0653175115585327,
+  "median_rank_improvement": 0.0,
+  "mean_ap_delta": 0.005861289799213409,
+  "mean_inp_delta": 0.006603118497878313,
+  "mean_top10_overlap": 0.9452314376831055,
+  "by_query_view": {
+    "0": {
+      "stable_correct": 4805,
+      "stable_wrong": 4041,
+      "fix": 102,
+      "break": 48
+    },
+    "1": {
+      "stable_wrong": 2816,
+      "stable_correct": 4568,
+      "break": 41,
+      "fix": 83
+    }
+  },
+  "by_query_source": {
+    "G2APS": {
+      "stable_correct": 2967,
+      "stable_wrong": 3191,
+      "fix": 68,
+      "break": 32
+    },
+    "AG-ReID.v2": {
+      "stable_correct": 2973,
+      "stable_wrong": 1800,
+      "break": 16,
+      "fix": 53
+    },
+    "PRAI-1581": {
+      "stable_wrong": 1207,
+      "stable_correct": 768,
+      "break": 19,
+      "fix": 34
+    },
+    "uavhuman": {
+      "stable_correct": 1250,
+      "stable_wrong": 268,
+      "fix": 11,
+      "break": 5
+    },
+    "Market": {
+      "stable_wrong": 391,
+      "stable_correct": 1415,
+      "break": 17,
+      "fix": 19
+    }
+  }
+}

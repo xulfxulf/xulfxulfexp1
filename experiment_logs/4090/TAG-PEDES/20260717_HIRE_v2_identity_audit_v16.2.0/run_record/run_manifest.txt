@@ -1,0 +1,5 @@
+audit_version=v16.2.0
+base_version=v16.1.0
+code_root=/root/autodl-tmp/HIRE_v2_identity_audit_code_82601f8_20260717_run1
+output_dir=/root/autodl-tmp/HIRE_v2_identity_audit/v16.2.0_full_20260717_run1
+started_at=2026-07-17T02:20:51+08:00
