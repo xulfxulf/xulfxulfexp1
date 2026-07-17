@@ -86,15 +86,20 @@ def get_args():
         default=False,
         action="store_true",
         help=(
-            "enable HIRE-v2 anchored hierarchy: version one observation anchor or "
-            "version two identity random effects"
+            "enable HIRE-v2 anchored hierarchy: v16.1 observation anchor, "
+            "v16.2 identity random effects, or v16.2.1 anchor-balanced "
+            "identity consensus"
         ),
     )
     parser.add_argument(
         "--hire_v2_mode",
         default="anchor",
-        choices=["anchor", "identity"],
-        help="anchor: version-one observation baseline; identity: identity random effects only",
+        choices=["anchor", "identity", "identity_balanced"],
+        help=(
+            "anchor: v16.1.0 observation baseline; "
+            "identity: v16.2.0 probabilistic identity residual; "
+            "identity_balanced: v16.2.1 anchor-balanced identity consensus"
+        ),
     )
     parser.add_argument(
         "--hire_v2_select_ratio",
@@ -113,13 +118,19 @@ def get_args():
         "--hire_v2_support_size",
         default=3,
         type=int,
-        help="same-PID different-image supports used only in HIRE-v2 identity mode",
+        help=(
+            "same-PID different-image supports used in HIRE-v2 identity "
+            "and identity-balanced modes"
+        ),
     )
     parser.add_argument(
         "--hire_v2_aux_weight",
         default=0.1,
         type=float,
-        help="fixed identity-group auxiliary weight; final retrieval remains the main objective",
+        help=(
+            "identity-group auxiliary weight; v16.2.1 retains the v16.2.0 "
+            "value so anchor balance is the effective experimental correction"
+        ),
     )
 
     ######################## loss settings ########################
@@ -189,21 +200,30 @@ def get_args():
         args.loss_names = "hire"
     if args.hire_v2:
         if args.pretrain_choice != "ViT-B/16":
-            raise ValueError("HIRE-v2 anchor is defined for CLIP ViT-B/16")
-        if args.hire_v2_mode not in {"anchor", "identity"}:
+            raise ValueError("HIRE-v2 is defined for CLIP ViT-B/16")
+        valid_modes = {"anchor", "identity", "identity_balanced"}
+        if args.hire_v2_mode not in valid_modes:
             raise ValueError("unsupported --hire_v2_mode: {}".format(args.hire_v2_mode))
         if not 0.0 < args.hire_v2_select_ratio <= 1.0:
             raise ValueError("--hire_v2_select_ratio must be in (0, 1]")
         if args.hire_v2_tse_dim < 1:
             raise ValueError("--hire_v2_tse_dim must be positive")
-        if args.hire_v2_mode == "identity" and args.hire_v2_support_size < 2:
-            raise ValueError("HIRE-v2 identity requires --hire_v2_support_size >= 2")
+        if (
+            args.hire_v2_mode in {"identity", "identity_balanced"}
+            and args.hire_v2_support_size < 2
+        ):
+            raise ValueError(
+                "HIRE-v2 identity modes require --hire_v2_support_size >= 2"
+            )
         if args.hire_v2_aux_weight < 0.0:
             raise ValueError("--hire_v2_aux_weight must be non-negative")
         args.MLM = False
         args.sampler = "random"
-        args.loss_names = (
-            "hire_v2_anchor" if args.hire_v2_mode == "anchor" else "hire_v2_identity"
-        )
+        loss_names = {
+            "anchor": "hire_v2_anchor",
+            "identity": "hire_v2_identity",
+            "identity_balanced": "hire_v2_identity_balanced",
+        }
+        args.loss_names = loss_names[args.hire_v2_mode]
 
     return args

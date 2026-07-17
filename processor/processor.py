@@ -93,8 +93,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "mean_group_heterogeneity",
         "identity_scale",
         "state_scale",
-        # HIRE-v2 anchor diagnostics.  These names intentionally avoid the
-        # substring 'loss'; only sdm_loss and itc_loss enter total_loss.
+        # HIRE-v2 observation diagnostics.
         "global_sdm",
         "global_itc",
         "local_sdm",
@@ -105,19 +104,26 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "observation_objective",
         "image_local_residual_norm",
         "text_local_residual_norm",
-        # HIRE-v2 identity-only objective and diagnostics.
+        # HIRE-v2 identity objectives and diagnostics.
         "identity_group_loss",
         "final_sdm",
         "final_itc",
         "final_objective",
+        "balanced_main_objective",
         "identity_group_nce",
         "identity_gate",
         "identity_score_delta_abs",
+        "observation_final_score_delta_abs",
         "observation_identity_cosine",
         "identity_projection_delta_norm",
         "support_count_mean",
         "variance_low_ratio",
         "variance_high_ratio",
+        # v16.2.1 deterministic identity-consensus diagnostics.
+        "identity_group_dispersion",
+        "identity_group_support_cosine",
+        "observation_main_weight",
+        "final_main_weight",
     ]
     meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)

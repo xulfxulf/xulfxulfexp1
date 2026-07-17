@@ -156,10 +156,14 @@ def build_dataloader(args, tranforms=None):
                 hard_negative_csv = ""
                 hard_negative_size = 0
 
+            hire_v2_mode = getattr(args, "hire_v2_mode", "anchor")
             if (
                 getattr(args, "hire_v2", False)
-                and getattr(args, "hire_v2_mode", "anchor") == "identity"
+                and hire_v2_mode in {"identity", "identity_balanced"}
             ):
+                # v16.2.0 and v16.2.1 deliberately share the exact same
+                # dynamic support relation so the new experiment changes the
+                # identity objective rather than the data relation.
                 train_set = HIREV2IdentityDataset(
                     dataset.train,
                     train_transforms,
