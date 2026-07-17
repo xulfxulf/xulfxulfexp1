@@ -1,0 +1,14 @@
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+2026-07-18 00:33:37,338 HIRE-v2-identity-balanced-eval INFO: 
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 57.241 | 75.921 | 82.525 | 43.651 | 23.510 |
+|    local    | 54.466 | 74.049 | 80.659 | 41.996 | 22.633 |
+| observation | 57.495 | 76.236 | 82.713 | 44.049 | 23.995 |
+|   identity  | 52.902 | 72.825 | 79.865 | 41.869 | 23.133 |
+|    final    | 58.034 | 76.394 | 82.998 | 44.540 | 24.503 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-18 00:33:37,344 HIRE-v2-identity-balanced-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/hire_v2_identity_balanced_components.json

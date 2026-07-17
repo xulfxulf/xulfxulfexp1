@@ -1,0 +1,43 @@
+{
+  "experiment_version": "v16.2.1",
+  "config_file": "/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/best.pth",
+  "identity_gate": 0.10263723880052567,
+  "results": {
+    "global": {
+      "R1": 57.24066925048828,
+      "R5": 75.92098999023438,
+      "R10": 82.52545166015625,
+      "mAP": 43.65149688720703,
+      "mINP": 23.510190963745117
+    },
+    "local": {
+      "R1": 54.4655876159668,
+      "R5": 74.04871368408203,
+      "R10": 80.65923309326172,
+      "mAP": 41.995826721191406,
+      "mINP": 22.63296890258789
+    },
+    "observation": {
+      "R1": 57.49515151977539,
+      "R5": 76.2360610961914,
+      "R10": 82.7132797241211,
+      "mAP": 44.04927062988281,
+      "mINP": 23.99519157409668
+    },
+    "identity": {
+      "R1": 52.90232849121094,
+      "R5": 72.82476806640625,
+      "R10": 79.86548614501953,
+      "mAP": 41.869117736816406,
+      "mINP": 23.133495330810547
+    },
+    "final": {
+      "R1": 58.0344123840332,
+      "R5": 76.39360046386719,
+      "R10": 82.99806213378906,
+      "mAP": 44.540382385253906,
+      "mINP": 24.502845764160156
+    }
+  }
+}

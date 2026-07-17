@@ -1,0 +1,129 @@
+{
+  "experiment": "hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16",
+  "experiment_version": "v16.2.1",
+  "direct_baseline_version": "v16.2.0",
+  "status": "completed",
+  "epochs_completed": 60,
+  "code_commit": "9bbfc167df064ea14f1fc3e88f5ccf8edd126119",
+  "source_main_commit": "7d89aa311eda5aaef8b7f6f200e2cd47de015ad0",
+  "source_overlay_sha256": "44B7C4498F768FFA2B3D7C16EE2168FAE9374B934CEB69F22CCC8E94CD2E5520",
+  "source_design_sha256": "44D776E37D8A94DB7D26434B96A7A56E6438FE6C01A6F1F3E956F73C03CAEF15",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "dataset": "TAG-PEDES",
+  "settings": {
+    "mode": "identity_balanced",
+    "num_epoch": 60,
+    "batch_size": 64,
+    "seed": 1,
+    "sampler": "random",
+    "img_aug": false,
+    "pretrain_choice": "ViT-B/16",
+    "support_size": 3,
+    "auxiliary_weight": 0.1,
+    "observation_main_weight": 0.5,
+    "final_main_weight": 0.5,
+    "resume": false
+  },
+  "started_at_cst": "2026-07-17T15:29:42+08:00",
+  "finished_at_cst": "2026-07-17T19:31:49+08:00",
+  "training_evaluator": {
+    "best": {
+      "epoch": 54,
+      "r1_exact": 58.016239166259766,
+      "r1_logged": 58.016,
+      "r5": 76.412,
+      "r10": 83.022,
+      "mAP": 44.534,
+      "mINP": 24.495
+    },
+    "final": {
+      "epoch": 60,
+      "r1": 57.919,
+      "r5": 76.539,
+      "r10": 82.962,
+      "mAP": 44.537,
+      "mINP": 24.499
+    }
+  },
+  "best_checkpoint_component_evaluation": {
+    "identity_gate": 0.10263723880052567,
+    "global": {
+      "r1": 57.24066925048828,
+      "r5": 75.92098999023438,
+      "r10": 82.52545166015625,
+      "mAP": 43.65149688720703,
+      "mINP": 23.510190963745117
+    },
+    "local": {
+      "r1": 54.4655876159668,
+      "r5": 74.04871368408203,
+      "r10": 80.65923309326172,
+      "mAP": 41.995826721191406,
+      "mINP": 22.63296890258789
+    },
+    "observation": {
+      "r1": 57.49515151977539,
+      "r5": 76.2360610961914,
+      "r10": 82.7132797241211,
+      "mAP": 44.04927062988281,
+      "mINP": 23.99519157409668
+    },
+    "identity": {
+      "r1": 52.90232849121094,
+      "r5": 72.82476806640625,
+      "r10": 79.86548614501953,
+      "mAP": 41.869117736816406,
+      "mINP": 23.133495330810547
+    },
+    "final": {
+      "r1": 58.0344123840332,
+      "r5": 76.39360046386719,
+      "r10": 82.99806213378906,
+      "mAP": 44.540382385253906,
+      "mINP": 24.502845764160156
+    }
+  },
+  "telemetry": {
+    "identity_group_nce_epoch60_iter600": 0.575,
+    "identity_gate_final": 0.10263723880052567,
+    "support_valid_ratio_final": 0.9864,
+    "support_count_mean_final": 2.7002,
+    "identity_score_delta_abs_final": 0.0955,
+    "observation_final_score_delta_abs_final": 0.0098,
+    "observation_identity_cosine_final": 0.8733,
+    "identity_projection_delta_norm_final": 3.8197,
+    "identity_group_dispersion_final": 0.0004,
+    "identity_group_support_cosine_final": 0.8858
+  },
+  "validation": {
+    "training_exit_code": 0,
+    "component_evaluation_exit_code": 0,
+    "validation_blocks": 60,
+    "local_tests_passed": 26,
+    "server_tests_passed": 26,
+    "static_audit_passed": true,
+    "static_audit_checks_passed": 7,
+    "error_markers_found": 0,
+    "best_checkpoint_bytes": 1098715657,
+    "checkpoint_in_repository": false,
+    "environment_compatibility_only": true,
+    "algorithm_logic_changed_after_overlay": false
+  },
+  "archived_file_sha256": {
+    "train_log.txt": "F1B69C227543086740CEC4F6D6DB7FFA6E93E15E918F4367C1995C059E964A4B",
+    "configs.yaml": "19B559C420BAAD0B80213429C7CC26B0142FDDFA26B64CCF010E2FCC72224958",
+    "identity_balanced_components.json": "C8D234D0D67D05ABC9061419D71F81AAB72F2B7D45C5AB46283758A47A751648",
+    "component_eval.log": "324599545FBD80EAB26E9424D41C473584A7BF601B94F93629E73CF5A4122631",
+    "static_audit.json": "8DD202531045AD0DFB00ED47226F202DB6A747A2FAE78A74027BFE1C35477C53",
+    "run_record/nohup.log": "82DDF9E60D67BD23ECF15D63602A158E42499D10F62E9A4D85071D85E8B0B340",
+    "run_record/run_manifest.txt": "DA0AD413CD8466F348D7A39DAB56132B62DC68C158166D785790F117378F9559",
+    "component_eval_run_record/command.sh": "992968F5C679969D6AA18A42AF7C3BAD69AA71904D2BE270558FC6284FC3FA32",
+    "component_eval_run_record/run_manifest.txt": "4BE428CDC4D6880BB7AA072108FB40CED041788A8BAE99C9153B2216B35E2BE7"
+  }
+}

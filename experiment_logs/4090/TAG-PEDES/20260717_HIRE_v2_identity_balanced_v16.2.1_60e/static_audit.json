@@ -1,0 +1,13 @@
+{
+  "experiment_version": "v16.2.1",
+  "status": "passed",
+  "checks": {
+    "masked_group_consensus": "passed",
+    "objective_formula": "passed",
+    "identity_initialization": "passed",
+    "initial_score_equivalence": "passed",
+    "initial_gradient_equivalence": "passed",
+    "inference_equivalence": "passed",
+    "source_invariants": "passed"
+  }
+}

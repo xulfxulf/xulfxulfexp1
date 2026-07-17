@@ -1,0 +1,8 @@
+experiment_version=v16.2.1
+code_commit=9bbfc167df064ea14f1fc3e88f5ccf8edd126119
+run_type=formal_60epoch
+initialization=OpenAI_CLIP_ViT-B-16
+resume=false
+code_root=/root/autodl-tmp/HIRE_v2_identity_balanced_9bbfc16_run1
+output_root=/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16
+started_at=2026-07-17T15:29:42+08:00

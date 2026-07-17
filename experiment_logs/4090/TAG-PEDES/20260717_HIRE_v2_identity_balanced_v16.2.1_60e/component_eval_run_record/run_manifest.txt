@@ -1,0 +1,12 @@
+experiment_version=v16.2.1
+task=best-checkpoint-five-component-evaluation
+code_root=/root/autodl-tmp/HIRE_v2_identity_balanced_9bbfc16_run1
+config=/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/configs.yaml
+checkpoint=/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/best.pth
+output_json=/root/autodl-tmp/HIRE_v2_identity_balanced_logs/9bbfc16/TAG-PEDES/20260717_152943_hire_v2_identity_balanced_tagpedes_60e_seed1_9bbfc16/hire_v2_identity_balanced_components.json
+started_at=2026-07-18T00:31:24+08:00
+git_commit=
+torch=1.9.0+cu111
+cuda=11.1
+cuda_available=True
+gpu=NVIDIA GeForce RTX 4090
