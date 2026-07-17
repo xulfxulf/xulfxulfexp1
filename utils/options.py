@@ -87,18 +87,24 @@ def get_args():
         action="store_true",
         help=(
             "enable HIRE-v2 anchored hierarchy: v16.1 observation anchor, "
-            "v16.2 identity random effects, or v16.2.1 anchor-balanced "
-            "identity consensus"
+            "v16.2 identity random effects, v16.2.1 anchor-balanced identity "
+            "consensus, or v16.3 pair-conditioned state residual"
         ),
     )
     parser.add_argument(
         "--hire_v2_mode",
         default="anchor",
-        choices=["anchor", "identity", "identity_balanced"],
+        choices=[
+            "anchor",
+            "identity",
+            "identity_balanced",
+            "identity_state",
+        ],
         help=(
             "anchor: v16.1.0 observation baseline; "
             "identity: v16.2.0 probabilistic identity residual; "
-            "identity_balanced: v16.2.1 anchor-balanced identity consensus"
+            "identity_balanced: v16.2.1 anchor-balanced identity consensus; "
+            "identity_state: v16.3.0 identity base plus state late interaction"
         ),
     )
     parser.add_argument(
@@ -113,14 +119,13 @@ def get_args():
         type=int,
         help="RDE token-selection embedding dimension",
     )
-
     parser.add_argument(
         "--hire_v2_support_size",
         default=3,
         type=int,
         help=(
-            "same-PID different-image supports used in HIRE-v2 identity "
-            "and identity-balanced modes"
+            "same-PID different-image supports used by HIRE-v2 identity modes; "
+            "the state branch never reads these supports"
         ),
     )
     parser.add_argument(
@@ -128,9 +133,27 @@ def get_args():
         default=0.1,
         type=float,
         help=(
-            "identity-group auxiliary weight; v16.2.1 retains the v16.2.0 "
-            "value so anchor balance is the effective experimental correction"
+            "shared auxiliary coefficient: identity-group NCE and, in v16.3.0, "
+            "state-pair NCE each use this fixed coefficient"
         ),
+    )
+    parser.add_argument(
+        "--hire_v2_state_topk",
+        default=50,
+        type=int,
+        help="number of identity-balanced candidates reranked by v16.3.0 state evidence",
+    )
+    parser.add_argument(
+        "--hire_v2_state_image_tokens",
+        default=16,
+        type=int,
+        help="number of CLS-attended image patches used by v16.3.0 state matching",
+    )
+    parser.add_argument(
+        "--hire_v2_state_text_tokens",
+        default=8,
+        type=int,
+        help="number of EOT-attended valid words used by v16.3.0 state matching",
     )
 
     ######################## loss settings ########################
@@ -201,7 +224,12 @@ def get_args():
     if args.hire_v2:
         if args.pretrain_choice != "ViT-B/16":
             raise ValueError("HIRE-v2 is defined for CLIP ViT-B/16")
-        valid_modes = {"anchor", "identity", "identity_balanced"}
+        valid_modes = {
+            "anchor",
+            "identity",
+            "identity_balanced",
+            "identity_state",
+        }
         if args.hire_v2_mode not in valid_modes:
             raise ValueError("unsupported --hire_v2_mode: {}".format(args.hire_v2_mode))
         if not 0.0 < args.hire_v2_select_ratio <= 1.0:
@@ -209,7 +237,11 @@ def get_args():
         if args.hire_v2_tse_dim < 1:
             raise ValueError("--hire_v2_tse_dim must be positive")
         if (
-            args.hire_v2_mode in {"identity", "identity_balanced"}
+            args.hire_v2_mode in {
+                "identity",
+                "identity_balanced",
+                "identity_state",
+            }
             and args.hire_v2_support_size < 2
         ):
             raise ValueError(
@@ -217,12 +249,19 @@ def get_args():
             )
         if args.hire_v2_aux_weight < 0.0:
             raise ValueError("--hire_v2_aux_weight must be non-negative")
+        if args.hire_v2_state_topk < 1:
+            raise ValueError("--hire_v2_state_topk must be positive")
+        if args.hire_v2_state_image_tokens < 2:
+            raise ValueError("--hire_v2_state_image_tokens must be at least two")
+        if args.hire_v2_state_text_tokens < 1:
+            raise ValueError("--hire_v2_state_text_tokens must be positive")
         args.MLM = False
         args.sampler = "random"
         loss_names = {
             "anchor": "hire_v2_anchor",
             "identity": "hire_v2_identity",
             "identity_balanced": "hire_v2_identity_balanced",
+            "identity_state": "hire_v2_identity_state",
         }
         args.loss_names = loss_names[args.hire_v2_mode]
 

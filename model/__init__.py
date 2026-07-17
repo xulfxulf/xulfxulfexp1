@@ -7,6 +7,9 @@ from .hire_v2_identity_model import build_hire_v2_identity_model
 from .hire_v2_identity_balanced_model import (
     build_hire_v2_identity_balanced_model,
 )
+from .hire_v2_identity_state_model import (
+    build_hire_v2_identity_state_model,
+)
 
 
 def build_model(args, num_classes=11003):
@@ -24,6 +27,10 @@ def build_model(args, num_classes=11003):
             return build_hire_v2_identity_balanced_model(
                 args, num_classes=num_classes
             )
+        if mode == "identity_state":
+            return build_hire_v2_identity_state_model(
+                args, num_classes=num_classes
+            )
         raise ValueError(
             "unsupported HIRE-v2 mode: {}".format(mode)
         )
@@ -38,6 +45,10 @@ def build_model(args, num_classes=11003):
         )
     if loss_names == "hire_v2_identity_balanced":
         return build_hire_v2_identity_balanced_model(
+            args, num_classes=num_classes
+        )
+    if loss_names == "hire_v2_identity_state":
+        return build_hire_v2_identity_state_model(
             args, num_classes=num_classes
         )
     if getattr(args, "hire", False) or loss_names == "hire":

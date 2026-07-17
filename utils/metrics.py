@@ -98,6 +98,72 @@ class Evaluator(object):
         image_repr = {key: torch.cat(values, dim=0) for key, values in image_parts.items()}
         return text_repr, image_repr, torch.cat(qids), torch.cat(gids)
 
+    def _compute_hire_v2_state_representations(self, model):
+        """Collect support-free identity and state representations for v16.3.0."""
+        actual = self._unwrap(model)
+        model.eval()
+        device = next(actual.parameters()).device
+        qids, gids = [], []
+        text_parts = {
+            "identity_final": [],
+            "state_tokens": [],
+            "state_mask": [],
+            "state_weights": [],
+        }
+        image_parts = {
+            "identity_final": [],
+            "state_tokens": [],
+            "state_mask": [],
+        }
+
+        for pid, caption in self.txt_loader:
+            caption = caption.to(device)
+            with torch.no_grad():
+                encoded = actual.encode_text_state_retrieval(caption)
+            qids.append(pid.view(-1).cpu())
+            text_parts["identity_final"].append(
+                encoded["identity_final"].float().cpu()
+            )
+            text_parts["state_tokens"].append(
+                encoded["state_tokens"].float().cpu()
+            )
+            text_parts["state_mask"].append(
+                encoded["state_mask"].bool().cpu()
+            )
+            text_parts["state_weights"].append(
+                encoded["state_weights"].float().cpu()
+            )
+
+        for pid, image in self.img_loader:
+            image = image.to(device)
+            with torch.no_grad():
+                encoded = actual.encode_image_state_retrieval(image)
+            gids.append(pid.view(-1).cpu())
+            image_parts["identity_final"].append(
+                encoded["identity_final"].float().cpu()
+            )
+            image_parts["state_tokens"].append(
+                encoded["state_tokens"].float().cpu()
+            )
+            image_parts["state_mask"].append(
+                encoded["state_mask"].bool().cpu()
+            )
+
+        text_repr = {
+            key: torch.cat(values, dim=0)
+            for key, values in text_parts.items()
+        }
+        image_repr = {
+            key: torch.cat(values, dim=0)
+            for key, values in image_parts.items()
+        }
+        return (
+            text_repr,
+            image_repr,
+            torch.cat(qids),
+            torch.cat(gids),
+        )
+
     @staticmethod
     def _format_table(rows):
         table = PrettyTable(["task", "R1", "R5", "R10", "mAP", "mINP"])
@@ -109,6 +175,56 @@ class Evaluator(object):
 
     def eval(self, model, i2t_metric=False):
         actual = self._unwrap(model)
+
+        if getattr(actual, "is_hire_v2_state_model", False):
+            (
+                text_repr,
+                image_repr,
+                qids,
+                gids,
+            ) = self._compute_hire_v2_state_representations(model)
+            matrices = actual.compute_state_reranked_similarity(
+                text_repr=text_repr,
+                image_repr=image_repr,
+                query_chunk=int(
+                    getattr(actual.args, "hire_eval_query_chunk", 128)
+                ),
+            )
+            rows = []
+            results = {}
+            for name in ("identity_final", "state_final"):
+                cmc, mean_ap, mean_inp, order = rank(
+                    matrices[name],
+                    qids,
+                    gids,
+                    max_rank=10,
+                    get_mAP=True,
+                )
+                del order
+                result = {
+                    "R1": float(cmc[0]),
+                    "R5": float(cmc[4]),
+                    "R10": float(cmc[9]),
+                    "mAP": float(mean_ap),
+                    "mINP": float(mean_inp),
+                }
+                results[name] = result
+                rows.append([
+                    "v16.3-" + name,
+                    result["R1"],
+                    result["R5"],
+                    result["R10"],
+                    result["mAP"],
+                    result["mINP"],
+                ])
+            self.logger.info("\n" + str(self._format_table(rows)))
+            self.logger.info(
+                "v16.3 state gate: %.6f, rerank top-K: %d",
+                float(actual.state_gate().detach().cpu()),
+                int(actual.state_topk),
+            )
+            return results["state_final"]["R1"]
+
         if getattr(actual, "is_hire_model", False):
             text_repr, image_repr, qids, gids = self._compute_hire_representations(model)
             similarity = actual.compute_similarity_matrix(

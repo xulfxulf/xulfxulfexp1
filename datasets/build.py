@@ -159,11 +159,14 @@ def build_dataloader(args, tranforms=None):
             hire_v2_mode = getattr(args, "hire_v2_mode", "anchor")
             if (
                 getattr(args, "hire_v2", False)
-                and hire_v2_mode in {"identity", "identity_balanced"}
+                and hire_v2_mode in {
+                    "identity",
+                    "identity_balanced",
+                    "identity_state",
+                }
             ):
-                # v16.2.0 and v16.2.1 deliberately share the exact same
-                # dynamic support relation so the new experiment changes the
-                # identity objective rather than the data relation.
+                # v16.3.0 reuses the exact v16.2.1 identity-support relation.
+                # State matching reads only the random main image/text batch.
                 train_set = HIREV2IdentityDataset(
                     dataset.train,
                     train_transforms,
