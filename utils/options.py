@@ -99,12 +99,15 @@ def get_args():
             "identity",
             "identity_balanced",
             "identity_state",
+            "identity_token_route",
         ],
         help=(
             "anchor: v16.1.0 observation baseline; "
             "identity: v16.2.0 probabilistic identity residual; "
             "identity_balanced: v16.2.1 anchor-balanced identity consensus; "
-            "identity_state: v16.3.0 identity base plus state late interaction"
+            "identity_state: v16.3.0 identity base plus state late interaction; "
+            "identity_token_route: v16.4.0 current-pair subject plus group-conditioned "
+            "text-token identity residual"
         ),
     )
     parser.add_argument(
@@ -125,7 +128,8 @@ def get_args():
         type=int,
         help=(
             "same-PID different-image supports used by HIRE-v2 identity modes; "
-            "the state branch never reads these supports"
+            "the v16.3 state branch never reads these supports; "
+            "v16.4 uses them only to build detached token-propagability targets"
         ),
     )
     parser.add_argument(
@@ -134,7 +138,7 @@ def get_args():
         type=float,
         help=(
             "shared auxiliary coefficient: identity-group NCE and, in v16.3.0, "
-            "state-pair NCE each use this fixed coefficient"
+            "state-pair NCE or v16.4 token-route BCE each reuse this fixed coefficient"
         ),
     )
     parser.add_argument(
@@ -229,6 +233,7 @@ def get_args():
             "identity",
             "identity_balanced",
             "identity_state",
+            "identity_token_route",
         }
         if args.hire_v2_mode not in valid_modes:
             raise ValueError("unsupported --hire_v2_mode: {}".format(args.hire_v2_mode))
@@ -241,6 +246,7 @@ def get_args():
                 "identity",
                 "identity_balanced",
                 "identity_state",
+                "identity_token_route",
             }
             and args.hire_v2_support_size < 2
         ):
@@ -262,6 +268,7 @@ def get_args():
             "identity": "hire_v2_identity",
             "identity_balanced": "hire_v2_identity_balanced",
             "identity_state": "hire_v2_identity_state",
+            "identity_token_route": "hire_v2_identity_token_route",
         }
         args.loss_names = loss_names[args.hire_v2_mode]
 

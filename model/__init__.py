@@ -10,6 +10,9 @@ from .hire_v2_identity_balanced_model import (
 from .hire_v2_identity_state_model import (
     build_hire_v2_identity_state_model,
 )
+from .hire_v2_identity_token_route_model import (
+    build_hire_v2_identity_token_route_model,
+)
 
 
 def build_model(args, num_classes=11003):
@@ -31,6 +34,10 @@ def build_model(args, num_classes=11003):
             return build_hire_v2_identity_state_model(
                 args, num_classes=num_classes
             )
+        if mode == "identity_token_route":
+            return build_hire_v2_identity_token_route_model(
+                args, num_classes=num_classes
+            )
         raise ValueError(
             "unsupported HIRE-v2 mode: {}".format(mode)
         )
@@ -49,6 +56,10 @@ def build_model(args, num_classes=11003):
         )
     if loss_names == "hire_v2_identity_state":
         return build_hire_v2_identity_state_model(
+            args, num_classes=num_classes
+        )
+    if loss_names == "hire_v2_identity_token_route":
+        return build_hire_v2_identity_token_route_model(
             args, num_classes=num_classes
         )
     if getattr(args, "hire", False) or loss_names == "hire":

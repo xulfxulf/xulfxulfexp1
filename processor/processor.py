@@ -146,6 +146,24 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "state_positive_negative_margin",
         "state_text_token_count",
         "state_image_token_count",
+        # v16.4.0 group-conditioned token-route diagnostics.
+        "token_route_loss",
+        "token_route_bce",
+        "token_route_valid_ratio",
+        "token_route_probability_mean",
+        "token_route_probability_std",
+        "token_route_target_mean",
+        "token_route_target_std",
+        "token_route_high_ratio",
+        "token_route_entropy",
+        "token_route_target_correlation",
+        "token_route_stable_margin",
+        "token_route_pair_margin",
+        "token_route_support_std",
+        "token_route_hard_negative_valid_ratio",
+        "token_route_selected_count",
+        "identity_token_residual_norm",
+        "identity_token_weight_sum",
     ]
     meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)

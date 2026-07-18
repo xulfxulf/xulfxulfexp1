@@ -163,10 +163,12 @@ def build_dataloader(args, tranforms=None):
                     "identity",
                     "identity_balanced",
                     "identity_state",
+                    "identity_token_route",
                 }
             ):
-                # v16.3.0 reuses the exact v16.2.1 identity-support relation.
-                # State matching reads only the random main image/text batch.
+                # v16.3.0 and v16.4.0 reuse the exact v16.2.1 identity-support
+                # relation.  v16.4 uses supports only for detached token-route
+                # targets and identity group consensus.
                 train_set = HIREV2IdentityDataset(
                     dataset.train,
                     train_transforms,
