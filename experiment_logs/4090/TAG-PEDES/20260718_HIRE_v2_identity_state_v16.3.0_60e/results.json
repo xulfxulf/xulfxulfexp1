@@ -1,0 +1,152 @@
+{
+  "experiment": "hire_v2_identity_state_tagpedes_60e_seed1_6fd7272",
+  "experiment_version": "v16.3.0",
+  "direct_baseline_version": "v16.2.1",
+  "status": "training_completed_component_evaluation_pending_gpu",
+  "epochs_completed": 60,
+  "code_commit": "6fd7272282a7143cff9801318983b21640d1e068",
+  "source_main_commit": "44749815b3b6769071b424472938913f3feb3ec3",
+  "source_overlay_sha256": "8CDDC2325EDCDAAD311C71F8BFB11D1B5C8F566FE40743EA67A58A15549F343D",
+  "source_design_sha256": "2EA6DD67287083FE22FA235D77BA7347BDDAAEAB8B5971C50BAA12E4DB90CD19",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "dataset": "TAG-PEDES",
+  "settings": {
+    "mode": "identity_state",
+    "num_epoch": 60,
+    "batch_size": 64,
+    "seed": 1,
+    "sampler": "random",
+    "img_aug": false,
+    "pretrain_choice": "ViT-B/16",
+    "support_size": 3,
+    "auxiliary_weight": 0.1,
+    "identity_main_weight": 0.25,
+    "state_final_main_weight": 0.25,
+    "state_text_tokens": 8,
+    "state_image_tokens": 16,
+    "state_topk": 50,
+    "resume": false
+  },
+  "started_at_cst": "2026-07-18T02:42:12+08:00",
+  "finished_at_cst": "2026-07-18T07:31:45+08:00",
+  "runtime_seconds": 17373,
+  "training_evaluator": {
+    "selected_best": {
+      "task": "state_final",
+      "epoch": 47,
+      "r1_exact": 57.61027526855469,
+      "r1_logged": 57.610,
+      "r5": 75.866,
+      "r10": 82.332,
+      "mAP": 43.893,
+      "mINP": 23.788
+    },
+    "identity_final_at_selected_epoch": {
+      "epoch": 47,
+      "r1": 57.877,
+      "r5": 76.260,
+      "r10": 82.598,
+      "mAP": 44.222,
+      "mINP": 24.157
+    },
+    "highest_identity_final_r1": {
+      "epoch": 52,
+      "r1": 58.077,
+      "r5": 76.581,
+      "r10": 82.689,
+      "mAP": 44.437,
+      "mINP": 24.342
+    },
+    "final": {
+      "epoch": 60,
+      "identity_final": {
+        "r1": 58.065,
+        "r5": 76.351,
+        "r10": 82.768,
+        "mAP": 44.468,
+        "mINP": 24.376
+      },
+      "state_final": {
+        "r1": 57.568,
+        "r5": 76.188,
+        "r10": 82.471,
+        "mAP": 44.095,
+        "mINP": 24.021
+      }
+    }
+  },
+  "telemetry": {
+    "state_pair_nce_epoch1_iter600": 3.8692,
+    "state_pair_nce_epoch47_iter600": 0.0930,
+    "state_pair_nce_epoch60_iter600": 0.0885,
+    "state_positive_negative_margin_epoch1_iter600": 0.0096,
+    "state_positive_negative_margin_epoch47_iter600": 0.2968,
+    "state_positive_negative_margin_epoch60_iter600": 0.2998,
+    "state_positive_coverage_final": 1.0,
+    "state_gate_epoch1_iter600": -0.0015,
+    "state_gate_epoch47_iter600": -0.2231,
+    "state_gate_final_evaluation": -0.226714,
+    "identity_gate_final": 0.1018,
+    "support_valid_ratio_final": 0.9864,
+    "support_count_mean_final": 2.7002,
+    "state_text_token_count": 8,
+    "state_image_token_count": 16
+  },
+  "design_acceptance": {
+    "minimum_conditions_passed": false,
+    "state_gate_greater_than_zero": false,
+    "positive_negative_margin_greater_than_zero": true,
+    "positive_coverage_equal_one": true,
+    "state_pair_nce_decreased": true,
+    "state_final_r1_not_below_identity_final": false,
+    "state_final_map_not_below_identity_final": false,
+    "eligible_for_additional_seeds": false,
+    "conclusion": "method_level_negative_result"
+  },
+  "best_checkpoint_component_evaluation": {
+    "status": "pending_gpu_unmounted",
+    "required_output": "hire_v2_identity_state_components.json",
+    "required_components": [
+      "global",
+      "local",
+      "observation",
+      "identity",
+      "identity_final",
+      "state_final",
+      "fix_break_net_counts"
+    ]
+  },
+  "validation": {
+    "training_exit_code": 0,
+    "validation_blocks": 60,
+    "static_audit_passed": true,
+    "static_audit_checks_passed": 8,
+    "smoke_passed": true,
+    "error_markers_found": 0,
+    "best_checkpoint_bytes": 1099504253,
+    "checkpoint_in_repository": false,
+    "algorithm_logic_changed_after_overlay": false
+  },
+  "metadata_correction": {
+    "raw_run_manifest_preserved": true,
+    "recorded_source_design_sha256": "44D776E37D8A94DB7D26434B96A7A56E6438FE6C01A6F1F3E956F73C03CAEF15",
+    "actual_source_design_sha256": "2EA6DD67287083FE22FA235D77BA7347BDDAAEAB8B5971C50BAA12E4DB90CD19",
+    "reason": "The recorded value is the v16.2.1 identity-balanced design hash; the supplied and committed v16.3.0 design files match the corrected hash."
+  },
+  "archived_file_sha256": {
+    "train_log.txt": "E635B2D77AC14322CCA545BB4FAE3A1ACC71D15C0E2EE85893768611FDDE3EEF",
+    "configs.yaml": "FBEECD9D0CB7DB74BC367AEAD810F934A53C2419283074A1F52E1321FA170DE6",
+    "audit/static_audit.json": "85513E50B0421D2463943A924489A3FA71D6F22EB6BBCC7702A0107C6B39FC5C",
+    "audit/smoke_acceptance.txt": "DA71C4BAAE6A8589FAAF735410D3D06CC4E95F32F55DD2E9B603B9CD31FED725",
+    "run_record/nohup.log": "459CFE477844081220715509C3776AC95EBB8D46F9A69E31682A408B26D8B617",
+    "run_record/run_manifest.txt": "020F2283774F9B60616A8A1CF16EACAA5E9DED2073BCF5088CB24B4C26F9B9D2",
+    "run_record/command.sh": "960BC657332306AECD2F662E9E11740528E1DDB25F0C4A54FEB1E899C4E4BA38"
+  }
+}
+

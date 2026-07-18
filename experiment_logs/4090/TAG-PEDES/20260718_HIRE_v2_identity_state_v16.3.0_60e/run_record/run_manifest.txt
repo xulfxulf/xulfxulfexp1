@@ -1,0 +1,13 @@
+experiment_version=v16.3.0
+code_commit=6fd7272282a7143cff9801318983b21640d1e068
+source_overlay_sha256=8CDDC2325EDCDAAD311C71F8BFB11D1B5C8F566FE40743EA67A58A15549F343D
+source_design_sha256=44D776E37D8A94DB7D26434B96A7A56E6438FE6C01A6F1F3E956F73C03CAEF15
+run_type=formal_60epoch
+initialization=OpenAI_CLIP_ViT-B-16
+resume=false
+code_root=/root/autodl-tmp/HIRE_v2_identity_state_v1630_overlay8cddc23_run1
+output_root=/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272
+started_at=2026-07-18T02:42:12+08:00
+torch=1.9.0+cu111
+cuda=11.1
+gpu=NVIDIA GeForce RTX 4090

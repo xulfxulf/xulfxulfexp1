@@ -1,0 +1,14 @@
+{
+  "experiment_version": "v16.3.0",
+  "status": "passed",
+  "checks": {
+    "zero_state_gate": "passed",
+    "positive_candidate_coverage": "passed",
+    "late_interaction": "passed",
+    "initial_score_equivalence": "passed",
+    "objective_formula": "passed",
+    "initial_gradient_equivalence": "passed",
+    "shared_state_projection": "passed",
+    "source_invariants": "passed"
+  }
+}

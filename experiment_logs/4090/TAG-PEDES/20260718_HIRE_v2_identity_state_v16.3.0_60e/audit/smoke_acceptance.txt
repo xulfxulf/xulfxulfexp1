@@ -1,0 +1,4 @@
+smoke_exit_code=0
+smoke_log=/root/autodl-tmp/HIRE_v2_identity_state_smoke/overlay8cddc23/TAG-PEDES/20260718_023452_hire_v2_identity_state_smoke1e_seed1_overlay8cddc23/train_log.txt
+smoke_checkpoint_bytes=1099504253
+smoke_acceptance=passed
