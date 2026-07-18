@@ -57,9 +57,20 @@ The state relation branch learned a separable same-image signal: its NCE decreas
 
 This is a method-level negative result, not a runtime failure. The evidence indicates that the local state branch learned trainable pair evidence, but its signed score contribution reduced the identity-based retrieval result.
 
-## Pending best-checkpoint component evaluation
+## Best-checkpoint component evaluation
 
-The required six-component and fix/break evaluation has not been fabricated or inferred from the training log. The 4090 was unmounted after training (`torch.cuda.is_available() == False`), so `tools/hire_v2/eval_identity_state_components.py` remains pending. Its future output must report `global`, `local`, `observation`, `identity`, `identity_final`, `state_final`, and state fix/break/net counts from the retained server-side best checkpoint.
+| Component | R1 | R5 | R10 | mAP | mINP |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `global` | 57.053 | 75.994 | 82.180 | 43.317 | 23.151 |
+| `local` | 54.441 | 73.934 | 81.059 | 41.766 | 22.328 |
+| `observation` | 57.501 | 75.903 | 82.362 | 43.737 | 23.629 |
+| `identity` | 53.054 | 72.558 | 79.490 | 41.767 | 23.028 |
+| `identity_final` | 57.913 | 76.248 | 82.598 | 44.224 | 24.154 |
+| `state_final` | 57.635 | 75.848 | 82.350 | 43.898 | 23.792 |
+
+The state reranker fixed 182 identity-final Top-1 errors and broke 228 identity-final Top-1 successes, for a net Top-1 change of -46. It retained 9,330 correct and 6,764 wrong Top-1 cases. This directly confirms that the current signed state contribution causes more ranking damage than repair.
+
+The training evaluator and the separately executed chunked component evaluator are retained as distinct raw outputs. Their selected-checkpoint `state_final` R1 values are 57.610 and 57.635, respectively; the small difference comes from their separate similarity-ranking paths.
 
 ## Validation
 
@@ -69,6 +80,7 @@ The required six-component and fix/break evaluation has not been fabricated or i
 - The server-side `best.pth` was present and 1,099,504,253 bytes.
 - No traceback, runtime error, CUDA OOM, CUDA error, NaN, or Inf marker was found.
 - The one-epoch smoke test and all eight static mathematical checks passed before the formal run.
+- The best-checkpoint six-component and fix/break evaluation ran from 2026-07-18 13:52:42 to 13:55:03 CST and exited with code 0.
 - No model function, formula, loss, data flow, training flow, or evaluation calculation was changed after the supplied overlay was frozen.
 - The checkpoint is intentionally not stored in GitHub.
 
@@ -87,4 +99,7 @@ The raw `run_record/run_manifest.txt` is retained unchanged. It mistakenly recor
 | `run_record/nohup.log` | `459CFE477844081220715509C3776AC95EBB8D46F9A69E31682A408B26D8B617` |
 | `run_record/run_manifest.txt` | `020F2283774F9B60616A8A1CF16EACAA5E9DED2073BCF5088CB24B4C26F9B9D2` |
 | `run_record/command.sh` | `960BC657332306AECD2F662E9E11740528E1DDB25F0C4A54FEB1E899C4E4BA38` |
-
+| `hire_v2_identity_state_components.json` | `176B36E053ED8374890B684DA15B5D904166D591770EC125B9B954D99AB242BF` |
+| `component_eval.log` | `73B1E4677BE638E31E4916419E1CA326F2D5563F7DD1367DC8F4AA6B3B5960C5` |
+| `component_eval_run_record/command.sh` | `FF6C85E9AEE9B55102623FB2071E224ED8D138208C038D14E51E500C2F86C121` |
+| `component_eval_run_record/run_manifest.txt` | `3E8BFB3F33A2B5A82EB1E1EF6874C7D72715A0E6294098C0E571FDFF9924A101` |

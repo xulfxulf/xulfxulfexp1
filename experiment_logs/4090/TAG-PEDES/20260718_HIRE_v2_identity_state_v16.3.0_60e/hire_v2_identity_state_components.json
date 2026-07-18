@@ -1,0 +1,62 @@
+{
+  "experiment_version": "v16.3.0",
+  "config_file": "/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272/TAG-PEDES/20260718_024215_hire_v2_identity_state_tagpedes_60e_seed1_6fd7272/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272/TAG-PEDES/20260718_024215_hire_v2_identity_state_tagpedes_60e_seed1_6fd7272/best.pth",
+  "identity_gate": 0.10184627771377563,
+  "state_gate": -0.22348462045192719,
+  "state_topk": 50,
+  "state_image_tokens": 16,
+  "state_text_tokens": 8,
+  "state_dim": 128,
+  "results": {
+    "global": {
+      "R1": 57.052833557128906,
+      "R5": 75.99369812011719,
+      "R10": 82.1800765991211,
+      "mAP": 43.31724166870117,
+      "mINP": 23.15078353881836
+    },
+    "local": {
+      "R1": 54.44134521484375,
+      "R5": 73.93358612060547,
+      "R10": 81.05914306640625,
+      "mAP": 41.76643371582031,
+      "mINP": 22.328218460083008
+    },
+    "observation": {
+      "R1": 57.50121307373047,
+      "R5": 75.90281677246094,
+      "R10": 82.36185455322266,
+      "mAP": 43.73724365234375,
+      "mINP": 23.628942489624023
+    },
+    "identity": {
+      "R1": 53.053802490234375,
+      "R5": 72.55817413330078,
+      "R10": 79.48982238769531,
+      "mAP": 41.76676559448242,
+      "mINP": 23.028276443481445
+    },
+    "identity_final": {
+      "R1": 57.913230895996094,
+      "R5": 76.24818420410156,
+      "R10": 82.59815216064453,
+      "mAP": 44.22406768798828,
+      "mINP": 24.154401779174805
+    },
+    "state_final": {
+      "R1": 57.63451385498047,
+      "R5": 75.84828186035156,
+      "R10": 82.34973907470703,
+      "mAP": 43.898494720458984,
+      "mINP": 23.792343139648438
+    }
+  },
+  "identity_final_to_state_final": {
+    "fix_count": 182,
+    "break_count": 228,
+    "net_top1": -46,
+    "stable_correct_count": 9330,
+    "stable_wrong_count": 6764
+  }
+}

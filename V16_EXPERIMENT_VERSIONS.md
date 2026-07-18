@@ -13,7 +13,7 @@ This file is the canonical version mapping for the completed HIRE-v2 TAG-PEDES e
 
 `v16.2.1` uses `v16.2.0` as its direct experimental baseline. Its 60-epoch training log and best-checkpoint five-component evaluation are archived together; the checkpoint remains server-side and is not committed.
 
-`v16.3.0` uses `v16.2.1` as its identity foundation and direct baseline. Its 60-epoch training completed successfully. The required six-component fix/break evaluation is explicitly marked pending because the 4090 was unmounted after training; the checkpoint remains server-side and is not committed.
+`v16.3.0` uses `v16.2.1` as its identity foundation and direct baseline. Its 60-epoch training and best-checkpoint six-component fix/break evaluation completed successfully; the checkpoint remains server-side and is not committed.
 
 ## Audit evidence
 

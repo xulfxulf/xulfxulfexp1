@@ -2,7 +2,7 @@
   "experiment": "hire_v2_identity_state_tagpedes_60e_seed1_6fd7272",
   "experiment_version": "v16.3.0",
   "direct_baseline_version": "v16.2.1",
-  "status": "training_completed_component_evaluation_pending_gpu",
+  "status": "completed",
   "epochs_completed": 60,
   "code_commit": "6fd7272282a7143cff9801318983b21640d1e068",
   "source_main_commit": "44749815b3b6769071b424472938913f3feb3ec3",
@@ -106,24 +106,74 @@
     "state_pair_nce_decreased": true,
     "state_final_r1_not_below_identity_final": false,
     "state_final_map_not_below_identity_final": false,
+    "fix_count_greater_than_break_count": false,
+    "state_final_exceeds_v16_2_1": false,
     "eligible_for_additional_seeds": false,
     "conclusion": "method_level_negative_result"
   },
   "best_checkpoint_component_evaluation": {
-    "status": "pending_gpu_unmounted",
-    "required_output": "hire_v2_identity_state_components.json",
-    "required_components": [
-      "global",
-      "local",
-      "observation",
-      "identity",
-      "identity_final",
-      "state_final",
-      "fix_break_net_counts"
-    ]
+    "status": "completed",
+    "started_at_cst": "2026-07-18T13:52:42+08:00",
+    "finished_at_cst": "2026-07-18T13:55:03+08:00",
+    "identity_gate": 0.10184627771377563,
+    "state_gate": -0.22348462045192719,
+    "state_topk": 50,
+    "state_image_tokens": 16,
+    "state_text_tokens": 8,
+    "state_dim": 128,
+    "global": {
+      "r1": 57.052833557128906,
+      "r5": 75.99369812011719,
+      "r10": 82.1800765991211,
+      "mAP": 43.31724166870117,
+      "mINP": 23.15078353881836
+    },
+    "local": {
+      "r1": 54.44134521484375,
+      "r5": 73.93358612060547,
+      "r10": 81.05914306640625,
+      "mAP": 41.76643371582031,
+      "mINP": 22.328218460083008
+    },
+    "observation": {
+      "r1": 57.50121307373047,
+      "r5": 75.90281677246094,
+      "r10": 82.36185455322266,
+      "mAP": 43.73724365234375,
+      "mINP": 23.628942489624023
+    },
+    "identity": {
+      "r1": 53.053802490234375,
+      "r5": 72.55817413330078,
+      "r10": 79.48982238769531,
+      "mAP": 41.76676559448242,
+      "mINP": 23.028276443481445
+    },
+    "identity_final": {
+      "r1": 57.913230895996094,
+      "r5": 76.24818420410156,
+      "r10": 82.59815216064453,
+      "mAP": 44.22406768798828,
+      "mINP": 24.154401779174805
+    },
+    "state_final": {
+      "r1": 57.63451385498047,
+      "r5": 75.84828186035156,
+      "r10": 82.34973907470703,
+      "mAP": 43.898494720458984,
+      "mINP": 23.792343139648438
+    },
+    "identity_final_to_state_final": {
+      "fix_count": 182,
+      "break_count": 228,
+      "net_top1": -46,
+      "stable_correct_count": 9330,
+      "stable_wrong_count": 6764
+    }
   },
   "validation": {
     "training_exit_code": 0,
+    "component_evaluation_exit_code": 0,
     "validation_blocks": 60,
     "static_audit_passed": true,
     "static_audit_checks_passed": 8,
@@ -146,7 +196,10 @@
     "audit/smoke_acceptance.txt": "DA71C4BAAE6A8589FAAF735410D3D06CC4E95F32F55DD2E9B603B9CD31FED725",
     "run_record/nohup.log": "459CFE477844081220715509C3776AC95EBB8D46F9A69E31682A408B26D8B617",
     "run_record/run_manifest.txt": "020F2283774F9B60616A8A1CF16EACAA5E9DED2073BCF5088CB24B4C26F9B9D2",
-    "run_record/command.sh": "960BC657332306AECD2F662E9E11740528E1DDB25F0C4A54FEB1E899C4E4BA38"
+    "run_record/command.sh": "960BC657332306AECD2F662E9E11740528E1DDB25F0C4A54FEB1E899C4E4BA38",
+    "hire_v2_identity_state_components.json": "176B36E053ED8374890B684DA15B5D904166D591770EC125B9B954D99AB242BF",
+    "component_eval.log": "73B1E4677BE638E31E4916419E1CA326F2D5563F7DD1367DC8F4AA6B3B5960C5",
+    "component_eval_run_record/command.sh": "FF6C85E9AEE9B55102623FB2071E224ED8D138208C038D14E51E500C2F86C121",
+    "component_eval_run_record/run_manifest.txt": "3E8BFB3F33A2B5A82EB1E1EF6874C7D72715A0E6294098C0E571FDFF9924A101"
   }
 }
-

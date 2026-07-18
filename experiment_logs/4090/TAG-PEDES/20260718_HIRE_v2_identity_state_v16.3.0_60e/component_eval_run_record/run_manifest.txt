@@ -1,0 +1,12 @@
+experiment_version=v16.3.0
+task=best-checkpoint-six-component-fix-break-evaluation
+code_commit=6fd7272282a7143cff9801318983b21640d1e068
+code_root=/root/autodl-tmp/HIRE_v2_identity_state_v1630_overlay8cddc23_run1
+config=/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272/TAG-PEDES/20260718_024215_hire_v2_identity_state_tagpedes_60e_seed1_6fd7272/configs.yaml
+checkpoint=/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272/TAG-PEDES/20260718_024215_hire_v2_identity_state_tagpedes_60e_seed1_6fd7272/best.pth
+output_json=/root/autodl-tmp/HIRE_v2_identity_state_logs/6fd7272/TAG-PEDES/20260718_024215_hire_v2_identity_state_tagpedes_60e_seed1_6fd7272/hire_v2_identity_state_components.json
+started_at=2026-07-18T13:52:42+08:00
+torch=1.9.0+cu111
+cuda=11.1
+cuda_available=True
+gpu=NVIDIA GeForce RTX 4090
