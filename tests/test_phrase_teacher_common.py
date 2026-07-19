@@ -102,3 +102,29 @@ def test_comparative_teacher_requires_hard_negative_label():
     }
     parsed = validate_teacher_payload(case, payload)
     assert parsed["p1"]["hard_negative"] == "contradiction"
+
+
+def test_teacher_prompt_uses_exact_support_image_ids_not_positions():
+    from tools.mllm.phrase_teacher_common import build_teacher_prompt
+
+    case = {
+        "case_id": "c3",
+        "caption": "a person in a red shirt",
+        "sibling_caption": "the person wears red",
+        "image_id": 3,
+        "anchor_image_path": "/tmp/anchor.jpg",
+        "phrases": [{"phrase_id": "p1", "text": "red shirt"}],
+        "supports": [
+            {"image_id": 6, "path": "/tmp/6.jpg"},
+            {"image_id": 5, "path": "/tmp/5.jpg"},
+            {"image_id": 8, "path": "/tmp/8.jpg"},
+        ],
+    }
+
+    prompt = build_teacher_prompt(case, "forward")
+
+    assert '"6": "support|contradiction|unknown"' in prompt
+    assert '"5": "support|contradiction|unknown"' in prompt
+    assert '"8": "support|contradiction|unknown"' in prompt
+    assert "not image_1/image_2 positions" in prompt
+    assert '"123"' not in prompt

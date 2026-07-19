@@ -139,6 +139,11 @@ Return JSON only and follow the requested schema exactly."""
 
 def build_teacher_prompt(case: Mapping, order: str) -> str:
     images = ordered_case_images(case, order)
+    support_ids = [str(int(item["image_id"])) for item in case.get("supports", [])]
+    support_schema = "{" + ", ".join(
+        '"{}": "support|contradiction|unknown"'.format(image_id)
+        for image_id in support_ids
+    ) + "}"
     image_lines = []
     for position, image in enumerate(images, start=1):
         image_lines.append(
@@ -180,7 +185,8 @@ For every phrase, output:
    the second caption explicitly agrees, contradiction only for an explicit
    incompatible statement, and unknown for omission or ambiguity.
 3. support_by_image_id: one label for every supplied support image, keyed by its
-   numeric image_id.{hard_negative}
+   numeric image_id. It must contain exactly these keys: {support_ids}. These are
+   image_id values, not image_1/image_2 positions.{hard_negative}
 
 Do not use person identity, PID, camera labels, or image order as evidence.
 Do not convert omission into contradiction.
@@ -193,7 +199,7 @@ Return exactly this JSON shape:
       "phrase_id": "...",
       "anchor": "support|contradiction|unknown",
       "sibling": "support|contradiction|unknown",
-      "support_by_image_id": {{"123": "support|contradiction|unknown"}}{negative_schema}
+      "support_by_image_id": {support_schema}{negative_schema}
     }}
   ]
 }}
@@ -203,6 +209,8 @@ Return exactly this JSON shape:
         images="\n".join(image_lines),
         phrases="\n".join(phrase_lines),
         hard_negative=hard_negative_instruction,
+        support_ids=json.dumps(support_ids),
+        support_schema=support_schema,
         case_id=case["case_id"],
         negative_schema=(
             ',\n      "hard_negative": "support|contradiction|unknown"'
