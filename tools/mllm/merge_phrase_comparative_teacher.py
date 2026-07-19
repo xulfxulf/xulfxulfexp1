@@ -5,8 +5,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os.path as op
+import sys
 from collections import Counter
 from pathlib import Path
+
+PROJECT_ROOT = op.abspath(op.join(op.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from datasets.phrase_route_io import read_jsonl, write_jsonl
 from tools.mllm.phrase_teacher_common import (

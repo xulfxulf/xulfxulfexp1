@@ -1,4 +1,8 @@
 import json
+import os
+import subprocess
+import sys
+from pathlib import Path
 
 import pytest
 
@@ -57,3 +61,26 @@ def test_failed_teacher_cases_remain_retryable(tmp_path):
 
     assert existing_case_ids(output) == {"passed"}
     assert attempt_counts(output) == {"failed": 2, "passed": 1}
+
+
+@pytest.mark.parametrize(
+    "script",
+    [
+        "audit_phrase_teacher.py",
+        "build_phrase_comparative_cases.py",
+        "merge_phrase_comparative_teacher.py",
+    ],
+)
+def test_mllm_entrypoints_import_from_outside_project(script, tmp_path):
+    project_root = Path(__file__).resolve().parents[1]
+    env = dict(os.environ)
+    env.pop("PYTHONPATH", None)
+    completed = subprocess.run(
+        [sys.executable, str(project_root / "tools" / "mllm" / script), "--help"],
+        cwd=str(tmp_path),
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
