@@ -12,6 +12,10 @@ from utils.comm import get_world_size
 
 from .bases import ImageDataset, TextDataset, ImageTextDataset, ImageTextMLMDataset
 from .hire_v2_identity_dataset import HIREV2IdentityDataset
+from .hire_v2_phrase_route_dataset import (
+    HIREV2PhraseRouteDataset,
+    PhraseTextDataset,
+)
 from .cuhkpedes import CUHKPEDES
 from .icfgpedes import ICFGPEDES
 from .rstpreid import RSTPReid
@@ -157,7 +161,26 @@ def build_dataloader(args, tranforms=None):
                 hard_negative_size = 0
 
             hire_v2_mode = getattr(args, "hire_v2_mode", "anchor")
-            if (
+            phrase_modes = {"identity_phrase_route", "identity_phrase_route_cmp"}
+            if getattr(args, "hire_v2", False) and hire_v2_mode in phrase_modes:
+                expected_version = (
+                    "v16.7.0" if hire_v2_mode == "identity_phrase_route_cmp" else "v16.6.0"
+                )
+                expected_route_kind = (
+                    "comparative" if hire_v2_mode == "identity_phrase_route_cmp" else "propagation"
+                )
+                train_set = HIREV2PhraseRouteDataset(
+                    dataset.train,
+                    train_transforms,
+                    text_length=args.text_length,
+                    support_size=int(args.hire_v2_support_size),
+                    support_image_views=getattr(dataset, "train_image_views", None),
+                    seed=int(args.seed),
+                    phrase_label_file=args.hire_v2_phrase_train_labels,
+                    expected_version=expected_version,
+                    expected_route_kind=expected_route_kind,
+                )
+            elif (
                 getattr(args, "hire_v2", False)
                 and hire_v2_mode in {
                     "identity",
@@ -166,9 +189,6 @@ def build_dataloader(args, tranforms=None):
                     "identity_token_route",
                 }
             ):
-                # v16.3.0 and v16.4.0 reuse the exact v16.2.1 identity-support
-                # relation.  v16.4 uses supports only for detached token-route
-                # targets and identity group consensus.
                 train_set = HIREV2IdentityDataset(
                     dataset.train,
                     train_transforms,
@@ -246,9 +266,28 @@ def build_dataloader(args, tranforms=None):
 
         ds = dataset.val if args.val_dataset == "val" else dataset.test
         val_img_set = ImageDataset(ds["image_pids"], ds["img_paths"], val_transforms)
-        val_txt_set = TextDataset(
-            ds["caption_pids"], ds["captions"], text_length=args.text_length
-        )
+        if (
+            getattr(args, "hire_v2", False)
+            and getattr(args, "hire_v2_mode", "")
+            in {"identity_phrase_route", "identity_phrase_route_cmp"}
+        ):
+            phrase_split = "val" if args.val_dataset == "val" else "test"
+            phrase_span_file = (
+                args.hire_v2_phrase_val_spans
+                if phrase_split == "val"
+                else args.hire_v2_phrase_test_spans
+            )
+            val_txt_set = PhraseTextDataset(
+                ds["caption_pids"],
+                ds["captions"],
+                phrase_span_file=phrase_span_file,
+                split=phrase_split,
+                text_length=args.text_length,
+            )
+        else:
+            val_txt_set = TextDataset(
+                ds["caption_pids"], ds["captions"], text_length=args.text_length
+            )
         val_img_loader = DataLoader(
             val_img_set,
             batch_size=args.batch_size,
@@ -269,9 +308,22 @@ def build_dataloader(args, tranforms=None):
         test_transforms = build_transforms(args.img_size, False, False)
     ds = dataset.test
     test_img_set = ImageDataset(ds["image_pids"], ds["img_paths"], test_transforms)
-    test_txt_set = TextDataset(
-        ds["caption_pids"], ds["captions"], text_length=args.text_length
-    )
+    if (
+        getattr(args, "hire_v2", False)
+        and getattr(args, "hire_v2_mode", "")
+        in {"identity_phrase_route", "identity_phrase_route_cmp"}
+    ):
+        test_txt_set = PhraseTextDataset(
+            ds["caption_pids"],
+            ds["captions"],
+            phrase_span_file=args.hire_v2_phrase_test_spans,
+            split="test",
+            text_length=args.text_length,
+        )
+    else:
+        test_txt_set = TextDataset(
+            ds["caption_pids"], ds["captions"], text_length=args.text_length
+        )
     test_img_loader = DataLoader(
         test_img_set,
         batch_size=args.test_batch_size,

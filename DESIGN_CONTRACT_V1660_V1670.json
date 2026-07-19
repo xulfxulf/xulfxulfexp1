@@ -1,0 +1,36 @@
+{
+  "source_commit": "0863840462dbd4dfdb9e42b2cdfb2f08010b4e6f",
+  "shared_architecture": {
+    "base": "v16.2.1",
+    "model_builder": "build_hire_v2_identity_phrase_route_model",
+    "observation_main_weight": 0.5,
+    "final_main_weight": 0.5,
+    "identity_group_auxiliary_weight": 0.1,
+    "phrase_route_auxiliary_weight": 0.1,
+    "support_size": 3,
+    "test_time_teacher": false,
+    "test_time_support": false,
+    "candidate_reranking": false,
+    "state_head": false
+  },
+  "v16.6.0": {
+    "mode": "identity_phrase_route",
+    "route_kind": "propagation",
+    "raw_target": "anchor_reliable * (n_support/K) * (1 - n_contradiction/K)",
+    "relative_target": "raw / sum(raw)",
+    "teacher_consensus": "two teachers x two support orders, exact agreement"
+  },
+  "v16.7.0": {
+    "mode": "identity_phrase_route_cmp",
+    "route_kind": "comparative",
+    "hard_negative_source": "v16.6.0 best-checkpoint top-1 different-PID image in TAG train",
+    "discrimination_factors": {
+      "support": 0.0,
+      "unknown": 0.5,
+      "contradiction": 1.0
+    },
+    "raw_target": "v16.6 propagation raw * discrimination factor",
+    "relative_target": "raw / sum(raw)",
+    "model_difference_from_v16.6": "none"
+  }
+}

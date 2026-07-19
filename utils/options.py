@@ -100,6 +100,8 @@ def get_args():
             "identity_balanced",
             "identity_state",
             "identity_token_route",
+            "identity_phrase_route",
+            "identity_phrase_route_cmp",
         ],
         help=(
             "anchor: v16.1.0 observation baseline; "
@@ -107,7 +109,9 @@ def get_args():
             "identity_balanced: v16.2.1 anchor-balanced identity consensus; "
             "identity_state: v16.3.0 identity base plus state late interaction; "
             "identity_token_route: v16.4.0 current-pair subject plus group-conditioned "
-            "text-token identity residual"
+            "text-token identity residual; identity_phrase_route: v16.6.0 multi-view "
+            "phrase propagation distillation; identity_phrase_route_cmp: v16.7.0 "
+            "hard-negative comparative phrase distillation"
         ),
     )
     parser.add_argument(
@@ -158,6 +162,21 @@ def get_args():
         default=8,
         type=int,
         help="number of EOT-attended valid words used by v16.3.0 state matching",
+    )
+    parser.add_argument(
+        "--hire_v2_phrase_train_labels",
+        default="",
+        help="v16.6/v16.7 train JSONL containing phrase spans and teacher distribution",
+    )
+    parser.add_argument(
+        "--hire_v2_phrase_val_spans",
+        default="",
+        help="deterministic phrase-span JSONL for the validation captions",
+    )
+    parser.add_argument(
+        "--hire_v2_phrase_test_spans",
+        default="",
+        help="deterministic phrase-span JSONL for the test captions",
     )
 
     ######################## loss settings ########################
@@ -234,6 +253,8 @@ def get_args():
             "identity_balanced",
             "identity_state",
             "identity_token_route",
+            "identity_phrase_route",
+            "identity_phrase_route_cmp",
         }
         if args.hire_v2_mode not in valid_modes:
             raise ValueError("unsupported --hire_v2_mode: {}".format(args.hire_v2_mode))
@@ -247,6 +268,8 @@ def get_args():
                 "identity_balanced",
                 "identity_state",
                 "identity_token_route",
+                "identity_phrase_route",
+                "identity_phrase_route_cmp",
             }
             and args.hire_v2_support_size < 2
         ):
@@ -261,6 +284,26 @@ def get_args():
             raise ValueError("--hire_v2_state_image_tokens must be at least two")
         if args.hire_v2_state_text_tokens < 1:
             raise ValueError("--hire_v2_state_text_tokens must be positive")
+        if args.hire_v2_mode in {"identity_phrase_route", "identity_phrase_route_cmp"}:
+            import os.path as _op
+            if args.training and not _op.isfile(args.hire_v2_phrase_train_labels):
+                raise ValueError(
+                    "phrase-route training requires --hire_v2_phrase_train_labels"
+                )
+            if args.training:
+                validation_spans = (
+                    args.hire_v2_phrase_val_spans
+                    if args.val_dataset == "val"
+                    else args.hire_v2_phrase_test_spans
+                )
+                if not _op.isfile(validation_spans):
+                    raise ValueError(
+                        "phrase-route validation requires a matching phrase-span JSONL"
+                    )
+            elif not _op.isfile(args.hire_v2_phrase_test_spans):
+                raise ValueError(
+                    "phrase-route testing requires --hire_v2_phrase_test_spans"
+                )
         args.MLM = False
         args.sampler = "random"
         loss_names = {
@@ -269,6 +312,8 @@ def get_args():
             "identity_balanced": "hire_v2_identity_balanced",
             "identity_state": "hire_v2_identity_state",
             "identity_token_route": "hire_v2_identity_token_route",
+            "identity_phrase_route": "hire_v2_identity_phrase_route",
+            "identity_phrase_route_cmp": "hire_v2_identity_phrase_route_cmp",
         }
         args.loss_names = loss_names[args.hire_v2_mode]
 

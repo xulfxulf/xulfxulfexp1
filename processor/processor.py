@@ -164,6 +164,19 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer, sched
         "token_route_selected_count",
         "identity_token_residual_norm",
         "identity_token_weight_sum",
+        # v16.6.0/v16.7.0 phrase-relative teacher diagnostics.
+        "phrase_route_loss",
+        "phrase_route_kl",
+        "phrase_route_supervision_ratio",
+        "phrase_route_valid_phrase_ratio",
+        "phrase_route_teacher_entropy",
+        "phrase_route_student_entropy",
+        "phrase_route_spearman",
+        "phrase_route_top1_agreement",
+        "phrase_route_probability_max",
+        "phrase_route_probability_std",
+        "phrase_count_mean",
+        "phrase_identity_residual_norm",
     ]
     meters = {name: AverageMeter() for name in meter_names}
     tb_writer = SummaryWriter(log_dir=args.output_dir)

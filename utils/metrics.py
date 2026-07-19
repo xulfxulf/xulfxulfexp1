@@ -51,10 +51,21 @@ class Evaluator(object):
         model = model.eval()
         device = next(model.parameters()).device
         qids, gids, qfeats, gfeats = [], [], [], []
-        for pid, caption in self.txt_loader:
-            caption = caption.to(device)
-            with torch.no_grad():
-                text_feat = model.encode_text(caption)
+        for text_batch in self.txt_loader:
+            if isinstance(text_batch, dict):
+                pid = text_batch["pids"]
+                caption = text_batch["caption_ids"].to(device)
+                with torch.no_grad():
+                    text_feat = model.encode_text(
+                        caption,
+                        phrase_token_mask=text_batch["phrase_token_mask"].to(device),
+                        phrase_valid_mask=text_batch["phrase_valid_mask"].to(device),
+                    )
+            else:
+                pid, caption = text_batch
+                caption = caption.to(device)
+                with torch.no_grad():
+                    text_feat = model.encode_text(caption)
             qids.append(pid.view(-1))
             qfeats.append(text_feat)
         qids = torch.cat(qids, 0)
