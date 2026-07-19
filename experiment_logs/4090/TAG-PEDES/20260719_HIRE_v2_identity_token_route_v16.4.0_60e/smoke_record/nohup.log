@@ -1,0 +1,122 @@
+/root/autodl-tmp/HIRE_v2_identity_token_route_smoke_logs/e8fe98c/TAG-PEDES/20260719_034056_hire_v2_identity_token_route_v1640_e8fe98c_smoke1e_run1 is not exists, create given directory
+2026-07-19 03:40:56,540 IRRA INFO: Using 1 GPUs
+2026-07-19 03:40:56,540 IRRA INFO: Namespace(MLM=False
+ alpha=0.9
+ batch_size=64
+ beta=0.999
+ bias_lr_factor=2.0
+ cmt_depth=4
+ dataset_name='TAG-PEDES'
+ distributed=False
+ eval_period=1
+ gamma=0.1
+ hire=False
+ hire_eval_gallery_chunk=512
+ hire_eval_query_chunk=128
+ hire_identity_dim=512
+ hire_margin=0.1
+ hire_observation_dim=512
+ hire_select_ratio=0.3
+ hire_state_dim=512
+ hire_support_size=3
+ hire_tau=0.015
+ hire_tse_dim=1024
+ hire_v2=True
+ hire_v2_aux_weight=0.1
+ hire_v2_mode='identity_token_route'
+ hire_v2_select_ratio=0.3
+ hire_v2_state_image_tokens=16
+ hire_v2_state_text_tokens=8
+ hire_v2_state_topk=50
+ hire_v2_support_size=3
+ hire_v2_tse_dim=1024
+ id_loss_weight=1.0
+ img_aug=False
+ img_size=(384
+ 128)
+ irra_light=False
+ irra_light_hard_negative_csv=''
+ irra_light_identity_loss='sdm'
+ irra_light_mode='single_pure'
+ irra_light_support_consistency_csv=''
+ irra_light_support_relation_csv=''
+ irra_light_support_size=3
+ light_stat_period=100
+ local_rank=0
+ log_period=100
+ loss_names='hire_v2_identity_token_route'
+ lr=1e-05
+ lr_factor=5.0
+ lrscheduler='cosine'
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ milestones=(20
+ 50)
+ mlm_loss_weight=1.0
+ momentum=0.9
+ name='hire_v2_identity_token_route_v1640_e8fe98c_smoke1e_run1'
+ num_epoch=1
+ num_instance=4
+ num_workers=8
+ optimizer='Adam'
+ output_dir='/root/autodl-tmp/HIRE_v2_identity_token_route_smoke_logs/e8fe98c/TAG-PEDES/20260719_034056_hire_v2_identity_token_route_v1640_e8fe98c_smoke1e_run1'
+ power=0.9
+ pretrain_choice='ViT-B/16'
+ resume=False
+ resume_ckpt_file=''
+ root_dir='/root/autodl-tmp/datasets'
+ sampler='random'
+ seed=1
+ stride_size=16
+ target_lr=0
+ temperature=0.02
+ test_batch_size=512
+ text_length=77
+ training=True
+ val_dataset='test'
+ vocab_size=49408
+ warmup_epochs=5
+ warmup_factor=0.1
+ warmup_method='linear'
+ weight_decay=4e-05
+ weight_decay_bias=0.0)
+2026-07-19 03:40:57,314 IRRA.dataset INFO: => TAG-PEDES Images and Captions are loaded
+2026-07-19 03:40:57,315 IRRA.dataset INFO: TAGPEDES Dataset statistics:
+2026-07-19 03:40:57,315 IRRA.dataset INFO: 
++--------+------+--------+----------+
+| subset | ids  | images | captions |
++--------+------+--------+----------+
+| train  | 4840 | 19954  |  39908   |
+|  test  | 2000 |  8252  |  16504   |
+|  val   | 2000 |  8252  |  16504   |
++--------+------+--------+----------+
+2026-07-19 03:40:57,466 IRRA.dataset INFO: using random sampler
+2026-07-19 03:40:58,402 IRRA.model INFO: Load pretrained ViT-B/16 CLIP model with model config: {'embed_dim': 512, 'image_resolution': (384, 128), 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'context_length': 77, 'vocab_size': 49408, 'transformer_width': 512, 'transformer_heads': 8, 'transformer_layers': 12, 'stride_size': 16}
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+2026-07-19 03:41:04,603 IRRA INFO: Total params: 154M
+HIRE-v2 identity_token_route: CLIP backbone uses base learning rate; newly initialized token-selection, fusion, and hierarchy modules use 5.0x.
+2026-07-19 03:41:08,912 IRRA.train INFO: start training
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+2026-07-19 03:41:11,268 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[1/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:41:47,058 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[100/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:41:47,365 IRRA.train INFO: Epoch[1] Iteration[100/624], loss: 55.0324, sdm_loss: 49.0411, itc_loss: 5.6651, support_valid_ratio: 0.9864, global_sdm: 23.8121, global_itc: 2.4435, local_sdm: 28.0385, local_itc: 4.2025, observation_sdm: 23.1281, observation_itc: 2.3447, anchor_objective: 29.2483, observation_objective: 25.4728, image_local_residual_norm: 0.0623, text_local_residual_norm: 0.0693, identity_group_loss: 0.2570, final_sdm: 23.1035, final_itc: 2.3395, final_objective: 25.4430, balanced_main_objective: 25.4579, identity_group_nce: 2.5699, identity_gate: 0.1000, identity_score_delta_abs: 0.0047, observation_final_score_delta_abs: 0.0005, observation_identity_cosine: 0.9999, identity_projection_delta_norm: 0.0360, support_count_mean: 2.6998, identity_group_dispersion: 0.0002, identity_group_support_cosine: 0.9457, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0692, token_route_bce: 0.6922, token_route_valid_ratio: 0.9729, token_route_probability_mean: 0.4989, token_route_probability_std: 0.0001, token_route_target_mean: 0.2803, token_route_target_std: 0.1836, token_route_high_ratio: 0.0000, token_route_entropy: 0.6931, token_route_target_correlation: 0.0227, token_route_stable_margin: -0.0087, token_route_pair_margin: 0.0002, token_route_support_std: 0.0071, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.7011, identity_token_residual_norm: 0.0090, identity_token_weight_sum: 0.4989, Base Lr: 1.00e-06
+2026-07-19 03:42:23,430 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[200/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:42:23,739 IRRA.train INFO: Epoch[1] Iteration[200/624], loss: 50.8812, sdm_loss: 45.4784, itc_loss: 5.1091, support_valid_ratio: 0.9864, global_sdm: 21.7765, global_itc: 2.0982, local_sdm: 28.0308, local_itc: 4.1886, observation_sdm: 20.5941, observation_itc: 1.9689, anchor_objective: 28.0471, observation_objective: 22.5630, image_local_residual_norm: 0.1019, text_local_residual_norm: 0.1269, identity_group_loss: 0.2246, final_sdm: 20.5553, final_itc: 1.9624, final_objective: 22.5177, balanced_main_objective: 22.5404, identity_group_nce: 2.2462, identity_gate: 0.1001, identity_score_delta_abs: 0.0073, observation_final_score_delta_abs: 0.0007, observation_identity_cosine: 0.9997, identity_projection_delta_norm: 0.0635, support_count_mean: 2.7053, identity_group_dispersion: 0.0002, identity_group_support_cosine: 0.9387, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0691, token_route_bce: 0.6912, token_route_valid_ratio: 0.9723, token_route_probability_mean: 0.4978, token_route_probability_std: 0.0003, token_route_target_mean: 0.2797, token_route_target_std: 0.1851, token_route_high_ratio: 0.0000, token_route_entropy: 0.6931, token_route_target_correlation: 0.0172, token_route_stable_margin: -0.0087, token_route_pair_margin: 0.0008, token_route_support_std: 0.0075, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.6878, identity_token_residual_norm: 0.0152, identity_token_weight_sum: 0.4978, Base Lr: 1.00e-06
+2026-07-19 03:42:59,539 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[300/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:42:59,832 IRRA.train INFO: Epoch[1] Iteration[300/624], loss: 48.1295, sdm_loss: 43.0653, itc_loss: 4.7859, support_valid_ratio: 0.9862, global_sdm: 20.3636, global_itc: 1.8914, local_sdm: 28.0184, local_itc: 4.1693, observation_sdm: 18.8971, observation_itc: 1.7589, anchor_objective: 27.2214, observation_objective: 20.6560, image_local_residual_norm: 0.1343, text_local_residual_norm: 0.1704, identity_group_loss: 0.2093, final_sdm: 18.8515, final_itc: 1.7521, final_objective: 20.6036, balanced_main_objective: 20.6298, identity_group_nce: 2.0925, identity_gate: 0.1001, identity_score_delta_abs: 0.0085, observation_final_score_delta_abs: 0.0009, observation_identity_cosine: 0.9995, identity_projection_delta_norm: 0.0849, support_count_mean: 2.7011, identity_group_dispersion: 0.0003, identity_group_support_cosine: 0.9323, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0690, token_route_bce: 0.6903, token_route_valid_ratio: 0.9723, token_route_probability_mean: 0.4968, token_route_probability_std: 0.0004, token_route_target_mean: 0.2796, token_route_target_std: 0.1859, token_route_high_ratio: 0.0000, token_route_entropy: 0.6931, token_route_target_correlation: 0.0164, token_route_stable_margin: -0.0089, token_route_pair_margin: 0.0011, token_route_support_std: 0.0078, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.6902, identity_token_residual_norm: 0.0195, identity_token_weight_sum: 0.4968, Base Lr: 1.00e-06
+2026-07-19 03:43:36,029 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[400/624], batch_size=64, unique_ids=63, duplicate_ids=1, max_per_id=2, same_id_ordered_pairs=2, negative_ordered_pairs=4030, duplicate_images=1, max_per_image=2, same_image_ordered_pairs=2
+2026-07-19 03:43:36,332 IRRA.train INFO: Epoch[1] Iteration[400/624], loss: 46.1379, sdm_loss: 41.2920, itc_loss: 4.5765, support_valid_ratio: 0.9859, global_sdm: 19.2909, global_itc: 1.7548, local_sdm: 28.0040, local_itc: 4.1469, observation_sdm: 17.6687, observation_itc: 1.6290, anchor_objective: 26.5983, observation_objective: 19.2977, image_local_residual_norm: 0.1609, text_local_residual_norm: 0.2030, identity_group_loss: 0.2006, final_sdm: 17.6204, final_itc: 1.6223, final_objective: 19.2427, balanced_main_objective: 19.2702, identity_group_nce: 2.0056, identity_gate: 0.1001, identity_score_delta_abs: 0.0090, observation_final_score_delta_abs: 0.0009, observation_identity_cosine: 0.9994, identity_projection_delta_norm: 0.1024, support_count_mean: 2.6993, identity_group_dispersion: 0.0003, identity_group_support_cosine: 0.9273, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0689, token_route_bce: 0.6895, token_route_valid_ratio: 0.9723, token_route_probability_mean: 0.4958, token_route_probability_std: 0.0006, token_route_target_mean: 0.2794, token_route_target_std: 0.1863, token_route_high_ratio: 0.0000, token_route_entropy: 0.6931, token_route_target_correlation: 0.0158, token_route_stable_margin: -0.0089, token_route_pair_margin: 0.0013, token_route_support_std: 0.0079, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.6957, identity_token_residual_norm: 0.0226, identity_token_weight_sum: 0.4958, Base Lr: 1.00e-06
+2026-07-19 03:44:12,346 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[500/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:44:12,657 IRRA.train INFO: Epoch[1] Iteration[500/624], loss: 44.6257, sdm_loss: 39.9408, itc_loss: 4.4207, support_valid_ratio: 0.9862, global_sdm: 18.4580, global_itc: 1.6529, local_sdm: 27.9893, local_itc: 4.1244, observation_sdm: 16.7422, observation_itc: 1.5354, anchor_objective: 26.1123, observation_objective: 18.2776, image_local_residual_norm: 0.1831, text_local_residual_norm: 0.2283, identity_group_loss: 0.1955, final_sdm: 16.6920, final_itc: 1.5287, final_objective: 18.2207, balanced_main_objective: 18.2491, identity_group_nce: 1.9548, identity_gate: 0.1001, identity_score_delta_abs: 0.0094, observation_final_score_delta_abs: 0.0009, observation_identity_cosine: 0.9993, identity_projection_delta_norm: 0.1174, support_count_mean: 2.7006, identity_group_dispersion: 0.0003, identity_group_support_cosine: 0.9230, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0689, token_route_bce: 0.6886, token_route_valid_ratio: 0.9726, token_route_probability_mean: 0.4948, token_route_probability_std: 0.0008, token_route_target_mean: 0.2794, token_route_target_std: 0.1867, token_route_high_ratio: 0.0000, token_route_entropy: 0.6931, token_route_target_correlation: 0.0147, token_route_stable_margin: -0.0089, token_route_pair_margin: 0.0016, token_route_support_std: 0.0081, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.6961, identity_token_residual_norm: 0.0249, identity_token_weight_sum: 0.4948, Base Lr: 1.00e-06
+2026-07-19 03:44:49,013 IRRA.train INFO: BatchIdentityStats Epoch[1] Iteration[600/624], batch_size=64, unique_ids=64, duplicate_ids=0, max_per_id=1, same_id_ordered_pairs=0, negative_ordered_pairs=4032, duplicate_images=0, max_per_image=1, same_image_ordered_pairs=0
+2026-07-19 03:44:49,322 IRRA.train INFO: Epoch[1] Iteration[600/624], loss: 43.3709, sdm_loss: 38.8123, itc_loss: 4.2980, support_valid_ratio: 0.9865, global_sdm: 17.7474, global_itc: 1.5723, local_sdm: 27.9750, local_itc: 4.1012, observation_sdm: 15.9767, observation_itc: 1.4646, anchor_objective: 25.6979, observation_objective: 17.4413, image_local_residual_norm: 0.2022, text_local_residual_norm: 0.2485, identity_group_loss: 0.1918, final_sdm: 15.9254, final_itc: 1.4579, final_objective: 17.3834, balanced_main_objective: 17.4123, identity_group_nce: 1.9184, identity_gate: 0.1002, identity_score_delta_abs: 0.0096, observation_final_score_delta_abs: 0.0010, observation_identity_cosine: 0.9992, identity_projection_delta_norm: 0.1306, support_count_mean: 2.7007, identity_group_dispersion: 0.0003, identity_group_support_cosine: 0.9193, observation_main_weight: 0.5000, final_main_weight: 0.5000, token_route_loss: 0.0688, token_route_bce: 0.6877, token_route_valid_ratio: 0.9729, token_route_probability_mean: 0.4938, token_route_probability_std: 0.0009, token_route_target_mean: 0.2793, token_route_target_std: 0.1869, token_route_high_ratio: 0.0000, token_route_entropy: 0.6930, token_route_target_correlation: 0.0139, token_route_stable_margin: -0.0088, token_route_pair_margin: 0.0018, token_route_support_std: 0.0082, token_route_hard_negative_valid_ratio: 1.0000, token_route_selected_count: 21.6988, identity_token_residual_norm: 0.0268, identity_token_weight_sum: 0.4938, Base Lr: 1.00e-06
+2026-07-19 03:44:58,229 IRRA.train INFO: Epoch 1 done. Time per batch: 0.367[s] Speed: 174.2[samples/s]
+2026-07-19 03:44:58,229 IRRA.train INFO: Validation Results - Epoch: 1
+2026-07-19 03:45:19,508 IRRA.eval INFO: 
++------+--------+--------+--------+--------+-------+
+| task |   R1   |   R5   |  R10   |  mAP   |  mINP |
++------+--------+--------+--------+--------+-------+
+| t2i  | 27.357 | 47.807 | 57.307 | 22.091 | 9.749 |
++------+--------+--------+--------+--------+-------+
+2026-07-19 03:45:21,071 IRRA.train INFO: best R1: 27.35700225830078 at epoch 1

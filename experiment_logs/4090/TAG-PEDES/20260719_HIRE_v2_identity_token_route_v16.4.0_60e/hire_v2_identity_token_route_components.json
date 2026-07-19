@@ -1,0 +1,59 @@
+{
+  "experiment_version": "v16.4.0",
+  "config_file": "/root/autodl-tmp/HIRE_v2_identity_token_route_logs/e8fe98c/TAG-PEDES/20260719_034628_hire_v2_identity_token_route_v1640_e8fe98c_tagpedes_60e_seed1_run1/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_identity_token_route_logs/e8fe98c/TAG-PEDES/20260719_034628_hire_v2_identity_token_route_v1640_e8fe98c_tagpedes_60e_seed1_run1/best.pth",
+  "identity_gate": 0.09296267479658127,
+  "results": {
+    "global": {
+      "R1": 57.13766098022461,
+      "R5": 75.92704772949219,
+      "R10": 82.53756713867188,
+      "mAP": 43.52507400512695,
+      "mINP": 23.354290008544922
+    },
+    "local": {
+      "R1": 53.99903106689453,
+      "R5": 74.18807983398438,
+      "R10": 81.00460815429688,
+      "mAP": 41.81875228881836,
+      "mINP": 22.532602310180664
+    },
+    "observation": {
+      "R1": 57.555747985839844,
+      "R5": 76.41178131103516,
+      "R10": 82.75569915771484,
+      "mAP": 44.02507019042969,
+      "mINP": 23.867717742919922
+    },
+    "identity": {
+      "R1": 53.76272201538086,
+      "R5": 73.13378143310547,
+      "R10": 80.04119873046875,
+      "mAP": 42.88093948364258,
+      "mINP": 24.134984970092773
+    },
+    "final": {
+      "R1": 57.925350189208984,
+      "R5": 76.58749389648438,
+      "R10": 82.99806213378906,
+      "mAP": 44.38653564453125,
+      "mINP": 24.246307373046875
+    }
+  },
+  "route_statistics": {
+    "valid_token_count": 358705,
+    "mean": 0.26762092113494873,
+    "std": 0.07633303850889206,
+    "high_ratio": 2.7878061246155994e-06,
+    "entropy": 0.5655307173728943,
+    "per_text_residual_norm_mean": 0.7929087281227112,
+    "per_text_residual_norm_std": 0.1584867537021637
+  },
+  "observation_to_final": {
+    "fix_count": 114,
+    "break_count": 53,
+    "net_top1": 61,
+    "stable_correct_count": 9446,
+    "stable_wrong_count": 6891
+  }
+}

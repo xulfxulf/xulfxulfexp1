@@ -1,0 +1,108 @@
+{
+  "experiment_version": "v16.4.0",
+  "status": "completed_60_of_60",
+  "direct_baseline": "v16.2.1",
+  "code_commit": "e8fe98cd7ede709f93814f795aebb678df3a365e",
+  "source_commit": "07a9fe1cb86d5e223de23ccb02eb319f1eb4402d",
+  "source_overlay_sha256": "1F75F883CE98BD3EE2A373A7569FE55D2BAFCED4E86FA326CC8C681965A9543F",
+  "source_design_sha256": "A05F3B29D8E75BFA74A3582C2520B012E749C2B19F5E981FF41FEF96F7DF82D2",
+  "snapshot_sha256": "7326E6A94AAD6BE03F8926AEB8F278B37BEB9A5E4CB6EF2F8AA499E9A64E3BDB",
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1"
+  },
+  "training": {
+    "dataset": "TAG-PEDES",
+    "mode": "identity_token_route",
+    "epochs": 60,
+    "seed": 1,
+    "batch_size": 64,
+    "sampler": "random",
+    "image_augmentation": false,
+    "support_size": 3,
+    "auxiliary_weight": 0.1,
+    "resume": false,
+    "best": {
+      "epoch": 53,
+      "R1": 57.8829345703125,
+      "R5": 76.594,
+      "R10": 82.998,
+      "mAP": 44.379,
+      "mINP": 24.244
+    },
+    "final": {
+      "epoch": 60,
+      "R1": 57.871,
+      "R5": 76.503,
+      "R10": 82.980,
+      "mAP": 44.392,
+      "mINP": 24.278
+    }
+  },
+  "component_evaluation": {
+    "global": {"R1": 57.13766098022461, "R5": 75.92704772949219, "R10": 82.53756713867188, "mAP": 43.52507400512695, "mINP": 23.354290008544922},
+    "local": {"R1": 53.99903106689453, "R5": 74.18807983398438, "R10": 81.00460815429688, "mAP": 41.81875228881836, "mINP": 22.532602310180664},
+    "observation": {"R1": 57.555747985839844, "R5": 76.41178131103516, "R10": 82.75569915771484, "mAP": 44.02507019042969, "mINP": 23.867717742919922},
+    "identity": {"R1": 53.76272201538086, "R5": 73.13378143310547, "R10": 80.04119873046875, "mAP": 42.88093948364258, "mINP": 24.134984970092773},
+    "final": {"R1": 57.925350189208984, "R5": 76.58749389648438, "R10": 82.99806213378906, "mAP": 44.38653564453125, "mINP": 24.246307373046875}
+  },
+  "route_statistics": {
+    "valid_token_count": 358705,
+    "mean": 0.26762092113494873,
+    "std": 0.07633303850889206,
+    "high_ratio": 2.7878061246155994e-06,
+    "entropy": 0.5655307173728943,
+    "per_text_residual_norm_mean": 0.7929087281227112,
+    "per_text_residual_norm_std": 0.1584867537021637,
+    "train_target_correlation_epoch_53": 0.4062,
+    "train_route_bce_epoch_53": 0.5659
+  },
+  "observation_to_final": {
+    "fix_count": 114,
+    "break_count": 53,
+    "net_top1": 61,
+    "stable_correct_count": 9446,
+    "stable_wrong_count": 6891
+  },
+  "comparison_to_v16_2_1_component_final": {
+    "baseline_R1": 58.034,
+    "baseline_mAP": 44.540,
+    "baseline_mINP": 24.503,
+    "delta_R1": -0.109,
+    "delta_mAP": -0.153,
+    "delta_mINP": -0.257
+  },
+  "acceptance": {
+    "beats_v16_2_1_R1": false,
+    "mAP_not_lower_than_v16_2_1": false,
+    "final_beats_same_checkpoint_observation": true,
+    "route_prediction_target_correlation_positive": true,
+    "route_std_nonzero": true,
+    "high_probability_ratio_not_near_zero_or_one": false,
+    "identity_residual_nonzero": true,
+    "fixes_exceed_breaks": true,
+    "eligible_for_formal_mllm_teacher_version": false,
+    "decision": "method-level negative main result with positive mechanism diagnostic"
+  },
+  "validation": {
+    "smoke_passed": true,
+    "local_tests_passed": 66,
+    "server_tests_passed": 66,
+    "static_audit_passed": "8/8",
+    "validation_blocks": 60,
+    "best_checkpoint_present": true,
+    "best_checkpoint_bytes": 1102670568,
+    "checkpoint_archived_to_github": false,
+    "runtime_errors_found": false
+  },
+  "archived_hashes": {
+    "configs.yaml": "62DC5DCA1ED1825D64056157959E61E7E95B9C1DC7608002B3F4722024C8CE86",
+    "train_log.txt": "ECA14D4B1BF10D5DC0592085722C5B2D38E417446F23D154A9CE0ED61BA4F0A5",
+    "test_log.txt": "88B9814308DBF28EF46ABA7B7E21C7CC353DCE6D6154AEC4641788969444E08B",
+    "hire_v2_identity_token_route_components.json": "E6826C6E6C234E9A1205BD752B8168B127C450A3E15F586C055950DCD0E87F09",
+    "run_record/nohup.log": "ECB08B762811E310BAC7E31150245A99348F7351EA3B3E51B0078C7812475458"
+  }
+}

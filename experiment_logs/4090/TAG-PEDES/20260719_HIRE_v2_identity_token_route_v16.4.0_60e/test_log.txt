@@ -1,0 +1,13 @@
+2026-07-19 11:58:33,471 HIRE-v2-v16.4-token-route-eval INFO: 
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 57.138 | 75.927 | 82.538 | 43.525 | 23.354 |
+|    local    | 53.999 | 74.188 | 81.005 | 41.819 | 22.533 |
+| observation | 57.556 | 76.412 | 82.756 | 44.025 | 23.868 |
+|   identity  | 53.763 | 73.134 | 80.041 | 42.881 | 24.135 |
+|    final    | 57.925 | 76.587 | 82.998 | 44.387 | 24.246 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-19 11:58:33,471 HIRE-v2-v16.4-token-route-eval INFO: Token route: mean=0.26762092113494873, std=0.07633303850889206, high_ratio=2.7878061246155994e-06, residual_norm=0.792909
+2026-07-19 11:58:33,471 HIRE-v2-v16.4-token-route-eval INFO: Identity residual fix/break: fix=114, break=53, net=61
+2026-07-19 11:58:33,487 HIRE-v2-v16.4-token-route-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_identity_token_route_logs/e8fe98c/TAG-PEDES/20260719_034628_hire_v2_identity_token_route_v1640_e8fe98c_tagpedes_60e_seed1_run1/hire_v2_identity_token_route_components.json
