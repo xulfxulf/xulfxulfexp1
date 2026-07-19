@@ -1,0 +1,14 @@
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+2026-07-19 19:50:01,712 HIRE-v2-identity-balanced-eval INFO:
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 57.750 | 80.200 | 87.400 | 44.557 | 22.211 |
+|    local    | 49.000 | 74.300 | 82.750 | 39.658 | 19.726 |
+| observation | 57.150 | 80.050 | 87.600 | 44.707 | 22.648 |
+|   identity  | 55.000 | 79.350 | 87.350 | 43.859 | 22.515 |
+|    final    | 57.050 | 80.200 | 87.650 | 44.703 | 22.704 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-19 19:50:01,713 HIRE-v2-identity-balanced-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_RSTPReid_logs/e6b3159/v16.2.1_identity_balanced/RSTPReid/20260719_161554_hire_v2_identity_balanced_v16.2.1_rstpreid_60e_seed1_e6b3159_run1/hire_v2_identity_balanced_components.json

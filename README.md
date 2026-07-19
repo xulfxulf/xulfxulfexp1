@@ -252,6 +252,8 @@ python tools/v16/eval_fast3_dual_heads.py \
 |    **CLIP**     |   54.05   |   80.70   |   88.00   |   43.41   |   22.31   |
 | **IRRA (ours)** | **60.20** | **81.30** | **88.20** | **47.17** | **25.28** |
 
+[HIRE-v2 v16.1.0, v16.2.1, and v16.4.0 RSTPReid transfer records](experiment_logs/4090/RSTPReid/20260719_HIRE_v2_RSTPReid_v16_trio_e6b3159/RESULTS.md)
+
 [Model & log for RSTPReid](https://drive.google.com/file/d/1LpUHkLErEWkJiXyWYxWwiK-8Fz1_1QGY/view?usp=share_link)
 
 

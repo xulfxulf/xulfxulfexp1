@@ -1,0 +1,59 @@
+{
+  "dataset": "RSTPReid",
+  "code_commit": "e6b31594846ac61cf4376eb99c447ebd49a34134",
+  "snapshot_sha256": "f5b7bf724dde45e04c79b4fbb811d50f726b3ee66cab26f1add4be4db8acda15",
+  "environment": {
+    "python": "3.8.20",
+    "torch": "1.9.0+cu111",
+    "torchvision": "0.10.0+cu111",
+    "cuda": "11.1",
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "settings": {
+    "pretrain_choice": "ViT-B/16",
+    "seed": 1,
+    "batch_size": 64,
+    "sampler": "random",
+    "image_augmentation": false,
+    "support_size": 3,
+    "auxiliary_weight": 0.1
+  },
+  "runs": {
+    "v16.1.0": {
+      "mode": "anchor",
+      "status": "completed",
+      "epochs_completed": 60,
+      "best_epoch": 4,
+      "best": {"R1": 57.5, "R5": 79.55, "R10": 86.95, "mAP": 44.573, "mINP": 22.753},
+      "last": {"epoch": 60, "R1": 55.2, "R5": 78.65, "R10": 86.1, "mAP": 44.708, "mINP": 23.684},
+      "train_exit_code": 0,
+      "component_eval_exit_code": 0
+    },
+    "v16.2.1": {
+      "mode": "identity_balanced",
+      "status": "completed",
+      "epochs_completed": 60,
+      "best_epoch": 4,
+      "best": {"R1": 57.0, "R5": 80.25, "R10": 87.65, "mAP": 44.702, "mINP": 22.705},
+      "last": {"epoch": 60, "R1": 55.15, "R5": 77.05, "R10": 83.8, "mAP": 44.142, "mINP": 23.742},
+      "train_exit_code": 0,
+      "component_eval_exit_code": 0
+    },
+    "v16.4.0": {
+      "mode": "identity_token_route",
+      "status": "stopped_by_user",
+      "requested_epochs": 60,
+      "last_completed_validation_epoch": 34,
+      "stopped_during": {"epoch": 35, "iteration": 500, "iterations_per_epoch": 579},
+      "best_epoch": 4,
+      "best": {"R1": 57.7, "R5": 79.15, "R10": 87.8, "mAP": 45.079, "mINP": 22.947},
+      "last": {"epoch": 34, "R1": 53.05, "R5": 76.55, "R10": 85.35, "mAP": 44.139, "mINP": 24.112},
+      "stopped_at": "2026-07-19T21:56:33+08:00",
+      "component_eval_exit_code": 0,
+      "component_final": {"R1": 57.75, "R5": 79.15, "R10": 87.85, "mAP": 45.084, "mINP": 22.936},
+      "route_statistics": {"mean": 0.300308, "std": 0.036943, "high_ratio": 0.0},
+      "observation_to_final": {"fix_count": 5, "break_count": 6, "net_top1": -1}
+    }
+  },
+  "checkpoints_uploaded": false
+}

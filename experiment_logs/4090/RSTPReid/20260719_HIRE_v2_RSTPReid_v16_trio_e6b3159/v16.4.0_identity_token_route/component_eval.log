@@ -1,0 +1,16 @@
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+/root/miniconda3/envs/irra190/lib/python3.8/site-packages/torch/nn/functional.py:3609: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+2026-07-19 21:59:37,397 HIRE-v2-v16.4-token-route-eval INFO:
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 57.900 | 80.000 | 88.000 | 44.862 | 22.321 |
+|    local    | 49.250 | 74.850 | 83.350 | 40.302 | 20.563 |
+| observation | 57.800 | 79.100 | 87.800 | 45.083 | 22.899 |
+|   identity  | 56.650 | 79.100 | 87.050 | 44.409 | 22.358 |
+|    final    | 57.750 | 79.150 | 87.850 | 45.084 | 22.936 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-19 21:59:37,398 HIRE-v2-v16.4-token-route-eval INFO: Token route: mean=0.3003081679344177, std=0.0369429886341095, high_ratio=0.0, residual_norm=0.100758
+2026-07-19 21:59:37,398 HIRE-v2-v16.4-token-route-eval INFO: Identity residual fix/break: fix=5, break=6, net=-1
+2026-07-19 21:59:37,398 HIRE-v2-v16.4-token-route-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_RSTPReid_logs/e6b3159/v16.4.0_identity_token_route/RSTPReid/20260719_195003_hire_v2_identity_token_route_v16.4.0_rstpreid_60e_seed1_e6b3159_run1/hire_v2_identity_token_route_components.json

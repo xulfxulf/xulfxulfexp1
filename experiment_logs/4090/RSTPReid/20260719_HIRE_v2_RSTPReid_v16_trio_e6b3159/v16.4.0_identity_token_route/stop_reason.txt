@@ -1,0 +1,1 @@
+Stopped by user after confirming that further training was unnecessary; preserve partial logs and best checkpoint.

@@ -18,6 +18,18 @@ This file is the canonical version mapping for the completed HIRE-v2 TAG-PEDES e
 
 `v16.4.0` also uses `v16.2.1` as its direct baseline. Its token-routing mechanism learned a non-uniform soft route and produced more observation-to-final fixes than breaks, but its final R1 and mAP remained below v16.2.1 and its above-0.5 route ratio was effectively zero. It therefore does not pass the supplied design gate for a formal MLLM-teacher successor. The checkpoint remains server-side and is not committed.
 
+## RSTPReid transfer record
+
+The three requested RSTPReid transfers were run from the same frozen compatibility snapshot at commit `e6b31594846ac61cf4376eb99c447ebd49a34134`.
+
+| Experiment version | RSTPReid status | Best R1 | Best epoch | Record directory |
+| --- | --- | ---: | ---: | --- |
+| `v16.1.0` | Completed 60 epochs and component evaluation | 57.50 | 4 | `experiment_logs/4090/RSTPReid/20260719_HIRE_v2_RSTPReid_v16_trio_e6b3159/v16.1.0_anchor` |
+| `v16.2.1` | Completed 60 epochs and component evaluation | 57.00 | 4 | `experiment_logs/4090/RSTPReid/20260719_HIRE_v2_RSTPReid_v16_trio_e6b3159/v16.2.1_identity_balanced` |
+| `v16.4.0` | Stopped by user during epoch 35; best-checkpoint component evaluation completed | 57.70 | 4 | `experiment_logs/4090/RSTPReid/20260719_HIRE_v2_RSTPReid_v16_trio_e6b3159/v16.4.0_identity_token_route` |
+
+The full summary is in `experiment_logs/4090/RSTPReid/20260719_HIRE_v2_RSTPReid_v16_trio_e6b3159/RESULTS.md`. Checkpoints remain server-side and are not committed.
+
 ## Audit evidence
 
 The completed no-training identity-mechanism audit for `v16.2.0` is archived at `experiment_logs/4090/TAG-PEDES/20260717_HIRE_v2_identity_audit_v16.2.0`. It compares the trusted intersection with simple and variance-only support aggregation, and compares `v16.2.0` final ranking against both its own observation score and the `v16.1.0` observation baseline.

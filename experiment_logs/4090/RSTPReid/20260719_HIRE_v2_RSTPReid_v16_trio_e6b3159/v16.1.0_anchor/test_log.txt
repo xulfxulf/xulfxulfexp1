@@ -1,0 +1,9 @@
+2026-07-19 16:15:52,906 HIRE-v2-anchor-eval INFO:
++-------------+--------+--------+--------+--------+--------+
+|  component  |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++-------------+--------+--------+--------+--------+--------+
+|    global   | 58.300 | 79.250 | 87.100 | 44.381 | 22.397 |
+|    local    | 49.400 | 73.550 | 83.350 | 39.817 | 20.177 |
+| observation | 57.500 | 79.600 | 86.950 | 44.576 | 22.753 |
++-------------+--------+--------+--------+--------+--------+
+2026-07-19 16:15:52,907 HIRE-v2-anchor-eval INFO: saved component results to /root/autodl-tmp/HIRE_v2_RSTPReid_logs/e6b3159/v16.1.0_anchor/RSTPReid/20260719_141511_hire_v2_anchor_v16.1.0_rstpreid_60e_seed1_e6b3159_run1/hire_v2_anchor_components.json

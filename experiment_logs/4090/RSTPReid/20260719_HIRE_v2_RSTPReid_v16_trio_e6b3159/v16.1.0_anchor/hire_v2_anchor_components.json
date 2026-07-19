@@ -1,0 +1,27 @@
+{
+  "config_file": "/root/autodl-tmp/HIRE_v2_RSTPReid_logs/e6b3159/v16.1.0_anchor/RSTPReid/20260719_141511_hire_v2_anchor_v16.1.0_rstpreid_60e_seed1_e6b3159_run1/configs.yaml",
+  "checkpoint": "/root/autodl-tmp/HIRE_v2_RSTPReid_logs/e6b3159/v16.1.0_anchor/RSTPReid/20260719_141511_hire_v2_anchor_v16.1.0_rstpreid_60e_seed1_e6b3159_run1/best.pth",
+  "results": {
+    "global": {
+      "R1": 58.29999923706055,
+      "R5": 79.25,
+      "R10": 87.0999984741211,
+      "mAP": 44.38138198852539,
+      "mINP": 22.396894454956055
+    },
+    "local": {
+      "R1": 49.39999771118164,
+      "R5": 73.54999542236328,
+      "R10": 83.35000610351562,
+      "mAP": 39.81674575805664,
+      "mINP": 20.177095413208008
+    },
+    "observation": {
+      "R1": 57.5,
+      "R5": 79.5999984741211,
+      "R10": 86.94999694824219,
+      "mAP": 44.576271057128906,
+      "mINP": 22.753320693969727
+    }
+  }
+}
