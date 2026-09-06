@@ -1,0 +1,1 @@
+{"backend":"gloo","collective_failure_broadcast":true,"cuda_amp_full_training_tested":false,"numeric_divergence_check":true,"old_commit_retained":true,"per_rank_rng_saved":true,"retry_commit":true,"status":"passed","world_size":2}

@@ -1,0 +1,49 @@
+test_decorrelation_gradient_excludes_backbone (tests.test_core.CoreTests) ... ok
+test_e2_e3_first_epoch_backward_and_rng_match (tests.test_core.CoreTests) ... ok
+test_empty_pair_zero_backward_and_zero_norm_reporting (tests.test_core.CoreTests) ... ok
+test_eval_gallery_scatter_and_diagnostic_rng (tests.test_core.CoreTests) ... ok
+test_fp16_fusion_gpu (tests.test_core.CoreTests) ... skipped 'torch1.13 CPU has no FP16 clamp_min; GPU gate required'
+test_inactive_experts_and_target_pass_routing (tests.test_core.CoreTests) ... ok
+test_loss_schedule_rejection_and_sync_statistics (tests.test_core.CoreTests) ... ok
+test_official_forward_loss_gradient_and_updates (tests.test_core.CoreTests) ... ok
+test_optimizer_and_schedule (tests.test_core.CoreTests) ... ok
+test_optimizer_rng_midstep_resume (tests.test_core.CoreTests) ... ok
+test_pair_masks_use_raw_aug_and_distinct_image (tests.test_core.CoreTests) ... ok
+test_rng_checkpoint_roundtrip (tests.test_core.CoreTests) ... ok
+test_sampling_e0_and_pk (tests.test_core.CoreTests) ... ok
+test_text_single_word_and_rng_isolation (tests.test_core.CoreTests) ... ok
+test_transform_matches_official_pixels_and_rng (tests.test_core.CoreTests) ... ok
+test_view_boundaries_and_double_flip (tests.test_core.CoreTests) ... ok
+test_zero_init_head_count_and_fp32_fusion (tests.test_core.CoreTests) ... ok
+test_shared_configuration_disables_tf32 (tests.test_patch.BackendTests) ... ok
+test_train_eval_call_identical_backend_configuration (tests.test_patch.BackendTests) ... ok
+test_wrong_target_environment_rejected (tests.test_patch.BackendTests) ... ok
+test_first_11_blocks_recompute_and_gradients_match (tests.test_patch.CheckpointActivationTests) ... ok
+test_no_grad_and_eval_do_not_checkpoint (tests.test_patch.CheckpointActivationTests) ... ok
+test_visual_flag_explicitly_enabled_and_text_unchanged (tests.test_patch.CheckpointActivationTests) ... ok
+test_wrong_visual_depth_rejected (tests.test_patch.CheckpointActivationTests) ... ok
+test_failed_run_with_last_resumes_and_without_last_is_archived (tests.test_patch.QueueTests) ... ok
+test_pause_on_gate_failure_then_resume_without_approval_hash (tests.test_patch.QueueTests) ... ok
+test_planned_queue_can_execute_via_resume (tests.test_patch.QueueTests) ... ok
+test_resume_rejects_changed_training_config (tests.test_patch.QueueTests) ... ok
+test_config_swapped_weight_rejected_even_old_weight_exists (tests.test_patch.SourceValidationTests) ... ok
+test_current_sources_and_catalog_pass_without_image_hashes (tests.test_patch.SourceValidationTests) ... ok
+test_e0_reusable_after_code_bugfix (tests.test_patch.SourceValidationTests) ... ok
+test_legacy_changed_angle_detected_semantically (tests.test_patch.SourceValidationTests) ... ok
+test_legacy_prepared_paths_supported_without_hash_checks (tests.test_patch.SourceValidationTests) ... ok
+test_missing_image_rejected (tests.test_patch.SourceValidationTests) ... ok
+test_new_source_file_metadata_change_rejected (tests.test_patch.SourceValidationTests) ... ok
+test_resume_ignores_code_hash_but_rejects_training_changes (tests.test_patch.SourceValidationTests) ... ok
+test_alias_failure_after_commit_can_be_repaired (tests.test_patch.TransactionTests) ... ok
+test_best_last_commit_and_mid_epoch_save (tests.test_patch.TransactionTests) ... ok
+test_failed_best_write_preserves_old_commit (tests.test_patch.TransactionTests) ... ok
+test_failure_between_best_and_last_retries_safely (tests.test_patch.TransactionTests) ... ok
+test_generic_checkpoint_rng_roundtrip (tests.test_patch.TransactionTests) ... ok
+test_legacy_consistent_best_migrates (tests.test_patch.TransactionTests) ... ok
+test_legacy_inconsistent_best_rejected (tests.test_patch.TransactionTests) ... ok
+test_legacy_missing_best_rejected (tests.test_patch.TransactionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 4.949s
+
+OK (skipped=1)

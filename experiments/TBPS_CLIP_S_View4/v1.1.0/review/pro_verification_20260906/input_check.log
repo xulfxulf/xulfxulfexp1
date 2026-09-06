@@ -1,0 +1,1 @@
+{'test': {'images': 3074, 'identities': 1000, 'captions': 6156}, 'train': {'images': 34054, 'identities': 11003, 'captions': 68126}, 'val': {'images': 3078, 'identities': 1000, 'captions': 6158}}

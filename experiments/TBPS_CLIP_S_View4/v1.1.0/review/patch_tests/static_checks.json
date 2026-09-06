@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "python38_syntax_files": 23,
+  "unchanged_vendor_files": 37,
+  "unchanged_catalog_and_plans": 31,
+  "runtime_python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "runtime_torch": "2.10.0+cpu",
+  "runtime_torchvision": "0.25.0+cpu",
+  "cuda_available": false,
+  "tested_at": "2026-09-05T17:35:23.414103+00:00",
+  "all_python38_syntax_files": 44
+}
