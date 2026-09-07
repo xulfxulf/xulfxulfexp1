@@ -1,0 +1,61 @@
+{
+  "config": {
+    "direction": "higher",
+    "goal": "Retain shared cross-view features, soft F/S/B residual experts and residual decorrelation; exceed both RDE RSTP test R1 65.35 and mAP 50.88 at one fixed checkpoint",
+    "guard": "python -m unittest discover -s tests_research",
+    "iterations": null,
+    "metric": "joint_validation_gain_pp",
+    "parallel_mode": "serial",
+    "repos": [
+      {
+        "path": "D:\\004SSH\\TBPS_ViewResearch_20260907",
+        "role": "primary",
+        "scope": "experiments/TBPS_ViewResearch/**"
+      }
+    ],
+    "required_keep_labels": [
+      "validation_only",
+      "no_leakage"
+    ],
+    "required_stop_labels": [
+      "rde_test_both_exceeded",
+      "mechanism_complete"
+    ],
+    "rollback_policy": "Preserve every immutable source and run; discard in ledger, never reset or delete prior trials",
+    "scope": "experiments/TBPS_ViewResearch/**",
+    "session_mode": "foreground",
+    "stop_condition": null,
+    "verify": "python run_research.py verify-result --result RUN/result.json",
+    "web_search": "enabled"
+  },
+  "mode": "loop",
+  "run_tag": "tbps_rstp_view_20260907",
+  "state": {
+    "baseline_metric": 0,
+    "best_iteration": 0,
+    "best_metric": 0,
+    "blocked": 0,
+    "consecutive_discards": 0,
+    "crashes": 0,
+    "current_labels": [],
+    "current_metric": 0,
+    "discards": 0,
+    "iteration": 0,
+    "keeps": 0,
+    "last_commit": "4a4d270",
+    "last_repo_commits": {
+      "D:\\004SSH\\TBPS_ViewResearch_20260907": "4a4d270"
+    },
+    "last_status": "baseline",
+    "last_trial_commit": "4a4d270",
+    "last_trial_labels": [],
+    "last_trial_metric": 0,
+    "last_trial_repo_commits": {
+      "D:\\004SSH\\TBPS_ViewResearch_20260907": "4a4d270"
+    },
+    "no_ops": 0,
+    "pivot_count": 0
+  },
+  "updated_at": "2026-09-07T03:29:49Z",
+  "version": 1
+}

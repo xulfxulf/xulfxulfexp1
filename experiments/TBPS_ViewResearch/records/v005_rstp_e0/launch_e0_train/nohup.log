@@ -1,0 +1,75 @@
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+Epoch[1] Iter[1/115] loss=6.55009 nitc=5.83480 ritc=0.71529 pairs=0 lambda=0.000000 skip=True
+Epoch[1] Iter[11/115] loss=4.00214 nitc=4.86138 ritc=-0.85924 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[21/115] loss=3.69590 nitc=4.41487 ritc=-0.71897 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[31/115] loss=3.44044 nitc=4.19001 ritc=-0.74958 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[41/115] loss=3.37937 nitc=4.08242 ritc=-0.70305 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[51/115] loss=3.29195 nitc=3.90382 ritc=-0.61187 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[61/115] loss=3.30215 nitc=3.90693 ritc=-0.60478 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[71/115] loss=3.19284 nitc=3.77633 ritc=-0.58349 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[81/115] loss=3.41181 nitc=4.18629 ritc=-0.77449 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[91/115] loss=3.39347 nitc=4.18630 ritc=-0.79283 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[101/115] loss=3.56231 nitc=4.36082 ritc=-0.79851 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[111/115] loss=3.42076 nitc=4.20458 ritc=-0.78382 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[115/115] loss=3.55602 nitc=4.39852 ritc=-0.84250 pairs=0 lambda=0.000000 skip=False
+VALIDATION 1 {'r1': 39.5, 'r5': 57.85000228881836, 'r10': 66.10000610351562, 'r_mean': 54.48333613077799, 'mAP': 31.332979202270508} BEST {'r1': 39.5, 'r5': 57.85000228881836, 'r10': 66.10000610351562, 'r_mean': 54.48333613077799, 'mAP': 31.332979202270508, 'epoch': 1}
+Epoch[2] Iter[1/115] loss=3.34049 nitc=4.08854 ritc=-0.74805 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[11/115] loss=3.25666 nitc=3.93822 ritc=-0.68157 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[21/115] loss=3.40325 nitc=4.22003 ritc=-0.81678 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[31/115] loss=3.38322 nitc=4.21146 ritc=-0.82824 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[41/115] loss=3.44967 nitc=4.32697 ritc=-0.87730 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[51/115] loss=3.34731 nitc=4.18703 ritc=-0.83973 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[61/115] loss=3.40207 nitc=4.20445 ritc=-0.80238 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[71/115] loss=3.24120 nitc=4.01159 ritc=-0.77039 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[81/115] loss=3.38859 nitc=4.25959 ritc=-0.87101 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[91/115] loss=3.33673 nitc=4.16744 ritc=-0.83072 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[101/115] loss=3.20253 nitc=3.98147 ritc=-0.77894 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[111/115] loss=3.22766 nitc=4.06580 ritc=-0.83814 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[115/115] loss=3.30799 nitc=4.14627 ritc=-0.83828 pairs=0 lambda=0.000000 skip=False
+VALIDATION 2 {'r1': 42.650001525878906, 'r5': 60.05000305175781, 'r10': 68.60000610351562, 'r_mean': 57.10000356038412, 'mAP': 33.8973274230957} BEST {'r1': 42.650001525878906, 'r5': 60.05000305175781, 'r10': 68.60000610351562, 'r_mean': 57.10000356038412, 'mAP': 33.8973274230957, 'epoch': 2}
+Epoch[3] Iter[1/115] loss=2.99964 nitc=3.84620 ritc=-0.84657 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[11/115] loss=2.96354 nitc=3.73477 ritc=-0.77123 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[21/115] loss=2.91439 nitc=3.63633 ritc=-0.72194 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[31/115] loss=3.06273 nitc=3.84797 ritc=-0.78524 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[41/115] loss=2.93294 nitc=3.69275 ritc=-0.75980 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[51/115] loss=2.99466 nitc=3.77298 ritc=-0.77832 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[61/115] loss=2.82651 nitc=3.61141 ritc=-0.78490 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[71/115] loss=2.99107 nitc=3.81252 ritc=-0.82145 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[81/115] loss=2.87432 nitc=3.66313 ritc=-0.78881 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[91/115] loss=2.89727 nitc=3.74519 ritc=-0.84791 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[101/115] loss=2.89392 nitc=3.64513 ritc=-0.75122 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[111/115] loss=2.92825 nitc=3.74994 ritc=-0.82169 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[115/115] loss=2.80828 nitc=3.57234 ritc=-0.76406 pairs=0 lambda=0.000000 skip=False
+VALIDATION 3 {'r1': 43.60000228881836, 'r5': 62.500003814697266, 'r10': 69.85000610351562, 'r_mean': 58.650004069010414, 'mAP': 35.446746826171875} BEST {'r1': 43.60000228881836, 'r5': 62.500003814697266, 'r10': 69.85000610351562, 'r_mean': 58.650004069010414, 'mAP': 35.446746826171875, 'epoch': 3}
+Epoch[4] Iter[1/115] loss=2.65626 nitc=3.42840 ritc=-0.77215 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[11/115] loss=2.62649 nitc=3.37843 ritc=-0.75194 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[21/115] loss=2.56865 nitc=3.39688 ritc=-0.82824 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[31/115] loss=2.69840 nitc=3.52578 ritc=-0.82738 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[41/115] loss=2.48473 nitc=3.28708 ritc=-0.80235 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[51/115] loss=2.55336 nitc=3.35054 ritc=-0.79718 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[61/115] loss=2.62332 nitc=3.40214 ritc=-0.77882 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[71/115] loss=2.49315 nitc=3.29139 ritc=-0.79824 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[81/115] loss=2.43658 nitc=3.24062 ritc=-0.80404 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[91/115] loss=2.53581 nitc=3.29754 ritc=-0.76173 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[101/115] loss=2.38312 nitc=3.14988 ritc=-0.76676 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[111/115] loss=2.35057 nitc=3.07020 ritc=-0.71964 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[115/115] loss=2.45530 nitc=3.25991 ritc=-0.80461 pairs=0 lambda=0.000000 skip=False
+VALIDATION 4 {'r1': 44.45000076293945, 'r5': 64.20000457763672, 'r10': 71.1500015258789, 'r_mean': 59.933335622151695, 'mAP': 37.07533645629883} BEST {'r1': 44.45000076293945, 'r5': 64.20000457763672, 'r10': 71.1500015258789, 'r_mean': 59.933335622151695, 'mAP': 37.07533645629883, 'epoch': 4}
+Epoch[5] Iter[1/115] loss=2.42455 nitc=3.24476 ritc=-0.82021 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[11/115] loss=2.17008 nitc=2.91529 ritc=-0.74521 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[21/115] loss=2.14789 nitc=2.95644 ritc=-0.80855 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[31/115] loss=2.16276 nitc=3.00448 ritc=-0.84172 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[41/115] loss=2.11730 nitc=2.91251 ritc=-0.79521 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[51/115] loss=2.07155 nitc=2.88984 ritc=-0.81830 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[61/115] loss=2.07311 nitc=2.88176 ritc=-0.80865 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[71/115] loss=2.14444 nitc=2.96150 ritc=-0.81706 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[81/115] loss=2.06011 nitc=2.85338 ritc=-0.79327 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[91/115] loss=2.14368 nitc=2.94298 ritc=-0.79930 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[101/115] loss=2.14882 nitc=2.95735 ritc=-0.80852 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[111/115] loss=2.10746 nitc=2.92656 ritc=-0.81910 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[115/115] loss=2.09081 nitc=2.91476 ritc=-0.82395 pairs=0 lambda=0.000000 skip=False
+VALIDATION 5 {'r1': 45.250003814697266, 'r5': 63.900001525878906, 'r10': 70.4000015258789, 'r_mean': 59.85000228881836, 'mAP': 36.85251235961914} BEST {'r1': 45.250003814697266, 'r5': 63.900001525878906, 'r10': 70.4000015258789, 'r_mean': 59.85000228881836, 'mAP': 36.85251235961914, 'epoch': 5}
+COMPLETE {'r1': 45.250003814697266, 'r5': 63.900001525878906, 'r10': 70.4000015258789, 'r_mean': 59.85000228881836, 'mAP': 36.85251235961914, 'epoch': 5} None

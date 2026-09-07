@@ -1,0 +1,16 @@
+# metric_direction: higher
+# mode: loop
+# run_tag: tbps_rstp_view_20260907
+# parallel: serial
+# web_search: enabled
+# goal: Retain shared cross-view features, soft F/S/B residual experts and residual decorrelation; exceed both RDE RSTP test R1 65.35 and mAP 50.88 at one fixed checkpoint
+# scope: experiments/TBPS_ViewResearch/**
+# repos_json: [{"path":"D:\\004SSH\\TBPS_ViewResearch_20260907","role":"primary","scope":"experiments/TBPS_ViewResearch/**"}]
+# metric: joint_validation_gain_pp
+# verify: python run_research.py verify-result --result RUN/result.json
+# guard: python -m unittest discover -s tests_research
+# rollback_policy: Preserve every immutable source and run; discard in ledger, never reset or delete prior trials
+# required_stop_labels: rde_test_both_exceeded, mechanism_complete
+# required_keep_labels: validation_only, no_leakage
+iteration	commit	metric	delta	guard	status	description
+0	4a4d270	0	0	-	baseline	Measured RSTP E0 five epochs, best val epoch5 R1 45.250003814697266 mAP 36.85251235961914; 575 batches complete; test not evaluated; metric is minimum validation gain relative to this reference
