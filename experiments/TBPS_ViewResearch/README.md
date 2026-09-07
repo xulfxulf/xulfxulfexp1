@@ -76,7 +76,8 @@ independently selected epochs. Meeting a validation score is NOT test success.
 | v012_joint_initialization | Train unchanged V009 mechanism from OpenAI with S initial-training backbone LR, instead of appending it after E0 | Complete; best val73.3355/65.9481 at epoch5, +0.4872/+0.3257 vs portrait E0; retained full-mechanism candidate; no test |
 | v013_joint_ten_epochs | Extend unchanged V012 initial-training horizon to10 epochs,with separately measured10-epoch E0 | Complete; E0 72.0039/64.9814,method72.2637/65.4230; below V012,discard; no test |
 | v014_identity_pair_sampling | Existing view-aware P160 K2 sampling instead of random caption-pair batches; unchanged five-epoch V012 model/loss | Complete;69.9903/67.4390 at epoch5; mAP+1.4909,R1-3.3452 vs V012; retain for amended mAP objective; no test |
-| v015_ritc_floor | R-ITC epsilon0.01->0.001 only,otherwise unchanged five-epoch V014 |33server tests and8-step four-GPU audit passed; formal running; no test |
+| v015_ritc_floor | R-ITC epsilon0.01->0.001 only,otherwise unchanged five-epoch V014 | Complete;70.2988/67.7986 at epoch5,+0.3085/+0.3596 vs V014; retained; no test |
+| v016_lower_ritc_floor | R-ITC epsilon0.001->0.0001 only,otherwise unchanged V015 | Implementation/audit pending; five epochs; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.
@@ -92,5 +93,5 @@ does not supersede V004 as a fully trained mechanism checkpoint, and no new
 test score has been used to select these experiments.
 
 V012 and V014 both select epoch5 and include847 actual decorrelation updates.
-Retain V012 as the stronger-R1 option and V014 as current stronger-mAP option;
-neither has been evaluated on test. Do not claim a joint improvement for V014.
+Retain V012 as the stronger-R1 option. V015 now supersedes V014 for mAP;
+none has been evaluated on test. Do not claim a joint improvement for V014.

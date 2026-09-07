@@ -22,7 +22,7 @@ def save_new(path, value):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--version', choices=['v014', 'v015'], required=True)
+    parser.add_argument('--version', choices=['v014', 'v015', 'v016'], required=True)
     parser.add_argument('--output-dir', required=True)
     args = parser.parse_args()
     name = 'TBPS_ViewResearch_%s_20260907' % args.version

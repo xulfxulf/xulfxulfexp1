@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "batches": 1060,
+  "skips": 5,
+  "decorrelation_updates": 847,
+  "residual_alarm_batches": 0,
+  "sample_trace_equal_to_V014": {
+    "0": 1060,
+    "1": 1060,
+    "2": 1060,
+    "3": 1060
+  },
+  "peak_allocated_bytes": 6761197056,
+  "test_evaluated": false
+}
