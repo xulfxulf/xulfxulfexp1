@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "archive_dir": "D:\\004SSH\\TBPS_ViewResearch_v011_archives_20260907\\validation_run",
+  "experiment": "v011_discriminative_shared",
+  "best_validation": {
+    "r1": 72.75089263916016,
+    "r5": 88.06430053710938,
+    "r10": 92.64371490478516,
+    "r_mean": 84.48630269368489,
+    "mAP": 65.60990142822266,
+    "epoch": 1
+  },
+  "next_resume_epoch": 6,
+  "model_keys": 321,
+  "last_bytes": 1800720137,
+  "best_bytes": 600273639,
+  "torch_version": "2.2.0+cu118",
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "no_file_hashes": true,
+  "optimizer_present": true,
+  "all_rank_rng_present": true,
+  "test_evaluated": false
+}

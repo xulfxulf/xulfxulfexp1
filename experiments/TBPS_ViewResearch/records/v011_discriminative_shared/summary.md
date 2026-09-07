@@ -36,7 +36,8 @@ Best=max validation R1, earliest tie; mAP from the same checkpoint. Selected
 epoch1 precedes actual decorrelation, so this is not a full-mechanism final-test
 candidate. No test was opened; there is no claim of exceeding RDE.
 
-All records and compact best are persisted on the server. Full last is also
-temporarily protected on persistent disk while the local archive queue runs.
-Local full archive is pending and must be verified before server last cleanup.
-Old experiments are deleted only after successful local restore verification.
+All records and compact best are persisted on the server. The full local
+archive in `D:/004SSH/TBPS_ViewResearch_v011_archives_20260907/validation_run`
+passed model/config/selection/optimizer/four-rank-RNG restore checks; see
+`archive_verification.json`. Redundant server last is eligible for the
+separately approved cleanup, which preserves best and all experiment records.

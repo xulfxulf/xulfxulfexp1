@@ -63,7 +63,7 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v009_cuhk_portrait | Transfer the measured portrait-input benefit to CUHK with a fresh matching E0 before unchanged patch experts | E0 72.8483/65.6224; method 72.9133/65.6410 at epoch1, marginal numeric gain only; both full archives verified; no test |
 | v010_cuhk_retained_beta | Keep converged S soft-label mixing beta=.5 throughout otherwise identical continuation | Complete; val72.9945/65.6336 at epoch1, joint gain below V009; discard; no test |
 | v011_discriminative_shared | Add different-PID negatives to cross-view shared consistency; keep the V009 training profile | Complete; val72.7509/65.6099 at epoch1, below matched E0; discard; no test |
-| v012_joint_initialization | Train unchanged V009 mechanism from OpenAI with S initial-training backbone LR, instead of appending it after E0 | Implementation and audit pending; reference is measured V009 portrait E0; no test |
+| v012_joint_initialization | Train unchanged V009 mechanism from OpenAI with S initial-training backbone LR, instead of appending it after E0 | Complete; best val73.3355/65.9481 at epoch5, +0.4872/+0.3257 vs portrait E0; retained full-mechanism candidate; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.
