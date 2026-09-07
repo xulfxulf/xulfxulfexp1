@@ -15,6 +15,9 @@ does not replace the five-epoch reference and is not a test result. The
 V013 method starts independently from OpenAI with the same horizon, not
 from this E0 checkpoint. No test selection or evaluation has occurred.
 
-Compact best and completed records are persisted. Full archive transfer
-and local restore verification are pending; no full last may be removed
-until a corresponding verification receipt exists.
+Full local archive transfer and restore verification passed,including302
+model keys,AdamW moments and all four RNG states,next_epoch=11. See the
+archive_verification.json receipt. The persistent redundant last was then
+deleted under the user's approval; cleanup_receipt.json records the exact
+path. Compact best and completed records remain on the server. Local full
+archive: D:/004SSH/TBPS_ViewResearch_v013_archives_20260907/e0_validation_run.

@@ -1,0 +1,1 @@
+{"batches":212,"identities_per_global_batch":160,"images_per_identity":2,"repeated_single_image_pairs":9,"source":{"mtime_ns":1788717615371015241,"path":"/root/autodl-tmp/TBPS_CLIP_S_View4_E0_10e_20260907/prepared/E0_10e/plans/seed_1/PK_epoch_1.npz","size":159464},"status":"passed","train_only":true,"whole_pid_rank_allocation":true}
