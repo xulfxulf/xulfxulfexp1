@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "local_checkpoint": "D:\\004SSH\\TBPS_ViewResearch_last_archives_20260907\\TBPS_ViewResearch_v007_20260907_validation_run\\last.pth",
+  "source": {
+    "root": "TBPS_ViewResearch_v007_20260907",
+    "path": "/root/autodl-tmp/TBPS_ViewResearch_v007_20260907/validation_run/checkpoints/last.pth",
+    "run_dir": "/root/autodl-tmp/TBPS_ViewResearch_v007_20260907/validation_run",
+    "bytes": 1800720009,
+    "mtime_ns": 1788756171489263508,
+    "status": "complete",
+    "experiment": "v007_rstp_portrait"
+  },
+  "local_bytes": 1800720009,
+  "experiment": "v007_rstp_portrait",
+  "model_keys": 321,
+  "next_epoch": 6,
+  "next_step": 0,
+  "optimizer_present": true,
+  "all_rank_rng_present": true,
+  "finite_tensor_elements": {
+    "model": 150017409,
+    "optimizer": 300035139
+  },
+  "content_hashes_used": false
+}

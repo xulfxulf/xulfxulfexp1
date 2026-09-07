@@ -1,0 +1,22 @@
+dataset: ICFG-PEDES
+input_resolution: [384, 128]
+compact_best: true
+dataset_root: /root/autodl-tmp/datasets/ICFG-PEDES
+annotation_root: /root/autodl-tmp/TBPS_ViewResearch_ICFG_inputs_20260907/annotation
+source_annotation_root: /root/autodl-tmp/TBPS_CLIP_repro_20260904/inputs/official_annotation/annotation/ICFG-PEDES
+orientation: /root/autodl-tmp/datasets/ICFG-PEDES/oeformer_orientation.json
+clip_checkpoint: /root/autodl-tmp/TBPS_CLIP_repro_20260904/inputs/ViT-B-16.pt
+prepared_dir: /root/autodl-tmp/TBPS_ViewResearch_ICFG_inputs_20260907/prepared
+nltk_data: /root/autodl-tmp/TBPS_CLIP_repro_20260904/inputs/nltk_data
+world_size: 4
+local_batch: 80
+epochs: 5
+steps_per_epoch: 97
+P: 160
+K: 2
+workers: 8
+alpha: 0.2
+delta: 60
+lambda_max: 0.01
+seeds: [1]
+test_policy: validation_only

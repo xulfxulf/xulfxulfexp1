@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "batches": 1060,
+  "skips": [
+    {
+      "epoch": 1,
+      "step": 0,
+      "scale": 32768.0
+    },
+    {
+      "epoch": 1,
+      "step": 1,
+      "scale": 16384.0
+    },
+    {
+      "epoch": 1,
+      "step": 2,
+      "scale": 8192.0
+    },
+    {
+      "epoch": 1,
+      "step": 3,
+      "scale": 4096.0
+    },
+    {
+      "epoch": 1,
+      "step": 4,
+      "scale": 2048.0
+    },
+    {
+      "epoch": 1,
+      "step": 8,
+      "scale": 1024.0
+    }
+  ],
+  "actual_updates": 1054,
+  "decorrelation_updates": 847,
+  "residual_alarm_batches": 0,
+  "peak_allocated_bytes": 6761197056,
+  "test_evaluated": false
+}
