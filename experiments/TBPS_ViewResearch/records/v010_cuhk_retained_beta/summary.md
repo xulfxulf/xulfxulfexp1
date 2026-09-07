@@ -31,7 +31,8 @@ It is not a full-mechanism final-test candidate. No test was evaluated and no
 claim of exceeding RDE is made.
 
 Server compact best and all run records were persisted successfully. Full
-best+resumable-last archive transfer to
-`D:/004SSH/TBPS_ViewResearch_v010_archives_20260907/` is in progress at this
-record revision; do not claim local archive completion without its subsequent
-`archive_verification.json` receipt. RAM source remains intact.
+best+resumable-last archive in
+`D:/004SSH/TBPS_ViewResearch_v010_archives_20260907/validation_run/` passed
+local model/config/selection/optimizer/four-rank-RNG restore verification.
+See `archive_verification.json`. RAM source remains intact; server redundant
+last is eligible for the separately authorized archive-then-delete cleanup.

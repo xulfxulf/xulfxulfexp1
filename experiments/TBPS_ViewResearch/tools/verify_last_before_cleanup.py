@@ -21,11 +21,12 @@ def check_finite(value):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--archive-dir', required=True)
+    parser.add_argument('--checkpoint-subdir', choices=['.', 'checkpoints'], default='.')
     args = parser.parse_args()
     root = Path(args.archive_dir).resolve()
     source = json.loads((root/'source.json').read_text(encoding='utf-8-sig'))
     result = json.loads((root/'result.json').read_text(encoding='utf-8'))
-    path = root/'last.pth'
+    path = root/args.checkpoint_subdir/'last.pth'
     if path.stat().st_size != source['bytes']:
         raise ValueError('Transfer length mismatch')
     if result['status'] != 'complete' or result['epochs'] != 5 or len(result['history']) != 5:
