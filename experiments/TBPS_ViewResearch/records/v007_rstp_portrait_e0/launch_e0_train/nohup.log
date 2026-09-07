@@ -1,0 +1,79 @@
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[W reducer.cpp:1298] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+Epoch[1] Iter[1/115] loss=6.30942 nitc=5.61475 ritc=0.69467 pairs=0 lambda=0.000000 skip=True
+Epoch[1] Iter[11/115] loss=4.00660 nitc=4.88677 ritc=-0.88017 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[21/115] loss=3.71915 nitc=4.48003 ritc=-0.76088 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[31/115] loss=3.45366 nitc=4.24966 ritc=-0.79600 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[41/115] loss=3.40559 nitc=4.12323 ritc=-0.71764 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[51/115] loss=3.31138 nitc=3.94054 ritc=-0.62916 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[61/115] loss=3.32223 nitc=3.98174 ritc=-0.65952 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[71/115] loss=3.19209 nitc=3.80332 ritc=-0.61123 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[81/115] loss=3.40955 nitc=4.10267 ritc=-0.69312 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[91/115] loss=3.40446 nitc=4.22462 ritc=-0.82016 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[101/115] loss=3.60284 nitc=4.41270 ritc=-0.80986 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[111/115] loss=3.46233 nitc=4.25882 ritc=-0.79649 pairs=0 lambda=0.000000 skip=False
+Epoch[1] Iter[115/115] loss=3.52919 nitc=4.35056 ritc=-0.82137 pairs=0 lambda=0.000000 skip=False
+VALIDATION 1 {'r1': 39.30000305175781, 'r5': 58.750003814697266, 'r10': 66.5, 'r_mean': 54.85000228881836, 'mAP': 31.18521499633789} BEST {'r1': 39.30000305175781, 'r5': 58.750003814697266, 'r10': 66.5, 'r_mean': 54.85000228881836, 'mAP': 31.18521499633789, 'epoch': 1}
+Epoch[2] Iter[1/115] loss=3.38618 nitc=4.16172 ritc=-0.77554 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[11/115] loss=3.30171 nitc=4.03421 ritc=-0.73249 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[21/115] loss=3.28283 nitc=4.03068 ritc=-0.74785 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[31/115] loss=3.40284 nitc=4.22138 ritc=-0.81854 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[41/115] loss=3.42888 nitc=4.27901 ritc=-0.85013 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[51/115] loss=3.40496 nitc=4.24916 ritc=-0.84420 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[61/115] loss=3.45326 nitc=4.30716 ritc=-0.85389 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[71/115] loss=3.30175 nitc=4.11570 ritc=-0.81395 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[81/115] loss=3.38610 nitc=4.22265 ritc=-0.83656 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[91/115] loss=3.26913 nitc=4.10076 ritc=-0.83163 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[101/115] loss=3.26170 nitc=4.07061 ritc=-0.80891 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[111/115] loss=3.18436 nitc=3.99177 ritc=-0.80741 pairs=0 lambda=0.000000 skip=False
+Epoch[2] Iter[115/115] loss=3.29733 nitc=4.12363 ritc=-0.82629 pairs=0 lambda=0.000000 skip=False
+VALIDATION 2 {'r1': 41.30000305175781, 'r5': 60.10000228881836, 'r10': 68.35000610351562, 'r_mean': 56.5833371480306, 'mAP': 33.66690444946289} BEST {'r1': 41.30000305175781, 'r5': 60.10000228881836, 'r10': 68.35000610351562, 'r_mean': 56.5833371480306, 'mAP': 33.66690444946289, 'epoch': 2}
+Epoch[3] Iter[1/115] loss=2.94083 nitc=3.75561 ritc=-0.81479 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[11/115] loss=2.95824 nitc=3.72894 ritc=-0.77070 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[21/115] loss=3.01003 nitc=3.81328 ritc=-0.80325 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[31/115] loss=3.09026 nitc=3.88822 ritc=-0.79797 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[41/115] loss=2.95967 nitc=3.71704 ritc=-0.75737 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[51/115] loss=2.97704 nitc=3.75034 ritc=-0.77329 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[61/115] loss=2.81955 nitc=3.55944 ritc=-0.73990 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[71/115] loss=2.99335 nitc=3.80482 ritc=-0.81147 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[81/115] loss=2.86634 nitc=3.66436 ritc=-0.79802 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[91/115] loss=2.86676 nitc=3.68997 ritc=-0.82321 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[101/115] loss=2.95072 nitc=3.69761 ritc=-0.74689 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[111/115] loss=2.81670 nitc=3.55399 ritc=-0.73729 pairs=0 lambda=0.000000 skip=False
+Epoch[3] Iter[115/115] loss=2.80656 nitc=3.61673 ritc=-0.81017 pairs=0 lambda=0.000000 skip=False
+VALIDATION 3 {'r1': 45.150001525878906, 'r5': 63.30000305175781, 'r10': 68.95000457763672, 'r_mean': 59.13333638509115, 'mAP': 35.48537826538086} BEST {'r1': 45.150001525878906, 'r5': 63.30000305175781, 'r10': 68.95000457763672, 'r_mean': 59.13333638509115, 'mAP': 35.48537826538086, 'epoch': 3}
+Epoch[4] Iter[1/115] loss=2.66968 nitc=3.47176 ritc=-0.80208 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[11/115] loss=2.60969 nitc=3.33172 ritc=-0.72203 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[21/115] loss=2.53793 nitc=3.32546 ritc=-0.78753 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[31/115] loss=2.64777 nitc=3.44385 ritc=-0.79608 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[41/115] loss=2.51710 nitc=3.33107 ritc=-0.81396 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[51/115] loss=2.49640 nitc=3.26961 ritc=-0.77321 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[61/115] loss=2.59645 nitc=3.37370 ritc=-0.77724 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[71/115] loss=2.53822 nitc=3.32582 ritc=-0.78759 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[81/115] loss=2.36997 nitc=3.14730 ritc=-0.77733 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[91/115] loss=2.56683 nitc=3.34654 ritc=-0.77970 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[101/115] loss=2.39275 nitc=3.16839 ritc=-0.77564 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[111/115] loss=2.34776 nitc=3.08127 ritc=-0.73350 pairs=0 lambda=0.000000 skip=False
+Epoch[4] Iter[115/115] loss=2.45210 nitc=3.26570 ritc=-0.81360 pairs=0 lambda=0.000000 skip=False
+VALIDATION 4 {'r1': 46.55000305175781, 'r5': 64.0, 'r10': 70.75, 'r_mean': 60.43333435058594, 'mAP': 37.43480682373047} BEST {'r1': 46.55000305175781, 'r5': 64.0, 'r10': 70.75, 'r_mean': 60.43333435058594, 'mAP': 37.43480682373047, 'epoch': 4}
+Epoch[5] Iter[1/115] loss=2.36598 nitc=3.18787 ritc=-0.82190 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[11/115] loss=2.21731 nitc=2.98345 ritc=-0.76614 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[21/115] loss=2.12407 nitc=2.92550 ritc=-0.80143 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[31/115] loss=2.13540 nitc=2.96857 ritc=-0.83317 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[41/115] loss=2.12493 nitc=2.93659 ritc=-0.81165 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[51/115] loss=2.07278 nitc=2.86764 ritc=-0.79486 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[61/115] loss=2.09283 nitc=2.91485 ritc=-0.82203 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[71/115] loss=2.13617 nitc=2.93818 ritc=-0.80201 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[81/115] loss=2.06321 nitc=2.87013 ritc=-0.80691 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[91/115] loss=2.14725 nitc=2.95698 ritc=-0.80972 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[101/115] loss=2.13287 nitc=2.93848 ritc=-0.80561 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[111/115] loss=2.11184 nitc=2.94568 ritc=-0.83384 pairs=0 lambda=0.000000 skip=False
+Epoch[5] Iter[115/115] loss=2.13120 nitc=2.95141 ritc=-0.82020 pairs=0 lambda=0.000000 skip=False
+VALIDATION 5 {'r1': 45.10000228881836, 'r5': 63.900001525878906, 'r10': 70.75, 'r_mean': 59.91666793823242, 'mAP': 37.35914611816406} BEST {'r1': 46.55000305175781, 'r5': 64.0, 'r10': 70.75, 'r_mean': 60.43333435058594, 'mAP': 37.43480682373047, 'epoch': 4}
+COMPLETE {'r1': 46.55000305175781, 'r5': 64.0, 'r10': 70.75, 'r_mean': 60.43333435058594, 'mAP': 37.43480682373047, 'epoch': 4} None

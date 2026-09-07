@@ -1,0 +1,16 @@
+# metric_direction: higher
+# mode: loop
+# run_tag: tbps_rstp_portrait_view_20260907
+# parallel: serial
+# web_search: enabled
+# goal: Retain shared cross-view features, soft F/S/B patch residual experts and residual decorrelation; exceed RDE RSTP test R1 65.35 and mAP 50.88 at one fixed checkpoint; portrait S baseline must not count as mechanism success
+# scope: experiments/TBPS_ViewResearch/**
+# repos_json: [{"path":"D:\\004SSH\\TBPS_ViewResearch_20260907","role":"primary","scope":"experiments/TBPS_ViewResearch/**"}]
+# metric: joint_validation_gain_pp
+# verify: python run_research.py verify-result --result RUN/result.json
+# guard: python -m unittest discover -s tests_research
+# rollback_policy: Preserve every immutable source and run; discard in ledger, never reset or delete prior trials
+# required_stop_labels: rde_test_both_exceeded, mechanism_complete
+# required_keep_labels: validation_only, no_leakage
+iteration	commit	metric	delta	guard	status	description
+0	262a2f8	0	0	-	baseline	Measured portrait RSTP S five-epoch validation-only E0; best R1 epoch4 R1 46.55000305175781 mAP 37.43480682373047; initialized OpenAI, 384x128, four ranks x80, seed1; no test; not a mechanism experiment
