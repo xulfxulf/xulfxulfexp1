@@ -1,0 +1,17 @@
+# environment: Windows foreground app goal; hooks unsupported here; remote 4x4080 32GiB, torch1.13.0 cuda11.7; human calibration waived by user, OEFormer probabilities uncalibrated
+# metric_direction: higher
+# mode: loop
+# run_tag: tbps_view_20260907
+# parallel: serial
+# web_search: enabled
+# goal: Keep shared cross-view representation, soft F/S/B residuals and cross-view residual decorrelation; exceed both RDE R1 and mAP on one untouched test set
+# scope: experiments/TBPS_ViewResearch/**
+# repos_json: [{"path":"D:\\004SSH\\TBPS_ViewResearch_20260907","role":"primary","scope":"experiments/TBPS_ViewResearch/**"}]
+# metric: joint_validation_gain_pp
+# verify: python run_research.py verify-result --result RUN/result.json
+# guard: python -m unittest discover -s tests_research
+# rollback_policy: Preserve every immutable experiment; reject in ledger, never delete or reset prior runs
+# required_stop_labels: rde_test_both_exceeded, mechanism_complete
+# required_keep_labels: validation_only, no_leakage
+iteration	commit	metric	delta	guard	status	description
+0	22957830973eea95a5e21bafb2b10df81e77fc36	0	0	-	baseline	Verified CUHK E0 five-epoch run: best validation R1 72.63721466064453 mAP 65.50774383544922; fixed baseline code retained outside published historical commit
