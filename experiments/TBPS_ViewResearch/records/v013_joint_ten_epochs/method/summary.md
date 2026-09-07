@@ -21,8 +21,11 @@ V012 remains retained. Return to five epochs as the user prefers. The next
 focused hypothesis is same-ID image-pair sampling based on the saved train
 plan diagnosis,not further increasing epochs. No test has been evaluated.
 
-Compact best and records are persisted; full last is additionally protected
-on persistent storage. Full local E0 and method archive verification is still
-pending. Do not delete either full last until its individual receipt passes.
+Compact best and records are persisted. Both E0 and method full archives now
+pass local restoration checks,including AdamW moments and all4rank RNG states.
+Method archive:D:/004SSH/TBPS_ViewResearch_v013_archives_20260907/validation_run;
+321model keys,best600277159bytes,last1800722249bytes,next_resume_epoch11.
+Each redundant persistent last was deleted only after its individual local
+verification receipt passed. Best/code/logs/raw data and RAM source remain.
 Raw audit logs are local-only. The manifest's inherited v009 implementation
 text is historical metadata; experiment/config/source/history identify V013.

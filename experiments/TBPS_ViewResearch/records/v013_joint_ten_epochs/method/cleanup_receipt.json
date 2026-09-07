@@ -1,0 +1,11 @@
+{
+  "status": "deleted_after_local_verification",
+  "checkpoint": "/root/autodl-tmp/TBPS_ViewResearch_v013_20260907/validation_run/checkpoints/last.pth",
+  "local_archive": "D:\\004SSH\\TBPS_ViewResearch_v013_archives_20260907\\validation_run\\checkpoints\\last.pth",
+  "bytes": 1800722249,
+  "preserved_best": "/root/autodl-tmp/TBPS_ViewResearch_v013_20260907/validation_run/checkpoints/best.pth",
+  "raw_datasets_untouched": true,
+  "disk_free_before": 9217867776,
+  "disk_free_after": 11018592256,
+  "best_still_exists": true
+}

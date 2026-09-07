@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "local_checkpoint": "D:\\004SSH\\TBPS_ViewResearch_v013_archives_20260907\\validation_run\\checkpoints\\last.pth",
+  "source": {
+    "root": "TBPS_ViewResearch_v013_20260907",
+    "path": "/root/autodl-tmp/TBPS_ViewResearch_v013_20260907/validation_run/checkpoints/last.pth",
+    "run_dir": "/root/autodl-tmp/TBPS_ViewResearch_v013_20260907/validation_run",
+    "bytes": 1800722249,
+    "mtime_ns": 1788770233457363772,
+    "status": "complete",
+    "experiment": "v013_joint_ten_epochs"
+  },
+  "local_bytes": 1800722249,
+  "experiment": "v013_joint_ten_epochs",
+  "model_keys": 321,
+  "next_epoch": 11,
+  "next_step": 0,
+  "optimizer_present": true,
+  "all_rank_rng_present": true,
+  "finite_tensor_elements": {
+    "model": 150017409,
+    "optimizer": 300035139
+  },
+  "content_hashes_used": false
+}
