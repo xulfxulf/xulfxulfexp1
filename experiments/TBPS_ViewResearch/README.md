@@ -57,7 +57,7 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v004_patch_evidence | Add learned view-specific patch pooling to the residual input, retain shared CLS | Complete; best val epoch4 72.8158 / 65.5651; full mechanism; no test |
 | v005_rstp_patch | Same mechanism on RSTP, where 88.99% of train images have eligible cross-view support | Initial audit had 4 AMP skips and no actual update; no full run; superseded by r2 audit guard |
 | v005_rstp_patch_r2 | Same training code/settings; eight-step E0 audit must show actual optimizer updates | E0 val45.2500/36.8525; continuation best45.1500/36.7717, no gain; no test |
-| v006_rstp_backbone_lr | Test base peak LR 1e-5 instead of 1e-6 after train-only gradient diagnosis; all formulas unchanged | Implemented; awaiting four-GPU audit and validation-only training |
+| v006_rstp_backbone_lr | Test base peak LR 1e-5 instead of 1e-6 after train-only gradient diagnosis; all formulas unchanged | Complete; best val44.2500/36.6166, no gain; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.

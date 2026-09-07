@@ -1,0 +1,24 @@
+{
+  "stage": "train",
+  "command": [
+    "/root/autodl-tmp/envs/tbpsclip_official/bin/python",
+    "-m",
+    "torch.distributed.run",
+    "--standalone",
+    "--nproc_per_node=4",
+    "/root/autodl-tmp/TBPS_ViewResearch_v006_20260907/run_research.py",
+    "train",
+    "--config",
+    "/root/autodl-tmp/TBPS_ViewResearch_v006_20260907/configs/research_v006.json",
+    "--output-dir",
+    "/root/autodl-tmp/TBPS_ViewResearch_v006_20260907/validation_run"
+  ],
+  "root": "/root/autodl-tmp/TBPS_ViewResearch_v006_20260907",
+  "started_at": 1788753531.6830626,
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0,1,2,3",
+    "OMP_NUM_THREADS": "4",
+    "NCCL_P2P_DISABLE": "1",
+    "NCCL_IB_DISABLE": "1"
+  }
+}

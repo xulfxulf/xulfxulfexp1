@@ -1,0 +1,72 @@
+START v006_rstp_backbone_lr seed=1 main=caption-pair val-only auxiliary_train_images_only
+Epoch[1] Iter[1/115] loss=0.83524 ret=0.83524 shared=0.07449 decor=0.00000 supports=64 pids=305 skip=True
+Epoch[1] Iter[11/115] loss=0.85604 ret=0.85330 shared=0.07872 decor=0.03272 supports=63 pids=308 skip=False
+Epoch[1] Iter[21/115] loss=0.86971 ret=0.86384 shared=0.08442 decor=0.05283 supports=64 pids=300 skip=False
+Epoch[1] Iter[31/115] loss=0.91522 ret=0.90490 shared=0.09884 decor=0.05015 supports=64 pids=305 skip=False
+Epoch[1] Iter[41/115] loss=1.05852 ret=1.04592 shared=0.09052 decor=0.01847 supports=64 pids=304 skip=False
+Epoch[1] Iter[51/115] loss=1.25512 ret=1.23960 shared=0.08923 decor=0.03590 supports=62 pids=301 skip=False
+Epoch[1] Iter[61/115] loss=1.33426 ret=1.31651 shared=0.08503 decor=0.08246 supports=64 pids=311 skip=False
+Epoch[1] Iter[71/115] loss=1.26085 ret=1.23947 shared=0.08781 decor=0.04383 supports=62 pids=309 skip=False
+Epoch[1] Iter[81/115] loss=1.39097 ret=1.36763 shared=0.08389 decor=0.05571 supports=64 pids=308 skip=False
+Epoch[1] Iter[91/115] loss=1.49429 ret=1.46910 shared=0.08046 decor=0.05676 supports=63 pids=307 skip=False
+Epoch[1] Iter[101/115] loss=1.75729 ret=1.73295 shared=0.06996 decor=0.02221 supports=64 pids=311 skip=False
+Epoch[1] Iter[111/115] loss=1.87382 ret=1.84686 shared=0.07046 decor=0.03549 supports=62 pids=306 skip=False
+Epoch[1] Iter[115/115] loss=1.93639 ret=1.90878 shared=0.06963 decor=0.03663 supports=63 pids=310 skip=False
+VALIDATION 1 {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836} BEST {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
+Epoch[2] Iter[1/115] loss=1.87157 ret=1.84354 shared=0.07007 decor=0.04095 supports=62 pids=306 skip=False
+Epoch[2] Iter[11/115] loss=1.93771 ret=1.91234 shared=0.06344 decor=0.03411 supports=63 pids=305 skip=False
+Epoch[2] Iter[21/115] loss=1.99450 ret=1.96774 shared=0.06688 decor=0.02498 supports=62 pids=308 skip=False
+Epoch[2] Iter[31/115] loss=1.91825 ret=1.89285 shared=0.06348 decor=0.03191 supports=62 pids=303 skip=False
+Epoch[2] Iter[41/115] loss=1.87094 ret=1.84786 shared=0.05771 decor=0.03539 supports=63 pids=306 skip=False
+Epoch[2] Iter[51/115] loss=1.95483 ret=1.92984 shared=0.06246 decor=0.03973 supports=64 pids=305 skip=False
+Epoch[2] Iter[61/115] loss=2.01340 ret=1.99128 shared=0.05527 decor=0.04566 supports=64 pids=305 skip=False
+Epoch[2] Iter[71/115] loss=1.85435 ret=1.83052 shared=0.05954 decor=0.04623 supports=64 pids=309 skip=False
+Epoch[2] Iter[81/115] loss=1.93736 ret=1.91591 shared=0.05363 decor=0.03455 supports=63 pids=313 skip=False
+Epoch[2] Iter[91/115] loss=1.93386 ret=1.91146 shared=0.05598 decor=0.02030 supports=63 pids=308 skip=False
+Epoch[2] Iter[101/115] loss=1.91648 ret=1.89503 shared=0.05357 decor=0.06177 supports=63 pids=311 skip=False
+Epoch[2] Iter[111/115] loss=1.86342 ret=1.84313 shared=0.05069 decor=0.04467 supports=62 pids=307 skip=False
+Epoch[2] Iter[115/115] loss=1.97227 ret=1.95110 shared=0.05289 decor=0.05821 supports=64 pids=310 skip=False
+VALIDATION 2 {'r1': 42.95000076293945, 'r5': 63.000003814697266, 'r10': 70.4000015258789, 'r_mean': 58.78333536783854, 'mAP': 35.64311981201172} BEST {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
+Epoch[3] Iter[1/115] loss=1.72524 ret=1.70571 shared=0.04881 decor=0.04286 supports=64 pids=313 skip=False
+Epoch[3] Iter[11/115] loss=1.80550 ret=1.78507 shared=0.05105 decor=0.03426 supports=64 pids=305 skip=False
+Epoch[3] Iter[21/115] loss=1.64977 ret=1.62972 shared=0.05011 decor=0.02498 supports=64 pids=307 skip=False
+Epoch[3] Iter[31/115] loss=1.84606 ret=1.82471 shared=0.05333 decor=0.03690 supports=63 pids=305 skip=False
+Epoch[3] Iter[41/115] loss=1.76742 ret=1.74788 shared=0.04886 decor=0.01721 supports=62 pids=303 skip=False
+Epoch[3] Iter[51/115] loss=1.69423 ret=1.67299 shared=0.05310 decor=0.01766 supports=63 pids=309 skip=False
+Epoch[3] Iter[61/115] loss=1.74310 ret=1.72460 shared=0.04623 decor=0.01696 supports=64 pids=314 skip=False
+Epoch[3] Iter[71/115] loss=1.68858 ret=1.66898 shared=0.04901 decor=0.01127 supports=64 pids=308 skip=False
+Epoch[3] Iter[81/115] loss=1.68718 ret=1.66761 shared=0.04892 decor=0.02008 supports=64 pids=308 skip=False
+Epoch[3] Iter[91/115] loss=1.65005 ret=1.63005 shared=0.04998 decor=0.03452 supports=64 pids=307 skip=False
+Epoch[3] Iter[101/115] loss=1.74547 ret=1.72430 shared=0.05290 decor=0.02636 supports=62 pids=308 skip=False
+Epoch[3] Iter[111/115] loss=1.77620 ret=1.75673 shared=0.04867 decor=0.01428 supports=64 pids=310 skip=False
+Epoch[3] Iter[115/115] loss=1.74957 ret=1.73219 shared=0.04344 decor=0.01279 supports=62 pids=304 skip=False
+VALIDATION 3 {'r1': 43.250003814697266, 'r5': 62.10000228881836, 'r10': 69.4000015258789, 'r_mean': 58.25000254313151, 'mAP': 35.28059768676758} BEST {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
+Epoch[4] Iter[1/115] loss=1.74165 ret=1.72362 shared=0.04506 decor=0.01912 supports=63 pids=304 skip=False
+Epoch[4] Iter[11/115] loss=1.64938 ret=1.63001 shared=0.04840 decor=0.02556 supports=64 pids=307 skip=False
+Epoch[4] Iter[21/115] loss=1.59132 ret=1.57265 shared=0.04664 decor=0.02684 supports=62 pids=311 skip=False
+Epoch[4] Iter[31/115] loss=1.75905 ret=1.73869 shared=0.05088 decor=0.02291 supports=61 pids=303 skip=False
+Epoch[4] Iter[41/115] loss=1.58447 ret=1.56350 shared=0.05241 decor=0.01995 supports=63 pids=305 skip=False
+Epoch[4] Iter[51/115] loss=1.66496 ret=1.64634 shared=0.04654 decor=0.01296 supports=64 pids=306 skip=False
+Epoch[4] Iter[61/115] loss=1.63378 ret=1.61296 shared=0.05204 decor=0.01657 supports=64 pids=309 skip=False
+Epoch[4] Iter[71/115] loss=1.57280 ret=1.55383 shared=0.04741 decor=0.01431 supports=62 pids=312 skip=False
+Epoch[4] Iter[81/115] loss=1.59419 ret=1.57425 shared=0.04983 decor=0.01329 supports=64 pids=310 skip=False
+Epoch[4] Iter[91/115] loss=1.73460 ret=1.71430 shared=0.05073 decor=0.01038 supports=62 pids=305 skip=False
+Epoch[4] Iter[101/115] loss=1.62538 ret=1.60649 shared=0.04721 decor=0.01759 supports=63 pids=303 skip=False
+Epoch[4] Iter[111/115] loss=1.73397 ret=1.71563 shared=0.04583 decor=0.02205 supports=64 pids=308 skip=False
+Epoch[4] Iter[115/115] loss=1.64747 ret=1.62806 shared=0.04849 decor=0.01510 supports=62 pids=313 skip=False
+VALIDATION 4 {'r1': 42.80000305175781, 'r5': 62.10000228881836, 'r10': 68.1500015258789, 'r_mean': 57.683335622151695, 'mAP': 35.01646041870117} BEST {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
+Epoch[5] Iter[1/115] loss=1.66251 ret=1.64241 shared=0.05023 decor=0.01545 supports=64 pids=309 skip=False
+Epoch[5] Iter[11/115] loss=1.63752 ret=1.61761 shared=0.04976 decor=0.01624 supports=64 pids=306 skip=False
+Epoch[5] Iter[21/115] loss=1.57961 ret=1.56171 shared=0.04473 decor=0.01906 supports=64 pids=303 skip=False
+Epoch[5] Iter[31/115] loss=1.56752 ret=1.54923 shared=0.04569 decor=0.01785 supports=62 pids=306 skip=False
+Epoch[5] Iter[41/115] loss=1.58353 ret=1.56389 shared=0.04910 decor=0.01505 supports=63 pids=308 skip=False
+Epoch[5] Iter[51/115] loss=1.59054 ret=1.56897 shared=0.05390 decor=0.00846 supports=61 pids=304 skip=False
+Epoch[5] Iter[61/115] loss=1.65241 ret=1.63199 shared=0.05105 decor=0.01459 supports=63 pids=312 skip=False
+Epoch[5] Iter[71/115] loss=1.70537 ret=1.68542 shared=0.04986 decor=0.01389 supports=62 pids=301 skip=False
+Epoch[5] Iter[81/115] loss=1.65981 ret=1.64063 shared=0.04795 decor=0.01269 supports=63 pids=307 skip=False
+Epoch[5] Iter[91/115] loss=1.70631 ret=1.68850 shared=0.04452 decor=0.01360 supports=63 pids=306 skip=False
+Epoch[5] Iter[101/115] loss=1.74045 ret=1.71975 shared=0.05173 decor=0.01882 supports=64 pids=304 skip=False
+Epoch[5] Iter[111/115] loss=1.75437 ret=1.73666 shared=0.04427 decor=0.01032 supports=64 pids=307 skip=False
+Epoch[5] Iter[115/115] loss=1.80577 ret=1.78671 shared=0.04764 decor=0.01429 supports=62 pids=301 skip=False
+VALIDATION 5 {'r1': 41.60000228881836, 'r5': 61.500003814697266, 'r10': 67.85000610351562, 'r_mean': 56.98333740234375, 'mAP': 34.6092414855957} BEST {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
+COMPLETE validation-only {'r1': 44.250003814697266, 'r5': 63.60000228881836, 'r10': 70.55000305175781, 'r_mean': 59.46666971842448, 'mAP': 36.61660385131836, 'epoch': 1}
