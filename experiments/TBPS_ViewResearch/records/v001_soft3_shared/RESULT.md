@@ -28,3 +28,10 @@ translate into better validation retrieval.
 Decision: do not retain as an improvement; preserve source, both server
 checkpoints and all logs. The subsequent read-only gradient audit diagnoses
 relative objective strength using train images only, with zero optimizer steps.
+
+The subsequent three-batch/four-rank gradient audit found weighted shared
+gradients at only 0.24%-0.64% of retrieval gradients in the tested backbone
+groups, while weighted decorrelation was 2.62-3.57 times the retrieval gradient
+in the expert heads. `gradient_audit.json` records the raw measurements.
+This motivates a jointly rebalanced V002, not a claim that loss size equals
+gradient size or that any adjustment already improves retrieval.
