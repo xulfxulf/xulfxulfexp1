@@ -62,6 +62,7 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v008_flip_gallery | Fixed CUHK V004 epoch4, average original/mirrored gallery embeddings; matched E0 control | V004 flip val72.7509/65.9936, below E0 flip73.1569/66.0684; discard; no test |
 | v009_cuhk_portrait | Transfer the measured portrait-input benefit to CUHK with a fresh matching E0 before unchanged patch experts | E0 72.8483/65.6224; method 72.9133/65.6410 at epoch1, marginal numeric gain only; both full archives verified; no test |
 | v010_cuhk_retained_beta | Keep converged S soft-label mixing beta=.5 throughout otherwise identical continuation | Complete; val72.9945/65.6336 at epoch1, joint gain below V009; discard; no test |
+| v011_discriminative_shared | Add different-PID negatives to cross-view shared consistency; keep the V009 training profile | Complete; val72.7509/65.6099 at epoch1, below matched E0; discard; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.

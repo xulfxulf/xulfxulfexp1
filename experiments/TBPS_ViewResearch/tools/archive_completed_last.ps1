@@ -18,14 +18,26 @@ foreach ($row in $rows) {
     }
     $name = $row.root + '_' + $phase
     $destination = Join-Path $root $name
-    if (Test-Path -LiteralPath $destination) { throw "Preserve existing archive: $destination" }
-    New-Item -ItemType Directory -Path $destination | Out-Null
+    if (Test-Path -LiteralPath (Join-Path $destination 'cleanup_receipt.json')) {
+        $receipt = Get-Content -LiteralPath (Join-Path $destination 'cleanup_receipt.json') -Raw | ConvertFrom-Json
+        if ($receipt.status -ne 'deleted_after_local_verification' -or $receipt.checkpoint -ne $row.path) {
+            throw 'Existing cleanup receipt does not match inventory'
+        }
+        Write-Output "Already archived and released: $name"
+        continue
+    }
+    if (-not (Test-Path -LiteralPath $destination)) {
+        New-Item -ItemType Directory -Path $destination | Out-Null
+    }
+    if (Test-Path -LiteralPath (Join-Path $destination 'last.pth')) {
+        throw 'Completed local checkpoint without cleanup receipt; inspect before proceeding'
+    }
     $row | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $destination 'source.json') -Encoding utf8
     & $remote get ($row.run_dir + '/result.json') (Join-Path $destination 'result.json')
     if ($LASTEXITCODE -ne 0) { throw 'Result transfer failed; source preserved' }
     $partial = Join-Path $destination 'last.pth.part'
     Write-Output "Downloading $name ($($row.bytes) bytes)"
-    & $remote get $row.path $partial
+    & (Join-Path $PSScriptRoot 'download_checkpoint_bounded.ps1') -Source $row.path -Destination $partial
     if ($LASTEXITCODE -ne 0) { throw 'Checkpoint transfer failed; source preserved' }
     if ((Get-Item -LiteralPath $partial).Length -ne $row.bytes) { throw 'Incomplete transfer' }
     $resolved = (Resolve-Path -LiteralPath $partial).Path
