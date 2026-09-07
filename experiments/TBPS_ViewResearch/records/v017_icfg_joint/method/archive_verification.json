@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "archive_dir": "D:\\004SSH\\TBPS_ViewResearch_v017_archives_20260907\\validation_run",
+  "experiment": "v017_icfg_joint",
+  "best_validation": {
+    "r1": 76.55926513671875,
+    "r5": 88.41265106201172,
+    "r10": 92.04847717285156,
+    "r_mean": 85.67346445719402,
+    "mAP": 63.36914825439453,
+    "epoch": 5
+  },
+  "next_resume_epoch": 6,
+  "model_keys": 321,
+  "last_bytes": 1800721225,
+  "best_bytes": 600276199,
+  "torch_version": "2.2.0+cu118",
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "no_file_hashes": true,
+  "optimizer_present": true,
+  "all_rank_rng_present": true,
+  "test_evaluated": false
+}

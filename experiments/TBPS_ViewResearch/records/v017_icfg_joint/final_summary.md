@@ -21,8 +21,9 @@ This comparison demonstrates a substantial R1 tradeoff,not overall superiority.
 Source96b8827; selection committed4a30f57 at2026-09-07 18:35:52+08:00.
 Test started18:38:36+08:00 and completed18:41:04+08:00,exit0.
 Selection=max validationR1,earliest tie. Both metrics always use that same
-checkpoint. No test scores were inspected during V001-V017 model selection.
-Historical pre-research CUHK baseline tests remain separately identified.
+checkpoint. No new research test evaluations were used to select V001-V017.
+Historical pre-research CUHK baseline tests and published paper targets were
+known and remain separately identified. This ICFG test opened only after freeze.
 
 | Fixed ICFG train-ID holdout | Selected epoch | R1 | mAP |
 |---|---:|---:|---:|
@@ -76,6 +77,13 @@ identity was guessed. Test content/order stays19848images,19848queries,
 1000IDs. This uses fewer training identities than a full-original-train
 protocol; disclose the holdout difference when presenting paper comparisons.
 No test/validation identities enter training. No model/file/image/batch hashes.
+An additional postflight audit checked all4x485actual batch traces:155200
+main-sample occurrences and30379valid support occurrences were train-only.
+Original PID,image path and image_id sets are disjoint across splits; official
+test image order and identity/path associations remain unchanged. See
+test/coverage_audit.json. Auxiliary hard-view eligibility maps the OEFormer
+argmax angle into F/S/B; it is NOT argmax of aggregated three-class masses.
+The soft route itself uses those aggregated masses.
 
 ## Artifacts
 
@@ -85,9 +93,16 @@ No test/validation identities enter training. No model/file/image/batch hashes.
 - Epoch-level validation: e0/result.json and method/result.json.
 - Server best: /root/autodl-tmp/TBPS_ViewResearch_v017_20260907/validation_run/checkpoints/best.pth.
 - Server code: /root/autodl-tmp/TBPS_ViewResearch_v017_20260907.
-- Full last/best remain protected on persistent server storage. Local E0
-  archive transfer is running; method archive is ready. Do not claim local
-  checkpoint completion until the corresponding verification receipts exist.
+- Both E0 and method full best/last local archives are verified,including
+  model/AdamW tensor finiteness and all four rank RNG states. Their redundant
+  persistent server last files were deleted only after verification; server
+  best,code,logs and RAM source remain. See e0/ and method/ archive receipts.
+- Local method checkpoint: D:/004SSH/TBPS_ViewResearch_v017_archives_20260907/validation_run/checkpoints/best.pth.
+- Local full resumable last: same directory,last.pth. E0 archive is the sibling
+  e0_validation_run directory. Checkpoints are not uploaded to GitHub.
+- Archive receipts describe validation-training outputs,so their
+  test_evaluated=false flag does not negate the separately recorded frozen
+  test in test/result.json. No test was run inside the training loop.
 
 One seed only,no isolated causal ablation,no manual orientation calibration.
 The supported conclusion is numerical mAP improvement under this fixed

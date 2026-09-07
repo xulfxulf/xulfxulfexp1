@@ -27,7 +27,8 @@ method independently starts from OpenAI,not this E0 checkpoint. It changes
 sampling/unfreezing/R-ITC floor as well as adding the complete mechanism;
 the comparison is full-system,not an isolated expert-module ablation.
 
-Compact best,full last and records are persisted; a full archive is being
-transferred locally. No successful local archive is claimed until its
-verification receipt exists. Raw startup-audit logs are local-only under
+Compact best and records are persistent. Full best/last local archive has
+passed shape,dtype,finite model/AdamW and four-rank RNG verification. Only
+the redundant persistent server last was deleted after the receipt existed;
+best,code,logs and RAM source remain. Raw startup-audit logs are local-only under
 D:/004SSH/TBPS_ViewResearch_audit_logs_20260907/v017.

@@ -21,7 +21,10 @@ Six synchronized AMP skips were in epoch1 at zero-based steps0,1,2,3,4,8;
 none later. No forward nonfinite loss or residual-size alarms. The extra
 early scale reduction is disclosed,not hidden as an execution failure.
 
-Best/logs are persistent; full last and RAM tar are protected pending local
-archive. Raw audit logs remain local-only. No official data files were edited.
+Best/logs are persistent. Full best/last local archive passed metadata,
+shape,dtype,finite model/AdamW tensor and four-rank RNG verification.
+Only the redundant persistent server last was then deleted; all best/code/
+logs and RAM records remain. Raw audit logs remain local-only. No official
+data files were edited. See the archive and cleanup JSON receipts.
 ICFG structural diagnosis motivates a separate dataset-specific baseline next;
 its scores must not be mixed into the CUHK validation ledger.

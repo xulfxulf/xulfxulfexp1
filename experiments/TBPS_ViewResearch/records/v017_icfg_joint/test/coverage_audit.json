@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "counts": {
+    "test": [
+      19848,
+      1000,
+      19848
+    ],
+    "train": [
+      31289,
+      2792,
+      31289
+    ],
+    "val": [
+      3383,
+      310,
+      3383
+    ]
+  },
+  "original_pid_disjoint": true,
+  "image_path_disjoint": true,
+  "image_id_disjoint": true,
+  "test_order_identity_and_path_equal_to_official": true,
+  "input_path_size_mtime_unchanged": true,
+  "actual_trace_batches_per_rank": {
+    "0": 485,
+    "1": 485,
+    "2": 485,
+    "3": 485
+  },
+  "actual_main_training_samples": 155200,
+  "actual_valid_support_samples": 30379,
+  "all_main_and_support_images_train_only": true,
+  "support_same_pid_different_image_raw_view_gap_passed": true,
+  "query_image_view_not_used": "Test encoder signatures consume pixels+image soft probabilities or text tokens only; PIDs used solely by metric_eval.",
+  "support_hard_view_definition": "F/S/B of the OEFormer argmax angle,not argmax of aggregated three-class probability mass.",
+  "no_file_hashes": true,
+  "no_new_test_inference": true
+}

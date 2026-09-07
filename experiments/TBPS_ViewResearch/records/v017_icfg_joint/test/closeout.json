@@ -1,0 +1,27 @@
+{
+  "status": "closed_after_local_archive",
+  "training": {
+    "e0_validation_launch": "complete",
+    "validation_launch": "complete"
+  },
+  "test_complete": true,
+  "active_gpu_processes": false,
+  "gpu_snapshot": "NVIDIA GeForce RTX 4080, 1 MiB, 0 %\nNVIDIA GeForce RTX 4080, 1 MiB, 0 %\nNVIDIA GeForce RTX 4080, 1 MiB, 0 %\nNVIDIA GeForce RTX 4080, 1 MiB, 0 %\n",
+  "checkpoints": {
+    "e0_validation_run": {
+      "best_exists": true,
+      "persistent_last_exists": false
+    },
+    "validation_run": {
+      "best_exists": true,
+      "persistent_last_exists": false
+    }
+  },
+  "disk_free_bytes": 14521434112,
+  "verified_redundant_lasts_deleted": 19,
+  "verified_redundant_last_bytes": 34175713971,
+  "source_commit": "96b8827",
+  "result_commit": "be9fb66",
+  "raw_datasets_untouched": true,
+  "closed_at": "2026-09-07T11:10:48.965804+00:00"
+}
