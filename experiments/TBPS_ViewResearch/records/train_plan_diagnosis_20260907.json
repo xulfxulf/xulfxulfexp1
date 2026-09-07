@@ -1,0 +1,42 @@
+{
+  "kind": "read_only_existing_train_plan_diagnosis",
+  "prepared_dir": "/root/autodl-tmp/TBPS_CLIP_S_View4_E0_10e_20260907/prepared/E0_10e",
+  "epochs": 5,
+  "seed": 1,
+  "raw_datasets_modified": false,
+  "validation_or_test_images_used": false,
+  "plans": {
+    "E0": {
+      "batches": 1060,
+      "mean": {
+        "distinct_ids": 315.4915094339623,
+        "distinct_images": 319.2396226415094,
+        "same_pid_candidates_per_anchor": 1.0284551886792452,
+        "cross_image_positive_candidates_per_anchor": 0.023702830188679247,
+        "same_image_duplicates_per_anchor": 0.004752358490566062
+      },
+      "seen_train_ids": 11003,
+      "seen_train_images": 34054,
+      "seen_train_caption_pairs": 68126,
+      "total_train_ids": 11003,
+      "total_train_images": 34054,
+      "total_train_caption_pairs": 68126
+    },
+    "PK": {
+      "batches": 1060,
+      "mean": {
+        "distinct_ids": 160.0,
+        "distinct_images": 319.95754716981133,
+        "same_pid_candidates_per_anchor": 2.0,
+        "cross_image_positive_candidates_per_anchor": 0.9997346698113208,
+        "same_image_duplicates_per_anchor": 0.0002653301886792491
+      },
+      "seen_train_ids": 11003,
+      "seen_train_images": 32637,
+      "seen_train_caption_pairs": 63513,
+      "total_train_ids": 11003,
+      "total_train_images": 34054,
+      "total_train_caption_pairs": 68126
+    }
+  }
+}
