@@ -36,7 +36,10 @@ freezing, so this is not an isolated conv1-controlled component ablation.
 No test was evaluated. Validation73.34/65.95 is NOT a claim of exceeding RDE
 test75.94/67.56. A future fixed selection still needs an unopened final test.
 
-All records, compact best and full last are protected on persistent server
-storage. Full local archive transfer is pending; keep this status until the
-subsequent local restore verification receipt exists. Raw smoke logs are
-local-only; source and compact completed results are published separately.
+Full local archive transfer and restore verification have passed:321 model
+keys, full AdamW moments and all four RNG states; see archive_verification.json.
+The local copy is under D:/004SSH/TBPS_ViewResearch_v012_archives_20260907/validation_run.
+The redundant persistent last is eligible for exact-path archive-then-delete;
+cleanup_receipt.json, when present, records actual deletion. Best and records
+remain on the server. Raw smoke logs are local-only; source and compact
+completed results are published separately.

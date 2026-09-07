@@ -29,10 +29,11 @@ def main():
     path = root/args.checkpoint_subdir/'last.pth'
     if path.stat().st_size != source['bytes']:
         raise ValueError('Transfer length mismatch')
-    if result['status'] != 'complete' or result['epochs'] != 5 or len(result['history']) != 5:
-        raise ValueError('Only completed five-epoch runs are authorized')
+    epochs = result['epochs']
+    if result['status'] != 'complete' or epochs not in (5, 10) or len(result['history']) != epochs:
+        raise ValueError('Only completed five/ten-epoch runs are authorized')
     saved = torch.load(path, map_location='cpu', weights_only=False)
-    if (saved['next_epoch'], saved['next_step']) != (6, 0):
+    if (saved['next_epoch'], saved['next_step']) != (epochs + 1, 0):
         raise ValueError('Checkpoint is not the completed resumable state')
     if saved.get('checkpoint_role') not in (None, 'resumable'):
         raise ValueError('Selection-only checkpoint cannot substitute for last')
@@ -46,7 +47,7 @@ def main():
     counts = {name:check_finite(saved[name]) for name in ('model', 'optimizer')}
     receipt = dict(status='passed', local_checkpoint=str(path), source=source,
                    local_bytes=path.stat().st_size, experiment=saved['experiment'],
-                   model_keys=len(saved['model']), next_epoch=6, next_step=0,
+                   model_keys=len(saved['model']), next_epoch=epochs + 1, next_step=0,
                    optimizer_present=True, all_rank_rng_present=True,
                    finite_tensor_elements=counts, content_hashes_used=False)
     with open(root/'verification.json', 'x', encoding='utf-8') as stream:
