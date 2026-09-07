@@ -13,12 +13,13 @@ def main():
     args = parser.parse_args()
     root = Path(args.archive_dir).resolve()
     result = json.loads((root/'result.json').read_text(encoding='utf-8'))
-    if (result['status'] != 'complete' or result['epochs'] != 5 or
-            result['test_at_best_validation'] is not None or len(result['history']) != 5):
-        raise ValueError('Only completed five-epoch validation-only archives are accepted')
+    epochs = result['epochs']
+    if (result['status'] != 'complete' or epochs not in (5, 10) or
+            result['test_at_best_validation'] is not None or len(result['history']) != epochs):
+        raise ValueError('Only completed five/ten-epoch validation-only archives are accepted')
     last_path, best_path = root/'checkpoints/last.pth', root/'checkpoints/best.pth'
     last = torch.load(last_path, map_location='cpu', weights_only=False)
-    if (last['next_epoch'], last['next_step'], last.get('checkpoint_role')) != (6, 0, 'resumable'):
+    if (last['next_epoch'], last['next_step'], last.get('checkpoint_role')) != (epochs+1, 0, 'resumable'):
         raise ValueError('Full last is not a completed resumable checkpoint')
     if not last.get('optimizer',{}).get('state') or len(last['rng_by_rank']) != 4:
         raise ValueError('Missing AdamW moments or per-rank RNG state')
@@ -42,7 +43,7 @@ def main():
             if (root/'checkpoints'/name).stat().st_size != sizes[name]:
                 raise IOError('Transfer file size mismatch: '+name)
     receipt=dict(status='passed',archive_dir=str(root),experiment=best['experiment'],
-        best_validation=best['best'],next_resume_epoch=6,model_keys=len(shape_map),
+        best_validation=best['best'],next_resume_epoch=epochs+1,model_keys=len(shape_map),
         last_bytes=last_path.stat().st_size,best_bytes=best_path.stat().st_size,
         torch_version=torch.__version__,python=sys.version,no_file_hashes=True,
         optimizer_present=True,all_rank_rng_present=True,test_evaluated=False)
