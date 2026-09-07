@@ -56,6 +56,7 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v003_expert_focused | Smaller backbone LR, larger new-expert LR; all losses and data unchanged | Complete; best val 72.7671 / 65.6963; no test; selected before decorrelation |
 | v004_patch_evidence | Add learned view-specific patch pooling to the residual input, retain shared CLS | Complete; best val epoch4 72.8158 / 65.5651; full mechanism; no test |
 | v005_rstp_patch | Same mechanism on RSTP, where 88.99% of train images have eligible cross-view support | Initial audit had 4 AMP skips and no actual update; no full run; superseded by r2 audit guard |
+| v005_rstp_patch_r2 | Same training code/settings; eight-step E0 audit must show actual optimizer updates | Preflight pending |
 
 V001-V003 select epoch 1, whose decorrelation weight is zero. Their complete
 runs execute all mechanisms, but their selected checkpoints do not yet count
