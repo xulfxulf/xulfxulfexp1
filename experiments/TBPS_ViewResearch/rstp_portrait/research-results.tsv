@@ -14,3 +14,4 @@
 # required_keep_labels: validation_only, no_leakage
 iteration	commit	metric	delta	guard	status	description
 0	262a2f8	0	0	-	baseline	Measured portrait RSTP S five-epoch validation-only E0; best R1 epoch4 R1 46.55000305175781 mAP 37.43480682373047; initialized OpenAI, 384x128, four ranks x80, seed1; no test; not a mechanism experiment
+1	262a2f8	-0.15000152587890625	-0.15000152587890625	passed	discard	[labels: validation_only, no_leakage, selected_pre_decorrelation] V007 portrait soft experts five epochs complete; best val epoch1 R1 46.400001525878906 mAP 37.5810546875; mAP increased but R1 below portrait E0; no test; selected before decorrelation
