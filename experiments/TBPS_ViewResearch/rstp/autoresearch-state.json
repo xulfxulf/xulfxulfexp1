@@ -35,27 +35,31 @@
     "best_iteration": 0,
     "best_metric": 0,
     "blocked": 0,
-    "consecutive_discards": 0,
+    "consecutive_discards": 1,
     "crashes": 0,
     "current_labels": [],
     "current_metric": 0,
-    "discards": 0,
-    "iteration": 0,
+    "discards": 1,
+    "iteration": 1,
     "keeps": 0,
     "last_commit": "4a4d270",
     "last_repo_commits": {
       "D:\\004SSH\\TBPS_ViewResearch_20260907": "4a4d270"
     },
-    "last_status": "baseline",
+    "last_status": "discard",
     "last_trial_commit": "4a4d270",
-    "last_trial_labels": [],
-    "last_trial_metric": 0,
+    "last_trial_labels": [
+      "validation_only",
+      "no_leakage",
+      "selected_pre_decorrelation"
+    ],
+    "last_trial_metric": -0.10000228881835938,
     "last_trial_repo_commits": {
       "D:\\004SSH\\TBPS_ViewResearch_20260907": "4a4d270"
     },
     "no_ops": 0,
     "pivot_count": 0
   },
-  "updated_at": "2026-09-07T03:29:49Z",
+  "updated_at": "2026-09-07T03:45:23Z",
   "version": 1
 }

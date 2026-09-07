@@ -14,3 +14,4 @@
 # required_keep_labels: validation_only, no_leakage
 iteration	commit	metric	delta	guard	status	description
 0	4a4d270	0	0	-	baseline	Measured RSTP E0 five epochs, best val epoch5 R1 45.250003814697266 mAP 36.85251235961914; 575 batches complete; test not evaluated; metric is minimum validation gain relative to this reference
+1	4a4d270	-0.10000228881835938	-0.10000228881835938	passed	discard	[labels: validation_only, no_leakage, selected_pre_decorrelation] RSTP V005 completed 5 continuation epochs; best val epoch1 R1 45.150002 mAP 36.771713 below own E0; later epochs worsen; selected before decorrelation; no test
