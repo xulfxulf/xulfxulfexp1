@@ -1,0 +1,17 @@
+# environment: PRO1 four4080 torch1.13/cu117; new RAM checkpoint output, persistent compact best and full local archive; no previous checkpoint removed
+# metric_direction: higher
+# mode: loop
+# run_tag: tbps_cuhk_portrait_view_20260907
+# parallel: serial
+# web_search: enabled
+# goal: Retain shared cross-view features, soft F/S/B patch residual experts and residual decorrelation; exceed RDE CUHK test R1 75.94 and mAP 67.56 at one fixed checkpoint; portrait S baseline alone is not mechanism success
+# scope: experiments/TBPS_ViewResearch/**
+# repos_json: [{"path":"D:\\004SSH\\TBPS_ViewResearch_20260907","role":"primary","scope":"experiments/TBPS_ViewResearch/**"}]
+# metric: joint_validation_gain_pp
+# verify: python run_research.py verify-result --result RUN/result.json
+# guard: python -m unittest discover -s tests_research
+# rollback_policy: Preserve every immutable source and run; discard in ledger, never reset or delete prior trials
+# required_stop_labels: rde_test_both_exceeded, mechanism_complete
+# required_keep_labels: validation_only, no_leakage
+iteration	commit	metric	delta	guard	status	description
+0	449b3ac	0	0	-	baseline	Measured CUHK portrait S E0 five epochs, validation-only; best epoch5 R1 72.84832763671875 mAP 65.62239837646484. No test; preserve complete checkpoint and logs.

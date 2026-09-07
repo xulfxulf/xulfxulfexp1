@@ -60,10 +60,13 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v006_rstp_backbone_lr | Test base peak LR 1e-5 instead of 1e-6 after train-only gradient diagnosis; all formulas unchanged | Complete; best val44.2500/36.6166, no gain; no test |
 | v007_rstp_portrait | Test 384x128 geometry with its own portrait S baseline, then unchanged V005 soft experts | E0 val46.5500/37.4348; method best46.4000/37.5811, no dual gain; no test |
 | v008_flip_gallery | Fixed CUHK V004 epoch4, average original/mirrored gallery embeddings; matched E0 control | V004 flip val72.7509/65.9936, below E0 flip73.1569/66.0684; discard; no test |
+| v009_cuhk_portrait | Transfer the measured portrait-input benefit to CUHK with a fresh matching E0 before unchanged patch experts | Portrait E0 best72.8483/65.6224, full local archive verified; continuation running; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.
 Portrait RSTP uses `rstp_portrait/` with its separately measured E0 reference.
+Portrait CUHK uses `cuhk_portrait/`, likewise initialized after measuring its
+own E0. Geometry changes never silently replace the original square reference.
 
 V001-V003 select epoch 1, whose decorrelation weight is zero. Their complete
 runs execute all mechanisms, but their selected checkpoints do not yet count
