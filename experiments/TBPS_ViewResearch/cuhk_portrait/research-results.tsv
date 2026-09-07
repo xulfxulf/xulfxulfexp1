@@ -15,3 +15,4 @@
 # required_keep_labels: validation_only, no_leakage
 iteration	commit	metric	delta	guard	status	description
 0	449b3ac	0	0	-	baseline	Measured CUHK portrait S E0 five epochs, validation-only; best epoch5 R1 72.84832763671875 mAP 65.62239837646484. No test; preserve complete checkpoint and logs.
+1	449b3ac	0.0185699462890625	+0.0185699462890625	passed	keep	[labels: validation_only, no_leakage, selected_pre_decorrelation, marginal_numeric_only] V009 CUHK portrait soft experts five epochs complete; best val epoch1 R1 72.91328430175781 mAP 65.6409683227539, only +0.064957/+0.018570pp against own portrait E0. Retain numeric incumbent only, not meaningful evidence or a full-mechanism test candidate: selected before decorrelation. No test; preserve all sources and archives.

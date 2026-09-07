@@ -1,0 +1,7 @@
+### L-1: [labels: validation_only, no_leakage, selected_pre_decorrelation, marginal_numeric_only] V009 CUHK portrait soft experts
+- **Strategy:** [labels: validation_only, no_leakage, selected_pre_decorrelation, marginal_numeric_only] V009 CUHK portrait soft experts five epochs complete; best val epoch1 R1 72.91328430175781 mAP 65.6409683227539, only +0.064957/+0.018570pp against own portrait E0. Retain numeric incumbent only, not meaningful evidence or a full-mechanism test candidate: selected before decorrelation. No test; preserve all sources and archives.
+- **Outcome:** keep
+- **Insight:** [labels: validation_only, no_leakage, selected_pre_decorrelation, marginal_numeric_only] V009 CUHK portrait soft experts five epochs complete; best val epoch1 R1 72.91328430175781 mAP 65.6409683227539, only +0.064957/+0.018570pp against own portrait E0. Retain numeric incumbent only, not meaningful evidence or a full-mechanism test candidate: selected before decorrelation. No test; preserve all sources and archives.
+- **Context:** goal=Retain shared cross-view features, soft F/S/B patch residual experts and residual decorrelation; exceed RDE CUHK test R1 75.94 and mAP 67.56 at one fixed checkpoint; portrait S baseline alone is not mechanism success; scope=experiments/TBPS_ViewResearch/**; metric=joint_validation_gain_pp; direction=higher
+- **Iteration:** tbps_cuhk_portrait_view_20260907#1
+- **Timestamp:** 2026-09-07T05:49:52Z

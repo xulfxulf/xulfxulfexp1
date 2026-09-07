@@ -32,34 +32,40 @@
   "run_tag": "tbps_view_20260907",
   "state": {
     "baseline_metric": 0,
-    "best_iteration": 3,
-    "best_metric": 0.129913330078125,
+    "best_iteration": 8,
+    "best_metric": 0.133224487304688,
     "blocked": 0,
-    "consecutive_discards": 4,
+    "consecutive_discards": 0,
     "crashes": 0,
     "current_labels": [
       "validation_only",
       "no_leakage",
-      "selected_pre_decorrelation"
+      "selected_pre_decorrelation",
+      "marginal_numeric_only"
     ],
-    "current_metric": 0.129913330078125,
+    "current_metric": 0.133224487304688,
     "discards": 4,
-    "iteration": 7,
-    "keeps": 1,
-    "last_commit": "27e0339",
+    "iteration": 8,
+    "keeps": 2,
+    "last_commit": "449b3ac",
     "last_repo_commits": {
-      "D:\\004SSH\\TBPS_ViewResearch_20260907": "27e0339"
+      "D:\\004SSH\\TBPS_ViewResearch_20260907": "449b3ac"
     },
-    "last_status": "refine",
-    "last_trial_commit": "eaba98a",
-    "last_trial_labels": [],
-    "last_trial_metric": 0.129913330078125,
+    "last_status": "keep",
+    "last_trial_commit": "449b3ac",
+    "last_trial_labels": [
+      "validation_only",
+      "no_leakage",
+      "selected_pre_decorrelation",
+      "marginal_numeric_only"
+    ],
+    "last_trial_metric": 0.133224487304688,
     "last_trial_repo_commits": {
-      "D:\\004SSH\\TBPS_ViewResearch_20260907": "eaba98a"
+      "D:\\004SSH\\TBPS_ViewResearch_20260907": "449b3ac"
     },
     "no_ops": 0,
     "pivot_count": 0
   },
-  "updated_at": "2026-09-07T05:12:41Z",
+  "updated_at": "2026-09-07T05:49:53Z",
   "version": 1
 }
