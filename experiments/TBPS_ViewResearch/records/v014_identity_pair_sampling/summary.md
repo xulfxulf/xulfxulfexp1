@@ -30,5 +30,8 @@ silently rewrite any historical joint-metric ledger decisions.
 No test was evaluated. Validation67.44 does not establish exceeding RDE's
 test67.56,let alone the prospective68.56 working target. More validation-
 based improvement is needed before choosing the one final test candidate.
-Compact best and records are persisted. Full local archival is pending;
-do not claim it complete before its verification receipt exists.
+Compact best and records are persisted. Full best/last local archival is
+verified,including finite model/AdamW tensors and all four rank RNG states.
+The redundant persistent server last was deleted only after local verification;
+server best,code,logs,raw data and RAM source remain. See archive_verification,
+verification and cleanup_receipt JSON records in this directory.

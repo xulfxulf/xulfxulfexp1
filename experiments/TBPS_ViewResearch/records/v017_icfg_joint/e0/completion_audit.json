@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "batches": 485,
+  "skips": 5,
+  "actual_updates": 480,
+  "skip_locations": [
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "peak_allocated_bytes": 6614261760,
+  "runtime_seconds": 377.0081717967987,
+  "test_evaluated": false,
+  "unit_tests_passed": 37,
+  "audit_actual_updates": 3
+}

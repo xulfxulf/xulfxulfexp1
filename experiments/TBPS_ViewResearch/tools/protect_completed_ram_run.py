@@ -22,12 +22,15 @@ def save_new(path, value):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--version', choices=['v014', 'v015', 'v016'], required=True)
+    parser.add_argument('--version', choices=['v014', 'v015', 'v016', 'v017'], required=True)
+    parser.add_argument('--phase', choices=['validation_run', 'e0_validation_run'], default='validation_run')
     parser.add_argument('--output-dir', required=True)
     args = parser.parse_args()
+    if args.phase == 'e0_validation_run' and args.version != 'v017':
+        raise ValueError('Only V017 adds a baseline archive in this helper')
     name = 'TBPS_ViewResearch_%s_20260907' % args.version
-    source = Path('/dev/shm') / name / 'validation_run'
-    disk = Path('/root/autodl-tmp') / name / 'validation_run'
+    source = Path('/dev/shm') / name / args.phase
+    disk = Path('/root/autodl-tmp') / name / args.phase
     if Path(args.output_dir) != disk or source.resolve() != source or disk.resolve() != disk:
         raise ValueError('Unexpected archive source/destination or symlink')
     result = json.loads((source/'result.json').read_text())
@@ -39,7 +42,8 @@ def main():
     last = source/'checkpoints/last.pth'
     target = disk/'checkpoints/last.pth'
     receipt_path = disk/'full_last_protection.json'
-    archive = source.parent/'method_completed_archive.tar'
+    prefix = 'e0' if args.phase == 'e0_validation_run' else 'method'
+    archive = source.parent/(prefix+'_completed_archive.tar')
     for path in (last, source/'checkpoints/best.pth'):
         if path.is_symlink() or not path.is_file():
             raise ValueError('Unexpected checkpoint source')
@@ -72,9 +76,9 @@ def main():
     partial = archive.with_suffix('.tar.partial')
     with tarfile.open(partial, 'w', dereference=True) as stream:
         for path in sorted(files):
-            stream.add(path, arcname='validation_run/'+path.name, recursive=False)
+            stream.add(path, arcname=args.phase+'/'+path.name, recursive=False)
         for name in ('best.pth','last.pth'):
-            stream.add(source/'checkpoints'/name, arcname='validation_run/checkpoints/'+name,
+            stream.add(source/'checkpoints'/name, arcname=args.phase+'/checkpoints/'+name,
                        recursive=False)
     os.rename(partial, archive)
     print(json.dumps(dict(status='ready_for_download', archive=record(archive),
