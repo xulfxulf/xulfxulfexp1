@@ -1,0 +1,16 @@
+{
+  "status": "protected_pending_local_archive",
+  "source": {
+    "path": "/dev/shm/TBPS_ViewResearch_v017_20260907/validation_run/checkpoints/last.pth",
+    "size": 1800721225,
+    "mtime_ns": 1788777099645343705
+  },
+  "persistent": {
+    "path": "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/validation_run/checkpoints/last.pth",
+    "size": 1800721225,
+    "mtime_ns": 1788777099645343705
+  },
+  "ended_at": "2026-09-07T10:34:41.116533+00:00",
+  "source_deleted": false,
+  "no_file_hashes": true
+}

@@ -1,0 +1,21 @@
+{
+  "status": "running",
+  "command": [
+    "/root/autodl-tmp/envs/tbpsclip_official/bin/python",
+    "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/run_research.py",
+    "final-test",
+    "--config",
+    "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/configs/research_v017.json",
+    "--run-dir",
+    "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/validation_run",
+    "--selection-file",
+    "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/frozen_test_selection_4a30f57.json",
+    "--output-dir",
+    "/root/autodl-tmp/TBPS_ViewResearch_v017_20260907/final_test_run"
+  ],
+  "source_commit": "96b8827",
+  "selection_commit": "4a30f57",
+  "started_at": "2026-09-07T10:38:36.653492+00:00",
+  "test_policy": "one frozen full test; no tuning",
+  "gpu": "NVIDIA GeForce RTX 4080, 32760 MiB\nNVIDIA GeForce RTX 4080, 32760 MiB\nNVIDIA GeForce RTX 4080, 32760 MiB\nNVIDIA GeForce RTX 4080, 32760 MiB\n"
+}

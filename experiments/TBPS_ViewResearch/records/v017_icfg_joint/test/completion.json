@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "exit_code": 0,
+  "pid": 150179,
+  "ended_at": "2026-09-07T10:41:04.788593+00:00",
+  "runtime_seconds": 148.0556232566014,
+  "peak_gpu_used_MiB": 2259
+}

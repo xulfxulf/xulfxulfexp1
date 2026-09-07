@@ -8,6 +8,14 @@ focuses on mAP; prospective working margin is at least1.00 percentage point
 over RDE paper test mAP on one fixed dataset. Both-metric improvement is no
 longer mandatory. See records/objective_amendment_20260907.md.
 
+## Completed outcome
+
+V017's frozen five-epoch ICFG test gives R1=58.958080,mAP=41.812618.
+Against RDE Table1,0%noise:mAP+1.752618pp,R1-8.721920pp. This meets the
+amended single-metric working target,NOT both metrics. Search has stopped;
+the first test did not feed another tuning round. See
+[the result and limitations](records/v017_icfg_joint/final_summary.md).
+
 ## Frozen reference targets
 
 Author paper: https://github.com/QinYang79/RDE/blob/main/src/RDE_main.pdf
@@ -52,10 +60,13 @@ test R1 71.97856140136719 and mAP 67.43281555175781 are not an isolated ablation
 
 `research-results.tsv` and `autoresearch-state.json` are updated with the
 autoresearch helper after each completed experiment, including failures.
-The original joint-gain ledgers remain historical evidence. Active ledger
-is cuhk_map_focus/,initialized against measured V012. Its metric is mAP at
+The original joint-gain ledgers remain historical evidence. The CUHK mAP
+ledger is cuhk_map_focus/,initialized against measured V012. Its metric is mAP at
 the max-validation-R1 checkpoint (earliest tie),not maximum mAP across
 independently selected epochs. Meeting a validation score is NOT test success.
+ICFG uses icfg_map_focus/,initialized only after measuring its own five-epoch
+E0. Its retained validation value stays63.369148; the separate frozen test
+verification records41.812618 without changing the ledger's metric meaning.
 
 ## Experiments
 
@@ -78,7 +89,7 @@ independently selected epochs. Meeting a validation score is NOT test success.
 | v014_identity_pair_sampling | Existing view-aware P160 K2 sampling instead of random caption-pair batches; unchanged five-epoch V012 model/loss | Complete;69.9903/67.4390 at epoch5; mAP+1.4909,R1-3.3452 vs V012; retain for amended mAP objective; no test |
 | v015_ritc_floor | R-ITC epsilon0.01->0.001 only,otherwise unchanged five-epoch V014 | Complete;70.2988/67.7986 at epoch5,+0.3085/+0.3596 vs V014; retained; no test |
 | v016_lower_ritc_floor | R-ITC epsilon0.001->0.0001 only,otherwise unchanged V015 | Complete;70.0714/67.1537 at epoch5,below V015; discard; no test |
-| v017_icfg_joint | Transfer V015 to ICFG with fixed train-ID holdout and quarantined conflicting image | E0 val79.9586/60.7051; method76.5593/63.3691 at epoch5; mAP+2.6641,R1-3.3993; full387decorrelation updates; frozen for one final test |
+| v017_icfg_joint | Transfer V015 to ICFG with fixed train-ID holdout and quarantined conflicting image | Val76.5593/63.3691; frozen epoch5 test58.9581/41.8126; RDE mAP+1.7526,R1-8.7219; single-metric goal met,not joint |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.
