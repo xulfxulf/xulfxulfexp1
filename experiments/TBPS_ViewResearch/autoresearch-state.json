@@ -35,7 +35,7 @@
     "best_iteration": 3,
     "best_metric": 0.129913330078125,
     "blocked": 0,
-    "consecutive_discards": 2,
+    "consecutive_discards": 3,
     "crashes": 0,
     "current_labels": [
       "validation_only",
@@ -43,23 +43,28 @@
       "selected_pre_decorrelation"
     ],
     "current_metric": 0.129913330078125,
-    "discards": 3,
-    "iteration": 5,
+    "discards": 4,
+    "iteration": 6,
     "keeps": 1,
     "last_commit": "27e0339",
     "last_repo_commits": {
       "D:\\004SSH\\TBPS_ViewResearch_20260907": "27e0339"
     },
-    "last_status": "refine",
-    "last_trial_commit": "c83f506",
-    "last_trial_labels": [],
-    "last_trial_metric": 0.129913330078125,
+    "last_status": "discard",
+    "last_trial_commit": "4eeaeb0",
+    "last_trial_labels": [
+      "validation_only",
+      "no_leakage",
+      "mechanism_complete",
+      "inference_only"
+    ],
+    "last_trial_metric": 0.113677978515625,
     "last_trial_repo_commits": {
-      "D:\\004SSH\\TBPS_ViewResearch_20260907": "c83f506"
+      "D:\\004SSH\\TBPS_ViewResearch_20260907": "4eeaeb0"
     },
     "no_ops": 0,
     "pivot_count": 0
   },
-  "updated_at": "2026-09-07T02:58:37Z",
+  "updated_at": "2026-09-07T05:05:14Z",
   "version": 1
 }
