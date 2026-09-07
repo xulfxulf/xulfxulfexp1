@@ -48,11 +48,14 @@ def main():
     model.train()
     reset_training_rng(seed32(cfg['seed'], 'gradient_audit'))
     params = [(n, p) for n, p in model.named_parameters()
-              if n.startswith('visual.transformer.resblocks.11.') or n == 'visual.proj' or n.startswith('experts.')]
+              if n.startswith('visual.transformer.resblocks.11.') or n == 'visual.proj'
+              or n.startswith('experts.') or n == 'expert_queries']
     groups = {name: [i for i, (n, _) in enumerate(params) if predicate(n)] for name, predicate in {
         'visual_last_block': lambda n: n.startswith('visual.transformer.resblocks.11.'),
         'visual_projection': lambda n: n == 'visual.proj',
-        'residual_heads': lambda n: n.startswith('experts.')}.items()}
+        'residual_heads': lambda n: n.startswith('experts.'),
+        'patch_queries': lambda n: n == 'expert_queries'}.items()}
+    groups = {name: indices for name, indices in groups.items() if indices}
     captured = {}
     original = model.auxiliary
     def capture(*values):
@@ -77,7 +80,7 @@ def main():
             full = []
             for g, (_, parameter) in zip(grads, params):
                 g = torch.zeros_like(parameter) if g is None else g
-                g = g.float() / 4096.
+                g = (g.float() / 4096.).contiguous()
                 dist.all_reduce(g)
                 g /= dist.get_world_size()
                 if not torch.isfinite(g).all():
@@ -91,10 +94,12 @@ def main():
             na, nb, nc = [float(x.norm()) for x in (a, b, c)]
             summary[group] = dict(retrieval_norm=na, shared_norm=nb, decor_norm=nc,
                  shared_cosine=float(torch.nn.functional.cosine_similarity(a[None], b[None])) if na*nb else None,
+                 decor_cosine=float(torch.nn.functional.cosine_similarity(a[None], c[None])) if na*nc else None,
                  weighted_shared_to_retrieval=cfg['shared_weight']*nb/na if na else None,
                  weighted_decor_to_retrieval=cfg['decorrelation_weight']*nc/na if na else None,
                  shared_weight_for_10pct_norm=.1*na/nb if nb else None)
-        rows.append(dict(batch=step, groups=summary, supports=int(output['support_pairs'])))
+        rows.append(dict(batch=step, groups=summary, supports=int(output['support_pairs']),
+                         local_loss_values={name: float(value.detach()) for name, value in terms.items()}))
         if rank() == 0:
             print(json.dumps(rows[-1]), flush=True)
         captured.clear()
