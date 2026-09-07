@@ -18,6 +18,8 @@ RUNS = {
     'TBPS_ViewResearch_v011_20260907': ('validation_run',),
     'TBPS_ViewResearch_v012_20260907': ('validation_run',),
     'TBPS_ViewResearch_v013_20260907': ('e0_validation_run', 'validation_run'),
+    'TBPS_ViewResearch_v014_20260907': ('validation_run',),
+    'TBPS_ViewResearch_v015_20260907': ('validation_run',),
 }
 
 

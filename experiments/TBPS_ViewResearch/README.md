@@ -2,12 +2,16 @@
 
 Goal: keep shared cross-view identity/state features plus front/side/back soft
 image residual experts, cross-view shared consistency, and residual-only
-decorrelation. Exceed BOTH R1 and mAP of RDE (CVPR 2024) on one fixed test set.
+decorrelation. The user's2026-09-07 amendment permits a stronger improvement
+in either R1 OR mAP,with the other metric fully reported. The active search
+focuses on mAP; prospective working margin is at least1.00 percentage point
+over RDE paper test mAP on one fixed dataset. Both-metric improvement is no
+longer mandatory. See records/objective_amendment_20260907.md.
 
 ## Frozen reference targets
 
 Author paper: https://github.com/QinYang79/RDE/blob/main/src/RDE_main.pdf
-Table 1, 0% synthetic noise, RDE Best (validation-selected checkpoint).
+Table 1, 0% synthetic noise, published RDE Best row.
 
 | Dataset | R1 | mAP |
 | --- | ---: | ---: |
@@ -15,8 +19,10 @@ Table 1, 0% synthetic noise, RDE Best (validation-selected checkpoint).
 | ICFG-PEDES | 67.68 | 40.06 |
 | RSTPReid | 65.35 | 50.88 |
 
-Both metrics must be strictly higher (at published two-decimal precision) for
-the SAME validation-selected checkpoint, not separately selected epochs.
+Always report R1 and mAP from the SAME validation-selected checkpoint,not
+separately selected epochs. Current working CUHK test mAP target is68.56;
+R1 is fully disclosed,not hidden if it falls. Validation scores are not paper
+test scores and cannot establish this target.
 
 ## Starting evidence
 
@@ -30,7 +36,9 @@ test R1 71.97856140136719 and mAP 67.43281555175781 are not an isolated ablation
 ## Research rules
 
 - New versions have independent full code directories and run records.
-- Seed 1 only; no 60-epoch or three-seed queue is implied.
+- Seed1 only; default five epochs. V013's completed ten-epoch control was
+  worse than retained V012 and does not authorize repeated ten-epoch search.
+  No60-epoch or three-seed queue is implied.
 - Do not alter original images/annotations or train on validation/test identity.
 - Choose experiments and checkpoints on validation only. Do not inspect test
   after every trial. Freeze final selection before one-time test evaluation.
@@ -44,8 +52,10 @@ test R1 71.97856140136719 and mAP 67.43281555175781 are not an isolated ablation
 
 `research-results.tsv` and `autoresearch-state.json` are updated with the
 autoresearch helper after each completed experiment, including failures.
-Selection metric is the minimum of R1 and mAP validation gains against E0,
-at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
+The original joint-gain ledgers remain historical evidence. Active ledger
+is cuhk_map_focus/,initialized against measured V012. Its metric is mAP at
+the max-validation-R1 checkpoint (earliest tie),not maximum mAP across
+independently selected epochs. Meeting a validation score is NOT test success.
 
 ## Experiments
 
@@ -64,7 +74,9 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | v010_cuhk_retained_beta | Keep converged S soft-label mixing beta=.5 throughout otherwise identical continuation | Complete; val72.9945/65.6336 at epoch1, joint gain below V009; discard; no test |
 | v011_discriminative_shared | Add different-PID negatives to cross-view shared consistency; keep the V009 training profile | Complete; val72.7509/65.6099 at epoch1, below matched E0; discard; no test |
 | v012_joint_initialization | Train unchanged V009 mechanism from OpenAI with S initial-training backbone LR, instead of appending it after E0 | Complete; best val73.3355/65.9481 at epoch5, +0.4872/+0.3257 vs portrait E0; retained full-mechanism candidate; no test |
-| v013_joint_ten_epochs | Extend the unchanged V012 initial-training horizon to10 epochs; first measure matching10-epoch portrait E0 | Implementation/audit pending; no test |
+| v013_joint_ten_epochs | Extend unchanged V012 initial-training horizon to10 epochs,with separately measured10-epoch E0 | Complete; E0 72.0039/64.9814,method72.2637/65.4230; below V012,discard; no test |
+| v014_identity_pair_sampling | Existing view-aware P160 K2 sampling instead of random caption-pair batches; unchanged five-epoch V012 model/loss | Complete;69.9903/67.4390 at epoch5; mAP+1.4909,R1-3.3452 vs V012; retain for amended mAP objective; no test |
+| v015_ritc_floor | R-ITC epsilon0.01->0.001 only,otherwise unchanged five-epoch V014 |33server tests and8-step four-GPU audit passed; formal running; no test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.
@@ -78,3 +90,7 @@ as full-mechanism candidates. See the V003 result summary for this distinction.
 V009 likewise selects epoch 1, before decorrelation. Its higher numerical score
 does not supersede V004 as a fully trained mechanism checkpoint, and no new
 test score has been used to select these experiments.
+
+V012 and V014 both select epoch5 and include847 actual decorrelation updates.
+Retain V012 as the stronger-R1 option and V014 as current stronger-mAP option;
+neither has been evaluated on test. Do not claim a joint improvement for V014.
