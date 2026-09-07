@@ -1,0 +1,26 @@
+{
+  "version": "v008_flip_gallery",
+  "source_config": "configs/research_v004.json",
+  "dataset": "CUHK-PEDES",
+  "split": "val",
+  "seed": 1,
+  "image_batch_size": 32,
+  "text_batch_size": 256,
+  "plain_metric_tolerance": 0.0001,
+  "sources": [
+    {
+      "name": "E0",
+      "checkpoint": "/root/autodl-tmp/TBPS_CLIP_S_View4_E0_5e_E1_5e_20260907_r2/E0/runs/E0_seed1_formal/checkpoints/best.pth",
+      "experiment": "E0",
+      "best_epoch": 5,
+      "plain_validation": {"r1": 72.63721466064453, "mAP": 65.50774383544922}
+    },
+    {
+      "name": "V004",
+      "checkpoint": "/root/autodl-tmp/TBPS_ViewResearch_v004_20260907/validation_run/checkpoints/best.pth",
+      "experiment": "v004_patch_evidence",
+      "best_epoch": 4,
+      "plain_validation": {"r1": 72.81584930419922, "mAP": 65.56512451171875}
+    }
+  ]
+}
