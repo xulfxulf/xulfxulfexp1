@@ -1,0 +1,1 @@
+{"batches":97,"identities_per_global_batch":160,"images_per_identity":2,"repeated_single_image_pairs":0,"source":{"mtime_ns":1788775746247688396,"path":"/root/autodl-tmp/TBPS_ViewResearch_ICFG_inputs_20260907/prepared/plans/seed_1/PK_epoch_5.npz","size":72149},"status":"passed","train_only":true,"whole_pid_rank_allocation":true}

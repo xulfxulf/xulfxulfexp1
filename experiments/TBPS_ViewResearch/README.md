@@ -78,7 +78,7 @@ independently selected epochs. Meeting a validation score is NOT test success.
 | v014_identity_pair_sampling | Existing view-aware P160 K2 sampling instead of random caption-pair batches; unchanged five-epoch V012 model/loss | Complete;69.9903/67.4390 at epoch5; mAP+1.4909,R1-3.3452 vs V012; retain for amended mAP objective; no test |
 | v015_ritc_floor | R-ITC epsilon0.01->0.001 only,otherwise unchanged five-epoch V014 | Complete;70.2988/67.7986 at epoch5,+0.3085/+0.3596 vs V014; retained; no test |
 | v016_lower_ritc_floor | R-ITC epsilon0.001->0.0001 only,otherwise unchanged V015 | Complete;70.0714/67.1537 at epoch5,below V015; discard; no test |
-| v017_icfg_joint | Transfer V015 to ICFG with fixed train-ID holdout and quarantined conflicting image | Five-epoch E0 val79.9586/60.7051;37tests and both four-GPU startup audits passed; method running; no test |
+| v017_icfg_joint | Transfer V015 to ICFG with fixed train-ID holdout and quarantined conflicting image | E0 val79.9586/60.7051; method76.5593/63.3691 at epoch5; mAP+2.6641,R1-3.3993; full387decorrelation updates; frozen for one final test |
 
 RSTP references and iteration metrics use `rstp/research-results.tsv` and
 `rstp/autoresearch-state.json`, independently of the CUHK metric ledger.

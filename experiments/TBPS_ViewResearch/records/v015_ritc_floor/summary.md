@@ -23,7 +23,9 @@ allocated CUDA memory6761197056bytes per reported rank. All1060sample-trace
 rows match V014 for each of4ranks. These are structured row comparisons,
 not image/tensor/file hashes.
 
-The source and compact best/logs are persistent on PRO1. Full last and archive
-are protected there while local transfer is pending. No checkpoint or raw
-smoke log belongs in GitHub. Raw smoke/test logs are local under
+The source and compact best/logs are persistent on PRO1. Full best/last archive
+is locally verified,including all model/AdamW tensor finiteness and four-rank
+RNG state. Only the redundant persistent server last was deleted afterward;
+server best/source/RAM records remain. See the three archive/cleanup receipts.
+No checkpoint or raw smoke log belongs in GitHub. Raw startup-audit logs are local under
 D:/004SSH/TBPS_ViewResearch_audit_logs_20260907/v015.

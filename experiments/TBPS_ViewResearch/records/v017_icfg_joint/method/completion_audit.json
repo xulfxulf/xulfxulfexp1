@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "batches": 485,
+  "actual_updates": 480,
+  "skips": 5,
+  "skip_locations": [
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "decorrelation_updates": 387,
+  "selected_received_decorrelation": true,
+  "residual_alarm_batches": 0,
+  "peak_allocated_bytes": 6761197056,
+  "runtime_seconds": 426.8272726535797,
+  "min_support_pairs": 58,
+  "max_support_pairs": 64,
+  "final_epoch_rho_median_mean": 0.005422971216174438,
+  "final_epoch_rho_p95_max": 0.0178848747164011,
+  "final_epoch_zero_norm_pair_ratio_max": 0,
+  "unit_tests_passed": 37,
+  "audit_actual_updates": 3,
+  "test_evaluated": false
+}
