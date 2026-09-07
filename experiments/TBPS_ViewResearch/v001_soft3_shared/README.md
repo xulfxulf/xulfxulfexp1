@@ -31,7 +31,7 @@ are used directly. They are **not target-domain calibrated confidence**.
   are retained. Auxiliary support RNG does not advance main-path RNG.
 - Per rank select at most 16 eligible anchors from the unchanged 80-item batch.
   For each, choose one train image of the same PID, a different image_id and a
-  different dominant F/S/B view, with circular distance at least 60 degrees.
+  different peak-angle F/S/B view, with circular distance at least 60 degrees.
   Require these angle/view conditions both before and after augmentation.
   Supports are used only by the auxiliary losses, never as extra main negatives.
 - Pair reliability `w = c_a*c_b*(1-dot(p_a,p_b))` is detached.
