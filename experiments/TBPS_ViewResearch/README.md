@@ -52,4 +52,4 @@ at the best-validation-R1 epoch. Meeting a validation score is NOT test success.
 | Version | Hypothesis | State |
 | --- | --- | --- |
 | v001_soft3_shared | Keep E0 main negatives; add soft3 residuals and auxiliary cross-view supports | Complete; no validation improvement; test not evaluated |
-| v002_balanced_aux | Balance shared/decorrelation gradients using V001 train-only audit | Prepared; no result yet |
+| v002_balanced_aux | Balance shared/decorrelation gradients using V001 train-only audit | Complete; best val 72.3287 / 65.4154, below E0; no test |

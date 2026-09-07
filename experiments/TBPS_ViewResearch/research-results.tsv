@@ -16,3 +16,4 @@
 iteration	commit	metric	delta	guard	status	description
 0	22957830973eea95a5e21bafb2b10df81e77fc36	0	0	-	baseline	Verified CUHK E0 five-epoch run: best validation R1 72.63721466064453 mAP 65.50774383544922; fixed baseline code retained outside published historical commit
 1	df68e52	-0.37349700927734375	-0.37349700927734375	passed	discard	[labels: validation_only, no_leakage, mechanism_complete] CUHK v001 completed five epochs without runtime error; best val epoch1 R1=72.26371765136719 mAP=65.15359497070312, below E0 in both; no test accessed; preserve complete source/checkpoints/logs
+2	778037e	-0.30854034423828125	-0.30854034423828125	passed	discard	[labels: validation_only, no_leakage, mechanism_complete] CUHK v002 five epochs complete; balanced auxiliary weights improve over v001 but best val epoch1 R1=72.32867431640625 mAP=65.4154281616211 still below E0; no test evaluated; retain all artifacts
